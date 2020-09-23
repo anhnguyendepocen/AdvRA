@@ -4,10 +4,10 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><center><img src="images/mylogo.png" alt="logo" width="50%" height="50%"style="margin: 15px 0 0 0"></center></li>
+        <li><center><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></center></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/mca91/EconometricsWithR/edit/master/%s
+    edit: https://github.com/lidom/AdvRA/edit/master/%s
     download: null
     sharing:
       github: false
