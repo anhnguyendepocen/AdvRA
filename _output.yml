@@ -1,0 +1,16 @@
+bookdown::gitbook:
+  toc_depth: 3
+  css: [style.css, toc.css]
+  config:
+    toc:
+      before: <br> Table of Contents
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+    edit: https://github.com/mca91/EconometricsWithR/edit/master/%s
+    download: null
+    sharing:
+      github: false
+      facebook: false
+      linkedin: false
+      twitter: false
+bookdown::epub_book: default
