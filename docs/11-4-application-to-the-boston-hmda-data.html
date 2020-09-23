@@ -135,13 +135,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><a href="https://www.example.com/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
+<li><center><a href="http://www.dliebl.com/AdvRA/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
 <li class="chapter" data-level="" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html#probability-distributions-of-discrete-random-variables"><i class="fa fa-check"></i>Probability Distributions of Discrete Random Variables</a></li>
@@ -360,75 +358,75 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">11.4</span> Application to the Boston HMDA Data</h2>
 <p>Models <a href="11-2-palr.html#eq:denyprobit2">(11.6)</a> and <a href="11-2-palr.html#eq:denylogit2">(11.7)</a> indicate that denial rates are higher for African American applicants holding constant the payment-to-income ratio. Both results could be subject to omitted variable bias. In order to obtain a more trustworthy estimate of the effect of being black on the probability of a mortgage application denial we estimate a linear probability model as well as several Logit and Probit models. We thereby control for financial variables and additional applicant characteristics which are likely to influence the probability of denial and differ between black and white applicants.</p>
 <p>Sample averages as shown in Table 11.1 of the book can be easily reproduced using the functions <tt>mean()</tt> (as usual for numeric variables) and <tt>prop.table()</tt> (for factor variables).</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1"><span class="co"># Mean P/I ratio</span></a>
-<a class="sourceLine" id="cb277-2" data-line-number="2"><span class="kw">mean</span>(HMDA<span class="op">$</span>pirat)</a>
-<a class="sourceLine" id="cb277-3" data-line-number="3"><span class="co">#&gt; [1] 0.3308136</span></a>
-<a class="sourceLine" id="cb277-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb277-5" data-line-number="5"><span class="co"># inhouse expense-to-total-income ratio</span></a>
-<a class="sourceLine" id="cb277-6" data-line-number="6"><span class="kw">mean</span>(HMDA<span class="op">$</span>hirat)</a>
-<a class="sourceLine" id="cb277-7" data-line-number="7"><span class="co">#&gt; [1] 0.2553461</span></a>
-<a class="sourceLine" id="cb277-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb277-9" data-line-number="9"><span class="co"># loan-to-value ratio</span></a>
-<a class="sourceLine" id="cb277-10" data-line-number="10"><span class="kw">mean</span>(HMDA<span class="op">$</span>lvrat)</a>
-<a class="sourceLine" id="cb277-11" data-line-number="11"><span class="co">#&gt; [1] 0.7377759</span></a>
-<a class="sourceLine" id="cb277-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb277-13" data-line-number="13"><span class="co"># consumer credit score</span></a>
-<a class="sourceLine" id="cb277-14" data-line-number="14"><span class="kw">mean</span>(<span class="kw">as.numeric</span>(HMDA<span class="op">$</span>chist))</a>
-<a class="sourceLine" id="cb277-15" data-line-number="15"><span class="co">#&gt; [1] 2.116387</span></a>
-<a class="sourceLine" id="cb277-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb277-17" data-line-number="17"><span class="co"># mortgage credit score</span></a>
-<a class="sourceLine" id="cb277-18" data-line-number="18"><span class="kw">mean</span>(<span class="kw">as.numeric</span>(HMDA<span class="op">$</span>mhist))</a>
-<a class="sourceLine" id="cb277-19" data-line-number="19"><span class="co">#&gt; [1] 1.721008</span></a>
-<a class="sourceLine" id="cb277-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb277-21" data-line-number="21"><span class="co"># public bad credit record</span></a>
-<a class="sourceLine" id="cb277-22" data-line-number="22"><span class="kw">mean</span>(<span class="kw">as.numeric</span>(HMDA<span class="op">$</span>phist)<span class="op">-</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb277-23" data-line-number="23"><span class="co">#&gt; [1] 0.07352941</span></a>
-<a class="sourceLine" id="cb277-24" data-line-number="24"></a>
-<a class="sourceLine" id="cb277-25" data-line-number="25"><span class="co"># denied mortgage insurance</span></a>
-<a class="sourceLine" id="cb277-26" data-line-number="26"><span class="kw">prop.table</span>(<span class="kw">table</span>(HMDA<span class="op">$</span>insurance))</a>
-<a class="sourceLine" id="cb277-27" data-line-number="27"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb277-28" data-line-number="28"><span class="co">#&gt;         no        yes </span></a>
-<a class="sourceLine" id="cb277-29" data-line-number="29"><span class="co">#&gt; 0.97983193 0.02016807</span></a>
-<a class="sourceLine" id="cb277-30" data-line-number="30"></a>
-<a class="sourceLine" id="cb277-31" data-line-number="31"><span class="co"># self-employed</span></a>
-<a class="sourceLine" id="cb277-32" data-line-number="32"><span class="kw">prop.table</span>(<span class="kw">table</span>(HMDA<span class="op">$</span>selfemp))</a>
-<a class="sourceLine" id="cb277-33" data-line-number="33"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb277-34" data-line-number="34"><span class="co">#&gt;        no       yes </span></a>
-<a class="sourceLine" id="cb277-35" data-line-number="35"><span class="co">#&gt; 0.8836134 0.1163866</span></a>
-<a class="sourceLine" id="cb277-36" data-line-number="36"></a>
-<a class="sourceLine" id="cb277-37" data-line-number="37"><span class="co"># single</span></a>
-<a class="sourceLine" id="cb277-38" data-line-number="38"><span class="kw">prop.table</span>(<span class="kw">table</span>(HMDA<span class="op">$</span>single))</a>
-<a class="sourceLine" id="cb277-39" data-line-number="39"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb277-40" data-line-number="40"><span class="co">#&gt;        no       yes </span></a>
-<a class="sourceLine" id="cb277-41" data-line-number="41"><span class="co">#&gt; 0.6067227 0.3932773</span></a>
-<a class="sourceLine" id="cb277-42" data-line-number="42"></a>
-<a class="sourceLine" id="cb277-43" data-line-number="43"><span class="co"># high school diploma</span></a>
-<a class="sourceLine" id="cb277-44" data-line-number="44"><span class="kw">prop.table</span>(<span class="kw">table</span>(HMDA<span class="op">$</span>hschool))</a>
-<a class="sourceLine" id="cb277-45" data-line-number="45"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb277-46" data-line-number="46"><span class="co">#&gt;         no        yes </span></a>
-<a class="sourceLine" id="cb277-47" data-line-number="47"><span class="co">#&gt; 0.01638655 0.98361345</span></a>
-<a class="sourceLine" id="cb277-48" data-line-number="48"></a>
-<a class="sourceLine" id="cb277-49" data-line-number="49"><span class="co"># unemployment rate</span></a>
-<a class="sourceLine" id="cb277-50" data-line-number="50"><span class="kw">mean</span>(HMDA<span class="op">$</span>unemp)</a>
-<a class="sourceLine" id="cb277-51" data-line-number="51"><span class="co">#&gt; [1] 3.774496</span></a>
-<a class="sourceLine" id="cb277-52" data-line-number="52"></a>
-<a class="sourceLine" id="cb277-53" data-line-number="53"><span class="co"># condominium</span></a>
-<a class="sourceLine" id="cb277-54" data-line-number="54"><span class="kw">prop.table</span>(<span class="kw">table</span>(HMDA<span class="op">$</span>condomin))</a>
-<a class="sourceLine" id="cb277-55" data-line-number="55"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb277-56" data-line-number="56"><span class="co">#&gt;        no       yes </span></a>
-<a class="sourceLine" id="cb277-57" data-line-number="57"><span class="co">#&gt; 0.7117647 0.2882353</span></a>
-<a class="sourceLine" id="cb277-58" data-line-number="58"></a>
-<a class="sourceLine" id="cb277-59" data-line-number="59"><span class="co"># black</span></a>
-<a class="sourceLine" id="cb277-60" data-line-number="60"><span class="kw">prop.table</span>(<span class="kw">table</span>(HMDA<span class="op">$</span>black))</a>
-<a class="sourceLine" id="cb277-61" data-line-number="61"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb277-62" data-line-number="62"><span class="co">#&gt;       no      yes </span></a>
-<a class="sourceLine" id="cb277-63" data-line-number="63"><span class="co">#&gt; 0.857563 0.142437</span></a>
-<a class="sourceLine" id="cb277-64" data-line-number="64"></a>
-<a class="sourceLine" id="cb277-65" data-line-number="65"><span class="co"># deny</span></a>
-<a class="sourceLine" id="cb277-66" data-line-number="66"><span class="kw">prop.table</span>(<span class="kw">table</span>(HMDA<span class="op">$</span>deny))</a>
-<a class="sourceLine" id="cb277-67" data-line-number="67"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb277-68" data-line-number="68"><span class="co">#&gt;         0         1 </span></a>
-<a class="sourceLine" id="cb277-69" data-line-number="69"><span class="co">#&gt; 0.8802521 0.1197479</span></a></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" data-line-number="1"><span class="co"># Mean P/I ratio</span></a>
+<a class="sourceLine" id="cb276-2" data-line-number="2"><span class="kw">mean</span>(HMDA<span class="op">$</span>pirat)</a>
+<a class="sourceLine" id="cb276-3" data-line-number="3"><span class="co">#&gt; [1] 0.3308136</span></a>
+<a class="sourceLine" id="cb276-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb276-5" data-line-number="5"><span class="co"># inhouse expense-to-total-income ratio</span></a>
+<a class="sourceLine" id="cb276-6" data-line-number="6"><span class="kw">mean</span>(HMDA<span class="op">$</span>hirat)</a>
+<a class="sourceLine" id="cb276-7" data-line-number="7"><span class="co">#&gt; [1] 0.2553461</span></a>
+<a class="sourceLine" id="cb276-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb276-9" data-line-number="9"><span class="co"># loan-to-value ratio</span></a>
+<a class="sourceLine" id="cb276-10" data-line-number="10"><span class="kw">mean</span>(HMDA<span class="op">$</span>lvrat)</a>
+<a class="sourceLine" id="cb276-11" data-line-number="11"><span class="co">#&gt; [1] 0.7377759</span></a>
+<a class="sourceLine" id="cb276-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb276-13" data-line-number="13"><span class="co"># consumer credit score</span></a>
+<a class="sourceLine" id="cb276-14" data-line-number="14"><span class="kw">mean</span>(<span class="kw">as.numeric</span>(HMDA<span class="op">$</span>chist))</a>
+<a class="sourceLine" id="cb276-15" data-line-number="15"><span class="co">#&gt; [1] 2.116387</span></a>
+<a class="sourceLine" id="cb276-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb276-17" data-line-number="17"><span class="co"># mortgage credit score</span></a>
+<a class="sourceLine" id="cb276-18" data-line-number="18"><span class="kw">mean</span>(<span class="kw">as.numeric</span>(HMDA<span class="op">$</span>mhist))</a>
+<a class="sourceLine" id="cb276-19" data-line-number="19"><span class="co">#&gt; [1] 1.721008</span></a>
+<a class="sourceLine" id="cb276-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb276-21" data-line-number="21"><span class="co"># public bad credit record</span></a>
+<a class="sourceLine" id="cb276-22" data-line-number="22"><span class="kw">mean</span>(<span class="kw">as.numeric</span>(HMDA<span class="op">$</span>phist)<span class="op">-</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb276-23" data-line-number="23"><span class="co">#&gt; [1] 0.07352941</span></a>
+<a class="sourceLine" id="cb276-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb276-25" data-line-number="25"><span class="co"># denied mortgage insurance</span></a>
+<a class="sourceLine" id="cb276-26" data-line-number="26"><span class="kw">prop.table</span>(<span class="kw">table</span>(HMDA<span class="op">$</span>insurance))</a>
+<a class="sourceLine" id="cb276-27" data-line-number="27"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb276-28" data-line-number="28"><span class="co">#&gt;         no        yes </span></a>
+<a class="sourceLine" id="cb276-29" data-line-number="29"><span class="co">#&gt; 0.97983193 0.02016807</span></a>
+<a class="sourceLine" id="cb276-30" data-line-number="30"></a>
+<a class="sourceLine" id="cb276-31" data-line-number="31"><span class="co"># self-employed</span></a>
+<a class="sourceLine" id="cb276-32" data-line-number="32"><span class="kw">prop.table</span>(<span class="kw">table</span>(HMDA<span class="op">$</span>selfemp))</a>
+<a class="sourceLine" id="cb276-33" data-line-number="33"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb276-34" data-line-number="34"><span class="co">#&gt;        no       yes </span></a>
+<a class="sourceLine" id="cb276-35" data-line-number="35"><span class="co">#&gt; 0.8836134 0.1163866</span></a>
+<a class="sourceLine" id="cb276-36" data-line-number="36"></a>
+<a class="sourceLine" id="cb276-37" data-line-number="37"><span class="co"># single</span></a>
+<a class="sourceLine" id="cb276-38" data-line-number="38"><span class="kw">prop.table</span>(<span class="kw">table</span>(HMDA<span class="op">$</span>single))</a>
+<a class="sourceLine" id="cb276-39" data-line-number="39"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb276-40" data-line-number="40"><span class="co">#&gt;        no       yes </span></a>
+<a class="sourceLine" id="cb276-41" data-line-number="41"><span class="co">#&gt; 0.6067227 0.3932773</span></a>
+<a class="sourceLine" id="cb276-42" data-line-number="42"></a>
+<a class="sourceLine" id="cb276-43" data-line-number="43"><span class="co"># high school diploma</span></a>
+<a class="sourceLine" id="cb276-44" data-line-number="44"><span class="kw">prop.table</span>(<span class="kw">table</span>(HMDA<span class="op">$</span>hschool))</a>
+<a class="sourceLine" id="cb276-45" data-line-number="45"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb276-46" data-line-number="46"><span class="co">#&gt;         no        yes </span></a>
+<a class="sourceLine" id="cb276-47" data-line-number="47"><span class="co">#&gt; 0.01638655 0.98361345</span></a>
+<a class="sourceLine" id="cb276-48" data-line-number="48"></a>
+<a class="sourceLine" id="cb276-49" data-line-number="49"><span class="co"># unemployment rate</span></a>
+<a class="sourceLine" id="cb276-50" data-line-number="50"><span class="kw">mean</span>(HMDA<span class="op">$</span>unemp)</a>
+<a class="sourceLine" id="cb276-51" data-line-number="51"><span class="co">#&gt; [1] 3.774496</span></a>
+<a class="sourceLine" id="cb276-52" data-line-number="52"></a>
+<a class="sourceLine" id="cb276-53" data-line-number="53"><span class="co"># condominium</span></a>
+<a class="sourceLine" id="cb276-54" data-line-number="54"><span class="kw">prop.table</span>(<span class="kw">table</span>(HMDA<span class="op">$</span>condomin))</a>
+<a class="sourceLine" id="cb276-55" data-line-number="55"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb276-56" data-line-number="56"><span class="co">#&gt;        no       yes </span></a>
+<a class="sourceLine" id="cb276-57" data-line-number="57"><span class="co">#&gt; 0.7117647 0.2882353</span></a>
+<a class="sourceLine" id="cb276-58" data-line-number="58"></a>
+<a class="sourceLine" id="cb276-59" data-line-number="59"><span class="co"># black</span></a>
+<a class="sourceLine" id="cb276-60" data-line-number="60"><span class="kw">prop.table</span>(<span class="kw">table</span>(HMDA<span class="op">$</span>black))</a>
+<a class="sourceLine" id="cb276-61" data-line-number="61"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb276-62" data-line-number="62"><span class="co">#&gt;       no      yes </span></a>
+<a class="sourceLine" id="cb276-63" data-line-number="63"><span class="co">#&gt; 0.857563 0.142437</span></a>
+<a class="sourceLine" id="cb276-64" data-line-number="64"></a>
+<a class="sourceLine" id="cb276-65" data-line-number="65"><span class="co"># deny</span></a>
+<a class="sourceLine" id="cb276-66" data-line-number="66"><span class="kw">prop.table</span>(<span class="kw">table</span>(HMDA<span class="op">$</span>deny))</a>
+<a class="sourceLine" id="cb276-67" data-line-number="67"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb276-68" data-line-number="68"><span class="co">#&gt;         0         1 </span></a>
+<a class="sourceLine" id="cb276-69" data-line-number="69"><span class="co">#&gt; 0.8802521 0.1197479</span></a></code></pre></div>
 <p>See Chapter 11.4 of the book or use <tt>R</tt>’s help function for more on variables contained in the <tt>HMDA</tt> dataset.</p>
 <p>Before estimating the models we transform the loan-to-value ratio (<tt>lvrat</tt>) into a factor variable, where</p>
 <p><span class="math display">\[\begin{align*}
@@ -440,62 +438,62 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   \end{cases}
 \end{align*}\]</span></p>
 <p>and convert both credit scores to numeric variables.</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" data-line-number="1"><span class="co"># define low, medium and high loan-to-value ratio</span></a>
-<a class="sourceLine" id="cb278-2" data-line-number="2">HMDA<span class="op">$</span>lvrat &lt;-<span class="st"> </span><span class="kw">factor</span>(</a>
-<a class="sourceLine" id="cb278-3" data-line-number="3">  <span class="kw">ifelse</span>(HMDA<span class="op">$</span>lvrat <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.8</span>, <span class="st">&quot;low&quot;</span>,</a>
-<a class="sourceLine" id="cb278-4" data-line-number="4">  <span class="kw">ifelse</span>(HMDA<span class="op">$</span>lvrat <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.8</span> <span class="op">&amp;</span><span class="st"> </span>HMDA<span class="op">$</span>lvrat <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.95</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>)),</a>
-<a class="sourceLine" id="cb278-5" data-line-number="5">  <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>))</a>
-<a class="sourceLine" id="cb278-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb278-7" data-line-number="7"><span class="co"># convert credit scores to numeric</span></a>
-<a class="sourceLine" id="cb278-8" data-line-number="8">HMDA<span class="op">$</span>mhist &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(HMDA<span class="op">$</span>mhist)</a>
-<a class="sourceLine" id="cb278-9" data-line-number="9">HMDA<span class="op">$</span>chist &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(HMDA<span class="op">$</span>chist)</a></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1"><span class="co"># define low, medium and high loan-to-value ratio</span></a>
+<a class="sourceLine" id="cb277-2" data-line-number="2">HMDA<span class="op">$</span>lvrat &lt;-<span class="st"> </span><span class="kw">factor</span>(</a>
+<a class="sourceLine" id="cb277-3" data-line-number="3">  <span class="kw">ifelse</span>(HMDA<span class="op">$</span>lvrat <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.8</span>, <span class="st">&quot;low&quot;</span>,</a>
+<a class="sourceLine" id="cb277-4" data-line-number="4">  <span class="kw">ifelse</span>(HMDA<span class="op">$</span>lvrat <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.8</span> <span class="op">&amp;</span><span class="st"> </span>HMDA<span class="op">$</span>lvrat <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.95</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>)),</a>
+<a class="sourceLine" id="cb277-5" data-line-number="5">  <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>))</a>
+<a class="sourceLine" id="cb277-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb277-7" data-line-number="7"><span class="co"># convert credit scores to numeric</span></a>
+<a class="sourceLine" id="cb277-8" data-line-number="8">HMDA<span class="op">$</span>mhist &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(HMDA<span class="op">$</span>mhist)</a>
+<a class="sourceLine" id="cb277-9" data-line-number="9">HMDA<span class="op">$</span>chist &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(HMDA<span class="op">$</span>chist)</a></code></pre></div>
 <p>Next we reproduce the estimation results presented in Table 11.2 of the book.</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1"><span class="co"># estimate all 6 models for the denial probability</span></a>
-<a class="sourceLine" id="cb279-2" data-line-number="2">lpm_HMDA &lt;-<span class="st"> </span><span class="kw">lm</span>(deny <span class="op">~</span><span class="st"> </span>black <span class="op">+</span><span class="st"> </span>pirat <span class="op">+</span><span class="st"> </span>hirat <span class="op">+</span><span class="st"> </span>lvrat <span class="op">+</span><span class="st"> </span>chist <span class="op">+</span><span class="st"> </span>mhist <span class="op">+</span><span class="st"> </span>phist </a>
-<a class="sourceLine" id="cb279-3" data-line-number="3">               <span class="op">+</span><span class="st"> </span>insurance <span class="op">+</span><span class="st"> </span>selfemp, <span class="dt">data =</span> HMDA)</a>
-<a class="sourceLine" id="cb279-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb279-5" data-line-number="5">logit_HMDA &lt;-<span class="st"> </span><span class="kw">glm</span>(deny <span class="op">~</span><span class="st"> </span>black <span class="op">+</span><span class="st"> </span>pirat <span class="op">+</span><span class="st"> </span>hirat <span class="op">+</span><span class="st"> </span>lvrat <span class="op">+</span><span class="st"> </span>chist <span class="op">+</span><span class="st"> </span>mhist <span class="op">+</span><span class="st"> </span>phist </a>
-<a class="sourceLine" id="cb279-6" data-line-number="6">                  <span class="op">+</span><span class="st"> </span>insurance <span class="op">+</span><span class="st"> </span>selfemp, </a>
-<a class="sourceLine" id="cb279-7" data-line-number="7">                  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>), </a>
-<a class="sourceLine" id="cb279-8" data-line-number="8">                  <span class="dt">data =</span> HMDA)</a>
-<a class="sourceLine" id="cb279-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb279-10" data-line-number="10">probit_HMDA_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">glm</span>(deny <span class="op">~</span><span class="st"> </span>black <span class="op">+</span><span class="st"> </span>pirat <span class="op">+</span><span class="st"> </span>hirat <span class="op">+</span><span class="st"> </span>lvrat <span class="op">+</span><span class="st"> </span>chist <span class="op">+</span><span class="st"> </span>mhist <span class="op">+</span><span class="st"> </span>phist </a>
-<a class="sourceLine" id="cb279-11" data-line-number="11">                     <span class="op">+</span><span class="st"> </span>insurance <span class="op">+</span><span class="st"> </span>selfemp, </a>
-<a class="sourceLine" id="cb279-12" data-line-number="12">                     <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;probit&quot;</span>), </a>
-<a class="sourceLine" id="cb279-13" data-line-number="13">                     <span class="dt">data =</span> HMDA)</a>
-<a class="sourceLine" id="cb279-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb279-15" data-line-number="15">probit_HMDA_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">glm</span>(deny <span class="op">~</span><span class="st"> </span>black <span class="op">+</span><span class="st"> </span>pirat <span class="op">+</span><span class="st"> </span>hirat <span class="op">+</span><span class="st"> </span>lvrat <span class="op">+</span><span class="st"> </span>chist <span class="op">+</span><span class="st"> </span>mhist <span class="op">+</span><span class="st"> </span>phist </a>
-<a class="sourceLine" id="cb279-16" data-line-number="16">                     <span class="op">+</span><span class="st"> </span>insurance <span class="op">+</span><span class="st"> </span>selfemp <span class="op">+</span><span class="st"> </span>single <span class="op">+</span><span class="st"> </span>hschool <span class="op">+</span><span class="st"> </span>unemp, </a>
-<a class="sourceLine" id="cb279-17" data-line-number="17">                     <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;probit&quot;</span>), </a>
-<a class="sourceLine" id="cb279-18" data-line-number="18">                     <span class="dt">data =</span> HMDA)</a>
-<a class="sourceLine" id="cb279-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb279-20" data-line-number="20">probit_HMDA_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">glm</span>(deny <span class="op">~</span><span class="st"> </span>black <span class="op">+</span><span class="st"> </span>pirat <span class="op">+</span><span class="st"> </span>hirat <span class="op">+</span><span class="st"> </span>lvrat <span class="op">+</span><span class="st"> </span>chist <span class="op">+</span><span class="st"> </span>mhist </a>
-<a class="sourceLine" id="cb279-21" data-line-number="21">                     <span class="op">+</span><span class="st"> </span>phist <span class="op">+</span><span class="st"> </span>insurance <span class="op">+</span><span class="st"> </span>selfemp <span class="op">+</span><span class="st"> </span>single <span class="op">+</span><span class="st"> </span>hschool <span class="op">+</span><span class="st"> </span>unemp <span class="op">+</span><span class="st"> </span>condomin </a>
-<a class="sourceLine" id="cb279-22" data-line-number="22">                     <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(mhist<span class="op">==</span><span class="dv">3</span>) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(mhist<span class="op">==</span><span class="dv">4</span>) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(chist<span class="op">==</span><span class="dv">3</span>) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(chist<span class="op">==</span><span class="dv">4</span>) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(chist<span class="op">==</span><span class="dv">5</span>) </a>
-<a class="sourceLine" id="cb279-23" data-line-number="23">                     <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(chist<span class="op">==</span><span class="dv">6</span>), </a>
-<a class="sourceLine" id="cb279-24" data-line-number="24">                     <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;probit&quot;</span>), </a>
-<a class="sourceLine" id="cb279-25" data-line-number="25">                     <span class="dt">data =</span> HMDA)</a>
-<a class="sourceLine" id="cb279-26" data-line-number="26"></a>
-<a class="sourceLine" id="cb279-27" data-line-number="27">probit_HMDA_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw">glm</span>(deny <span class="op">~</span><span class="st"> </span>black <span class="op">*</span><span class="st"> </span>(pirat <span class="op">+</span><span class="st"> </span>hirat) <span class="op">+</span><span class="st"> </span>lvrat <span class="op">+</span><span class="st"> </span>chist <span class="op">+</span><span class="st"> </span>mhist <span class="op">+</span><span class="st"> </span>phist </a>
-<a class="sourceLine" id="cb279-28" data-line-number="28">                     <span class="op">+</span><span class="st"> </span>insurance <span class="op">+</span><span class="st"> </span>selfemp <span class="op">+</span><span class="st"> </span>single <span class="op">+</span><span class="st"> </span>hschool <span class="op">+</span><span class="st"> </span>unemp, </a>
-<a class="sourceLine" id="cb279-29" data-line-number="29">                     <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;probit&quot;</span>), </a>
-<a class="sourceLine" id="cb279-30" data-line-number="30">                     <span class="dt">data =</span> HMDA)</a></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" data-line-number="1"><span class="co"># estimate all 6 models for the denial probability</span></a>
+<a class="sourceLine" id="cb278-2" data-line-number="2">lpm_HMDA &lt;-<span class="st"> </span><span class="kw">lm</span>(deny <span class="op">~</span><span class="st"> </span>black <span class="op">+</span><span class="st"> </span>pirat <span class="op">+</span><span class="st"> </span>hirat <span class="op">+</span><span class="st"> </span>lvrat <span class="op">+</span><span class="st"> </span>chist <span class="op">+</span><span class="st"> </span>mhist <span class="op">+</span><span class="st"> </span>phist </a>
+<a class="sourceLine" id="cb278-3" data-line-number="3">               <span class="op">+</span><span class="st"> </span>insurance <span class="op">+</span><span class="st"> </span>selfemp, <span class="dt">data =</span> HMDA)</a>
+<a class="sourceLine" id="cb278-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb278-5" data-line-number="5">logit_HMDA &lt;-<span class="st"> </span><span class="kw">glm</span>(deny <span class="op">~</span><span class="st"> </span>black <span class="op">+</span><span class="st"> </span>pirat <span class="op">+</span><span class="st"> </span>hirat <span class="op">+</span><span class="st"> </span>lvrat <span class="op">+</span><span class="st"> </span>chist <span class="op">+</span><span class="st"> </span>mhist <span class="op">+</span><span class="st"> </span>phist </a>
+<a class="sourceLine" id="cb278-6" data-line-number="6">                  <span class="op">+</span><span class="st"> </span>insurance <span class="op">+</span><span class="st"> </span>selfemp, </a>
+<a class="sourceLine" id="cb278-7" data-line-number="7">                  <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>), </a>
+<a class="sourceLine" id="cb278-8" data-line-number="8">                  <span class="dt">data =</span> HMDA)</a>
+<a class="sourceLine" id="cb278-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb278-10" data-line-number="10">probit_HMDA_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">glm</span>(deny <span class="op">~</span><span class="st"> </span>black <span class="op">+</span><span class="st"> </span>pirat <span class="op">+</span><span class="st"> </span>hirat <span class="op">+</span><span class="st"> </span>lvrat <span class="op">+</span><span class="st"> </span>chist <span class="op">+</span><span class="st"> </span>mhist <span class="op">+</span><span class="st"> </span>phist </a>
+<a class="sourceLine" id="cb278-11" data-line-number="11">                     <span class="op">+</span><span class="st"> </span>insurance <span class="op">+</span><span class="st"> </span>selfemp, </a>
+<a class="sourceLine" id="cb278-12" data-line-number="12">                     <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;probit&quot;</span>), </a>
+<a class="sourceLine" id="cb278-13" data-line-number="13">                     <span class="dt">data =</span> HMDA)</a>
+<a class="sourceLine" id="cb278-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb278-15" data-line-number="15">probit_HMDA_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">glm</span>(deny <span class="op">~</span><span class="st"> </span>black <span class="op">+</span><span class="st"> </span>pirat <span class="op">+</span><span class="st"> </span>hirat <span class="op">+</span><span class="st"> </span>lvrat <span class="op">+</span><span class="st"> </span>chist <span class="op">+</span><span class="st"> </span>mhist <span class="op">+</span><span class="st"> </span>phist </a>
+<a class="sourceLine" id="cb278-16" data-line-number="16">                     <span class="op">+</span><span class="st"> </span>insurance <span class="op">+</span><span class="st"> </span>selfemp <span class="op">+</span><span class="st"> </span>single <span class="op">+</span><span class="st"> </span>hschool <span class="op">+</span><span class="st"> </span>unemp, </a>
+<a class="sourceLine" id="cb278-17" data-line-number="17">                     <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;probit&quot;</span>), </a>
+<a class="sourceLine" id="cb278-18" data-line-number="18">                     <span class="dt">data =</span> HMDA)</a>
+<a class="sourceLine" id="cb278-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb278-20" data-line-number="20">probit_HMDA_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">glm</span>(deny <span class="op">~</span><span class="st"> </span>black <span class="op">+</span><span class="st"> </span>pirat <span class="op">+</span><span class="st"> </span>hirat <span class="op">+</span><span class="st"> </span>lvrat <span class="op">+</span><span class="st"> </span>chist <span class="op">+</span><span class="st"> </span>mhist </a>
+<a class="sourceLine" id="cb278-21" data-line-number="21">                     <span class="op">+</span><span class="st"> </span>phist <span class="op">+</span><span class="st"> </span>insurance <span class="op">+</span><span class="st"> </span>selfemp <span class="op">+</span><span class="st"> </span>single <span class="op">+</span><span class="st"> </span>hschool <span class="op">+</span><span class="st"> </span>unemp <span class="op">+</span><span class="st"> </span>condomin </a>
+<a class="sourceLine" id="cb278-22" data-line-number="22">                     <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(mhist<span class="op">==</span><span class="dv">3</span>) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(mhist<span class="op">==</span><span class="dv">4</span>) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(chist<span class="op">==</span><span class="dv">3</span>) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(chist<span class="op">==</span><span class="dv">4</span>) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(chist<span class="op">==</span><span class="dv">5</span>) </a>
+<a class="sourceLine" id="cb278-23" data-line-number="23">                     <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(chist<span class="op">==</span><span class="dv">6</span>), </a>
+<a class="sourceLine" id="cb278-24" data-line-number="24">                     <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;probit&quot;</span>), </a>
+<a class="sourceLine" id="cb278-25" data-line-number="25">                     <span class="dt">data =</span> HMDA)</a>
+<a class="sourceLine" id="cb278-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb278-27" data-line-number="27">probit_HMDA_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw">glm</span>(deny <span class="op">~</span><span class="st"> </span>black <span class="op">*</span><span class="st"> </span>(pirat <span class="op">+</span><span class="st"> </span>hirat) <span class="op">+</span><span class="st"> </span>lvrat <span class="op">+</span><span class="st"> </span>chist <span class="op">+</span><span class="st"> </span>mhist <span class="op">+</span><span class="st"> </span>phist </a>
+<a class="sourceLine" id="cb278-28" data-line-number="28">                     <span class="op">+</span><span class="st"> </span>insurance <span class="op">+</span><span class="st"> </span>selfemp <span class="op">+</span><span class="st"> </span>single <span class="op">+</span><span class="st"> </span>hschool <span class="op">+</span><span class="st"> </span>unemp, </a>
+<a class="sourceLine" id="cb278-29" data-line-number="29">                     <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;probit&quot;</span>), </a>
+<a class="sourceLine" id="cb278-30" data-line-number="30">                     <span class="dt">data =</span> HMDA)</a></code></pre></div>
 <p>Just as in previous chapters, we store heteroskedasticity-robust standard errors of the coefficient estimators in a <tt>list</tt> which is then used as the argument <tt>se</tt> in <tt>stargazer()</tt>.</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" data-line-number="1">rob_se &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(lpm_HMDA, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
-<a class="sourceLine" id="cb280-2" data-line-number="2">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(logit_HMDA, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
-<a class="sourceLine" id="cb280-3" data-line-number="3">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(probit_HMDA_<span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
-<a class="sourceLine" id="cb280-4" data-line-number="4">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(probit_HMDA_<span class="dv">2</span>, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
-<a class="sourceLine" id="cb280-5" data-line-number="5">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(probit_HMDA_<span class="dv">3</span>, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
-<a class="sourceLine" id="cb280-6" data-line-number="6">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(probit_HMDA_<span class="dv">4</span>, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))))</a>
-<a class="sourceLine" id="cb280-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb280-8" data-line-number="8"><span class="kw">stargazer</span>(lpm_HMDA, logit_HMDA, probit_HMDA_<span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb280-9" data-line-number="9">          probit_HMDA_<span class="dv">2</span>, probit_HMDA_<span class="dv">3</span>, probit_HMDA_<span class="dv">4</span>,  </a>
-<a class="sourceLine" id="cb280-10" data-line-number="10">          <span class="dt">digits =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb280-11" data-line-number="11">          <span class="dt">type =</span> <span class="st">&quot;latex&quot;</span>, </a>
-<a class="sourceLine" id="cb280-12" data-line-number="12">          <span class="dt">header =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb280-13" data-line-number="13">          <span class="dt">se =</span> rob_se,</a>
-<a class="sourceLine" id="cb280-14" data-line-number="14">          <span class="dt">model.numbers =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb280-15" data-line-number="15">          <span class="dt">column.labels =</span> <span class="kw">c</span>(<span class="st">&quot;(1)&quot;</span>, <span class="st">&quot;(2)&quot;</span>, <span class="st">&quot;(3)&quot;</span>, <span class="st">&quot;(4)&quot;</span>, <span class="st">&quot;(5)&quot;</span>, <span class="st">&quot;(6)&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1">rob_se &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(lpm_HMDA, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
+<a class="sourceLine" id="cb279-2" data-line-number="2">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(logit_HMDA, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
+<a class="sourceLine" id="cb279-3" data-line-number="3">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(probit_HMDA_<span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
+<a class="sourceLine" id="cb279-4" data-line-number="4">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(probit_HMDA_<span class="dv">2</span>, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
+<a class="sourceLine" id="cb279-5" data-line-number="5">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(probit_HMDA_<span class="dv">3</span>, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
+<a class="sourceLine" id="cb279-6" data-line-number="6">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(probit_HMDA_<span class="dv">4</span>, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))))</a>
+<a class="sourceLine" id="cb279-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb279-8" data-line-number="8"><span class="kw">stargazer</span>(lpm_HMDA, logit_HMDA, probit_HMDA_<span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb279-9" data-line-number="9">          probit_HMDA_<span class="dv">2</span>, probit_HMDA_<span class="dv">3</span>, probit_HMDA_<span class="dv">4</span>,  </a>
+<a class="sourceLine" id="cb279-10" data-line-number="10">          <span class="dt">digits =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb279-11" data-line-number="11">          <span class="dt">type =</span> <span class="st">&quot;latex&quot;</span>, </a>
+<a class="sourceLine" id="cb279-12" data-line-number="12">          <span class="dt">header =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb279-13" data-line-number="13">          <span class="dt">se =</span> rob_se,</a>
+<a class="sourceLine" id="cb279-14" data-line-number="14">          <span class="dt">model.numbers =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb279-15" data-line-number="15">          <span class="dt">column.labels =</span> <span class="kw">c</span>(<span class="st">&quot;(1)&quot;</span>, <span class="st">&quot;(2)&quot;</span>, <span class="st">&quot;(3)&quot;</span>, <span class="st">&quot;(4)&quot;</span>, <span class="st">&quot;(5)&quot;</span>, <span class="st">&quot;(6)&quot;</span>))</a></code></pre></div>
 
 
 
@@ -588,102 +586,102 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>In Table <a href="11-4-application-to-the-boston-hmda-data.html#tab:hmdad">11.1</a>, models (1), (2) and (3) are baseline specifications that include several financial control variables. They differ only in the way they model the denial probability. Model (1) is a linear probability model, model (2) is a Logit regression and model (3) uses the Probit approach.</p>
 <p>In the linear model (1), the coefficients have direct interpretation. For example, an increase in the consumer credit score by <span class="math inline">\(1\)</span> unit is estimated to increase the probability of a loan denial by about <span class="math inline">\(0.031\)</span> percentage points. Having a high loan-to-value ratio is detriment for credit approval: the coefficient for a loan-to-value ratio higher than <span class="math inline">\(0.95\)</span> is <span class="math inline">\(0.189\)</span> so clients with this property are estimated to face an almost <span class="math inline">\(19\%\)</span> larger risk of denial than those with a low loan-to-value ratio, ceteris paribus. The estimated coefficient on the race dummy is <span class="math inline">\(0.084\)</span>, which indicates the denial probability for African Americans is <span class="math inline">\(8.4\%\)</span> larger than for white applicants with the same characteristics except for race. Apart from the housing-expense-to-income ratio and the mortgage credit score, all coefficients are significant.</p>
 <p>Models (2) and (3) provide similar evidence that there is racial discrimination in the U.S. mortgage market. All coefficients except for the housing expense-to-income ratio (which is not significantly different from zero) are significant at the <span class="math inline">\(1\%\)</span> level. As discussed above, the nonlinearity makes the interpretation of the coefficient estimates more difficult than for model (1). In order to make a statement about the effect of being black, we need to compute the estimated denial probability for two individuals that differ only in race. For the comparison we consider two individuals that share mean values for all numeric regressors. For the qualitative variables we assign the property that is most representative for the data at hand. For example, consider self-employment: we have seen that about <span class="math inline">\(88\%\)</span> of all individuals in the sample are not self-employed such that we set <tt>selfemp = no</tt>. Using this approach, the estimate for the effect on the denial probability of being African American of the Logit model (2) is about <span class="math inline">\(4\%\)</span>. The next code chunk shows how to apply this approach for models (1) to (7) using <tt>R</tt>.</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1"><span class="co"># comppute regressor values for an average black person</span></a>
-<a class="sourceLine" id="cb281-2" data-line-number="2">new &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb281-3" data-line-number="3">  <span class="st">&quot;pirat&quot;</span> =<span class="st"> </span><span class="kw">mean</span>(HMDA<span class="op">$</span>pirat),</a>
-<a class="sourceLine" id="cb281-4" data-line-number="4">  <span class="st">&quot;hirat&quot;</span> =<span class="st"> </span><span class="kw">mean</span>(HMDA<span class="op">$</span>hirat),</a>
-<a class="sourceLine" id="cb281-5" data-line-number="5">  <span class="st">&quot;lvrat&quot;</span> =<span class="st"> &quot;low&quot;</span>,</a>
-<a class="sourceLine" id="cb281-6" data-line-number="6">  <span class="st">&quot;chist&quot;</span> =<span class="st"> </span><span class="kw">mean</span>(HMDA<span class="op">$</span>chist),</a>
-<a class="sourceLine" id="cb281-7" data-line-number="7">  <span class="st">&quot;mhist&quot;</span> =<span class="st"> </span><span class="kw">mean</span>(HMDA<span class="op">$</span>mhist),</a>
-<a class="sourceLine" id="cb281-8" data-line-number="8">  <span class="st">&quot;phist&quot;</span> =<span class="st"> &quot;no&quot;</span>,</a>
-<a class="sourceLine" id="cb281-9" data-line-number="9">  <span class="st">&quot;insurance&quot;</span> =<span class="st"> &quot;no&quot;</span>,</a>
-<a class="sourceLine" id="cb281-10" data-line-number="10">  <span class="st">&quot;selfemp&quot;</span> =<span class="st"> &quot;no&quot;</span>,</a>
-<a class="sourceLine" id="cb281-11" data-line-number="11">  <span class="st">&quot;black&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;no&quot;</span>, <span class="st">&quot;yes&quot;</span>),</a>
-<a class="sourceLine" id="cb281-12" data-line-number="12">  <span class="st">&quot;single&quot;</span> =<span class="st"> &quot;no&quot;</span>,</a>
-<a class="sourceLine" id="cb281-13" data-line-number="13">  <span class="st">&quot;hschool&quot;</span> =<span class="st"> &quot;yes&quot;</span>,</a>
-<a class="sourceLine" id="cb281-14" data-line-number="14">  <span class="st">&quot;unemp&quot;</span> =<span class="st"> </span><span class="kw">mean</span>(HMDA<span class="op">$</span>unemp),</a>
-<a class="sourceLine" id="cb281-15" data-line-number="15">  <span class="st">&quot;condomin&quot;</span> =<span class="st"> &quot;no&quot;</span>)</a>
-<a class="sourceLine" id="cb281-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb281-17" data-line-number="17"><span class="co"># differnce predicted by the LPM</span></a>
-<a class="sourceLine" id="cb281-18" data-line-number="18">predictions &lt;-<span class="st"> </span><span class="kw">predict</span>(lpm_HMDA, <span class="dt">newdata =</span> new)</a>
-<a class="sourceLine" id="cb281-19" data-line-number="19"><span class="kw">diff</span>(predictions)</a>
-<a class="sourceLine" id="cb281-20" data-line-number="20"><span class="co">#&gt;          2 </span></a>
-<a class="sourceLine" id="cb281-21" data-line-number="21"><span class="co">#&gt; 0.08369674</span></a>
-<a class="sourceLine" id="cb281-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb281-23" data-line-number="23"><span class="co"># differnce predicted by the logit model</span></a>
-<a class="sourceLine" id="cb281-24" data-line-number="24">predictions &lt;-<span class="st"> </span><span class="kw">predict</span>(logit_HMDA, <span class="dt">newdata =</span> new, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</a>
-<a class="sourceLine" id="cb281-25" data-line-number="25"><span class="kw">diff</span>(predictions)</a>
-<a class="sourceLine" id="cb281-26" data-line-number="26"><span class="co">#&gt;          2 </span></a>
-<a class="sourceLine" id="cb281-27" data-line-number="27"><span class="co">#&gt; 0.04042135</span></a>
-<a class="sourceLine" id="cb281-28" data-line-number="28"></a>
-<a class="sourceLine" id="cb281-29" data-line-number="29"><span class="co"># difference predicted by probit model (3)</span></a>
-<a class="sourceLine" id="cb281-30" data-line-number="30">predictions &lt;-<span class="st"> </span><span class="kw">predict</span>(probit_HMDA_<span class="dv">1</span>, <span class="dt">newdata =</span> new, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</a>
-<a class="sourceLine" id="cb281-31" data-line-number="31"><span class="kw">diff</span>(predictions)</a>
-<a class="sourceLine" id="cb281-32" data-line-number="32"><span class="co">#&gt;          2 </span></a>
-<a class="sourceLine" id="cb281-33" data-line-number="33"><span class="co">#&gt; 0.05049716</span></a>
-<a class="sourceLine" id="cb281-34" data-line-number="34"></a>
-<a class="sourceLine" id="cb281-35" data-line-number="35"><span class="co"># difference predicted by probit model (4)</span></a>
-<a class="sourceLine" id="cb281-36" data-line-number="36">predictions &lt;-<span class="st"> </span><span class="kw">predict</span>(probit_HMDA_<span class="dv">2</span>, <span class="dt">newdata =</span> new, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</a>
-<a class="sourceLine" id="cb281-37" data-line-number="37"><span class="kw">diff</span>(predictions)</a>
-<a class="sourceLine" id="cb281-38" data-line-number="38"><span class="co">#&gt;          2 </span></a>
-<a class="sourceLine" id="cb281-39" data-line-number="39"><span class="co">#&gt; 0.03978918</span></a>
-<a class="sourceLine" id="cb281-40" data-line-number="40"></a>
-<a class="sourceLine" id="cb281-41" data-line-number="41"><span class="co"># difference predicted by probit model (5)</span></a>
-<a class="sourceLine" id="cb281-42" data-line-number="42">predictions &lt;-<span class="st"> </span><span class="kw">predict</span>(probit_HMDA_<span class="dv">3</span>, <span class="dt">newdata =</span> new, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</a>
-<a class="sourceLine" id="cb281-43" data-line-number="43"><span class="kw">diff</span>(predictions)</a>
-<a class="sourceLine" id="cb281-44" data-line-number="44"><span class="co">#&gt;          2 </span></a>
-<a class="sourceLine" id="cb281-45" data-line-number="45"><span class="co">#&gt; 0.04972468</span></a>
-<a class="sourceLine" id="cb281-46" data-line-number="46"></a>
-<a class="sourceLine" id="cb281-47" data-line-number="47"><span class="co"># difference predicted by probit model (6)</span></a>
-<a class="sourceLine" id="cb281-48" data-line-number="48">predictions &lt;-<span class="st"> </span><span class="kw">predict</span>(probit_HMDA_<span class="dv">4</span>, <span class="dt">newdata =</span> new, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</a>
-<a class="sourceLine" id="cb281-49" data-line-number="49"><span class="kw">diff</span>(predictions)</a>
-<a class="sourceLine" id="cb281-50" data-line-number="50"><span class="co">#&gt;          2 </span></a>
-<a class="sourceLine" id="cb281-51" data-line-number="51"><span class="co">#&gt; 0.03955893</span></a></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" data-line-number="1"><span class="co"># comppute regressor values for an average black person</span></a>
+<a class="sourceLine" id="cb280-2" data-line-number="2">new &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb280-3" data-line-number="3">  <span class="st">&quot;pirat&quot;</span> =<span class="st"> </span><span class="kw">mean</span>(HMDA<span class="op">$</span>pirat),</a>
+<a class="sourceLine" id="cb280-4" data-line-number="4">  <span class="st">&quot;hirat&quot;</span> =<span class="st"> </span><span class="kw">mean</span>(HMDA<span class="op">$</span>hirat),</a>
+<a class="sourceLine" id="cb280-5" data-line-number="5">  <span class="st">&quot;lvrat&quot;</span> =<span class="st"> &quot;low&quot;</span>,</a>
+<a class="sourceLine" id="cb280-6" data-line-number="6">  <span class="st">&quot;chist&quot;</span> =<span class="st"> </span><span class="kw">mean</span>(HMDA<span class="op">$</span>chist),</a>
+<a class="sourceLine" id="cb280-7" data-line-number="7">  <span class="st">&quot;mhist&quot;</span> =<span class="st"> </span><span class="kw">mean</span>(HMDA<span class="op">$</span>mhist),</a>
+<a class="sourceLine" id="cb280-8" data-line-number="8">  <span class="st">&quot;phist&quot;</span> =<span class="st"> &quot;no&quot;</span>,</a>
+<a class="sourceLine" id="cb280-9" data-line-number="9">  <span class="st">&quot;insurance&quot;</span> =<span class="st"> &quot;no&quot;</span>,</a>
+<a class="sourceLine" id="cb280-10" data-line-number="10">  <span class="st">&quot;selfemp&quot;</span> =<span class="st"> &quot;no&quot;</span>,</a>
+<a class="sourceLine" id="cb280-11" data-line-number="11">  <span class="st">&quot;black&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;no&quot;</span>, <span class="st">&quot;yes&quot;</span>),</a>
+<a class="sourceLine" id="cb280-12" data-line-number="12">  <span class="st">&quot;single&quot;</span> =<span class="st"> &quot;no&quot;</span>,</a>
+<a class="sourceLine" id="cb280-13" data-line-number="13">  <span class="st">&quot;hschool&quot;</span> =<span class="st"> &quot;yes&quot;</span>,</a>
+<a class="sourceLine" id="cb280-14" data-line-number="14">  <span class="st">&quot;unemp&quot;</span> =<span class="st"> </span><span class="kw">mean</span>(HMDA<span class="op">$</span>unemp),</a>
+<a class="sourceLine" id="cb280-15" data-line-number="15">  <span class="st">&quot;condomin&quot;</span> =<span class="st"> &quot;no&quot;</span>)</a>
+<a class="sourceLine" id="cb280-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb280-17" data-line-number="17"><span class="co"># differnce predicted by the LPM</span></a>
+<a class="sourceLine" id="cb280-18" data-line-number="18">predictions &lt;-<span class="st"> </span><span class="kw">predict</span>(lpm_HMDA, <span class="dt">newdata =</span> new)</a>
+<a class="sourceLine" id="cb280-19" data-line-number="19"><span class="kw">diff</span>(predictions)</a>
+<a class="sourceLine" id="cb280-20" data-line-number="20"><span class="co">#&gt;          2 </span></a>
+<a class="sourceLine" id="cb280-21" data-line-number="21"><span class="co">#&gt; 0.08369674</span></a>
+<a class="sourceLine" id="cb280-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb280-23" data-line-number="23"><span class="co"># differnce predicted by the logit model</span></a>
+<a class="sourceLine" id="cb280-24" data-line-number="24">predictions &lt;-<span class="st"> </span><span class="kw">predict</span>(logit_HMDA, <span class="dt">newdata =</span> new, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</a>
+<a class="sourceLine" id="cb280-25" data-line-number="25"><span class="kw">diff</span>(predictions)</a>
+<a class="sourceLine" id="cb280-26" data-line-number="26"><span class="co">#&gt;          2 </span></a>
+<a class="sourceLine" id="cb280-27" data-line-number="27"><span class="co">#&gt; 0.04042135</span></a>
+<a class="sourceLine" id="cb280-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb280-29" data-line-number="29"><span class="co"># difference predicted by probit model (3)</span></a>
+<a class="sourceLine" id="cb280-30" data-line-number="30">predictions &lt;-<span class="st"> </span><span class="kw">predict</span>(probit_HMDA_<span class="dv">1</span>, <span class="dt">newdata =</span> new, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</a>
+<a class="sourceLine" id="cb280-31" data-line-number="31"><span class="kw">diff</span>(predictions)</a>
+<a class="sourceLine" id="cb280-32" data-line-number="32"><span class="co">#&gt;          2 </span></a>
+<a class="sourceLine" id="cb280-33" data-line-number="33"><span class="co">#&gt; 0.05049716</span></a>
+<a class="sourceLine" id="cb280-34" data-line-number="34"></a>
+<a class="sourceLine" id="cb280-35" data-line-number="35"><span class="co"># difference predicted by probit model (4)</span></a>
+<a class="sourceLine" id="cb280-36" data-line-number="36">predictions &lt;-<span class="st"> </span><span class="kw">predict</span>(probit_HMDA_<span class="dv">2</span>, <span class="dt">newdata =</span> new, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</a>
+<a class="sourceLine" id="cb280-37" data-line-number="37"><span class="kw">diff</span>(predictions)</a>
+<a class="sourceLine" id="cb280-38" data-line-number="38"><span class="co">#&gt;          2 </span></a>
+<a class="sourceLine" id="cb280-39" data-line-number="39"><span class="co">#&gt; 0.03978918</span></a>
+<a class="sourceLine" id="cb280-40" data-line-number="40"></a>
+<a class="sourceLine" id="cb280-41" data-line-number="41"><span class="co"># difference predicted by probit model (5)</span></a>
+<a class="sourceLine" id="cb280-42" data-line-number="42">predictions &lt;-<span class="st"> </span><span class="kw">predict</span>(probit_HMDA_<span class="dv">3</span>, <span class="dt">newdata =</span> new, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</a>
+<a class="sourceLine" id="cb280-43" data-line-number="43"><span class="kw">diff</span>(predictions)</a>
+<a class="sourceLine" id="cb280-44" data-line-number="44"><span class="co">#&gt;          2 </span></a>
+<a class="sourceLine" id="cb280-45" data-line-number="45"><span class="co">#&gt; 0.04972468</span></a>
+<a class="sourceLine" id="cb280-46" data-line-number="46"></a>
+<a class="sourceLine" id="cb280-47" data-line-number="47"><span class="co"># difference predicted by probit model (6)</span></a>
+<a class="sourceLine" id="cb280-48" data-line-number="48">predictions &lt;-<span class="st"> </span><span class="kw">predict</span>(probit_HMDA_<span class="dv">4</span>, <span class="dt">newdata =</span> new, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</a>
+<a class="sourceLine" id="cb280-49" data-line-number="49"><span class="kw">diff</span>(predictions)</a>
+<a class="sourceLine" id="cb280-50" data-line-number="50"><span class="co">#&gt;          2 </span></a>
+<a class="sourceLine" id="cb280-51" data-line-number="51"><span class="co">#&gt; 0.03955893</span></a></code></pre></div>
 <p>The estimates of the impact on the denial probability of being black are similar for models (2) and (3). It is interesting that the magnitude of the estimated effects is much smaller than for Probit and Logit models that do not control for financial characteristics (see section 11.2). This indicates that these simple models produce biased estimates due to omitted variables.</p>
 <p>Regressions (4) to (6) use regression specifications that include different applicant characteristics and credit rating indicator variables as well as interactions. However, most of the corresponding coefficients are not significant and the estimates of the coefficient on <tt>black</tt> obtained for these models as well as the estimated difference in denial probabilities do not differ much from those obtained for the similar specifications (2) and (3).</p>
 <p>An interesting question related to racial discrimination can be investigated using the Probit model (6) where the interactions <tt>blackyes:pirat</tt> and <tt>blackyes:hirat</tt> are added to model (4). If the coefficient on <tt>blackyes:pirat</tt> was different from zero, the effect of the payment-to-income ratio on the denial probability would be different for black and white applicants. Similarly, a non-zero coefficient on <tt>blackyes:hirat</tt> would indicate that loan officers weight the risk of bankruptcy associated with a high loan-to-value ratio differently for black and white mortgage applicants. We can test whether these coefficients are jointly significant at the <span class="math inline">\(5\%\)</span> level using an <span class="math inline">\(F\)</span>-Test.</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1"><span class="kw">linearHypothesis</span>(probit_HMDA_<span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb281-2" data-line-number="2">                 <span class="dt">test =</span> <span class="st">&quot;F&quot;</span>,</a>
+<a class="sourceLine" id="cb281-3" data-line-number="3">                 <span class="kw">c</span>(<span class="st">&quot;blackyes:pirat=0&quot;</span>, <span class="st">&quot;blackyes:hirat=0&quot;</span>),</a>
+<a class="sourceLine" id="cb281-4" data-line-number="4">                 <span class="dt">vcov =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
+<a class="sourceLine" id="cb281-5" data-line-number="5"><span class="co">#&gt; Linear hypothesis test</span></a>
+<a class="sourceLine" id="cb281-6" data-line-number="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb281-7" data-line-number="7"><span class="co">#&gt; Hypothesis:</span></a>
+<a class="sourceLine" id="cb281-8" data-line-number="8"><span class="co">#&gt; blackyes:pirat = 0</span></a>
+<a class="sourceLine" id="cb281-9" data-line-number="9"><span class="co">#&gt; blackyes:hirat = 0</span></a>
+<a class="sourceLine" id="cb281-10" data-line-number="10"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb281-11" data-line-number="11"><span class="co">#&gt; Model 1: restricted model</span></a>
+<a class="sourceLine" id="cb281-12" data-line-number="12"><span class="co">#&gt; Model 2: deny ~ black * (pirat + hirat) + lvrat + chist + mhist + phist + </span></a>
+<a class="sourceLine" id="cb281-13" data-line-number="13"><span class="co">#&gt;     insurance + selfemp + single + hschool + unemp</span></a>
+<a class="sourceLine" id="cb281-14" data-line-number="14"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb281-15" data-line-number="15"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
+<a class="sourceLine" id="cb281-16" data-line-number="16"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb281-17" data-line-number="17"><span class="co">#&gt;   Res.Df Df      F Pr(&gt;F)</span></a>
+<a class="sourceLine" id="cb281-18" data-line-number="18"><span class="co">#&gt; 1   2366                 </span></a>
+<a class="sourceLine" id="cb281-19" data-line-number="19"><span class="co">#&gt; 2   2364  2 0.2473 0.7809</span></a></code></pre></div>
+<p>Since <span class="math inline">\(p\text{-value} \approx 0.77\)</span> for this test, the null cannot be rejected. Nonetheless, we can reject the hypothesis that there is no racial discrimination at all since the corresponding <span class="math inline">\(F\)</span>-test has a <span class="math inline">\(p\text{-value}\)</span> of about <span class="math inline">\(0.002\)</span>.</p>
 <div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" data-line-number="1"><span class="kw">linearHypothesis</span>(probit_HMDA_<span class="dv">4</span>,</a>
 <a class="sourceLine" id="cb282-2" data-line-number="2">                 <span class="dt">test =</span> <span class="st">&quot;F&quot;</span>,</a>
-<a class="sourceLine" id="cb282-3" data-line-number="3">                 <span class="kw">c</span>(<span class="st">&quot;blackyes:pirat=0&quot;</span>, <span class="st">&quot;blackyes:hirat=0&quot;</span>),</a>
+<a class="sourceLine" id="cb282-3" data-line-number="3">                 <span class="kw">c</span>(<span class="st">&quot;blackyes=0&quot;</span>, <span class="st">&quot;blackyes:pirat=0&quot;</span>, <span class="st">&quot;blackyes:hirat=0&quot;</span>),</a>
 <a class="sourceLine" id="cb282-4" data-line-number="4">                 <span class="dt">vcov =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
 <a class="sourceLine" id="cb282-5" data-line-number="5"><span class="co">#&gt; Linear hypothesis test</span></a>
 <a class="sourceLine" id="cb282-6" data-line-number="6"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb282-7" data-line-number="7"><span class="co">#&gt; Hypothesis:</span></a>
-<a class="sourceLine" id="cb282-8" data-line-number="8"><span class="co">#&gt; blackyes:pirat = 0</span></a>
-<a class="sourceLine" id="cb282-9" data-line-number="9"><span class="co">#&gt; blackyes:hirat = 0</span></a>
-<a class="sourceLine" id="cb282-10" data-line-number="10"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb282-11" data-line-number="11"><span class="co">#&gt; Model 1: restricted model</span></a>
-<a class="sourceLine" id="cb282-12" data-line-number="12"><span class="co">#&gt; Model 2: deny ~ black * (pirat + hirat) + lvrat + chist + mhist + phist + </span></a>
-<a class="sourceLine" id="cb282-13" data-line-number="13"><span class="co">#&gt;     insurance + selfemp + single + hschool + unemp</span></a>
-<a class="sourceLine" id="cb282-14" data-line-number="14"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb282-15" data-line-number="15"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
-<a class="sourceLine" id="cb282-16" data-line-number="16"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb282-17" data-line-number="17"><span class="co">#&gt;   Res.Df Df      F Pr(&gt;F)</span></a>
-<a class="sourceLine" id="cb282-18" data-line-number="18"><span class="co">#&gt; 1   2366                 </span></a>
-<a class="sourceLine" id="cb282-19" data-line-number="19"><span class="co">#&gt; 2   2364  2 0.2473 0.7809</span></a></code></pre></div>
-<p>Since <span class="math inline">\(p\text{-value} \approx 0.77\)</span> for this test, the null cannot be rejected. Nonetheless, we can reject the hypothesis that there is no racial discrimination at all since the corresponding <span class="math inline">\(F\)</span>-test has a <span class="math inline">\(p\text{-value}\)</span> of about <span class="math inline">\(0.002\)</span>.</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" data-line-number="1"><span class="kw">linearHypothesis</span>(probit_HMDA_<span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb283-2" data-line-number="2">                 <span class="dt">test =</span> <span class="st">&quot;F&quot;</span>,</a>
-<a class="sourceLine" id="cb283-3" data-line-number="3">                 <span class="kw">c</span>(<span class="st">&quot;blackyes=0&quot;</span>, <span class="st">&quot;blackyes:pirat=0&quot;</span>, <span class="st">&quot;blackyes:hirat=0&quot;</span>),</a>
-<a class="sourceLine" id="cb283-4" data-line-number="4">                 <span class="dt">vcov =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
-<a class="sourceLine" id="cb283-5" data-line-number="5"><span class="co">#&gt; Linear hypothesis test</span></a>
-<a class="sourceLine" id="cb283-6" data-line-number="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb283-7" data-line-number="7"><span class="co">#&gt; Hypothesis:</span></a>
-<a class="sourceLine" id="cb283-8" data-line-number="8"><span class="co">#&gt; blackyes = 0</span></a>
-<a class="sourceLine" id="cb283-9" data-line-number="9"><span class="co">#&gt; blackyes:pirat = 0</span></a>
-<a class="sourceLine" id="cb283-10" data-line-number="10"><span class="co">#&gt; blackyes:hirat = 0</span></a>
-<a class="sourceLine" id="cb283-11" data-line-number="11"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb283-12" data-line-number="12"><span class="co">#&gt; Model 1: restricted model</span></a>
-<a class="sourceLine" id="cb283-13" data-line-number="13"><span class="co">#&gt; Model 2: deny ~ black * (pirat + hirat) + lvrat + chist + mhist + phist + </span></a>
-<a class="sourceLine" id="cb283-14" data-line-number="14"><span class="co">#&gt;     insurance + selfemp + single + hschool + unemp</span></a>
-<a class="sourceLine" id="cb283-15" data-line-number="15"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb283-16" data-line-number="16"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
-<a class="sourceLine" id="cb283-17" data-line-number="17"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb283-18" data-line-number="18"><span class="co">#&gt;   Res.Df Df      F   Pr(&gt;F)   </span></a>
-<a class="sourceLine" id="cb283-19" data-line-number="19"><span class="co">#&gt; 1   2367                      </span></a>
-<a class="sourceLine" id="cb283-20" data-line-number="20"><span class="co">#&gt; 2   2364  3 4.7774 0.002534 **</span></a>
-<a class="sourceLine" id="cb283-21" data-line-number="21"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb283-22" data-line-number="22"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<a class="sourceLine" id="cb282-8" data-line-number="8"><span class="co">#&gt; blackyes = 0</span></a>
+<a class="sourceLine" id="cb282-9" data-line-number="9"><span class="co">#&gt; blackyes:pirat = 0</span></a>
+<a class="sourceLine" id="cb282-10" data-line-number="10"><span class="co">#&gt; blackyes:hirat = 0</span></a>
+<a class="sourceLine" id="cb282-11" data-line-number="11"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb282-12" data-line-number="12"><span class="co">#&gt; Model 1: restricted model</span></a>
+<a class="sourceLine" id="cb282-13" data-line-number="13"><span class="co">#&gt; Model 2: deny ~ black * (pirat + hirat) + lvrat + chist + mhist + phist + </span></a>
+<a class="sourceLine" id="cb282-14" data-line-number="14"><span class="co">#&gt;     insurance + selfemp + single + hschool + unemp</span></a>
+<a class="sourceLine" id="cb282-15" data-line-number="15"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb282-16" data-line-number="16"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
+<a class="sourceLine" id="cb282-17" data-line-number="17"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb282-18" data-line-number="18"><span class="co">#&gt;   Res.Df Df      F   Pr(&gt;F)   </span></a>
+<a class="sourceLine" id="cb282-19" data-line-number="19"><span class="co">#&gt; 1   2367                      </span></a>
+<a class="sourceLine" id="cb282-20" data-line-number="20"><span class="co">#&gt; 2   2364  3 4.7774 0.002534 **</span></a>
+<a class="sourceLine" id="cb282-21" data-line-number="21"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb282-22" data-line-number="22"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <div id="summary" class="section level4 unnumbered">
 <h4>Summary</h4>
 <p>Models (1) to (6) provide evidence that there is an effect of being African American on the probability of a mortgage application denial: in all specifications, the effect is estimated to be positive (ranging from <span class="math inline">\(4\%\)</span> to <span class="math inline">\(5\%\)</span>) and is significantly different from zero at the <span class="math inline">\(1\%\)</span> level. While the linear probability model seems to slightly overestimate this effect, it still can be used as an approximation to an intrinsically nonlinear relationship.</p>

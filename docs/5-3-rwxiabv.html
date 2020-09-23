@@ -135,13 +135,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><a href="https://www.example.com/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
+<li><center><a href="http://www.dliebl.com/AdvRA/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
 <li class="chapter" data-level="" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html#probability-distributions-of-discrete-random-variables"><i class="fa fa-check"></i>Probability Distributions of Discrete Random Variables</a></li>
@@ -368,18 +366,18 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>The regression model now is</p>
 <p><span class="math display">\[ TestScore_i = \beta_0 + \beta_1 D_i + u_i. \tag{5.4} \]</span></p>
 <p>Let us see how these data look like in a scatter plot:</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="co"># Create the dummy variable as defined above</span></a>
-<a class="sourceLine" id="cb119-2" data-line-number="2">CASchools<span class="op">$</span>D &lt;-<span class="st"> </span>CASchools<span class="op">$</span>STR <span class="op">&lt;</span><span class="st"> </span><span class="dv">20</span></a>
-<a class="sourceLine" id="cb119-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb119-4" data-line-number="4"><span class="co"># Plot the data</span></a>
-<a class="sourceLine" id="cb119-5" data-line-number="5"><span class="kw">plot</span>(CASchools<span class="op">$</span>D, CASchools<span class="op">$</span>score,            <span class="co"># provide the data to be plotted</span></a>
-<a class="sourceLine" id="cb119-6" data-line-number="6">     <span class="dt">pch =</span> <span class="dv">20</span>,                                <span class="co"># use filled circles as plot symbols</span></a>
-<a class="sourceLine" id="cb119-7" data-line-number="7">     <span class="dt">cex =</span> <span class="fl">0.5</span>,                               <span class="co"># set size of plot symbols to 0.5</span></a>
-<a class="sourceLine" id="cb119-8" data-line-number="8">     <span class="dt">col =</span> <span class="st">&quot;Steelblue&quot;</span>,                       <span class="co"># set the symbols&#39; color to &quot;Steelblue&quot;</span></a>
-<a class="sourceLine" id="cb119-9" data-line-number="9">     <span class="dt">xlab =</span> <span class="kw">expression</span>(D[i]),                 <span class="co"># Set title and axis names</span></a>
-<a class="sourceLine" id="cb119-10" data-line-number="10">     <span class="dt">ylab =</span> <span class="st">&quot;Test Score&quot;</span>,</a>
-<a class="sourceLine" id="cb119-11" data-line-number="11">     <span class="dt">main =</span> <span class="st">&quot;Dummy Regression&quot;</span>)</a></code></pre></div>
-<p><img src="AdvRA_files/figure-html/unnamed-chunk-210-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1"><span class="co"># Create the dummy variable as defined above</span></a>
+<a class="sourceLine" id="cb118-2" data-line-number="2">CASchools<span class="op">$</span>D &lt;-<span class="st"> </span>CASchools<span class="op">$</span>STR <span class="op">&lt;</span><span class="st"> </span><span class="dv">20</span></a>
+<a class="sourceLine" id="cb118-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb118-4" data-line-number="4"><span class="co"># Plot the data</span></a>
+<a class="sourceLine" id="cb118-5" data-line-number="5"><span class="kw">plot</span>(CASchools<span class="op">$</span>D, CASchools<span class="op">$</span>score,            <span class="co"># provide the data to be plotted</span></a>
+<a class="sourceLine" id="cb118-6" data-line-number="6">     <span class="dt">pch =</span> <span class="dv">20</span>,                                <span class="co"># use filled circles as plot symbols</span></a>
+<a class="sourceLine" id="cb118-7" data-line-number="7">     <span class="dt">cex =</span> <span class="fl">0.5</span>,                               <span class="co"># set size of plot symbols to 0.5</span></a>
+<a class="sourceLine" id="cb118-8" data-line-number="8">     <span class="dt">col =</span> <span class="st">&quot;Steelblue&quot;</span>,                       <span class="co"># set the symbols&#39; color to &quot;Steelblue&quot;</span></a>
+<a class="sourceLine" id="cb118-9" data-line-number="9">     <span class="dt">xlab =</span> <span class="kw">expression</span>(D[i]),                 <span class="co"># Set title and axis names</span></a>
+<a class="sourceLine" id="cb118-10" data-line-number="10">     <span class="dt">ylab =</span> <span class="st">&quot;Test Score&quot;</span>,</a>
+<a class="sourceLine" id="cb118-11" data-line-number="11">     <span class="dt">main =</span> <span class="st">&quot;Dummy Regression&quot;</span>)</a></code></pre></div>
+<p><img src="AdvRA_files/figure-html/unnamed-chunk-208-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>With <span class="math inline">\(D\)</span> as the regressor, it is not useful to think of <span class="math inline">\(\beta_1\)</span> as a slope parameter since <span class="math inline">\(D_i \in \{0,1\}\)</span>, i.e., we only observe two discrete values instead of a continuum of regressor values. There is no continuous line depicting the conditional expectation function <span class="math inline">\(E(TestScore_i | D_i)\)</span> since this function is solely defined for <span class="math inline">\(x\)</span>-positions <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>.</p>
 <p>Therefore, the interpretation of the coefficients in this regression model is as follows:</p>
 <ul>
@@ -387,27 +385,27 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><p><span class="math inline">\(E(Y_i | D_i = 1) = \beta_0 + \beta_1\)</span> or, using the result above, <span class="math inline">\(\beta_1 = E(Y_i | D_i = 1) - E(Y_i | D_i = 0)\)</span>. Thus, <span class="math inline">\(\beta_1\)</span> is <em>the difference in group-specific expectations</em>, i.e., the difference in expected test score between districts with <span class="math inline">\(STR &lt; 20\)</span> and those with <span class="math inline">\(STR \geq 20\)</span>.</p></li>
 </ul>
 <p>We will now use <tt>R</tt> to estimate the dummy regression model as defined by the equations (<a href="#mjx-eqn-5.2">5.2</a>) and (<a href="#mjx-eqn-5.3">5.3</a>) .</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1"><span class="co"># estimate the dummy regression model</span></a>
-<a class="sourceLine" id="cb120-2" data-line-number="2">dummy_model &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>D, <span class="dt">data =</span> CASchools)</a>
-<a class="sourceLine" id="cb120-3" data-line-number="3"><span class="kw">summary</span>(dummy_model)</a>
-<a class="sourceLine" id="cb120-4" data-line-number="4"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb120-5" data-line-number="5"><span class="co">#&gt; Call:</span></a>
-<a class="sourceLine" id="cb120-6" data-line-number="6"><span class="co">#&gt; lm(formula = score ~ D, data = CASchools)</span></a>
-<a class="sourceLine" id="cb120-7" data-line-number="7"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb120-8" data-line-number="8"><span class="co">#&gt; Residuals:</span></a>
-<a class="sourceLine" id="cb120-9" data-line-number="9"><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></a>
-<a class="sourceLine" id="cb120-10" data-line-number="10"><span class="co">#&gt; -50.496 -14.029  -0.346  12.884  49.504 </span></a>
-<a class="sourceLine" id="cb120-11" data-line-number="11"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb120-12" data-line-number="12"><span class="co">#&gt; Coefficients:</span></a>
-<a class="sourceLine" id="cb120-13" data-line-number="13"><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
-<a class="sourceLine" id="cb120-14" data-line-number="14"><span class="co">#&gt; (Intercept)  650.077      1.393 466.666  &lt; 2e-16 ***</span></a>
-<a class="sourceLine" id="cb120-15" data-line-number="15"><span class="co">#&gt; DTRUE          7.169      1.847   3.882  0.00012 ***</span></a>
-<a class="sourceLine" id="cb120-16" data-line-number="16"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb120-17" data-line-number="17"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb120-18" data-line-number="18"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb120-19" data-line-number="19"><span class="co">#&gt; Residual standard error: 18.74 on 418 degrees of freedom</span></a>
-<a class="sourceLine" id="cb120-20" data-line-number="20"><span class="co">#&gt; Multiple R-squared:  0.0348,	Adjusted R-squared:  0.0325 </span></a>
-<a class="sourceLine" id="cb120-21" data-line-number="21"><span class="co">#&gt; F-statistic: 15.07 on 1 and 418 DF,  p-value: 0.0001202</span></a></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="co"># estimate the dummy regression model</span></a>
+<a class="sourceLine" id="cb119-2" data-line-number="2">dummy_model &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>D, <span class="dt">data =</span> CASchools)</a>
+<a class="sourceLine" id="cb119-3" data-line-number="3"><span class="kw">summary</span>(dummy_model)</a>
+<a class="sourceLine" id="cb119-4" data-line-number="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb119-5" data-line-number="5"><span class="co">#&gt; Call:</span></a>
+<a class="sourceLine" id="cb119-6" data-line-number="6"><span class="co">#&gt; lm(formula = score ~ D, data = CASchools)</span></a>
+<a class="sourceLine" id="cb119-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb119-8" data-line-number="8"><span class="co">#&gt; Residuals:</span></a>
+<a class="sourceLine" id="cb119-9" data-line-number="9"><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></a>
+<a class="sourceLine" id="cb119-10" data-line-number="10"><span class="co">#&gt; -50.496 -14.029  -0.346  12.884  49.504 </span></a>
+<a class="sourceLine" id="cb119-11" data-line-number="11"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb119-12" data-line-number="12"><span class="co">#&gt; Coefficients:</span></a>
+<a class="sourceLine" id="cb119-13" data-line-number="13"><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb119-14" data-line-number="14"><span class="co">#&gt; (Intercept)  650.077      1.393 466.666  &lt; 2e-16 ***</span></a>
+<a class="sourceLine" id="cb119-15" data-line-number="15"><span class="co">#&gt; DTRUE          7.169      1.847   3.882  0.00012 ***</span></a>
+<a class="sourceLine" id="cb119-16" data-line-number="16"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb119-17" data-line-number="17"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb119-18" data-line-number="18"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb119-19" data-line-number="19"><span class="co">#&gt; Residual standard error: 18.74 on 418 degrees of freedom</span></a>
+<a class="sourceLine" id="cb119-20" data-line-number="20"><span class="co">#&gt; Multiple R-squared:  0.0348,	Adjusted R-squared:  0.0325 </span></a>
+<a class="sourceLine" id="cb119-21" data-line-number="21"><span class="co">#&gt; F-statistic: 15.07 on 1 and 418 DF,  p-value: 0.0001202</span></a></code></pre></div>
 
 <div class="rmdnote">
 <tt>summary()</tt> reports the <span class="math inline">\(p\)</span>-value of the test that the coefficient on <tt>(Intercept)</tt> is zero to to be <tt>&lt; 2e-16</tt>. This scientific notation states that the <span class="math inline">\(p\)</span>-value is smaller than <span class="math inline">\(\frac{2}{10^{16}}\)</span>, so a very small number. The reason for this is that computers cannot handle arbitrary small numbers. In fact, <span class="math inline">\(\frac{2}{10^{16}}\)</span> is the smallest possble number <tt>R</tt> can work with.
@@ -416,20 +414,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>The vector <tt>CASchools$D</tt> has the type <tt>logical</tt> (to see this, use <tt>typeof(CASchools$D)</tt>) which is shown in the output of <tt>summary(dummy_model)</tt>: the label <tt>DTRUE</tt> states that all entries <tt>TRUE</tt> are coded as <tt>1</tt> and all entries <tt>FALSE</tt> are coded as <tt>0</tt>. Thus, the interpretation of the coefficient <tt>DTRUE</tt> is as stated above for <span class="math inline">\(\beta_1\)</span>.</p>
 <p>One can see that the expected test score in districts with <span class="math inline">\(STR &lt; 20\)</span> (<span class="math inline">\(D_i = 1\)</span>) is predicted to be <span class="math inline">\(650.1 + 7.17 = 657.27\)</span> while districts with <span class="math inline">\(STR \geq 20\)</span> (<span class="math inline">\(D_i = 0\)</span>) are expected to have an average test score of only <span class="math inline">\(650.1\)</span>.</p>
 <p>Group specific predictions can be added to the plot by execution of the following code chunk.</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="co"># add group specific predictions to the plot</span></a>
-<a class="sourceLine" id="cb121-2" data-line-number="2"><span class="kw">points</span>(<span class="dt">x =</span> CASchools<span class="op">$</span>D, </a>
-<a class="sourceLine" id="cb121-3" data-line-number="3">       <span class="dt">y =</span> <span class="kw">predict</span>(dummy_model), </a>
-<a class="sourceLine" id="cb121-4" data-line-number="4">       <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, </a>
-<a class="sourceLine" id="cb121-5" data-line-number="5">       <span class="dt">pch =</span> <span class="dv">20</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1"><span class="co"># add group specific predictions to the plot</span></a>
+<a class="sourceLine" id="cb120-2" data-line-number="2"><span class="kw">points</span>(<span class="dt">x =</span> CASchools<span class="op">$</span>D, </a>
+<a class="sourceLine" id="cb120-3" data-line-number="3">       <span class="dt">y =</span> <span class="kw">predict</span>(dummy_model), </a>
+<a class="sourceLine" id="cb120-4" data-line-number="4">       <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, </a>
+<a class="sourceLine" id="cb120-5" data-line-number="5">       <span class="dt">pch =</span> <span class="dv">20</span>)</a></code></pre></div>
 <p>Here we use the function <tt>predict()</tt> to obtain estimates of the group specific means. The red dots represent these sample group averages. Accordingly, <span class="math inline">\(\hat{\beta}_1 = 7.17\)</span> can be seen as the difference in group averages.</p>
 <p><tt>summary(dummy_model)</tt> also answers the question whether there is a statistically significant difference in group means. This in turn would support the hypothesis that students perform differently when they are taught in small classes. We can assess this by a two-tailed test of the hypothesis <span class="math inline">\(H_0: \beta_1 = 0\)</span>. Conveniently, the <span class="math inline">\(t\)</span>-statistic and the corresponding <span class="math inline">\(p\)</span>-value for this test are computed by <tt>summary()</tt>.</p>
 <p>Since <tt>t value</tt> <span class="math inline">\(= 3.88 &gt; 1.96\)</span> we reject the null hypothesis at the <span class="math inline">\(5\%\)</span> level of significance. The same conclusion results when using the <span class="math inline">\(p\)</span>-value, which reports significance up to the <span class="math inline">\(0.00012\%\)</span> level.</p>
 <p>As done with <tt>linear_model</tt>, we may alternatively use the function <tt>confint()</tt> to compute a <span class="math inline">\(95\%\)</span> confidence interval for the true difference in means and see if the hypothesized value is an element of this confidence set.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1"><span class="co"># confidence intervals for coefficients in the dummy regression model</span></a>
-<a class="sourceLine" id="cb122-2" data-line-number="2"><span class="kw">confint</span>(dummy_model)</a>
-<a class="sourceLine" id="cb122-3" data-line-number="3"><span class="co">#&gt;                  2.5 %    97.5 %</span></a>
-<a class="sourceLine" id="cb122-4" data-line-number="4"><span class="co">#&gt; (Intercept) 647.338594 652.81500</span></a>
-<a class="sourceLine" id="cb122-5" data-line-number="5"><span class="co">#&gt; DTRUE         3.539562  10.79931</span></a></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="co"># confidence intervals for coefficients in the dummy regression model</span></a>
+<a class="sourceLine" id="cb121-2" data-line-number="2"><span class="kw">confint</span>(dummy_model)</a>
+<a class="sourceLine" id="cb121-3" data-line-number="3"><span class="co">#&gt;                  2.5 %    97.5 %</span></a>
+<a class="sourceLine" id="cb121-4" data-line-number="4"><span class="co">#&gt; (Intercept) 647.338594 652.81500</span></a>
+<a class="sourceLine" id="cb121-5" data-line-number="5"><span class="co">#&gt; DTRUE         3.539562  10.79931</span></a></code></pre></div>
 <p>We reject the hypothesis that there is no difference between group means at the <span class="math inline">\(5\%\)</span> significance level since <span class="math inline">\(\beta_{1,0} = 0\)</span> lies outside of <span class="math inline">\([3.54, 10.8]\)</span>, the <span class="math inline">\(95\%\)</span> confidence interval for the coefficient on <span class="math inline">\(D\)</span>.</p>
 </div>
             </section>

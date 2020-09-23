@@ -135,13 +135,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><a href="https://www.example.com/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
+<li><center><a href="http://www.dliebl.com/AdvRA/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
 <li class="chapter" data-level="" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html#probability-distributions-of-discrete-random-variables"><i class="fa fa-check"></i>Probability Distributions of Discrete Random Variables</a></li>
@@ -393,43 +391,43 @@ Therefore we have
 Thus the variance of a random walk depends on <span class="math inline">\(t\)</span> which violates the assumption presented in Key Concept 14.5: a random walk is nonstationary.</p>
 <p>Obviously, <a href="14-7-nit.html#eq:randomwalk">(14.6)</a> is a special case of an AR(<span class="math inline">\(1\)</span>) model where <span class="math inline">\(\beta_1 = 1\)</span>. One can show that a time series that follows an AR(<span class="math inline">\(1\)</span>) model is stationary if <span class="math inline">\(\lvert\beta_1\rvert &lt; 1\)</span>. In a general AR(<span class="math inline">\(p\)</span>) model, stationarity is linked to the roots of the polynomial <span class="math display">\[1-\beta_1 z - \beta_2 z^2 - \beta_3 z^3 - \dots - \beta_p z^p.\]</span> If all roots are greater than <span class="math inline">\(1\)</span> in absolute value, the AR(<span class="math inline">\(p\)</span>) series is stationary. If at least one root equals <span class="math inline">\(1\)</span>, the AR(<span class="math inline">\(p\)</span>) is said to have a <em>unit root</em> and thus has a stochastic trend.</p>
 <p>It is straightforward to simulate random walks in <tt>R</tt> using <tt>arima.sim()</tt>. The function <tt>matplot()</tt> is convenient for simple plots of the columns of a matrix.</p>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb381-1" data-line-number="1"><span class="co"># simulate and plot random walks starting at 0</span></a>
-<a class="sourceLine" id="cb381-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb381-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb381-4" data-line-number="4">RWs &lt;-<span class="st"> </span><span class="kw">ts</span>(<span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">4</span>, </a>
-<a class="sourceLine" id="cb381-5" data-line-number="5">            <span class="kw">arima.sim</span>(<span class="dt">model =</span> <span class="kw">list</span>(<span class="dt">order =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span> ,<span class="dv">0</span>)), <span class="dt">n =</span> <span class="dv">100</span>)))</a>
-<a class="sourceLine" id="cb381-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb381-7" data-line-number="7"><span class="kw">matplot</span>(RWs, </a>
-<a class="sourceLine" id="cb381-8" data-line-number="8">        <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, </a>
-<a class="sourceLine" id="cb381-9" data-line-number="9">        <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;orange&quot;</span>), </a>
-<a class="sourceLine" id="cb381-10" data-line-number="10">        <span class="dt">lty =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb381-11" data-line-number="11">        <span class="dt">lwd =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb381-12" data-line-number="12">        <span class="dt">main =</span> <span class="st">&quot;Four Random Walks&quot;</span>,</a>
-<a class="sourceLine" id="cb381-13" data-line-number="13">        <span class="dt">xlab =</span> <span class="st">&quot;Time&quot;</span>,</a>
-<a class="sourceLine" id="cb381-14" data-line-number="14">        <span class="dt">ylab =</span> <span class="st">&quot;Value&quot;</span>)</a></code></pre></div>
-<p><img src="AdvRA_files/figure-html/unnamed-chunk-630-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb380-1" data-line-number="1"><span class="co"># simulate and plot random walks starting at 0</span></a>
+<a class="sourceLine" id="cb380-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb380-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb380-4" data-line-number="4">RWs &lt;-<span class="st"> </span><span class="kw">ts</span>(<span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">4</span>, </a>
+<a class="sourceLine" id="cb380-5" data-line-number="5">            <span class="kw">arima.sim</span>(<span class="dt">model =</span> <span class="kw">list</span>(<span class="dt">order =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span> ,<span class="dv">0</span>)), <span class="dt">n =</span> <span class="dv">100</span>)))</a>
+<a class="sourceLine" id="cb380-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb380-7" data-line-number="7"><span class="kw">matplot</span>(RWs, </a>
+<a class="sourceLine" id="cb380-8" data-line-number="8">        <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, </a>
+<a class="sourceLine" id="cb380-9" data-line-number="9">        <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;orange&quot;</span>), </a>
+<a class="sourceLine" id="cb380-10" data-line-number="10">        <span class="dt">lty =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb380-11" data-line-number="11">        <span class="dt">lwd =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb380-12" data-line-number="12">        <span class="dt">main =</span> <span class="st">&quot;Four Random Walks&quot;</span>,</a>
+<a class="sourceLine" id="cb380-13" data-line-number="13">        <span class="dt">xlab =</span> <span class="st">&quot;Time&quot;</span>,</a>
+<a class="sourceLine" id="cb380-14" data-line-number="14">        <span class="dt">ylab =</span> <span class="st">&quot;Value&quot;</span>)</a></code></pre></div>
+<p><img src="AdvRA_files/figure-html/unnamed-chunk-628-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>Adding a constant to <a href="14-7-nit.html#eq:randomwalk">(14.6)</a> yields
 <span class="math display" id="eq:randomwalkdrift">\[\begin{align}
   Y_t = \beta_0 + Y_{t-1} + u_t \tag{14.7},
 \end{align}\]</span>
 a <em>random walk model with a drift</em> which allows to model the tendency of a series to move upwards or downwards. If <span class="math inline">\(\beta_0\)</span> is positive, the series drifts upwards and it follows a downward trend if <span class="math inline">\(\beta_0\)</span> is negative.</p>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb382-1" data-line-number="1"><span class="co"># simulate and plot random walks with drift</span></a>
-<a class="sourceLine" id="cb382-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb382-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb382-4" data-line-number="4">RWsd &lt;-<span class="st"> </span><span class="kw">ts</span>(<span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">4</span>, </a>
-<a class="sourceLine" id="cb382-5" data-line-number="5">           <span class="kw">arima.sim</span>(<span class="dt">model =</span> <span class="kw">list</span>(<span class="dt">order =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)), </a>
-<a class="sourceLine" id="cb382-6" data-line-number="6">                     <span class="dt">n =</span> <span class="dv">100</span>,</a>
-<a class="sourceLine" id="cb382-7" data-line-number="7">                     <span class="dt">mean =</span> <span class="fl">-0.2</span>)))</a>
-<a class="sourceLine" id="cb382-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb382-9" data-line-number="9"><span class="kw">matplot</span>(RWsd, </a>
-<a class="sourceLine" id="cb382-10" data-line-number="10">        <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, </a>
-<a class="sourceLine" id="cb382-11" data-line-number="11">        <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;orange&quot;</span>), </a>
-<a class="sourceLine" id="cb382-12" data-line-number="12">        <span class="dt">lty =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb382-13" data-line-number="13">        <span class="dt">lwd =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb382-14" data-line-number="14">        <span class="dt">main =</span> <span class="st">&quot;Four Random Walks with Drift&quot;</span>,</a>
-<a class="sourceLine" id="cb382-15" data-line-number="15">        <span class="dt">xlab =</span> <span class="st">&quot;Time&quot;</span>,</a>
-<a class="sourceLine" id="cb382-16" data-line-number="16">        <span class="dt">ylab =</span> <span class="st">&quot;Value&quot;</span>)</a></code></pre></div>
-<p><img src="AdvRA_files/figure-html/unnamed-chunk-631-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb381-1" data-line-number="1"><span class="co"># simulate and plot random walks with drift</span></a>
+<a class="sourceLine" id="cb381-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb381-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb381-4" data-line-number="4">RWsd &lt;-<span class="st"> </span><span class="kw">ts</span>(<span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">4</span>, </a>
+<a class="sourceLine" id="cb381-5" data-line-number="5">           <span class="kw">arima.sim</span>(<span class="dt">model =</span> <span class="kw">list</span>(<span class="dt">order =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)), </a>
+<a class="sourceLine" id="cb381-6" data-line-number="6">                     <span class="dt">n =</span> <span class="dv">100</span>,</a>
+<a class="sourceLine" id="cb381-7" data-line-number="7">                     <span class="dt">mean =</span> <span class="fl">-0.2</span>)))</a>
+<a class="sourceLine" id="cb381-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb381-9" data-line-number="9"><span class="kw">matplot</span>(RWsd, </a>
+<a class="sourceLine" id="cb381-10" data-line-number="10">        <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, </a>
+<a class="sourceLine" id="cb381-11" data-line-number="11">        <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;orange&quot;</span>), </a>
+<a class="sourceLine" id="cb381-12" data-line-number="12">        <span class="dt">lty =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb381-13" data-line-number="13">        <span class="dt">lwd =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb381-14" data-line-number="14">        <span class="dt">main =</span> <span class="st">&quot;Four Random Walks with Drift&quot;</span>,</a>
+<a class="sourceLine" id="cb381-15" data-line-number="15">        <span class="dt">xlab =</span> <span class="st">&quot;Time&quot;</span>,</a>
+<a class="sourceLine" id="cb381-16" data-line-number="16">        <span class="dt">ylab =</span> <span class="st">&quot;Value&quot;</span>)</a></code></pre></div>
+<p><img src="AdvRA_files/figure-html/unnamed-chunk-629-1.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="problems-caused-by-stochastic-trends" class="section level4 unnumbered">
 <h4>Problems Caused by Stochastic Trends</h4>
@@ -443,69 +441,69 @@ a <em>random walk model with a drift</em> which allows to model the tendency of 
 <p>When two stochastically trending time series are regressed onto each other, the estimated relationship may appear highly significant using conventional normal critical values although the series are unrelated. This is what econometricians call a <em>spurious</em> relationship.</p></li>
 </ul>
 <p>As an example for spurious regression, consider again the green and the red random walks that we have simulated above. We know that there is no relationship between both series: they are generated independently of each other.</p>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb383-1" data-line-number="1"><span class="co"># plot spurious relationship</span></a>
-<a class="sourceLine" id="cb383-2" data-line-number="2"><span class="kw">matplot</span>(RWs[, <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)], </a>
-<a class="sourceLine" id="cb383-3" data-line-number="3">        <span class="dt">lty =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb383-4" data-line-number="4">        <span class="dt">lwd =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb383-5" data-line-number="5">        <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,</a>
-<a class="sourceLine" id="cb383-6" data-line-number="6">        <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;darkred&quot;</span>),</a>
-<a class="sourceLine" id="cb383-7" data-line-number="7">        <span class="dt">xlab =</span> <span class="st">&quot;Time&quot;</span>,</a>
-<a class="sourceLine" id="cb383-8" data-line-number="8">        <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>,</a>
-<a class="sourceLine" id="cb383-9" data-line-number="9">        <span class="dt">main =</span> <span class="st">&quot;A Spurious Relationship&quot;</span>)    </a></code></pre></div>
-<p><img src="AdvRA_files/figure-html/unnamed-chunk-632-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb382-1" data-line-number="1"><span class="co"># plot spurious relationship</span></a>
+<a class="sourceLine" id="cb382-2" data-line-number="2"><span class="kw">matplot</span>(RWs[, <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)], </a>
+<a class="sourceLine" id="cb382-3" data-line-number="3">        <span class="dt">lty =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb382-4" data-line-number="4">        <span class="dt">lwd =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb382-5" data-line-number="5">        <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,</a>
+<a class="sourceLine" id="cb382-6" data-line-number="6">        <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;darkred&quot;</span>),</a>
+<a class="sourceLine" id="cb382-7" data-line-number="7">        <span class="dt">xlab =</span> <span class="st">&quot;Time&quot;</span>,</a>
+<a class="sourceLine" id="cb382-8" data-line-number="8">        <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb382-9" data-line-number="9">        <span class="dt">main =</span> <span class="st">&quot;A Spurious Relationship&quot;</span>)    </a></code></pre></div>
+<p><img src="AdvRA_files/figure-html/unnamed-chunk-630-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>Imagine we did not have this information and instead conjectured that the green series is useful for predicting the red series and thus end up estimating the ADL(<span class="math inline">\(0\)</span>,<span class="math inline">\(1\)</span>) model
 <span class="math display">\[\begin{align*}
   Red_t = \beta_0 + \beta_1 Green_{t-1} + u_t.
 \end{align*}\]</span></p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb384-1" data-line-number="1"><span class="co"># estimate spurious AR model</span></a>
-<a class="sourceLine" id="cb384-2" data-line-number="2"><span class="kw">summary</span>(<span class="kw">dynlm</span>(RWs[, <span class="dv">2</span>] <span class="op">~</span><span class="st"> </span><span class="kw">L</span>(RWs[, <span class="dv">3</span>])))<span class="op">$</span>coefficients</a>
-<a class="sourceLine" id="cb384-3" data-line-number="3"><span class="co">#&gt;              Estimate Std. Error   t value     Pr(&gt;|t|)</span></a>
-<a class="sourceLine" id="cb384-4" data-line-number="4"><span class="co">#&gt; (Intercept) -3.459488  0.3635104 -9.516889 1.354156e-15</span></a>
-<a class="sourceLine" id="cb384-5" data-line-number="5"><span class="co">#&gt; L(RWs[, 3])  1.047195  0.1450874  7.217687 1.135828e-10</span></a></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb383-1" data-line-number="1"><span class="co"># estimate spurious AR model</span></a>
+<a class="sourceLine" id="cb383-2" data-line-number="2"><span class="kw">summary</span>(<span class="kw">dynlm</span>(RWs[, <span class="dv">2</span>] <span class="op">~</span><span class="st"> </span><span class="kw">L</span>(RWs[, <span class="dv">3</span>])))<span class="op">$</span>coefficients</a>
+<a class="sourceLine" id="cb383-3" data-line-number="3"><span class="co">#&gt;              Estimate Std. Error   t value     Pr(&gt;|t|)</span></a>
+<a class="sourceLine" id="cb383-4" data-line-number="4"><span class="co">#&gt; (Intercept) -3.459488  0.3635104 -9.516889 1.354156e-15</span></a>
+<a class="sourceLine" id="cb383-5" data-line-number="5"><span class="co">#&gt; L(RWs[, 3])  1.047195  0.1450874  7.217687 1.135828e-10</span></a></code></pre></div>
 <p>The result is obviously spurious: the coefficient on <span class="math inline">\(Green_{t-1}\)</span> is estimated to be about <span class="math inline">\(1\)</span> and the <span class="math inline">\(p\)</span>-value of <span class="math inline">\(1.14 \cdot 10^{-10}\)</span> of the corresponding <span class="math inline">\(t\)</span>-test indicates that the coefficient is highly significant while its true value is in fact zero.</p>
 <p>As an empirical example, consider the U.S. unemployment rate and the Japanese industrial production. Both series show an upward trending behavior from the mid-1960s through the early 1980s.</p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb385-1" data-line-number="1"><span class="co"># plot U.S. unemployment rate &amp; Japanese industrial production</span></a>
-<a class="sourceLine" id="cb385-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">merge</span>(<span class="kw">as.zoo</span>(USUnemp), <span class="kw">as.zoo</span>(JPIndProd)), </a>
-<a class="sourceLine" id="cb385-3" data-line-number="3">     <span class="dt">plot.type =</span> <span class="st">&quot;single&quot;</span>, </a>
-<a class="sourceLine" id="cb385-4" data-line-number="4">     <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;steelblue&quot;</span>),</a>
-<a class="sourceLine" id="cb385-5" data-line-number="5">     <span class="dt">lwd =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb385-6" data-line-number="6">     <span class="dt">xlab =</span> <span class="st">&quot;Date&quot;</span>,</a>
-<a class="sourceLine" id="cb385-7" data-line-number="7">     <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>,</a>
-<a class="sourceLine" id="cb385-8" data-line-number="8">     <span class="dt">main =</span> <span class="st">&quot;Spurious Regression: Macroeconomic Time series&quot;</span>)</a>
-<a class="sourceLine" id="cb385-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb385-10" data-line-number="10"><span class="co"># add a legend</span></a>
-<a class="sourceLine" id="cb385-11" data-line-number="11"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, </a>
-<a class="sourceLine" id="cb385-12" data-line-number="12">       <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;USUnemp&quot;</span>, <span class="st">&quot;JPIndProd&quot;</span>),</a>
-<a class="sourceLine" id="cb385-13" data-line-number="13">       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;steelblue&quot;</span>),</a>
-<a class="sourceLine" id="cb385-14" data-line-number="14">       <span class="dt">lwd =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a></code></pre></div>
-<p><img src="AdvRA_files/figure-html/unnamed-chunk-634-1.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" data-line-number="1"><span class="co"># estimate regression using data from 1962 to 1985</span></a>
-<a class="sourceLine" id="cb386-2" data-line-number="2">SR_Unemp1 &lt;-<span class="st"> </span><span class="kw">dynlm</span>(<span class="kw">ts</span>(USUnemp[<span class="st">&quot;1962::1985&quot;</span>]) <span class="op">~</span><span class="st"> </span><span class="kw">ts</span>(JPIndProd[<span class="st">&quot;1962::1985&quot;</span>]))</a>
-<a class="sourceLine" id="cb386-3" data-line-number="3"><span class="kw">coeftest</span>(SR_Unemp1, <span class="dt">vcov =</span> sandwich)</a>
-<a class="sourceLine" id="cb386-4" data-line-number="4"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb386-5" data-line-number="5"><span class="co">#&gt; t test of coefficients:</span></a>
-<a class="sourceLine" id="cb386-6" data-line-number="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb386-7" data-line-number="7"><span class="co">#&gt;                             Estimate Std. Error t value  Pr(&gt;|t|)    </span></a>
-<a class="sourceLine" id="cb386-8" data-line-number="8"><span class="co">#&gt; (Intercept)                 -2.37452    1.12041 -2.1193    0.0367 *  </span></a>
-<a class="sourceLine" id="cb386-9" data-line-number="9"><span class="co">#&gt; ts(JPIndProd[&quot;1962::1985&quot;])  2.22057    0.29233  7.5961 2.227e-11 ***</span></a>
-<a class="sourceLine" id="cb386-10" data-line-number="10"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb386-11" data-line-number="11"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb384-1" data-line-number="1"><span class="co"># plot U.S. unemployment rate &amp; Japanese industrial production</span></a>
+<a class="sourceLine" id="cb384-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">merge</span>(<span class="kw">as.zoo</span>(USUnemp), <span class="kw">as.zoo</span>(JPIndProd)), </a>
+<a class="sourceLine" id="cb384-3" data-line-number="3">     <span class="dt">plot.type =</span> <span class="st">&quot;single&quot;</span>, </a>
+<a class="sourceLine" id="cb384-4" data-line-number="4">     <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;steelblue&quot;</span>),</a>
+<a class="sourceLine" id="cb384-5" data-line-number="5">     <span class="dt">lwd =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb384-6" data-line-number="6">     <span class="dt">xlab =</span> <span class="st">&quot;Date&quot;</span>,</a>
+<a class="sourceLine" id="cb384-7" data-line-number="7">     <span class="dt">ylab =</span> <span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb384-8" data-line-number="8">     <span class="dt">main =</span> <span class="st">&quot;Spurious Regression: Macroeconomic Time series&quot;</span>)</a>
+<a class="sourceLine" id="cb384-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb384-10" data-line-number="10"><span class="co"># add a legend</span></a>
+<a class="sourceLine" id="cb384-11" data-line-number="11"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, </a>
+<a class="sourceLine" id="cb384-12" data-line-number="12">       <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;USUnemp&quot;</span>, <span class="st">&quot;JPIndProd&quot;</span>),</a>
+<a class="sourceLine" id="cb384-13" data-line-number="13">       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;steelblue&quot;</span>),</a>
+<a class="sourceLine" id="cb384-14" data-line-number="14">       <span class="dt">lwd =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a></code></pre></div>
+<p><img src="AdvRA_files/figure-html/unnamed-chunk-632-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb385-1" data-line-number="1"><span class="co"># estimate regression using data from 1962 to 1985</span></a>
+<a class="sourceLine" id="cb385-2" data-line-number="2">SR_Unemp1 &lt;-<span class="st"> </span><span class="kw">dynlm</span>(<span class="kw">ts</span>(USUnemp[<span class="st">&quot;1962::1985&quot;</span>]) <span class="op">~</span><span class="st"> </span><span class="kw">ts</span>(JPIndProd[<span class="st">&quot;1962::1985&quot;</span>]))</a>
+<a class="sourceLine" id="cb385-3" data-line-number="3"><span class="kw">coeftest</span>(SR_Unemp1, <span class="dt">vcov =</span> sandwich)</a>
+<a class="sourceLine" id="cb385-4" data-line-number="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb385-5" data-line-number="5"><span class="co">#&gt; t test of coefficients:</span></a>
+<a class="sourceLine" id="cb385-6" data-line-number="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb385-7" data-line-number="7"><span class="co">#&gt;                             Estimate Std. Error t value  Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb385-8" data-line-number="8"><span class="co">#&gt; (Intercept)                 -2.37452    1.12041 -2.1193    0.0367 *  </span></a>
+<a class="sourceLine" id="cb385-9" data-line-number="9"><span class="co">#&gt; ts(JPIndProd[&quot;1962::1985&quot;])  2.22057    0.29233  7.5961 2.227e-11 ***</span></a>
+<a class="sourceLine" id="cb385-10" data-line-number="10"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb385-11" data-line-number="11"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p>A simple regression of the U.S. unemployment rate on Japanese industrial production using data from 1962 to 1985 yields
 <span class="math display" id="eq:urjpip1">\[\begin{align}
   \widehat{U.S. UR}_t = -\underset{(1.12)}{2.37} + \underset{(0.29)}{2.22} \log(JapaneseIP_t). \tag{14.8}
 \end{align}\]</span>
 This appears to be a significant relationship: the <span class="math inline">\(t\)</span>-statistic of the coefficient on <span class="math inline">\(\log(JapaneseIP_t)\)</span> is bigger than 7.</p>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" data-line-number="1"><span class="co"># Estimate regression using data from 1986 to 2012</span></a>
-<a class="sourceLine" id="cb387-2" data-line-number="2">SR_Unemp2 &lt;-<span class="st"> </span><span class="kw">dynlm</span>(<span class="kw">ts</span>(USUnemp[<span class="st">&quot;1986::2012&quot;</span>]) <span class="op">~</span><span class="st"> </span><span class="kw">ts</span>(JPIndProd[<span class="st">&quot;1986::2012&quot;</span>]))</a>
-<a class="sourceLine" id="cb387-3" data-line-number="3"><span class="kw">coeftest</span>(SR_Unemp2, <span class="dt">vcov =</span> sandwich)</a>
-<a class="sourceLine" id="cb387-4" data-line-number="4"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb387-5" data-line-number="5"><span class="co">#&gt; t test of coefficients:</span></a>
-<a class="sourceLine" id="cb387-6" data-line-number="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb387-7" data-line-number="7"><span class="co">#&gt;                             Estimate Std. Error t value  Pr(&gt;|t|)    </span></a>
-<a class="sourceLine" id="cb387-8" data-line-number="8"><span class="co">#&gt; (Intercept)                  41.7763     5.4066  7.7270 6.596e-12 ***</span></a>
-<a class="sourceLine" id="cb387-9" data-line-number="9"><span class="co">#&gt; ts(JPIndProd[&quot;1986::2012&quot;])  -7.7771     1.1714 -6.6391 1.386e-09 ***</span></a>
-<a class="sourceLine" id="cb387-10" data-line-number="10"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb387-11" data-line-number="11"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" data-line-number="1"><span class="co"># Estimate regression using data from 1986 to 2012</span></a>
+<a class="sourceLine" id="cb386-2" data-line-number="2">SR_Unemp2 &lt;-<span class="st"> </span><span class="kw">dynlm</span>(<span class="kw">ts</span>(USUnemp[<span class="st">&quot;1986::2012&quot;</span>]) <span class="op">~</span><span class="st"> </span><span class="kw">ts</span>(JPIndProd[<span class="st">&quot;1986::2012&quot;</span>]))</a>
+<a class="sourceLine" id="cb386-3" data-line-number="3"><span class="kw">coeftest</span>(SR_Unemp2, <span class="dt">vcov =</span> sandwich)</a>
+<a class="sourceLine" id="cb386-4" data-line-number="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb386-5" data-line-number="5"><span class="co">#&gt; t test of coefficients:</span></a>
+<a class="sourceLine" id="cb386-6" data-line-number="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb386-7" data-line-number="7"><span class="co">#&gt;                             Estimate Std. Error t value  Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb386-8" data-line-number="8"><span class="co">#&gt; (Intercept)                  41.7763     5.4066  7.7270 6.596e-12 ***</span></a>
+<a class="sourceLine" id="cb386-9" data-line-number="9"><span class="co">#&gt; ts(JPIndProd[&quot;1986::2012&quot;])  -7.7771     1.1714 -6.6391 1.386e-09 ***</span></a>
+<a class="sourceLine" id="cb386-10" data-line-number="10"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb386-11" data-line-number="11"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p>When estimating the same model, this time with data from 1986 to 2012, we obtain
 <span class="math display" id="eq:urjpip2">\[\begin{align}
   \widehat{U.S. UR}_t = \underset{(5.41)}{41.78} -\underset{(1.17)}{7.78} \log(JapaneseIP)_t \tag{14.9}
@@ -526,7 +524,7 @@ where <span class="math inline">\(\delta = \beta_1 - 1\)</span>. The testing pro
 <span class="math display">\[\begin{align*}
   H_0: \delta = 0 \ \ \ \text{vs.} \ \ \ H_1: \delta &lt; 0
 \end{align*}\]</span>
-which is convenient since the corresponding test statistic is reported by many relevant <tt>R</tt> functions.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p>
+which is convenient since the corresponding test statistic is reported by many relevant <tt>R</tt> functions.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
 <p>The Dickey-Fuller test can also be applied in an AR(<span class="math inline">\(p\)</span>) model. The <em>Augmented Dickey-Fuller (ADF) test</em> is summarized in Key Concept 14.8.</p>
 <div id="KC14.8" class="keyconcept">
 <h3 class="right">
@@ -586,57 +584,57 @@ where <span class="math inline">\(b \cdot t\)</span> is a linear time trend. <sp
   \Delta Y_t =&amp; \, \beta_0 + \alpha \cdot t + \delta Y_{t-1} + u_t.
 \end{align*}\]</span></p>
 <p>Loosely speaking, the precision of the estimated quantiles depends on two factors: <span class="math inline">\(n\)</span>, the length of the underlying series and <span class="math inline">\(N\)</span>, the number of test statistics used. Since we are interested in estimating quantiles of the <em>asymptotic</em> distribution (the Dickey-Fuller distribution) of the ADF test statistic both using many observations and large number of simulated test statistics will increase the precision of the estimated quantiles. We choose <span class="math inline">\(n=N=1000\)</span> as the computational burden grows quickly with <span class="math inline">\(n\)</span> and <span class="math inline">\(N\)</span>.</p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb388-1" data-line-number="1"><span class="co"># repetitions</span></a>
-<a class="sourceLine" id="cb388-2" data-line-number="2">N &lt;-<span class="st"> </span><span class="dv">1000</span></a>
-<a class="sourceLine" id="cb388-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb388-4" data-line-number="4"><span class="co"># observations</span></a>
-<a class="sourceLine" id="cb388-5" data-line-number="5">n &lt;-<span class="st"> </span><span class="dv">1000</span></a>
-<a class="sourceLine" id="cb388-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb388-7" data-line-number="7"><span class="co"># define constant, trend and rho</span></a>
-<a class="sourceLine" id="cb388-8" data-line-number="8">drift &lt;-<span class="st"> </span><span class="fl">0.5</span></a>
-<a class="sourceLine" id="cb388-9" data-line-number="9">trend &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span>n</a>
-<a class="sourceLine" id="cb388-10" data-line-number="10">rho &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb388-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb388-12" data-line-number="12"><span class="co"># function which simulates an AR(1) process</span></a>
-<a class="sourceLine" id="cb388-13" data-line-number="13">AR1 &lt;-<span class="st"> </span><span class="cf">function</span>(rho) {</a>
-<a class="sourceLine" id="cb388-14" data-line-number="14">  out &lt;-<span class="st"> </span><span class="kw">numeric</span>(n)</a>
-<a class="sourceLine" id="cb388-15" data-line-number="15">  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>n) {</a>
-<a class="sourceLine" id="cb388-16" data-line-number="16">    out[i] &lt;-<span class="st"> </span>rho <span class="op">*</span><span class="st"> </span>out[i<span class="dv">-1</span>] <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb388-17" data-line-number="17">  }</a>
-<a class="sourceLine" id="cb388-18" data-line-number="18">  <span class="kw">return</span>(out)</a>
-<a class="sourceLine" id="cb388-19" data-line-number="19">}</a>
-<a class="sourceLine" id="cb388-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb388-21" data-line-number="21"><span class="co"># simulate from DGP with constant </span></a>
-<a class="sourceLine" id="cb388-22" data-line-number="22">RWD &lt;-<span class="st"> </span><span class="kw">ts</span>(<span class="kw">replicate</span>(<span class="dt">n =</span> N, drift <span class="op">+</span><span class="st"> </span><span class="kw">AR1</span>(rho)))</a>
-<a class="sourceLine" id="cb388-23" data-line-number="23"></a>
-<a class="sourceLine" id="cb388-24" data-line-number="24"><span class="co"># compute ADF test statistics and store them in &#39;ADFD&#39;</span></a>
-<a class="sourceLine" id="cb388-25" data-line-number="25">ADFD &lt;-<span class="st"> </span><span class="kw">numeric</span>(N)</a>
-<a class="sourceLine" id="cb388-26" data-line-number="26"></a>
-<a class="sourceLine" id="cb388-27" data-line-number="27"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(RWD)) {</a>
-<a class="sourceLine" id="cb388-28" data-line-number="28">  ADFD[i] &lt;-<span class="st"> </span><span class="kw">summary</span>(</a>
-<a class="sourceLine" id="cb388-29" data-line-number="29">    <span class="kw">dynlm</span>(<span class="kw">diff</span>(RWD[, i], <span class="dv">1</span>) <span class="op">~</span><span class="st"> </span><span class="kw">L</span>(RWD[, i], <span class="dv">1</span>)))<span class="op">$</span>coef[<span class="dv">2</span>, <span class="dv">3</span>]</a>
-<a class="sourceLine" id="cb388-30" data-line-number="30">}</a>
-<a class="sourceLine" id="cb388-31" data-line-number="31"></a>
-<a class="sourceLine" id="cb388-32" data-line-number="32"><span class="co"># simulate from DGP with constant and trend</span></a>
-<a class="sourceLine" id="cb388-33" data-line-number="33">RWDT &lt;-<span class="st"> </span><span class="kw">ts</span>(<span class="kw">replicate</span>(<span class="dt">n =</span> N, drift <span class="op">+</span><span class="st"> </span>trend <span class="op">+</span><span class="st"> </span><span class="kw">AR1</span>(rho)))</a>
-<a class="sourceLine" id="cb388-34" data-line-number="34"></a>
-<a class="sourceLine" id="cb388-35" data-line-number="35"><span class="co"># compute ADF test statistics and store them in &#39;ADFDT&#39;</span></a>
-<a class="sourceLine" id="cb388-36" data-line-number="36">ADFDT &lt;-<span class="st"> </span><span class="kw">numeric</span>(N)</a>
-<a class="sourceLine" id="cb388-37" data-line-number="37"></a>
-<a class="sourceLine" id="cb388-38" data-line-number="38"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(RWDT)) {</a>
-<a class="sourceLine" id="cb388-39" data-line-number="39">  ADFDT[i] &lt;-<span class="st"> </span><span class="kw">summary</span>(</a>
-<a class="sourceLine" id="cb388-40" data-line-number="40">    <span class="kw">dynlm</span>(<span class="kw">diff</span>(RWDT[, i], <span class="dv">1</span>) <span class="op">~</span><span class="st"> </span><span class="kw">L</span>(RWDT[, i], <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">trend</span>(RWDT[, i]))</a>
-<a class="sourceLine" id="cb388-41" data-line-number="41">  )<span class="op">$</span>coef[<span class="dv">2</span>, <span class="dv">3</span>]</a>
-<a class="sourceLine" id="cb388-42" data-line-number="42">}</a></code></pre></div>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb389-1" data-line-number="1"><span class="co"># estimate quantiles for ADF regression with a drift</span></a>
-<a class="sourceLine" id="cb389-2" data-line-number="2"><span class="kw">round</span>(<span class="kw">quantile</span>(ADFD, <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.05</span>, <span class="fl">0.01</span>)), <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb389-3" data-line-number="3"><span class="co">#&gt;   10%    5%    1% </span></a>
-<a class="sourceLine" id="cb389-4" data-line-number="4"><span class="co">#&gt; -2.62 -2.83 -3.39</span></a>
-<a class="sourceLine" id="cb389-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb389-6" data-line-number="6"><span class="co"># estimate quantiles for ADF regression with drift and trend</span></a>
-<a class="sourceLine" id="cb389-7" data-line-number="7"><span class="kw">round</span>(<span class="kw">quantile</span>(ADFDT, <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.05</span>, <span class="fl">0.01</span>)), <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb389-8" data-line-number="8"><span class="co">#&gt;   10%    5%    1% </span></a>
-<a class="sourceLine" id="cb389-9" data-line-number="9"><span class="co">#&gt; -3.11 -3.43 -3.97</span></a></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" data-line-number="1"><span class="co"># repetitions</span></a>
+<a class="sourceLine" id="cb387-2" data-line-number="2">N &lt;-<span class="st"> </span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb387-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb387-4" data-line-number="4"><span class="co"># observations</span></a>
+<a class="sourceLine" id="cb387-5" data-line-number="5">n &lt;-<span class="st"> </span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb387-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb387-7" data-line-number="7"><span class="co"># define constant, trend and rho</span></a>
+<a class="sourceLine" id="cb387-8" data-line-number="8">drift &lt;-<span class="st"> </span><span class="fl">0.5</span></a>
+<a class="sourceLine" id="cb387-9" data-line-number="9">trend &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span>n</a>
+<a class="sourceLine" id="cb387-10" data-line-number="10">rho &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb387-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb387-12" data-line-number="12"><span class="co"># function which simulates an AR(1) process</span></a>
+<a class="sourceLine" id="cb387-13" data-line-number="13">AR1 &lt;-<span class="st"> </span><span class="cf">function</span>(rho) {</a>
+<a class="sourceLine" id="cb387-14" data-line-number="14">  out &lt;-<span class="st"> </span><span class="kw">numeric</span>(n)</a>
+<a class="sourceLine" id="cb387-15" data-line-number="15">  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>n) {</a>
+<a class="sourceLine" id="cb387-16" data-line-number="16">    out[i] &lt;-<span class="st"> </span>rho <span class="op">*</span><span class="st"> </span>out[i<span class="dv">-1</span>] <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb387-17" data-line-number="17">  }</a>
+<a class="sourceLine" id="cb387-18" data-line-number="18">  <span class="kw">return</span>(out)</a>
+<a class="sourceLine" id="cb387-19" data-line-number="19">}</a>
+<a class="sourceLine" id="cb387-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb387-21" data-line-number="21"><span class="co"># simulate from DGP with constant </span></a>
+<a class="sourceLine" id="cb387-22" data-line-number="22">RWD &lt;-<span class="st"> </span><span class="kw">ts</span>(<span class="kw">replicate</span>(<span class="dt">n =</span> N, drift <span class="op">+</span><span class="st"> </span><span class="kw">AR1</span>(rho)))</a>
+<a class="sourceLine" id="cb387-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb387-24" data-line-number="24"><span class="co"># compute ADF test statistics and store them in &#39;ADFD&#39;</span></a>
+<a class="sourceLine" id="cb387-25" data-line-number="25">ADFD &lt;-<span class="st"> </span><span class="kw">numeric</span>(N)</a>
+<a class="sourceLine" id="cb387-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb387-27" data-line-number="27"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(RWD)) {</a>
+<a class="sourceLine" id="cb387-28" data-line-number="28">  ADFD[i] &lt;-<span class="st"> </span><span class="kw">summary</span>(</a>
+<a class="sourceLine" id="cb387-29" data-line-number="29">    <span class="kw">dynlm</span>(<span class="kw">diff</span>(RWD[, i], <span class="dv">1</span>) <span class="op">~</span><span class="st"> </span><span class="kw">L</span>(RWD[, i], <span class="dv">1</span>)))<span class="op">$</span>coef[<span class="dv">2</span>, <span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb387-30" data-line-number="30">}</a>
+<a class="sourceLine" id="cb387-31" data-line-number="31"></a>
+<a class="sourceLine" id="cb387-32" data-line-number="32"><span class="co"># simulate from DGP with constant and trend</span></a>
+<a class="sourceLine" id="cb387-33" data-line-number="33">RWDT &lt;-<span class="st"> </span><span class="kw">ts</span>(<span class="kw">replicate</span>(<span class="dt">n =</span> N, drift <span class="op">+</span><span class="st"> </span>trend <span class="op">+</span><span class="st"> </span><span class="kw">AR1</span>(rho)))</a>
+<a class="sourceLine" id="cb387-34" data-line-number="34"></a>
+<a class="sourceLine" id="cb387-35" data-line-number="35"><span class="co"># compute ADF test statistics and store them in &#39;ADFDT&#39;</span></a>
+<a class="sourceLine" id="cb387-36" data-line-number="36">ADFDT &lt;-<span class="st"> </span><span class="kw">numeric</span>(N)</a>
+<a class="sourceLine" id="cb387-37" data-line-number="37"></a>
+<a class="sourceLine" id="cb387-38" data-line-number="38"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(RWDT)) {</a>
+<a class="sourceLine" id="cb387-39" data-line-number="39">  ADFDT[i] &lt;-<span class="st"> </span><span class="kw">summary</span>(</a>
+<a class="sourceLine" id="cb387-40" data-line-number="40">    <span class="kw">dynlm</span>(<span class="kw">diff</span>(RWDT[, i], <span class="dv">1</span>) <span class="op">~</span><span class="st"> </span><span class="kw">L</span>(RWDT[, i], <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">trend</span>(RWDT[, i]))</a>
+<a class="sourceLine" id="cb387-41" data-line-number="41">  )<span class="op">$</span>coef[<span class="dv">2</span>, <span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb387-42" data-line-number="42">}</a></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb388-1" data-line-number="1"><span class="co"># estimate quantiles for ADF regression with a drift</span></a>
+<a class="sourceLine" id="cb388-2" data-line-number="2"><span class="kw">round</span>(<span class="kw">quantile</span>(ADFD, <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.05</span>, <span class="fl">0.01</span>)), <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb388-3" data-line-number="3"><span class="co">#&gt;   10%    5%    1% </span></a>
+<a class="sourceLine" id="cb388-4" data-line-number="4"><span class="co">#&gt; -2.62 -2.83 -3.39</span></a>
+<a class="sourceLine" id="cb388-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb388-6" data-line-number="6"><span class="co"># estimate quantiles for ADF regression with drift and trend</span></a>
+<a class="sourceLine" id="cb388-7" data-line-number="7"><span class="kw">round</span>(<span class="kw">quantile</span>(ADFDT, <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.05</span>, <span class="fl">0.01</span>)), <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb388-8" data-line-number="8"><span class="co">#&gt;   10%    5%    1% </span></a>
+<a class="sourceLine" id="cb388-9" data-line-number="9"><span class="co">#&gt; -3.11 -3.43 -3.97</span></a></code></pre></div>
 <p>The estimated quantiles are close to the large-sample critical values of the ADF test statistic reported in Table 14.4 of the book.</p>
 <table>
 <caption><span id="tab:DFcrits">Table 14.2: </span> Large Sample Critical Values of ADF Test</caption>
@@ -665,28 +663,28 @@ where <span class="math inline">\(b \cdot t\)</span> is a linear time trend. <sp
 </table>
 <p>The results show that using standard normal critical values is erroneous: the 5% critical value of the standard normal distribution is <span class="math inline">\(-1.64\)</span>. For the Dickey-Fuller distributions the estimated critical values are <span class="math inline">\(-2.87\)</span> (drift) and <span class="math inline">\(-3.43\)</span> (drift and linear time trend). This implies that a true null (the series has a stochastic trend) would be rejected far too often if inappropriate normal critical values were used.</p>
 <p>We may use the simulated test statistics for a graphical comparison of the standard normal density and (estimates of) both Dickey-Fuller densities.</p>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" data-line-number="1"><span class="co"># plot standard normal density</span></a>
-<a class="sourceLine" id="cb390-2" data-line-number="2"><span class="kw">curve</span>(<span class="kw">dnorm</span>(x), </a>
-<a class="sourceLine" id="cb390-3" data-line-number="3">      <span class="dt">from =</span> <span class="dv">-6</span>, <span class="dt">to =</span> <span class="dv">3</span>, </a>
-<a class="sourceLine" id="cb390-4" data-line-number="4">      <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.6</span>), </a>
-<a class="sourceLine" id="cb390-5" data-line-number="5">      <span class="dt">lty =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb390-6" data-line-number="6">      <span class="dt">ylab =</span> <span class="st">&quot;Density&quot;</span>,</a>
-<a class="sourceLine" id="cb390-7" data-line-number="7">      <span class="dt">xlab =</span> <span class="st">&quot;t-Statistic&quot;</span>,</a>
-<a class="sourceLine" id="cb390-8" data-line-number="8">      <span class="dt">main =</span> <span class="st">&quot;Distributions of ADF Test Statistics&quot;</span>,</a>
-<a class="sourceLine" id="cb390-9" data-line-number="9">      <span class="dt">col =</span> <span class="st">&quot;darkred&quot;</span>, </a>
-<a class="sourceLine" id="cb390-10" data-line-number="10">      <span class="dt">lwd =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb390-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb390-12" data-line-number="12"><span class="co"># plot density estimates of both Dickey-Fuller distributions</span></a>
-<a class="sourceLine" id="cb390-13" data-line-number="13"><span class="kw">lines</span>(<span class="kw">density</span>(ADFD), <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;darkgreen&quot;</span>)</a>
-<a class="sourceLine" id="cb390-14" data-line-number="14"><span class="kw">lines</span>(<span class="kw">density</span>(ADFDT), <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</a>
-<a class="sourceLine" id="cb390-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb390-16" data-line-number="16"><span class="co"># add a legend</span></a>
-<a class="sourceLine" id="cb390-17" data-line-number="17"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, </a>
-<a class="sourceLine" id="cb390-18" data-line-number="18">       <span class="kw">c</span>(<span class="st">&quot;N(0,1)&quot;</span>, <span class="st">&quot;Drift&quot;</span>, <span class="st">&quot;Drift+Trend&quot;</span>),</a>
-<a class="sourceLine" id="cb390-19" data-line-number="19">       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;blue&quot;</span>),</a>
-<a class="sourceLine" id="cb390-20" data-line-number="20">       <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb390-21" data-line-number="21">       <span class="dt">lwd =</span> <span class="dv">2</span>)</a></code></pre></div>
-<p><img src="AdvRA_files/figure-html/unnamed-chunk-641-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb389-1" data-line-number="1"><span class="co"># plot standard normal density</span></a>
+<a class="sourceLine" id="cb389-2" data-line-number="2"><span class="kw">curve</span>(<span class="kw">dnorm</span>(x), </a>
+<a class="sourceLine" id="cb389-3" data-line-number="3">      <span class="dt">from =</span> <span class="dv">-6</span>, <span class="dt">to =</span> <span class="dv">3</span>, </a>
+<a class="sourceLine" id="cb389-4" data-line-number="4">      <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.6</span>), </a>
+<a class="sourceLine" id="cb389-5" data-line-number="5">      <span class="dt">lty =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb389-6" data-line-number="6">      <span class="dt">ylab =</span> <span class="st">&quot;Density&quot;</span>,</a>
+<a class="sourceLine" id="cb389-7" data-line-number="7">      <span class="dt">xlab =</span> <span class="st">&quot;t-Statistic&quot;</span>,</a>
+<a class="sourceLine" id="cb389-8" data-line-number="8">      <span class="dt">main =</span> <span class="st">&quot;Distributions of ADF Test Statistics&quot;</span>,</a>
+<a class="sourceLine" id="cb389-9" data-line-number="9">      <span class="dt">col =</span> <span class="st">&quot;darkred&quot;</span>, </a>
+<a class="sourceLine" id="cb389-10" data-line-number="10">      <span class="dt">lwd =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb389-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb389-12" data-line-number="12"><span class="co"># plot density estimates of both Dickey-Fuller distributions</span></a>
+<a class="sourceLine" id="cb389-13" data-line-number="13"><span class="kw">lines</span>(<span class="kw">density</span>(ADFD), <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;darkgreen&quot;</span>)</a>
+<a class="sourceLine" id="cb389-14" data-line-number="14"><span class="kw">lines</span>(<span class="kw">density</span>(ADFDT), <span class="dt">lwd =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</a>
+<a class="sourceLine" id="cb389-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb389-16" data-line-number="16"><span class="co"># add a legend</span></a>
+<a class="sourceLine" id="cb389-17" data-line-number="17"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, </a>
+<a class="sourceLine" id="cb389-18" data-line-number="18">       <span class="kw">c</span>(<span class="st">&quot;N(0,1)&quot;</span>, <span class="st">&quot;Drift&quot;</span>, <span class="st">&quot;Drift+Trend&quot;</span>),</a>
+<a class="sourceLine" id="cb389-19" data-line-number="19">       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;blue&quot;</span>),</a>
+<a class="sourceLine" id="cb389-20" data-line-number="20">       <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb389-21" data-line-number="21">       <span class="dt">lwd =</span> <span class="dv">2</span>)</a></code></pre></div>
+<p><img src="AdvRA_files/figure-html/unnamed-chunk-639-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>The deviations from the standard normal distribution are significant: both Dickey-Fuller distributions are skewed to the left and have a heavier left tail than the standard normal distribution.</p>
 </div>
 <div id="does-u.s.-gdp-have-a-unit-root" class="section level4 unnumbered">
@@ -695,24 +693,24 @@ where <span class="math inline">\(b \cdot t\)</span> is a linear time trend. <sp
 <span class="math display">\[\begin{align*}
   \Delta\log(GDP_t) = \beta_0 + \alpha t + \beta_1 \log(GDP_{t-1}) + \beta_2 \Delta \log(GDP_{t-1}) + \beta_3 \Delta \log(GDP_{t-2}) + u_t.
 \end{align*}\]</span></p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" data-line-number="1"><span class="co"># generate log GDP series</span></a>
-<a class="sourceLine" id="cb391-2" data-line-number="2">LogGDP &lt;-<span class="st"> </span><span class="kw">ts</span>(<span class="kw">log</span>(GDP[<span class="st">&quot;1962::2012&quot;</span>]))</a>
-<a class="sourceLine" id="cb391-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb391-4" data-line-number="4"><span class="co"># estimate the model</span></a>
-<a class="sourceLine" id="cb391-5" data-line-number="5"><span class="kw">coeftest</span>(</a>
-<a class="sourceLine" id="cb391-6" data-line-number="6">  <span class="kw">dynlm</span>(<span class="kw">diff</span>(LogGDP) <span class="op">~</span><span class="st"> </span><span class="kw">trend</span>(LogGDP, <span class="dt">scale =</span> F) <span class="op">+</span><span class="st"> </span><span class="kw">L</span>(LogGDP) </a>
-<a class="sourceLine" id="cb391-7" data-line-number="7">                     <span class="op">+</span><span class="st"> </span><span class="kw">diff</span>(<span class="kw">L</span>(LogGDP)) <span class="op">+</span><span class="st"> </span><span class="kw">diff</span>(<span class="kw">L</span>(LogGDP), <span class="dv">2</span>)))</a>
-<a class="sourceLine" id="cb391-8" data-line-number="8"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb391-9" data-line-number="9"><span class="co">#&gt; t test of coefficients:</span></a>
-<a class="sourceLine" id="cb391-10" data-line-number="10"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb391-11" data-line-number="11"><span class="co">#&gt;                             Estimate  Std. Error t value Pr(&gt;|t|)   </span></a>
-<a class="sourceLine" id="cb391-12" data-line-number="12"><span class="co">#&gt; (Intercept)               0.27877045  0.11793233  2.3638 0.019066 * </span></a>
-<a class="sourceLine" id="cb391-13" data-line-number="13"><span class="co">#&gt; trend(LogGDP, scale = F)  0.00023818  0.00011090  2.1476 0.032970 * </span></a>
-<a class="sourceLine" id="cb391-14" data-line-number="14"><span class="co">#&gt; L(LogGDP)                -0.03332452  0.01441436 -2.3119 0.021822 * </span></a>
-<a class="sourceLine" id="cb391-15" data-line-number="15"><span class="co">#&gt; diff(L(LogGDP))           0.08317976  0.11295542  0.7364 0.462371   </span></a>
-<a class="sourceLine" id="cb391-16" data-line-number="16"><span class="co">#&gt; diff(L(LogGDP), 2)        0.18763384  0.07055574  2.6594 0.008476 **</span></a>
-<a class="sourceLine" id="cb391-17" data-line-number="17"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb391-18" data-line-number="18"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" data-line-number="1"><span class="co"># generate log GDP series</span></a>
+<a class="sourceLine" id="cb390-2" data-line-number="2">LogGDP &lt;-<span class="st"> </span><span class="kw">ts</span>(<span class="kw">log</span>(GDP[<span class="st">&quot;1962::2012&quot;</span>]))</a>
+<a class="sourceLine" id="cb390-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb390-4" data-line-number="4"><span class="co"># estimate the model</span></a>
+<a class="sourceLine" id="cb390-5" data-line-number="5"><span class="kw">coeftest</span>(</a>
+<a class="sourceLine" id="cb390-6" data-line-number="6">  <span class="kw">dynlm</span>(<span class="kw">diff</span>(LogGDP) <span class="op">~</span><span class="st"> </span><span class="kw">trend</span>(LogGDP, <span class="dt">scale =</span> F) <span class="op">+</span><span class="st"> </span><span class="kw">L</span>(LogGDP) </a>
+<a class="sourceLine" id="cb390-7" data-line-number="7">                     <span class="op">+</span><span class="st"> </span><span class="kw">diff</span>(<span class="kw">L</span>(LogGDP)) <span class="op">+</span><span class="st"> </span><span class="kw">diff</span>(<span class="kw">L</span>(LogGDP), <span class="dv">2</span>)))</a>
+<a class="sourceLine" id="cb390-8" data-line-number="8"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb390-9" data-line-number="9"><span class="co">#&gt; t test of coefficients:</span></a>
+<a class="sourceLine" id="cb390-10" data-line-number="10"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb390-11" data-line-number="11"><span class="co">#&gt;                             Estimate  Std. Error t value Pr(&gt;|t|)   </span></a>
+<a class="sourceLine" id="cb390-12" data-line-number="12"><span class="co">#&gt; (Intercept)               0.27877045  0.11793233  2.3638 0.019066 * </span></a>
+<a class="sourceLine" id="cb390-13" data-line-number="13"><span class="co">#&gt; trend(LogGDP, scale = F)  0.00023818  0.00011090  2.1476 0.032970 * </span></a>
+<a class="sourceLine" id="cb390-14" data-line-number="14"><span class="co">#&gt; L(LogGDP)                -0.03332452  0.01441436 -2.3119 0.021822 * </span></a>
+<a class="sourceLine" id="cb390-15" data-line-number="15"><span class="co">#&gt; diff(L(LogGDP))           0.08317976  0.11295542  0.7364 0.462371   </span></a>
+<a class="sourceLine" id="cb390-16" data-line-number="16"><span class="co">#&gt; diff(L(LogGDP), 2)        0.18763384  0.07055574  2.6594 0.008476 **</span></a>
+<a class="sourceLine" id="cb390-17" data-line-number="17"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb390-18" data-line-number="18"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p>The estimation yields
 <span class="math display">\[\begin{align*}
   \Delta\log(GDP_t) =&amp; \underset{(0.118)}{0.28} + \underset{(0.0001)}{0.0002} t -\underset{(0.014)}{0.033} \log(GDP_{t-1}) \\
@@ -720,48 +718,48 @@ where <span class="math inline">\(b \cdot t\)</span> is a linear time trend. <sp
 \end{align*}\]</span>
 so the ADF test statistic is <span class="math inline">\(t=-0.033/0.014 = - 2.35\)</span>. The corresponding <span class="math inline">\(5\%\)</span> critical value from Table <a href="14-7-nit.html#tab:DFcrits">14.2</a> is <span class="math inline">\(-3.41\)</span> so we cannot reject the null hypothesis that <span class="math inline">\(\log(GDP)\)</span> has a stochastic trend in favor of the alternative that it is stationary around a deterministic linear time trend.</p>
 <p>The ADF test can be done conveniently using <tt>ur.df()</tt> from the package <tt>urca</tt>.</p>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" data-line-number="1"><span class="co"># test for unit root in GDP using &#39;ur.df()&#39; from the package &#39;urca&#39;</span></a>
-<a class="sourceLine" id="cb392-2" data-line-number="2"><span class="kw">summary</span>(<span class="kw">ur.df</span>(LogGDP, </a>
-<a class="sourceLine" id="cb392-3" data-line-number="3">              <span class="dt">type =</span> <span class="st">&quot;trend&quot;</span>, </a>
-<a class="sourceLine" id="cb392-4" data-line-number="4">              <span class="dt">lags =</span> <span class="dv">2</span>, </a>
-<a class="sourceLine" id="cb392-5" data-line-number="5">              <span class="dt">selectlags =</span> <span class="st">&quot;Fixed&quot;</span>))</a>
-<a class="sourceLine" id="cb392-6" data-line-number="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb392-7" data-line-number="7"><span class="co">#&gt; ############################################### </span></a>
-<a class="sourceLine" id="cb392-8" data-line-number="8"><span class="co">#&gt; # Augmented Dickey-Fuller Test Unit Root Test # </span></a>
-<a class="sourceLine" id="cb392-9" data-line-number="9"><span class="co">#&gt; ############################################### </span></a>
-<a class="sourceLine" id="cb392-10" data-line-number="10"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb392-11" data-line-number="11"><span class="co">#&gt; Test regression trend </span></a>
-<a class="sourceLine" id="cb392-12" data-line-number="12"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb392-13" data-line-number="13"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb392-14" data-line-number="14"><span class="co">#&gt; Call:</span></a>
-<a class="sourceLine" id="cb392-15" data-line-number="15"><span class="co">#&gt; lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)</span></a>
-<a class="sourceLine" id="cb392-16" data-line-number="16"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb392-17" data-line-number="17"><span class="co">#&gt; Residuals:</span></a>
-<a class="sourceLine" id="cb392-18" data-line-number="18"><span class="co">#&gt;       Min        1Q    Median        3Q       Max </span></a>
-<a class="sourceLine" id="cb392-19" data-line-number="19"><span class="co">#&gt; -0.025580 -0.004109  0.000321  0.004869  0.032781 </span></a>
-<a class="sourceLine" id="cb392-20" data-line-number="20"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb392-21" data-line-number="21"><span class="co">#&gt; Coefficients:</span></a>
-<a class="sourceLine" id="cb392-22" data-line-number="22"><span class="co">#&gt;               Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
-<a class="sourceLine" id="cb392-23" data-line-number="23"><span class="co">#&gt; (Intercept)  0.2790086  0.1180427   2.364 0.019076 *  </span></a>
-<a class="sourceLine" id="cb392-24" data-line-number="24"><span class="co">#&gt; z.lag.1     -0.0333245  0.0144144  -2.312 0.021822 *  </span></a>
-<a class="sourceLine" id="cb392-25" data-line-number="25"><span class="co">#&gt; tt           0.0002382  0.0001109   2.148 0.032970 *  </span></a>
-<a class="sourceLine" id="cb392-26" data-line-number="26"><span class="co">#&gt; z.diff.lag1  0.2708136  0.0697696   3.882 0.000142 ***</span></a>
-<a class="sourceLine" id="cb392-27" data-line-number="27"><span class="co">#&gt; z.diff.lag2  0.1876338  0.0705557   2.659 0.008476 ** </span></a>
-<a class="sourceLine" id="cb392-28" data-line-number="28"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb392-29" data-line-number="29"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb392-30" data-line-number="30"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb392-31" data-line-number="31"><span class="co">#&gt; Residual standard error: 0.007704 on 196 degrees of freedom</span></a>
-<a class="sourceLine" id="cb392-32" data-line-number="32"><span class="co">#&gt; Multiple R-squared:  0.1783,	Adjusted R-squared:  0.1616 </span></a>
-<a class="sourceLine" id="cb392-33" data-line-number="33"><span class="co">#&gt; F-statistic: 10.63 on 4 and 196 DF,  p-value: 8.076e-08</span></a>
-<a class="sourceLine" id="cb392-34" data-line-number="34"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb392-35" data-line-number="35"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb392-36" data-line-number="36"><span class="co">#&gt; Value of test-statistic is: -2.3119 11.2558 4.267 </span></a>
-<a class="sourceLine" id="cb392-37" data-line-number="37"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb392-38" data-line-number="38"><span class="co">#&gt; Critical values for test statistics: </span></a>
-<a class="sourceLine" id="cb392-39" data-line-number="39"><span class="co">#&gt;       1pct  5pct 10pct</span></a>
-<a class="sourceLine" id="cb392-40" data-line-number="40"><span class="co">#&gt; tau3 -3.99 -3.43 -3.13</span></a>
-<a class="sourceLine" id="cb392-41" data-line-number="41"><span class="co">#&gt; phi2  6.22  4.75  4.07</span></a>
-<a class="sourceLine" id="cb392-42" data-line-number="42"><span class="co">#&gt; phi3  8.43  6.49  5.47</span></a></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" data-line-number="1"><span class="co"># test for unit root in GDP using &#39;ur.df()&#39; from the package &#39;urca&#39;</span></a>
+<a class="sourceLine" id="cb391-2" data-line-number="2"><span class="kw">summary</span>(<span class="kw">ur.df</span>(LogGDP, </a>
+<a class="sourceLine" id="cb391-3" data-line-number="3">              <span class="dt">type =</span> <span class="st">&quot;trend&quot;</span>, </a>
+<a class="sourceLine" id="cb391-4" data-line-number="4">              <span class="dt">lags =</span> <span class="dv">2</span>, </a>
+<a class="sourceLine" id="cb391-5" data-line-number="5">              <span class="dt">selectlags =</span> <span class="st">&quot;Fixed&quot;</span>))</a>
+<a class="sourceLine" id="cb391-6" data-line-number="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb391-7" data-line-number="7"><span class="co">#&gt; ############################################### </span></a>
+<a class="sourceLine" id="cb391-8" data-line-number="8"><span class="co">#&gt; # Augmented Dickey-Fuller Test Unit Root Test # </span></a>
+<a class="sourceLine" id="cb391-9" data-line-number="9"><span class="co">#&gt; ############################################### </span></a>
+<a class="sourceLine" id="cb391-10" data-line-number="10"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb391-11" data-line-number="11"><span class="co">#&gt; Test regression trend </span></a>
+<a class="sourceLine" id="cb391-12" data-line-number="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb391-13" data-line-number="13"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb391-14" data-line-number="14"><span class="co">#&gt; Call:</span></a>
+<a class="sourceLine" id="cb391-15" data-line-number="15"><span class="co">#&gt; lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)</span></a>
+<a class="sourceLine" id="cb391-16" data-line-number="16"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb391-17" data-line-number="17"><span class="co">#&gt; Residuals:</span></a>
+<a class="sourceLine" id="cb391-18" data-line-number="18"><span class="co">#&gt;       Min        1Q    Median        3Q       Max </span></a>
+<a class="sourceLine" id="cb391-19" data-line-number="19"><span class="co">#&gt; -0.025580 -0.004109  0.000321  0.004869  0.032781 </span></a>
+<a class="sourceLine" id="cb391-20" data-line-number="20"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb391-21" data-line-number="21"><span class="co">#&gt; Coefficients:</span></a>
+<a class="sourceLine" id="cb391-22" data-line-number="22"><span class="co">#&gt;               Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb391-23" data-line-number="23"><span class="co">#&gt; (Intercept)  0.2790086  0.1180427   2.364 0.019076 *  </span></a>
+<a class="sourceLine" id="cb391-24" data-line-number="24"><span class="co">#&gt; z.lag.1     -0.0333245  0.0144144  -2.312 0.021822 *  </span></a>
+<a class="sourceLine" id="cb391-25" data-line-number="25"><span class="co">#&gt; tt           0.0002382  0.0001109   2.148 0.032970 *  </span></a>
+<a class="sourceLine" id="cb391-26" data-line-number="26"><span class="co">#&gt; z.diff.lag1  0.2708136  0.0697696   3.882 0.000142 ***</span></a>
+<a class="sourceLine" id="cb391-27" data-line-number="27"><span class="co">#&gt; z.diff.lag2  0.1876338  0.0705557   2.659 0.008476 ** </span></a>
+<a class="sourceLine" id="cb391-28" data-line-number="28"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb391-29" data-line-number="29"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb391-30" data-line-number="30"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb391-31" data-line-number="31"><span class="co">#&gt; Residual standard error: 0.007704 on 196 degrees of freedom</span></a>
+<a class="sourceLine" id="cb391-32" data-line-number="32"><span class="co">#&gt; Multiple R-squared:  0.1783,	Adjusted R-squared:  0.1616 </span></a>
+<a class="sourceLine" id="cb391-33" data-line-number="33"><span class="co">#&gt; F-statistic: 10.63 on 4 and 196 DF,  p-value: 8.076e-08</span></a>
+<a class="sourceLine" id="cb391-34" data-line-number="34"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb391-35" data-line-number="35"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb391-36" data-line-number="36"><span class="co">#&gt; Value of test-statistic is: -2.3119 11.2558 4.267 </span></a>
+<a class="sourceLine" id="cb391-37" data-line-number="37"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb391-38" data-line-number="38"><span class="co">#&gt; Critical values for test statistics: </span></a>
+<a class="sourceLine" id="cb391-39" data-line-number="39"><span class="co">#&gt;       1pct  5pct 10pct</span></a>
+<a class="sourceLine" id="cb391-40" data-line-number="40"><span class="co">#&gt; tau3 -3.99 -3.43 -3.13</span></a>
+<a class="sourceLine" id="cb391-41" data-line-number="41"><span class="co">#&gt; phi2  6.22  4.75  4.07</span></a>
+<a class="sourceLine" id="cb391-42" data-line-number="42"><span class="co">#&gt; phi3  8.43  6.49  5.47</span></a></code></pre></div>
 <p>The first test statistic at the bottom of the output is the one we are interested in. The number of test statistics reported depends on the test regression. For <tt>type = “trend”</tt>, the second statistics corresponds to the test that there is no unit root and no time trend while the third one corresponds to a test of the hypothesis that there is a unit root, no time trend and no drift term.</p>
 </div>
 </div>
@@ -773,8 +771,8 @@ so the ADF test statistic is <span class="math inline">\(t=-0.033/0.014 = - 2.35
 </div>
 <div class="footnotes">
 <hr />
-<ol start="11">
-<li id="fn11"><p>The <span class="math inline">\(t\)</span>-statistic of the Dickey-Fuller test is computed using homoskedasticity-only standard errors since under the null hypothesis, the usual <span class="math inline">\(t\)</span>-statistic is robust to conditional heteroskedasticity.<a href="14-7-nit.html#fnref11" class="footnote-back">↩</a></p></li>
+<ol start="9">
+<li id="fn9"><p>The <span class="math inline">\(t\)</span>-statistic of the Dickey-Fuller test is computed using homoskedasticity-only standard errors since under the null hypothesis, the usual <span class="math inline">\(t\)</span>-statistic is robust to conditional heteroskedasticity.<a href="14-7-nit.html#fnref9" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

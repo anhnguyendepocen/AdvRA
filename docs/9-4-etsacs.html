@@ -135,13 +135,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><a href="https://www.example.com/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
+<li><center><a href="http://www.dliebl.com/AdvRA/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
 <li class="chapter" data-level="" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html#probability-distributions-of-discrete-random-variables"><i class="fa fa-check"></i>Probability Distributions of Discrete Random Variables</a></li>
@@ -363,169 +361,169 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h4>External Validity of the Study</h4>
 <p>External validity of the California test score analysis means that its results can be generalized. Whether this is possible depends on the population and the setting. Following the book we conduct the same analysis using data for fourth graders in <span class="math inline">\(220\)</span> public school districts in Massachusetts in 1998. Like <tt>CASchools</tt>, the data set <tt>MASchools</tt> is part of the <tt>AER</tt> package <span class="citation">(Kleiber and Zeileis <a href="#ref-R-AER">2019</a>)</span>. Use the help function (<code>?MASchools</code>) to get information on the definitions of all the variables contained.</p>
 <p>We start by loading the data set and proceed by computing some summary statistics.</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" data-line-number="1"><span class="co"># attach the &#39;MASchools&#39; dataset</span></a>
-<a class="sourceLine" id="cb226-2" data-line-number="2"><span class="kw">data</span>(<span class="st">&quot;MASchools&quot;</span>)</a>
-<a class="sourceLine" id="cb226-3" data-line-number="3"><span class="kw">summary</span>(MASchools)</a>
-<a class="sourceLine" id="cb226-4" data-line-number="4"><span class="co">#&gt;    district         municipality           expreg       expspecial   </span></a>
-<a class="sourceLine" id="cb226-5" data-line-number="5"><span class="co">#&gt;  Length:220         Length:220         Min.   :2905   Min.   : 3832  </span></a>
-<a class="sourceLine" id="cb226-6" data-line-number="6"><span class="co">#&gt;  Class :character   Class :character   1st Qu.:4065   1st Qu.: 7442  </span></a>
-<a class="sourceLine" id="cb226-7" data-line-number="7"><span class="co">#&gt;  Mode  :character   Mode  :character   Median :4488   Median : 8354  </span></a>
-<a class="sourceLine" id="cb226-8" data-line-number="8"><span class="co">#&gt;                                        Mean   :4605   Mean   : 8901  </span></a>
-<a class="sourceLine" id="cb226-9" data-line-number="9"><span class="co">#&gt;                                        3rd Qu.:4972   3rd Qu.: 9722  </span></a>
-<a class="sourceLine" id="cb226-10" data-line-number="10"><span class="co">#&gt;                                        Max.   :8759   Max.   :53569  </span></a>
-<a class="sourceLine" id="cb226-11" data-line-number="11"><span class="co">#&gt;                                                                      </span></a>
-<a class="sourceLine" id="cb226-12" data-line-number="12"><span class="co">#&gt;      expbil           expocc          exptot        scratio      </span></a>
-<a class="sourceLine" id="cb226-13" data-line-number="13"><span class="co">#&gt;  Min.   :     0   Min.   :    0   Min.   :3465   Min.   : 2.300  </span></a>
-<a class="sourceLine" id="cb226-14" data-line-number="14"><span class="co">#&gt;  1st Qu.:     0   1st Qu.:    0   1st Qu.:4730   1st Qu.: 6.100  </span></a>
-<a class="sourceLine" id="cb226-15" data-line-number="15"><span class="co">#&gt;  Median :     0   Median :    0   Median :5155   Median : 7.800  </span></a>
-<a class="sourceLine" id="cb226-16" data-line-number="16"><span class="co">#&gt;  Mean   :  3037   Mean   : 1104   Mean   :5370   Mean   : 8.107  </span></a>
-<a class="sourceLine" id="cb226-17" data-line-number="17"><span class="co">#&gt;  3rd Qu.:     0   3rd Qu.:    0   3rd Qu.:5789   3rd Qu.: 9.800  </span></a>
-<a class="sourceLine" id="cb226-18" data-line-number="18"><span class="co">#&gt;  Max.   :295140   Max.   :15088   Max.   :9868   Max.   :18.400  </span></a>
-<a class="sourceLine" id="cb226-19" data-line-number="19"><span class="co">#&gt;                                                  NA&#39;s   :9       </span></a>
-<a class="sourceLine" id="cb226-20" data-line-number="20"><span class="co">#&gt;     special          lunch          stratio          income      </span></a>
-<a class="sourceLine" id="cb226-21" data-line-number="21"><span class="co">#&gt;  Min.   : 8.10   Min.   : 0.40   Min.   :11.40   Min.   : 9.686  </span></a>
-<a class="sourceLine" id="cb226-22" data-line-number="22"><span class="co">#&gt;  1st Qu.:13.38   1st Qu.: 5.30   1st Qu.:15.80   1st Qu.:15.223  </span></a>
-<a class="sourceLine" id="cb226-23" data-line-number="23"><span class="co">#&gt;  Median :15.45   Median :10.55   Median :17.10   Median :17.128  </span></a>
-<a class="sourceLine" id="cb226-24" data-line-number="24"><span class="co">#&gt;  Mean   :15.97   Mean   :15.32   Mean   :17.34   Mean   :18.747  </span></a>
-<a class="sourceLine" id="cb226-25" data-line-number="25"><span class="co">#&gt;  3rd Qu.:17.93   3rd Qu.:20.02   3rd Qu.:19.02   3rd Qu.:20.376  </span></a>
-<a class="sourceLine" id="cb226-26" data-line-number="26"><span class="co">#&gt;  Max.   :34.30   Max.   :76.20   Max.   :27.00   Max.   :46.855  </span></a>
-<a class="sourceLine" id="cb226-27" data-line-number="27"><span class="co">#&gt;                                                                  </span></a>
-<a class="sourceLine" id="cb226-28" data-line-number="28"><span class="co">#&gt;      score4          score8          salary         english       </span></a>
-<a class="sourceLine" id="cb226-29" data-line-number="29"><span class="co">#&gt;  Min.   :658.0   Min.   :641.0   Min.   :24.96   Min.   : 0.0000  </span></a>
-<a class="sourceLine" id="cb226-30" data-line-number="30"><span class="co">#&gt;  1st Qu.:701.0   1st Qu.:685.0   1st Qu.:33.80   1st Qu.: 0.0000  </span></a>
-<a class="sourceLine" id="cb226-31" data-line-number="31"><span class="co">#&gt;  Median :711.0   Median :698.0   Median :35.88   Median : 0.0000  </span></a>
-<a class="sourceLine" id="cb226-32" data-line-number="32"><span class="co">#&gt;  Mean   :709.8   Mean   :698.4   Mean   :35.99   Mean   : 1.1177  </span></a>
-<a class="sourceLine" id="cb226-33" data-line-number="33"><span class="co">#&gt;  3rd Qu.:720.0   3rd Qu.:712.0   3rd Qu.:37.96   3rd Qu.: 0.8859  </span></a>
-<a class="sourceLine" id="cb226-34" data-line-number="34"><span class="co">#&gt;  Max.   :740.0   Max.   :747.0   Max.   :44.49   Max.   :24.4939  </span></a>
-<a class="sourceLine" id="cb226-35" data-line-number="35"><span class="co">#&gt;                  NA&#39;s   :40      NA&#39;s   :25</span></a></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" data-line-number="1"><span class="co"># attach the &#39;MASchools&#39; dataset</span></a>
+<a class="sourceLine" id="cb225-2" data-line-number="2"><span class="kw">data</span>(<span class="st">&quot;MASchools&quot;</span>)</a>
+<a class="sourceLine" id="cb225-3" data-line-number="3"><span class="kw">summary</span>(MASchools)</a>
+<a class="sourceLine" id="cb225-4" data-line-number="4"><span class="co">#&gt;    district         municipality           expreg       expspecial   </span></a>
+<a class="sourceLine" id="cb225-5" data-line-number="5"><span class="co">#&gt;  Length:220         Length:220         Min.   :2905   Min.   : 3832  </span></a>
+<a class="sourceLine" id="cb225-6" data-line-number="6"><span class="co">#&gt;  Class :character   Class :character   1st Qu.:4065   1st Qu.: 7442  </span></a>
+<a class="sourceLine" id="cb225-7" data-line-number="7"><span class="co">#&gt;  Mode  :character   Mode  :character   Median :4488   Median : 8354  </span></a>
+<a class="sourceLine" id="cb225-8" data-line-number="8"><span class="co">#&gt;                                        Mean   :4605   Mean   : 8901  </span></a>
+<a class="sourceLine" id="cb225-9" data-line-number="9"><span class="co">#&gt;                                        3rd Qu.:4972   3rd Qu.: 9722  </span></a>
+<a class="sourceLine" id="cb225-10" data-line-number="10"><span class="co">#&gt;                                        Max.   :8759   Max.   :53569  </span></a>
+<a class="sourceLine" id="cb225-11" data-line-number="11"><span class="co">#&gt;                                                                      </span></a>
+<a class="sourceLine" id="cb225-12" data-line-number="12"><span class="co">#&gt;      expbil           expocc          exptot        scratio      </span></a>
+<a class="sourceLine" id="cb225-13" data-line-number="13"><span class="co">#&gt;  Min.   :     0   Min.   :    0   Min.   :3465   Min.   : 2.300  </span></a>
+<a class="sourceLine" id="cb225-14" data-line-number="14"><span class="co">#&gt;  1st Qu.:     0   1st Qu.:    0   1st Qu.:4730   1st Qu.: 6.100  </span></a>
+<a class="sourceLine" id="cb225-15" data-line-number="15"><span class="co">#&gt;  Median :     0   Median :    0   Median :5155   Median : 7.800  </span></a>
+<a class="sourceLine" id="cb225-16" data-line-number="16"><span class="co">#&gt;  Mean   :  3037   Mean   : 1104   Mean   :5370   Mean   : 8.107  </span></a>
+<a class="sourceLine" id="cb225-17" data-line-number="17"><span class="co">#&gt;  3rd Qu.:     0   3rd Qu.:    0   3rd Qu.:5789   3rd Qu.: 9.800  </span></a>
+<a class="sourceLine" id="cb225-18" data-line-number="18"><span class="co">#&gt;  Max.   :295140   Max.   :15088   Max.   :9868   Max.   :18.400  </span></a>
+<a class="sourceLine" id="cb225-19" data-line-number="19"><span class="co">#&gt;                                                  NA&#39;s   :9       </span></a>
+<a class="sourceLine" id="cb225-20" data-line-number="20"><span class="co">#&gt;     special          lunch          stratio          income      </span></a>
+<a class="sourceLine" id="cb225-21" data-line-number="21"><span class="co">#&gt;  Min.   : 8.10   Min.   : 0.40   Min.   :11.40   Min.   : 9.686  </span></a>
+<a class="sourceLine" id="cb225-22" data-line-number="22"><span class="co">#&gt;  1st Qu.:13.38   1st Qu.: 5.30   1st Qu.:15.80   1st Qu.:15.223  </span></a>
+<a class="sourceLine" id="cb225-23" data-line-number="23"><span class="co">#&gt;  Median :15.45   Median :10.55   Median :17.10   Median :17.128  </span></a>
+<a class="sourceLine" id="cb225-24" data-line-number="24"><span class="co">#&gt;  Mean   :15.97   Mean   :15.32   Mean   :17.34   Mean   :18.747  </span></a>
+<a class="sourceLine" id="cb225-25" data-line-number="25"><span class="co">#&gt;  3rd Qu.:17.93   3rd Qu.:20.02   3rd Qu.:19.02   3rd Qu.:20.376  </span></a>
+<a class="sourceLine" id="cb225-26" data-line-number="26"><span class="co">#&gt;  Max.   :34.30   Max.   :76.20   Max.   :27.00   Max.   :46.855  </span></a>
+<a class="sourceLine" id="cb225-27" data-line-number="27"><span class="co">#&gt;                                                                  </span></a>
+<a class="sourceLine" id="cb225-28" data-line-number="28"><span class="co">#&gt;      score4          score8          salary         english       </span></a>
+<a class="sourceLine" id="cb225-29" data-line-number="29"><span class="co">#&gt;  Min.   :658.0   Min.   :641.0   Min.   :24.96   Min.   : 0.0000  </span></a>
+<a class="sourceLine" id="cb225-30" data-line-number="30"><span class="co">#&gt;  1st Qu.:701.0   1st Qu.:685.0   1st Qu.:33.80   1st Qu.: 0.0000  </span></a>
+<a class="sourceLine" id="cb225-31" data-line-number="31"><span class="co">#&gt;  Median :711.0   Median :698.0   Median :35.88   Median : 0.0000  </span></a>
+<a class="sourceLine" id="cb225-32" data-line-number="32"><span class="co">#&gt;  Mean   :709.8   Mean   :698.4   Mean   :35.99   Mean   : 1.1177  </span></a>
+<a class="sourceLine" id="cb225-33" data-line-number="33"><span class="co">#&gt;  3rd Qu.:720.0   3rd Qu.:712.0   3rd Qu.:37.96   3rd Qu.: 0.8859  </span></a>
+<a class="sourceLine" id="cb225-34" data-line-number="34"><span class="co">#&gt;  Max.   :740.0   Max.   :747.0   Max.   :44.49   Max.   :24.4939  </span></a>
+<a class="sourceLine" id="cb225-35" data-line-number="35"><span class="co">#&gt;                  NA&#39;s   :40      NA&#39;s   :25</span></a></code></pre></div>
 <p>It is fairly easy to replicate key components of Table 9.1 of the book using <tt>R</tt>. To be consistent with variable names used in the <tt>CASchools</tt> data set, we do some formatting beforehand.</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" data-line-number="1"><span class="co"># Customized variables in MASchools</span></a>
-<a class="sourceLine" id="cb227-2" data-line-number="2">MASchools<span class="op">$</span>score &lt;-<span class="st"> </span>MASchools<span class="op">$</span>score4 </a>
-<a class="sourceLine" id="cb227-3" data-line-number="3">MASchools<span class="op">$</span>STR &lt;-<span class="st"> </span>MASchools<span class="op">$</span>stratio</a>
-<a class="sourceLine" id="cb227-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb227-5" data-line-number="5"><span class="co"># Reproduce Table 9.1 of the book</span></a>
-<a class="sourceLine" id="cb227-6" data-line-number="6">vars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;score&quot;</span>, <span class="st">&quot;STR&quot;</span>, <span class="st">&quot;english&quot;</span>, <span class="st">&quot;lunch&quot;</span>, <span class="st">&quot;income&quot;</span>)</a>
-<a class="sourceLine" id="cb227-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb227-8" data-line-number="8"><span class="kw">cbind</span>(<span class="dt">CA_mean =</span> <span class="kw">sapply</span>(CASchools[, vars], mean),</a>
-<a class="sourceLine" id="cb227-9" data-line-number="9">      <span class="dt">CA_sd   =</span> <span class="kw">sapply</span>(CASchools[, vars], sd),</a>
-<a class="sourceLine" id="cb227-10" data-line-number="10">      <span class="dt">MA_mean =</span> <span class="kw">sapply</span>(MASchools[, vars], mean),</a>
-<a class="sourceLine" id="cb227-11" data-line-number="11">      <span class="dt">MA_sd   =</span> <span class="kw">sapply</span>(MASchools[, vars], sd))</a>
-<a class="sourceLine" id="cb227-12" data-line-number="12"><span class="co">#&gt;           CA_mean     CA_sd    MA_mean     MA_sd</span></a>
-<a class="sourceLine" id="cb227-13" data-line-number="13"><span class="co">#&gt; score   654.15655 19.053347 709.827273 15.126474</span></a>
-<a class="sourceLine" id="cb227-14" data-line-number="14"><span class="co">#&gt; STR      19.64043  1.891812  17.344091  2.276666</span></a>
-<a class="sourceLine" id="cb227-15" data-line-number="15"><span class="co">#&gt; english  15.76816 18.285927   1.117676  2.900940</span></a>
-<a class="sourceLine" id="cb227-16" data-line-number="16"><span class="co">#&gt; lunch    44.70524 27.123381  15.315909 15.060068</span></a>
-<a class="sourceLine" id="cb227-17" data-line-number="17"><span class="co">#&gt; income   15.31659  7.225890  18.746764  5.807637</span></a></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" data-line-number="1"><span class="co"># Customized variables in MASchools</span></a>
+<a class="sourceLine" id="cb226-2" data-line-number="2">MASchools<span class="op">$</span>score &lt;-<span class="st"> </span>MASchools<span class="op">$</span>score4 </a>
+<a class="sourceLine" id="cb226-3" data-line-number="3">MASchools<span class="op">$</span>STR &lt;-<span class="st"> </span>MASchools<span class="op">$</span>stratio</a>
+<a class="sourceLine" id="cb226-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb226-5" data-line-number="5"><span class="co"># Reproduce Table 9.1 of the book</span></a>
+<a class="sourceLine" id="cb226-6" data-line-number="6">vars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;score&quot;</span>, <span class="st">&quot;STR&quot;</span>, <span class="st">&quot;english&quot;</span>, <span class="st">&quot;lunch&quot;</span>, <span class="st">&quot;income&quot;</span>)</a>
+<a class="sourceLine" id="cb226-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb226-8" data-line-number="8"><span class="kw">cbind</span>(<span class="dt">CA_mean =</span> <span class="kw">sapply</span>(CASchools[, vars], mean),</a>
+<a class="sourceLine" id="cb226-9" data-line-number="9">      <span class="dt">CA_sd   =</span> <span class="kw">sapply</span>(CASchools[, vars], sd),</a>
+<a class="sourceLine" id="cb226-10" data-line-number="10">      <span class="dt">MA_mean =</span> <span class="kw">sapply</span>(MASchools[, vars], mean),</a>
+<a class="sourceLine" id="cb226-11" data-line-number="11">      <span class="dt">MA_sd   =</span> <span class="kw">sapply</span>(MASchools[, vars], sd))</a>
+<a class="sourceLine" id="cb226-12" data-line-number="12"><span class="co">#&gt;           CA_mean     CA_sd    MA_mean     MA_sd</span></a>
+<a class="sourceLine" id="cb226-13" data-line-number="13"><span class="co">#&gt; score   654.15655 19.053347 709.827273 15.126474</span></a>
+<a class="sourceLine" id="cb226-14" data-line-number="14"><span class="co">#&gt; STR      19.64043  1.891812  17.344091  2.276666</span></a>
+<a class="sourceLine" id="cb226-15" data-line-number="15"><span class="co">#&gt; english  15.76816 18.285927   1.117676  2.900940</span></a>
+<a class="sourceLine" id="cb226-16" data-line-number="16"><span class="co">#&gt; lunch    44.70524 27.123381  15.315909 15.060068</span></a>
+<a class="sourceLine" id="cb226-17" data-line-number="17"><span class="co">#&gt; income   15.31659  7.225890  18.746764  5.807637</span></a></code></pre></div>
 <p>The summary statistics reveal that the average test score is higher for school districts in Massachusetts. The test used in Massachusetts is somewhat different from the one used in California (the Massachusetts test score also includes results for the school subject “Science”), therefore a direct comparison of test scores is not appropriate. We also see that, on average, classes are smaller in Massachusetts than in California and that the average district income, average percentage of English learners as well as the average share of students receiving subsidized lunch differ considerably from the averages computed for California. There are also notable differences in the observed dispersion of the variables.</p>
 <p>Following the book we examine the relationship between district income and test scores in Massachusetts as we have done before in Chapter <a href="8-nrf.html#nrf">8</a> for the California data and reproduce Figure 9.2 of the book.</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" data-line-number="1"><span class="co"># estimate linear model</span></a>
-<a class="sourceLine" id="cb228-2" data-line-number="2">Linear_model_MA &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>income, <span class="dt">data =</span> MASchools)</a>
-<a class="sourceLine" id="cb228-3" data-line-number="3">Linear_model_MA</a>
-<a class="sourceLine" id="cb228-4" data-line-number="4"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb228-5" data-line-number="5"><span class="co">#&gt; Call:</span></a>
-<a class="sourceLine" id="cb228-6" data-line-number="6"><span class="co">#&gt; lm(formula = score ~ income, data = MASchools)</span></a>
-<a class="sourceLine" id="cb228-7" data-line-number="7"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb228-8" data-line-number="8"><span class="co">#&gt; Coefficients:</span></a>
-<a class="sourceLine" id="cb228-9" data-line-number="9"><span class="co">#&gt; (Intercept)       income  </span></a>
-<a class="sourceLine" id="cb228-10" data-line-number="10"><span class="co">#&gt;     679.387        1.624</span></a>
-<a class="sourceLine" id="cb228-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb228-12" data-line-number="12"><span class="co"># estimate linear-log model</span></a>
-<a class="sourceLine" id="cb228-13" data-line-number="13">Linearlog_model_MA &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(income), <span class="dt">data =</span> MASchools) </a>
-<a class="sourceLine" id="cb228-14" data-line-number="14">Linearlog_model_MA</a>
-<a class="sourceLine" id="cb228-15" data-line-number="15"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb228-16" data-line-number="16"><span class="co">#&gt; Call:</span></a>
-<a class="sourceLine" id="cb228-17" data-line-number="17"><span class="co">#&gt; lm(formula = score ~ log(income), data = MASchools)</span></a>
-<a class="sourceLine" id="cb228-18" data-line-number="18"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb228-19" data-line-number="19"><span class="co">#&gt; Coefficients:</span></a>
-<a class="sourceLine" id="cb228-20" data-line-number="20"><span class="co">#&gt; (Intercept)  log(income)  </span></a>
-<a class="sourceLine" id="cb228-21" data-line-number="21"><span class="co">#&gt;      600.80        37.71</span></a>
-<a class="sourceLine" id="cb228-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb228-23" data-line-number="23"><span class="co"># estimate Cubic model</span></a>
-<a class="sourceLine" id="cb228-24" data-line-number="24">cubic_model_MA &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span><span class="kw">I</span>(income) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">3</span>), <span class="dt">data =</span> MASchools)</a>
-<a class="sourceLine" id="cb228-25" data-line-number="25">cubic_model_MA</a>
-<a class="sourceLine" id="cb228-26" data-line-number="26"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb228-27" data-line-number="27"><span class="co">#&gt; Call:</span></a>
-<a class="sourceLine" id="cb228-28" data-line-number="28"><span class="co">#&gt; lm(formula = score ~ I(income) + I(income^2) + I(income^3), data = MASchools)</span></a>
-<a class="sourceLine" id="cb228-29" data-line-number="29"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb228-30" data-line-number="30"><span class="co">#&gt; Coefficients:</span></a>
-<a class="sourceLine" id="cb228-31" data-line-number="31"><span class="co">#&gt; (Intercept)    I(income)  I(income^2)  I(income^3)  </span></a>
-<a class="sourceLine" id="cb228-32" data-line-number="32"><span class="co">#&gt;  600.398531    10.635382    -0.296887     0.002762</span></a></code></pre></div>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" data-line-number="1"><span class="co"># plot data</span></a>
-<a class="sourceLine" id="cb229-2" data-line-number="2"><span class="kw">plot</span>(MASchools<span class="op">$</span>income, MASchools<span class="op">$</span>score,</a>
-<a class="sourceLine" id="cb229-3" data-line-number="3">     <span class="dt">pch =</span> <span class="dv">20</span>,</a>
-<a class="sourceLine" id="cb229-4" data-line-number="4">     <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>,</a>
-<a class="sourceLine" id="cb229-5" data-line-number="5">     <span class="dt">xlab =</span> <span class="st">&quot;District income&quot;</span>,</a>
-<a class="sourceLine" id="cb229-6" data-line-number="6">     <span class="dt">ylab =</span> <span class="st">&quot;Test score&quot;</span>,</a>
-<a class="sourceLine" id="cb229-7" data-line-number="7">     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">50</span>),</a>
-<a class="sourceLine" id="cb229-8" data-line-number="8">     <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">620</span>, <span class="dv">780</span>))</a>
-<a class="sourceLine" id="cb229-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb229-10" data-line-number="10"><span class="co"># add estimated regression line for the linear model</span></a>
-<a class="sourceLine" id="cb229-11" data-line-number="11"><span class="kw">abline</span>(Linear_model_MA, <span class="dt">lwd =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb229-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb229-13" data-line-number="13"><span class="co"># add estimated regression function for Linear-log model</span></a>
-<a class="sourceLine" id="cb229-14" data-line-number="14">order_id  &lt;-<span class="st"> </span><span class="kw">order</span>(MASchools<span class="op">$</span>income)</a>
-<a class="sourceLine" id="cb229-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb229-16" data-line-number="16"><span class="kw">lines</span>(MASchools<span class="op">$</span>income[order_id],</a>
-<a class="sourceLine" id="cb229-17" data-line-number="17">      <span class="kw">fitted</span>(Linearlog_model_MA)[order_id], </a>
-<a class="sourceLine" id="cb229-18" data-line-number="18">      <span class="dt">col =</span> <span class="st">&quot;darkgreen&quot;</span>, </a>
-<a class="sourceLine" id="cb229-19" data-line-number="19">      <span class="dt">lwd =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb229-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb229-21" data-line-number="21"><span class="co"># add estimated cubic regression function</span></a>
-<a class="sourceLine" id="cb229-22" data-line-number="22"><span class="kw">lines</span>(<span class="dt">x =</span> MASchools<span class="op">$</span>income[order_id], </a>
-<a class="sourceLine" id="cb229-23" data-line-number="23">      <span class="dt">y =</span> <span class="kw">fitted</span>(cubic_model_MA)[order_id],</a>
-<a class="sourceLine" id="cb229-24" data-line-number="24">      <span class="dt">col =</span> <span class="st">&quot;orange&quot;</span>, </a>
-<a class="sourceLine" id="cb229-25" data-line-number="25">      <span class="dt">lwd =</span> <span class="dv">2</span>) </a>
-<a class="sourceLine" id="cb229-26" data-line-number="26"></a>
-<a class="sourceLine" id="cb229-27" data-line-number="27"><span class="co"># add a legend</span></a>
-<a class="sourceLine" id="cb229-28" data-line-number="28"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>,</a>
-<a class="sourceLine" id="cb229-29" data-line-number="29">       <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Linear&quot;</span>, <span class="st">&quot;Linear-Log&quot;</span>, <span class="st">&quot;Cubic&quot;</span>),</a>
-<a class="sourceLine" id="cb229-30" data-line-number="30">       <span class="dt">lty =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb229-31" data-line-number="31">       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;orange&quot;</span>))</a></code></pre></div>
-<p><img src="AdvRA_files/figure-html/unnamed-chunk-399-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" data-line-number="1"><span class="co"># estimate linear model</span></a>
+<a class="sourceLine" id="cb227-2" data-line-number="2">Linear_model_MA &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>income, <span class="dt">data =</span> MASchools)</a>
+<a class="sourceLine" id="cb227-3" data-line-number="3">Linear_model_MA</a>
+<a class="sourceLine" id="cb227-4" data-line-number="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb227-5" data-line-number="5"><span class="co">#&gt; Call:</span></a>
+<a class="sourceLine" id="cb227-6" data-line-number="6"><span class="co">#&gt; lm(formula = score ~ income, data = MASchools)</span></a>
+<a class="sourceLine" id="cb227-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb227-8" data-line-number="8"><span class="co">#&gt; Coefficients:</span></a>
+<a class="sourceLine" id="cb227-9" data-line-number="9"><span class="co">#&gt; (Intercept)       income  </span></a>
+<a class="sourceLine" id="cb227-10" data-line-number="10"><span class="co">#&gt;     679.387        1.624</span></a>
+<a class="sourceLine" id="cb227-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb227-12" data-line-number="12"><span class="co"># estimate linear-log model</span></a>
+<a class="sourceLine" id="cb227-13" data-line-number="13">Linearlog_model_MA &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(income), <span class="dt">data =</span> MASchools) </a>
+<a class="sourceLine" id="cb227-14" data-line-number="14">Linearlog_model_MA</a>
+<a class="sourceLine" id="cb227-15" data-line-number="15"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb227-16" data-line-number="16"><span class="co">#&gt; Call:</span></a>
+<a class="sourceLine" id="cb227-17" data-line-number="17"><span class="co">#&gt; lm(formula = score ~ log(income), data = MASchools)</span></a>
+<a class="sourceLine" id="cb227-18" data-line-number="18"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb227-19" data-line-number="19"><span class="co">#&gt; Coefficients:</span></a>
+<a class="sourceLine" id="cb227-20" data-line-number="20"><span class="co">#&gt; (Intercept)  log(income)  </span></a>
+<a class="sourceLine" id="cb227-21" data-line-number="21"><span class="co">#&gt;      600.80        37.71</span></a>
+<a class="sourceLine" id="cb227-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb227-23" data-line-number="23"><span class="co"># estimate Cubic model</span></a>
+<a class="sourceLine" id="cb227-24" data-line-number="24">cubic_model_MA &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span><span class="kw">I</span>(income) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">3</span>), <span class="dt">data =</span> MASchools)</a>
+<a class="sourceLine" id="cb227-25" data-line-number="25">cubic_model_MA</a>
+<a class="sourceLine" id="cb227-26" data-line-number="26"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb227-27" data-line-number="27"><span class="co">#&gt; Call:</span></a>
+<a class="sourceLine" id="cb227-28" data-line-number="28"><span class="co">#&gt; lm(formula = score ~ I(income) + I(income^2) + I(income^3), data = MASchools)</span></a>
+<a class="sourceLine" id="cb227-29" data-line-number="29"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb227-30" data-line-number="30"><span class="co">#&gt; Coefficients:</span></a>
+<a class="sourceLine" id="cb227-31" data-line-number="31"><span class="co">#&gt; (Intercept)    I(income)  I(income^2)  I(income^3)  </span></a>
+<a class="sourceLine" id="cb227-32" data-line-number="32"><span class="co">#&gt;  600.398531    10.635382    -0.296887     0.002762</span></a></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" data-line-number="1"><span class="co"># plot data</span></a>
+<a class="sourceLine" id="cb228-2" data-line-number="2"><span class="kw">plot</span>(MASchools<span class="op">$</span>income, MASchools<span class="op">$</span>score,</a>
+<a class="sourceLine" id="cb228-3" data-line-number="3">     <span class="dt">pch =</span> <span class="dv">20</span>,</a>
+<a class="sourceLine" id="cb228-4" data-line-number="4">     <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>,</a>
+<a class="sourceLine" id="cb228-5" data-line-number="5">     <span class="dt">xlab =</span> <span class="st">&quot;District income&quot;</span>,</a>
+<a class="sourceLine" id="cb228-6" data-line-number="6">     <span class="dt">ylab =</span> <span class="st">&quot;Test score&quot;</span>,</a>
+<a class="sourceLine" id="cb228-7" data-line-number="7">     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">50</span>),</a>
+<a class="sourceLine" id="cb228-8" data-line-number="8">     <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">620</span>, <span class="dv">780</span>))</a>
+<a class="sourceLine" id="cb228-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb228-10" data-line-number="10"><span class="co"># add estimated regression line for the linear model</span></a>
+<a class="sourceLine" id="cb228-11" data-line-number="11"><span class="kw">abline</span>(Linear_model_MA, <span class="dt">lwd =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb228-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb228-13" data-line-number="13"><span class="co"># add estimated regression function for Linear-log model</span></a>
+<a class="sourceLine" id="cb228-14" data-line-number="14">order_id  &lt;-<span class="st"> </span><span class="kw">order</span>(MASchools<span class="op">$</span>income)</a>
+<a class="sourceLine" id="cb228-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb228-16" data-line-number="16"><span class="kw">lines</span>(MASchools<span class="op">$</span>income[order_id],</a>
+<a class="sourceLine" id="cb228-17" data-line-number="17">      <span class="kw">fitted</span>(Linearlog_model_MA)[order_id], </a>
+<a class="sourceLine" id="cb228-18" data-line-number="18">      <span class="dt">col =</span> <span class="st">&quot;darkgreen&quot;</span>, </a>
+<a class="sourceLine" id="cb228-19" data-line-number="19">      <span class="dt">lwd =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb228-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb228-21" data-line-number="21"><span class="co"># add estimated cubic regression function</span></a>
+<a class="sourceLine" id="cb228-22" data-line-number="22"><span class="kw">lines</span>(<span class="dt">x =</span> MASchools<span class="op">$</span>income[order_id], </a>
+<a class="sourceLine" id="cb228-23" data-line-number="23">      <span class="dt">y =</span> <span class="kw">fitted</span>(cubic_model_MA)[order_id],</a>
+<a class="sourceLine" id="cb228-24" data-line-number="24">      <span class="dt">col =</span> <span class="st">&quot;orange&quot;</span>, </a>
+<a class="sourceLine" id="cb228-25" data-line-number="25">      <span class="dt">lwd =</span> <span class="dv">2</span>) </a>
+<a class="sourceLine" id="cb228-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb228-27" data-line-number="27"><span class="co"># add a legend</span></a>
+<a class="sourceLine" id="cb228-28" data-line-number="28"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>,</a>
+<a class="sourceLine" id="cb228-29" data-line-number="29">       <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;Linear&quot;</span>, <span class="st">&quot;Linear-Log&quot;</span>, <span class="st">&quot;Cubic&quot;</span>),</a>
+<a class="sourceLine" id="cb228-30" data-line-number="30">       <span class="dt">lty =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb228-31" data-line-number="31">       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;orange&quot;</span>))</a></code></pre></div>
+<p><img src="AdvRA_files/figure-html/unnamed-chunk-397-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>The plot indicates that the cubic specification fits the data best. Interestingly, this is different from the <tt>CASchools</tt> data where the pattern of nonlinearity is better described by the linear-log specification.</p>
 <p>We continue by estimating most of the model specifications used for analysis of the <tt>CASchools</tt> data set in Chapter <a href="8-nrf.html#nrf">8</a> and use <tt>stargazer()</tt> <span class="citation">(Hlavac <a href="#ref-R-stargazer">2018</a>)</span> to generate a tabular representation of the regression results.</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" data-line-number="1"><span class="co"># add &#39;HiEL&#39; to &#39;MASchools&#39;</span></a>
-<a class="sourceLine" id="cb230-2" data-line-number="2">MASchools<span class="op">$</span>HiEL &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(MASchools<span class="op">$</span>english <span class="op">&gt;</span><span class="st"> </span><span class="kw">median</span>(MASchools<span class="op">$</span>english))</a>
-<a class="sourceLine" id="cb230-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb230-4" data-line-number="4"><span class="co"># estimate the model specifications from Table 9.2 of the book</span></a>
-<a class="sourceLine" id="cb230-5" data-line-number="5">TestScore_MA_mod1 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>STR, <span class="dt">data =</span> MASchools)</a>
-<a class="sourceLine" id="cb230-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb230-7" data-line-number="7">TestScore_MA_mod2 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>STR <span class="op">+</span><span class="st"> </span>english <span class="op">+</span><span class="st"> </span>lunch <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(income), </a>
-<a class="sourceLine" id="cb230-8" data-line-number="8">                        <span class="dt">data =</span> MASchools)</a>
-<a class="sourceLine" id="cb230-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb230-10" data-line-number="10">TestScore_MA_mod3 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>STR <span class="op">+</span><span class="st"> </span>english <span class="op">+</span><span class="st"> </span>lunch <span class="op">+</span><span class="st"> </span>income <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">2</span>) </a>
-<a class="sourceLine" id="cb230-11" data-line-number="11">                        <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">3</span>), <span class="dt">data =</span> MASchools)</a>
-<a class="sourceLine" id="cb230-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb230-13" data-line-number="13">TestScore_MA_mod4 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>STR <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(STR<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(STR<span class="op">^</span><span class="dv">3</span>) <span class="op">+</span><span class="st"> </span>english <span class="op">+</span><span class="st"> </span>lunch <span class="op">+</span><span class="st"> </span>income </a>
-<a class="sourceLine" id="cb230-14" data-line-number="14">                        <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">3</span>), <span class="dt">data =</span> MASchools)</a>
-<a class="sourceLine" id="cb230-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb230-16" data-line-number="16">TestScore_MA_mod5 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>STR <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">3</span>) <span class="op">+</span><span class="st"> </span>HiEL<span class="op">:</span>STR <span class="op">+</span><span class="st"> </span>lunch </a>
-<a class="sourceLine" id="cb230-17" data-line-number="17">                        <span class="op">+</span><span class="st"> </span>income, <span class="dt">data =</span> MASchools)</a>
-<a class="sourceLine" id="cb230-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb230-19" data-line-number="19">TestScore_MA_mod6 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>STR <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">3</span>) <span class="op">+</span><span class="st"> </span>HiEL <span class="op">+</span><span class="st"> </span>HiEL<span class="op">:</span>STR <span class="op">+</span><span class="st"> </span>lunch </a>
-<a class="sourceLine" id="cb230-20" data-line-number="20">                        <span class="op">+</span><span class="st"> </span>income, <span class="dt">data =</span> MASchools)</a>
-<a class="sourceLine" id="cb230-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb230-22" data-line-number="22"><span class="co"># gather robust standard errors</span></a>
-<a class="sourceLine" id="cb230-23" data-line-number="23">rob_se &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(TestScore_MA_mod1, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
-<a class="sourceLine" id="cb230-24" data-line-number="24">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(TestScore_MA_mod2, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
-<a class="sourceLine" id="cb230-25" data-line-number="25">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(TestScore_MA_mod3, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
-<a class="sourceLine" id="cb230-26" data-line-number="26">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(TestScore_MA_mod4, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
-<a class="sourceLine" id="cb230-27" data-line-number="27">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(TestScore_MA_mod5, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
-<a class="sourceLine" id="cb230-28" data-line-number="28">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(TestScore_MA_mod6, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))))</a>
-<a class="sourceLine" id="cb230-29" data-line-number="29"></a>
-<a class="sourceLine" id="cb230-30" data-line-number="30"><span class="co"># generate a table with &#39;stargazer()&#39;</span></a>
-<a class="sourceLine" id="cb230-31" data-line-number="31"><span class="kw">library</span>(stargazer)</a>
-<a class="sourceLine" id="cb230-32" data-line-number="32"></a>
-<a class="sourceLine" id="cb230-33" data-line-number="33"><span class="kw">stargazer</span>(Linear_model_MA, TestScore_MA_mod2, TestScore_MA_mod3, </a>
-<a class="sourceLine" id="cb230-34" data-line-number="34">          TestScore_MA_mod4, TestScore_MA_mod5, TestScore_MA_mod6,</a>
-<a class="sourceLine" id="cb230-35" data-line-number="35">          <span class="dt">title =</span> <span class="st">&quot;Regressions Using Massachusetts Test Score Data&quot;</span>,</a>
-<a class="sourceLine" id="cb230-36" data-line-number="36">          <span class="dt">type =</span> <span class="st">&quot;latex&quot;</span>,</a>
-<a class="sourceLine" id="cb230-37" data-line-number="37">          <span class="dt">digits =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb230-38" data-line-number="38">          <span class="dt">header =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb230-39" data-line-number="39">          <span class="dt">se =</span> rob_se,</a>
-<a class="sourceLine" id="cb230-40" data-line-number="40">          <span class="dt">object.names =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb230-41" data-line-number="41">          <span class="dt">model.numbers =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb230-42" data-line-number="42">          <span class="dt">column.labels =</span> <span class="kw">c</span>(<span class="st">&quot;(I)&quot;</span>, <span class="st">&quot;(II)&quot;</span>, <span class="st">&quot;(III)&quot;</span>, <span class="st">&quot;(IV)&quot;</span>, <span class="st">&quot;(V)&quot;</span>, <span class="st">&quot;(VI)&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" data-line-number="1"><span class="co"># add &#39;HiEL&#39; to &#39;MASchools&#39;</span></a>
+<a class="sourceLine" id="cb229-2" data-line-number="2">MASchools<span class="op">$</span>HiEL &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(MASchools<span class="op">$</span>english <span class="op">&gt;</span><span class="st"> </span><span class="kw">median</span>(MASchools<span class="op">$</span>english))</a>
+<a class="sourceLine" id="cb229-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb229-4" data-line-number="4"><span class="co"># estimate the model specifications from Table 9.2 of the book</span></a>
+<a class="sourceLine" id="cb229-5" data-line-number="5">TestScore_MA_mod1 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>STR, <span class="dt">data =</span> MASchools)</a>
+<a class="sourceLine" id="cb229-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb229-7" data-line-number="7">TestScore_MA_mod2 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>STR <span class="op">+</span><span class="st"> </span>english <span class="op">+</span><span class="st"> </span>lunch <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(income), </a>
+<a class="sourceLine" id="cb229-8" data-line-number="8">                        <span class="dt">data =</span> MASchools)</a>
+<a class="sourceLine" id="cb229-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb229-10" data-line-number="10">TestScore_MA_mod3 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>STR <span class="op">+</span><span class="st"> </span>english <span class="op">+</span><span class="st"> </span>lunch <span class="op">+</span><span class="st"> </span>income <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">2</span>) </a>
+<a class="sourceLine" id="cb229-11" data-line-number="11">                        <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">3</span>), <span class="dt">data =</span> MASchools)</a>
+<a class="sourceLine" id="cb229-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb229-13" data-line-number="13">TestScore_MA_mod4 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>STR <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(STR<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(STR<span class="op">^</span><span class="dv">3</span>) <span class="op">+</span><span class="st"> </span>english <span class="op">+</span><span class="st"> </span>lunch <span class="op">+</span><span class="st"> </span>income </a>
+<a class="sourceLine" id="cb229-14" data-line-number="14">                        <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">3</span>), <span class="dt">data =</span> MASchools)</a>
+<a class="sourceLine" id="cb229-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb229-16" data-line-number="16">TestScore_MA_mod5 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>STR <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">3</span>) <span class="op">+</span><span class="st"> </span>HiEL<span class="op">:</span>STR <span class="op">+</span><span class="st"> </span>lunch </a>
+<a class="sourceLine" id="cb229-17" data-line-number="17">                        <span class="op">+</span><span class="st"> </span>income, <span class="dt">data =</span> MASchools)</a>
+<a class="sourceLine" id="cb229-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb229-19" data-line-number="19">TestScore_MA_mod6 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>STR <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(income<span class="op">^</span><span class="dv">3</span>) <span class="op">+</span><span class="st"> </span>HiEL <span class="op">+</span><span class="st"> </span>HiEL<span class="op">:</span>STR <span class="op">+</span><span class="st"> </span>lunch </a>
+<a class="sourceLine" id="cb229-20" data-line-number="20">                        <span class="op">+</span><span class="st"> </span>income, <span class="dt">data =</span> MASchools)</a>
+<a class="sourceLine" id="cb229-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb229-22" data-line-number="22"><span class="co"># gather robust standard errors</span></a>
+<a class="sourceLine" id="cb229-23" data-line-number="23">rob_se &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(TestScore_MA_mod1, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
+<a class="sourceLine" id="cb229-24" data-line-number="24">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(TestScore_MA_mod2, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
+<a class="sourceLine" id="cb229-25" data-line-number="25">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(TestScore_MA_mod3, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
+<a class="sourceLine" id="cb229-26" data-line-number="26">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(TestScore_MA_mod4, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
+<a class="sourceLine" id="cb229-27" data-line-number="27">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(TestScore_MA_mod5, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
+<a class="sourceLine" id="cb229-28" data-line-number="28">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(TestScore_MA_mod6, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))))</a>
+<a class="sourceLine" id="cb229-29" data-line-number="29"></a>
+<a class="sourceLine" id="cb229-30" data-line-number="30"><span class="co"># generate a table with &#39;stargazer()&#39;</span></a>
+<a class="sourceLine" id="cb229-31" data-line-number="31"><span class="kw">library</span>(stargazer)</a>
+<a class="sourceLine" id="cb229-32" data-line-number="32"></a>
+<a class="sourceLine" id="cb229-33" data-line-number="33"><span class="kw">stargazer</span>(Linear_model_MA, TestScore_MA_mod2, TestScore_MA_mod3, </a>
+<a class="sourceLine" id="cb229-34" data-line-number="34">          TestScore_MA_mod4, TestScore_MA_mod5, TestScore_MA_mod6,</a>
+<a class="sourceLine" id="cb229-35" data-line-number="35">          <span class="dt">title =</span> <span class="st">&quot;Regressions Using Massachusetts Test Score Data&quot;</span>,</a>
+<a class="sourceLine" id="cb229-36" data-line-number="36">          <span class="dt">type =</span> <span class="st">&quot;latex&quot;</span>,</a>
+<a class="sourceLine" id="cb229-37" data-line-number="37">          <span class="dt">digits =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb229-38" data-line-number="38">          <span class="dt">header =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb229-39" data-line-number="39">          <span class="dt">se =</span> rob_se,</a>
+<a class="sourceLine" id="cb229-40" data-line-number="40">          <span class="dt">object.names =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb229-41" data-line-number="41">          <span class="dt">model.numbers =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb229-42" data-line-number="42">          <span class="dt">column.labels =</span> <span class="kw">c</span>(<span class="st">&quot;(I)&quot;</span>, <span class="st">&quot;(II)&quot;</span>, <span class="st">&quot;(III)&quot;</span>, <span class="st">&quot;(IV)&quot;</span>, <span class="st">&quot;(V)&quot;</span>, <span class="st">&quot;(VI)&quot;</span>))</a></code></pre></div>
 
 
 
@@ -580,172 +578,172 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 
 
 <p>Next we reproduce the <span class="math inline">\(F\)</span>-statistics and <span class="math inline">\(p\)</span>-values for testing exclusion of groups of variables.</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" data-line-number="1"><span class="co"># F-test model (3)</span></a>
-<a class="sourceLine" id="cb231-2" data-line-number="2"><span class="kw">linearHypothesis</span>(TestScore_MA_mod3, </a>
-<a class="sourceLine" id="cb231-3" data-line-number="3">                 <span class="kw">c</span>(<span class="st">&quot;I(income^2)=0&quot;</span>, <span class="st">&quot;I(income^3)=0&quot;</span>), </a>
-<a class="sourceLine" id="cb231-4" data-line-number="4">                 <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
-<a class="sourceLine" id="cb231-5" data-line-number="5"><span class="co">#&gt; Linear hypothesis test</span></a>
-<a class="sourceLine" id="cb231-6" data-line-number="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-7" data-line-number="7"><span class="co">#&gt; Hypothesis:</span></a>
-<a class="sourceLine" id="cb231-8" data-line-number="8"><span class="co">#&gt; I(income^2) = 0</span></a>
-<a class="sourceLine" id="cb231-9" data-line-number="9"><span class="co">#&gt; I(income^3) = 0</span></a>
-<a class="sourceLine" id="cb231-10" data-line-number="10"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-11" data-line-number="11"><span class="co">#&gt; Model 1: restricted model</span></a>
-<a class="sourceLine" id="cb231-12" data-line-number="12"><span class="co">#&gt; Model 2: score ~ STR + english + lunch + income + I(income^2) + I(income^3)</span></a>
-<a class="sourceLine" id="cb231-13" data-line-number="13"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-14" data-line-number="14"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
-<a class="sourceLine" id="cb231-15" data-line-number="15"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-16" data-line-number="16"><span class="co">#&gt;   Res.Df Df     F   Pr(&gt;F)   </span></a>
-<a class="sourceLine" id="cb231-17" data-line-number="17"><span class="co">#&gt; 1    215                     </span></a>
-<a class="sourceLine" id="cb231-18" data-line-number="18"><span class="co">#&gt; 2    213  2 6.227 0.002354 **</span></a>
-<a class="sourceLine" id="cb231-19" data-line-number="19"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb231-20" data-line-number="20"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb231-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb231-22" data-line-number="22"><span class="co"># F-tests model (4)</span></a>
-<a class="sourceLine" id="cb231-23" data-line-number="23"><span class="kw">linearHypothesis</span>(TestScore_MA_mod4, </a>
-<a class="sourceLine" id="cb231-24" data-line-number="24">                 <span class="kw">c</span>(<span class="st">&quot;STR=0&quot;</span>, <span class="st">&quot;I(STR^2)=0&quot;</span>, <span class="st">&quot;I(STR^3)=0&quot;</span>), </a>
-<a class="sourceLine" id="cb231-25" data-line-number="25">                 <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
-<a class="sourceLine" id="cb231-26" data-line-number="26"><span class="co">#&gt; Linear hypothesis test</span></a>
-<a class="sourceLine" id="cb231-27" data-line-number="27"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-28" data-line-number="28"><span class="co">#&gt; Hypothesis:</span></a>
-<a class="sourceLine" id="cb231-29" data-line-number="29"><span class="co">#&gt; STR = 0</span></a>
-<a class="sourceLine" id="cb231-30" data-line-number="30"><span class="co">#&gt; I(STR^2) = 0</span></a>
-<a class="sourceLine" id="cb231-31" data-line-number="31"><span class="co">#&gt; I(STR^3) = 0</span></a>
-<a class="sourceLine" id="cb231-32" data-line-number="32"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-33" data-line-number="33"><span class="co">#&gt; Model 1: restricted model</span></a>
-<a class="sourceLine" id="cb231-34" data-line-number="34"><span class="co">#&gt; Model 2: score ~ STR + I(STR^2) + I(STR^3) + english + lunch + income + </span></a>
-<a class="sourceLine" id="cb231-35" data-line-number="35"><span class="co">#&gt;     I(income^2) + I(income^3)</span></a>
-<a class="sourceLine" id="cb231-36" data-line-number="36"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-37" data-line-number="37"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
-<a class="sourceLine" id="cb231-38" data-line-number="38"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-39" data-line-number="39"><span class="co">#&gt;   Res.Df Df      F  Pr(&gt;F)  </span></a>
-<a class="sourceLine" id="cb231-40" data-line-number="40"><span class="co">#&gt; 1    214                    </span></a>
-<a class="sourceLine" id="cb231-41" data-line-number="41"><span class="co">#&gt; 2    211  3 2.3364 0.07478 .</span></a>
-<a class="sourceLine" id="cb231-42" data-line-number="42"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb231-43" data-line-number="43"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb231-44" data-line-number="44"></a>
-<a class="sourceLine" id="cb231-45" data-line-number="45"><span class="kw">linearHypothesis</span>(TestScore_MA_mod4, </a>
-<a class="sourceLine" id="cb231-46" data-line-number="46">                 <span class="kw">c</span>(<span class="st">&quot;I(STR^2)=0&quot;</span>, <span class="st">&quot;I(STR^3)=0&quot;</span>), </a>
-<a class="sourceLine" id="cb231-47" data-line-number="47">                 <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
-<a class="sourceLine" id="cb231-48" data-line-number="48"><span class="co">#&gt; Linear hypothesis test</span></a>
-<a class="sourceLine" id="cb231-49" data-line-number="49"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-50" data-line-number="50"><span class="co">#&gt; Hypothesis:</span></a>
-<a class="sourceLine" id="cb231-51" data-line-number="51"><span class="co">#&gt; I(STR^2) = 0</span></a>
-<a class="sourceLine" id="cb231-52" data-line-number="52"><span class="co">#&gt; I(STR^3) = 0</span></a>
-<a class="sourceLine" id="cb231-53" data-line-number="53"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-54" data-line-number="54"><span class="co">#&gt; Model 1: restricted model</span></a>
-<a class="sourceLine" id="cb231-55" data-line-number="55"><span class="co">#&gt; Model 2: score ~ STR + I(STR^2) + I(STR^3) + english + lunch + income + </span></a>
-<a class="sourceLine" id="cb231-56" data-line-number="56"><span class="co">#&gt;     I(income^2) + I(income^3)</span></a>
-<a class="sourceLine" id="cb231-57" data-line-number="57"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-58" data-line-number="58"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
-<a class="sourceLine" id="cb231-59" data-line-number="59"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-60" data-line-number="60"><span class="co">#&gt;   Res.Df Df      F Pr(&gt;F)</span></a>
-<a class="sourceLine" id="cb231-61" data-line-number="61"><span class="co">#&gt; 1    213                 </span></a>
-<a class="sourceLine" id="cb231-62" data-line-number="62"><span class="co">#&gt; 2    211  2 0.3396 0.7124</span></a>
-<a class="sourceLine" id="cb231-63" data-line-number="63"></a>
-<a class="sourceLine" id="cb231-64" data-line-number="64"><span class="kw">linearHypothesis</span>(TestScore_MA_mod4, </a>
-<a class="sourceLine" id="cb231-65" data-line-number="65">                 <span class="kw">c</span>(<span class="st">&quot;I(income^2)=0&quot;</span>, <span class="st">&quot;I(income^3)=0&quot;</span>), </a>
-<a class="sourceLine" id="cb231-66" data-line-number="66">                 <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
-<a class="sourceLine" id="cb231-67" data-line-number="67"><span class="co">#&gt; Linear hypothesis test</span></a>
-<a class="sourceLine" id="cb231-68" data-line-number="68"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-69" data-line-number="69"><span class="co">#&gt; Hypothesis:</span></a>
-<a class="sourceLine" id="cb231-70" data-line-number="70"><span class="co">#&gt; I(income^2) = 0</span></a>
-<a class="sourceLine" id="cb231-71" data-line-number="71"><span class="co">#&gt; I(income^3) = 0</span></a>
-<a class="sourceLine" id="cb231-72" data-line-number="72"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-73" data-line-number="73"><span class="co">#&gt; Model 1: restricted model</span></a>
-<a class="sourceLine" id="cb231-74" data-line-number="74"><span class="co">#&gt; Model 2: score ~ STR + I(STR^2) + I(STR^3) + english + lunch + income + </span></a>
-<a class="sourceLine" id="cb231-75" data-line-number="75"><span class="co">#&gt;     I(income^2) + I(income^3)</span></a>
-<a class="sourceLine" id="cb231-76" data-line-number="76"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-77" data-line-number="77"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
-<a class="sourceLine" id="cb231-78" data-line-number="78"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-79" data-line-number="79"><span class="co">#&gt;   Res.Df Df      F   Pr(&gt;F)   </span></a>
-<a class="sourceLine" id="cb231-80" data-line-number="80"><span class="co">#&gt; 1    213                      </span></a>
-<a class="sourceLine" id="cb231-81" data-line-number="81"><span class="co">#&gt; 2    211  2 5.7043 0.003866 **</span></a>
-<a class="sourceLine" id="cb231-82" data-line-number="82"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb231-83" data-line-number="83"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb231-84" data-line-number="84"></a>
-<a class="sourceLine" id="cb231-85" data-line-number="85"><span class="co"># F-tests model (5)</span></a>
-<a class="sourceLine" id="cb231-86" data-line-number="86"><span class="kw">linearHypothesis</span>(TestScore_MA_mod5, </a>
-<a class="sourceLine" id="cb231-87" data-line-number="87">                 <span class="kw">c</span>(<span class="st">&quot;STR=0&quot;</span>, <span class="st">&quot;STR:HiEL=0&quot;</span>), </a>
-<a class="sourceLine" id="cb231-88" data-line-number="88">                 <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
-<a class="sourceLine" id="cb231-89" data-line-number="89"><span class="co">#&gt; Linear hypothesis test</span></a>
-<a class="sourceLine" id="cb231-90" data-line-number="90"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-91" data-line-number="91"><span class="co">#&gt; Hypothesis:</span></a>
-<a class="sourceLine" id="cb231-92" data-line-number="92"><span class="co">#&gt; STR = 0</span></a>
-<a class="sourceLine" id="cb231-93" data-line-number="93"><span class="co">#&gt; STR:HiEL = 0</span></a>
-<a class="sourceLine" id="cb231-94" data-line-number="94"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-95" data-line-number="95"><span class="co">#&gt; Model 1: restricted model</span></a>
-<a class="sourceLine" id="cb231-96" data-line-number="96"><span class="co">#&gt; Model 2: score ~ STR + HiEL + HiEL:STR + lunch + income + I(income^2) + </span></a>
-<a class="sourceLine" id="cb231-97" data-line-number="97"><span class="co">#&gt;     I(income^3)</span></a>
-<a class="sourceLine" id="cb231-98" data-line-number="98"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-99" data-line-number="99"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
-<a class="sourceLine" id="cb231-100" data-line-number="100"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-101" data-line-number="101"><span class="co">#&gt;   Res.Df Df      F Pr(&gt;F)  </span></a>
-<a class="sourceLine" id="cb231-102" data-line-number="102"><span class="co">#&gt; 1    214                   </span></a>
-<a class="sourceLine" id="cb231-103" data-line-number="103"><span class="co">#&gt; 2    212  2 3.7663 0.0247 *</span></a>
-<a class="sourceLine" id="cb231-104" data-line-number="104"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb231-105" data-line-number="105"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb231-106" data-line-number="106"></a>
-<a class="sourceLine" id="cb231-107" data-line-number="107"><span class="kw">linearHypothesis</span>(TestScore_MA_mod5, </a>
-<a class="sourceLine" id="cb231-108" data-line-number="108">                 <span class="kw">c</span>(<span class="st">&quot;I(income^2)=0&quot;</span>, <span class="st">&quot;I(income^3)=0&quot;</span>), </a>
-<a class="sourceLine" id="cb231-109" data-line-number="109">                 <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
-<a class="sourceLine" id="cb231-110" data-line-number="110"><span class="co">#&gt; Linear hypothesis test</span></a>
-<a class="sourceLine" id="cb231-111" data-line-number="111"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-112" data-line-number="112"><span class="co">#&gt; Hypothesis:</span></a>
-<a class="sourceLine" id="cb231-113" data-line-number="113"><span class="co">#&gt; I(income^2) = 0</span></a>
-<a class="sourceLine" id="cb231-114" data-line-number="114"><span class="co">#&gt; I(income^3) = 0</span></a>
-<a class="sourceLine" id="cb231-115" data-line-number="115"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-116" data-line-number="116"><span class="co">#&gt; Model 1: restricted model</span></a>
-<a class="sourceLine" id="cb231-117" data-line-number="117"><span class="co">#&gt; Model 2: score ~ STR + HiEL + HiEL:STR + lunch + income + I(income^2) + </span></a>
-<a class="sourceLine" id="cb231-118" data-line-number="118"><span class="co">#&gt;     I(income^3)</span></a>
-<a class="sourceLine" id="cb231-119" data-line-number="119"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-120" data-line-number="120"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
-<a class="sourceLine" id="cb231-121" data-line-number="121"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-122" data-line-number="122"><span class="co">#&gt;   Res.Df Df      F  Pr(&gt;F)  </span></a>
-<a class="sourceLine" id="cb231-123" data-line-number="123"><span class="co">#&gt; 1    214                    </span></a>
-<a class="sourceLine" id="cb231-124" data-line-number="124"><span class="co">#&gt; 2    212  2 3.2201 0.04191 *</span></a>
-<a class="sourceLine" id="cb231-125" data-line-number="125"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb231-126" data-line-number="126"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb231-127" data-line-number="127"></a>
-<a class="sourceLine" id="cb231-128" data-line-number="128"><span class="kw">linearHypothesis</span>(TestScore_MA_mod5, </a>
-<a class="sourceLine" id="cb231-129" data-line-number="129">                 <span class="kw">c</span>(<span class="st">&quot;HiEL=0&quot;</span>, <span class="st">&quot;STR:HiEL=0&quot;</span>), </a>
-<a class="sourceLine" id="cb231-130" data-line-number="130">                 <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
-<a class="sourceLine" id="cb231-131" data-line-number="131"><span class="co">#&gt; Linear hypothesis test</span></a>
-<a class="sourceLine" id="cb231-132" data-line-number="132"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-133" data-line-number="133"><span class="co">#&gt; Hypothesis:</span></a>
-<a class="sourceLine" id="cb231-134" data-line-number="134"><span class="co">#&gt; HiEL = 0</span></a>
-<a class="sourceLine" id="cb231-135" data-line-number="135"><span class="co">#&gt; STR:HiEL = 0</span></a>
-<a class="sourceLine" id="cb231-136" data-line-number="136"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-137" data-line-number="137"><span class="co">#&gt; Model 1: restricted model</span></a>
-<a class="sourceLine" id="cb231-138" data-line-number="138"><span class="co">#&gt; Model 2: score ~ STR + HiEL + HiEL:STR + lunch + income + I(income^2) + </span></a>
-<a class="sourceLine" id="cb231-139" data-line-number="139"><span class="co">#&gt;     I(income^3)</span></a>
-<a class="sourceLine" id="cb231-140" data-line-number="140"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-141" data-line-number="141"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
-<a class="sourceLine" id="cb231-142" data-line-number="142"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-143" data-line-number="143"><span class="co">#&gt;   Res.Df Df      F Pr(&gt;F)</span></a>
-<a class="sourceLine" id="cb231-144" data-line-number="144"><span class="co">#&gt; 1    214                 </span></a>
-<a class="sourceLine" id="cb231-145" data-line-number="145"><span class="co">#&gt; 2    212  2 1.4674 0.2328</span></a>
-<a class="sourceLine" id="cb231-146" data-line-number="146"></a>
-<a class="sourceLine" id="cb231-147" data-line-number="147"><span class="co"># F-test Model (6)</span></a>
-<a class="sourceLine" id="cb231-148" data-line-number="148"><span class="kw">linearHypothesis</span>(TestScore_MA_mod6, </a>
-<a class="sourceLine" id="cb231-149" data-line-number="149">                 <span class="kw">c</span>(<span class="st">&quot;I(income^2)=0&quot;</span>, <span class="st">&quot;I(income^3)=0&quot;</span>), </a>
-<a class="sourceLine" id="cb231-150" data-line-number="150">                 <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
-<a class="sourceLine" id="cb231-151" data-line-number="151"><span class="co">#&gt; Linear hypothesis test</span></a>
-<a class="sourceLine" id="cb231-152" data-line-number="152"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-153" data-line-number="153"><span class="co">#&gt; Hypothesis:</span></a>
-<a class="sourceLine" id="cb231-154" data-line-number="154"><span class="co">#&gt; I(income^2) = 0</span></a>
-<a class="sourceLine" id="cb231-155" data-line-number="155"><span class="co">#&gt; I(income^3) = 0</span></a>
-<a class="sourceLine" id="cb231-156" data-line-number="156"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-157" data-line-number="157"><span class="co">#&gt; Model 1: restricted model</span></a>
-<a class="sourceLine" id="cb231-158" data-line-number="158"><span class="co">#&gt; Model 2: score ~ STR + lunch + income + I(income^2) + I(income^3)</span></a>
-<a class="sourceLine" id="cb231-159" data-line-number="159"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-160" data-line-number="160"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
-<a class="sourceLine" id="cb231-161" data-line-number="161"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb231-162" data-line-number="162"><span class="co">#&gt;   Res.Df Df      F  Pr(&gt;F)  </span></a>
-<a class="sourceLine" id="cb231-163" data-line-number="163"><span class="co">#&gt; 1    216                    </span></a>
-<a class="sourceLine" id="cb231-164" data-line-number="164"><span class="co">#&gt; 2    214  2 4.2776 0.01508 *</span></a>
-<a class="sourceLine" id="cb231-165" data-line-number="165"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb231-166" data-line-number="166"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" data-line-number="1"><span class="co"># F-test model (3)</span></a>
+<a class="sourceLine" id="cb230-2" data-line-number="2"><span class="kw">linearHypothesis</span>(TestScore_MA_mod3, </a>
+<a class="sourceLine" id="cb230-3" data-line-number="3">                 <span class="kw">c</span>(<span class="st">&quot;I(income^2)=0&quot;</span>, <span class="st">&quot;I(income^3)=0&quot;</span>), </a>
+<a class="sourceLine" id="cb230-4" data-line-number="4">                 <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
+<a class="sourceLine" id="cb230-5" data-line-number="5"><span class="co">#&gt; Linear hypothesis test</span></a>
+<a class="sourceLine" id="cb230-6" data-line-number="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-7" data-line-number="7"><span class="co">#&gt; Hypothesis:</span></a>
+<a class="sourceLine" id="cb230-8" data-line-number="8"><span class="co">#&gt; I(income^2) = 0</span></a>
+<a class="sourceLine" id="cb230-9" data-line-number="9"><span class="co">#&gt; I(income^3) = 0</span></a>
+<a class="sourceLine" id="cb230-10" data-line-number="10"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-11" data-line-number="11"><span class="co">#&gt; Model 1: restricted model</span></a>
+<a class="sourceLine" id="cb230-12" data-line-number="12"><span class="co">#&gt; Model 2: score ~ STR + english + lunch + income + I(income^2) + I(income^3)</span></a>
+<a class="sourceLine" id="cb230-13" data-line-number="13"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-14" data-line-number="14"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
+<a class="sourceLine" id="cb230-15" data-line-number="15"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-16" data-line-number="16"><span class="co">#&gt;   Res.Df Df     F   Pr(&gt;F)   </span></a>
+<a class="sourceLine" id="cb230-17" data-line-number="17"><span class="co">#&gt; 1    215                     </span></a>
+<a class="sourceLine" id="cb230-18" data-line-number="18"><span class="co">#&gt; 2    213  2 6.227 0.002354 **</span></a>
+<a class="sourceLine" id="cb230-19" data-line-number="19"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb230-20" data-line-number="20"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb230-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb230-22" data-line-number="22"><span class="co"># F-tests model (4)</span></a>
+<a class="sourceLine" id="cb230-23" data-line-number="23"><span class="kw">linearHypothesis</span>(TestScore_MA_mod4, </a>
+<a class="sourceLine" id="cb230-24" data-line-number="24">                 <span class="kw">c</span>(<span class="st">&quot;STR=0&quot;</span>, <span class="st">&quot;I(STR^2)=0&quot;</span>, <span class="st">&quot;I(STR^3)=0&quot;</span>), </a>
+<a class="sourceLine" id="cb230-25" data-line-number="25">                 <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
+<a class="sourceLine" id="cb230-26" data-line-number="26"><span class="co">#&gt; Linear hypothesis test</span></a>
+<a class="sourceLine" id="cb230-27" data-line-number="27"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-28" data-line-number="28"><span class="co">#&gt; Hypothesis:</span></a>
+<a class="sourceLine" id="cb230-29" data-line-number="29"><span class="co">#&gt; STR = 0</span></a>
+<a class="sourceLine" id="cb230-30" data-line-number="30"><span class="co">#&gt; I(STR^2) = 0</span></a>
+<a class="sourceLine" id="cb230-31" data-line-number="31"><span class="co">#&gt; I(STR^3) = 0</span></a>
+<a class="sourceLine" id="cb230-32" data-line-number="32"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-33" data-line-number="33"><span class="co">#&gt; Model 1: restricted model</span></a>
+<a class="sourceLine" id="cb230-34" data-line-number="34"><span class="co">#&gt; Model 2: score ~ STR + I(STR^2) + I(STR^3) + english + lunch + income + </span></a>
+<a class="sourceLine" id="cb230-35" data-line-number="35"><span class="co">#&gt;     I(income^2) + I(income^3)</span></a>
+<a class="sourceLine" id="cb230-36" data-line-number="36"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-37" data-line-number="37"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
+<a class="sourceLine" id="cb230-38" data-line-number="38"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-39" data-line-number="39"><span class="co">#&gt;   Res.Df Df      F  Pr(&gt;F)  </span></a>
+<a class="sourceLine" id="cb230-40" data-line-number="40"><span class="co">#&gt; 1    214                    </span></a>
+<a class="sourceLine" id="cb230-41" data-line-number="41"><span class="co">#&gt; 2    211  3 2.3364 0.07478 .</span></a>
+<a class="sourceLine" id="cb230-42" data-line-number="42"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb230-43" data-line-number="43"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb230-44" data-line-number="44"></a>
+<a class="sourceLine" id="cb230-45" data-line-number="45"><span class="kw">linearHypothesis</span>(TestScore_MA_mod4, </a>
+<a class="sourceLine" id="cb230-46" data-line-number="46">                 <span class="kw">c</span>(<span class="st">&quot;I(STR^2)=0&quot;</span>, <span class="st">&quot;I(STR^3)=0&quot;</span>), </a>
+<a class="sourceLine" id="cb230-47" data-line-number="47">                 <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
+<a class="sourceLine" id="cb230-48" data-line-number="48"><span class="co">#&gt; Linear hypothesis test</span></a>
+<a class="sourceLine" id="cb230-49" data-line-number="49"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-50" data-line-number="50"><span class="co">#&gt; Hypothesis:</span></a>
+<a class="sourceLine" id="cb230-51" data-line-number="51"><span class="co">#&gt; I(STR^2) = 0</span></a>
+<a class="sourceLine" id="cb230-52" data-line-number="52"><span class="co">#&gt; I(STR^3) = 0</span></a>
+<a class="sourceLine" id="cb230-53" data-line-number="53"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-54" data-line-number="54"><span class="co">#&gt; Model 1: restricted model</span></a>
+<a class="sourceLine" id="cb230-55" data-line-number="55"><span class="co">#&gt; Model 2: score ~ STR + I(STR^2) + I(STR^3) + english + lunch + income + </span></a>
+<a class="sourceLine" id="cb230-56" data-line-number="56"><span class="co">#&gt;     I(income^2) + I(income^3)</span></a>
+<a class="sourceLine" id="cb230-57" data-line-number="57"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-58" data-line-number="58"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
+<a class="sourceLine" id="cb230-59" data-line-number="59"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-60" data-line-number="60"><span class="co">#&gt;   Res.Df Df      F Pr(&gt;F)</span></a>
+<a class="sourceLine" id="cb230-61" data-line-number="61"><span class="co">#&gt; 1    213                 </span></a>
+<a class="sourceLine" id="cb230-62" data-line-number="62"><span class="co">#&gt; 2    211  2 0.3396 0.7124</span></a>
+<a class="sourceLine" id="cb230-63" data-line-number="63"></a>
+<a class="sourceLine" id="cb230-64" data-line-number="64"><span class="kw">linearHypothesis</span>(TestScore_MA_mod4, </a>
+<a class="sourceLine" id="cb230-65" data-line-number="65">                 <span class="kw">c</span>(<span class="st">&quot;I(income^2)=0&quot;</span>, <span class="st">&quot;I(income^3)=0&quot;</span>), </a>
+<a class="sourceLine" id="cb230-66" data-line-number="66">                 <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
+<a class="sourceLine" id="cb230-67" data-line-number="67"><span class="co">#&gt; Linear hypothesis test</span></a>
+<a class="sourceLine" id="cb230-68" data-line-number="68"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-69" data-line-number="69"><span class="co">#&gt; Hypothesis:</span></a>
+<a class="sourceLine" id="cb230-70" data-line-number="70"><span class="co">#&gt; I(income^2) = 0</span></a>
+<a class="sourceLine" id="cb230-71" data-line-number="71"><span class="co">#&gt; I(income^3) = 0</span></a>
+<a class="sourceLine" id="cb230-72" data-line-number="72"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-73" data-line-number="73"><span class="co">#&gt; Model 1: restricted model</span></a>
+<a class="sourceLine" id="cb230-74" data-line-number="74"><span class="co">#&gt; Model 2: score ~ STR + I(STR^2) + I(STR^3) + english + lunch + income + </span></a>
+<a class="sourceLine" id="cb230-75" data-line-number="75"><span class="co">#&gt;     I(income^2) + I(income^3)</span></a>
+<a class="sourceLine" id="cb230-76" data-line-number="76"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-77" data-line-number="77"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
+<a class="sourceLine" id="cb230-78" data-line-number="78"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-79" data-line-number="79"><span class="co">#&gt;   Res.Df Df      F   Pr(&gt;F)   </span></a>
+<a class="sourceLine" id="cb230-80" data-line-number="80"><span class="co">#&gt; 1    213                      </span></a>
+<a class="sourceLine" id="cb230-81" data-line-number="81"><span class="co">#&gt; 2    211  2 5.7043 0.003866 **</span></a>
+<a class="sourceLine" id="cb230-82" data-line-number="82"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb230-83" data-line-number="83"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb230-84" data-line-number="84"></a>
+<a class="sourceLine" id="cb230-85" data-line-number="85"><span class="co"># F-tests model (5)</span></a>
+<a class="sourceLine" id="cb230-86" data-line-number="86"><span class="kw">linearHypothesis</span>(TestScore_MA_mod5, </a>
+<a class="sourceLine" id="cb230-87" data-line-number="87">                 <span class="kw">c</span>(<span class="st">&quot;STR=0&quot;</span>, <span class="st">&quot;STR:HiEL=0&quot;</span>), </a>
+<a class="sourceLine" id="cb230-88" data-line-number="88">                 <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
+<a class="sourceLine" id="cb230-89" data-line-number="89"><span class="co">#&gt; Linear hypothesis test</span></a>
+<a class="sourceLine" id="cb230-90" data-line-number="90"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-91" data-line-number="91"><span class="co">#&gt; Hypothesis:</span></a>
+<a class="sourceLine" id="cb230-92" data-line-number="92"><span class="co">#&gt; STR = 0</span></a>
+<a class="sourceLine" id="cb230-93" data-line-number="93"><span class="co">#&gt; STR:HiEL = 0</span></a>
+<a class="sourceLine" id="cb230-94" data-line-number="94"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-95" data-line-number="95"><span class="co">#&gt; Model 1: restricted model</span></a>
+<a class="sourceLine" id="cb230-96" data-line-number="96"><span class="co">#&gt; Model 2: score ~ STR + HiEL + HiEL:STR + lunch + income + I(income^2) + </span></a>
+<a class="sourceLine" id="cb230-97" data-line-number="97"><span class="co">#&gt;     I(income^3)</span></a>
+<a class="sourceLine" id="cb230-98" data-line-number="98"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-99" data-line-number="99"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
+<a class="sourceLine" id="cb230-100" data-line-number="100"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-101" data-line-number="101"><span class="co">#&gt;   Res.Df Df      F Pr(&gt;F)  </span></a>
+<a class="sourceLine" id="cb230-102" data-line-number="102"><span class="co">#&gt; 1    214                   </span></a>
+<a class="sourceLine" id="cb230-103" data-line-number="103"><span class="co">#&gt; 2    212  2 3.7663 0.0247 *</span></a>
+<a class="sourceLine" id="cb230-104" data-line-number="104"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb230-105" data-line-number="105"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb230-106" data-line-number="106"></a>
+<a class="sourceLine" id="cb230-107" data-line-number="107"><span class="kw">linearHypothesis</span>(TestScore_MA_mod5, </a>
+<a class="sourceLine" id="cb230-108" data-line-number="108">                 <span class="kw">c</span>(<span class="st">&quot;I(income^2)=0&quot;</span>, <span class="st">&quot;I(income^3)=0&quot;</span>), </a>
+<a class="sourceLine" id="cb230-109" data-line-number="109">                 <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
+<a class="sourceLine" id="cb230-110" data-line-number="110"><span class="co">#&gt; Linear hypothesis test</span></a>
+<a class="sourceLine" id="cb230-111" data-line-number="111"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-112" data-line-number="112"><span class="co">#&gt; Hypothesis:</span></a>
+<a class="sourceLine" id="cb230-113" data-line-number="113"><span class="co">#&gt; I(income^2) = 0</span></a>
+<a class="sourceLine" id="cb230-114" data-line-number="114"><span class="co">#&gt; I(income^3) = 0</span></a>
+<a class="sourceLine" id="cb230-115" data-line-number="115"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-116" data-line-number="116"><span class="co">#&gt; Model 1: restricted model</span></a>
+<a class="sourceLine" id="cb230-117" data-line-number="117"><span class="co">#&gt; Model 2: score ~ STR + HiEL + HiEL:STR + lunch + income + I(income^2) + </span></a>
+<a class="sourceLine" id="cb230-118" data-line-number="118"><span class="co">#&gt;     I(income^3)</span></a>
+<a class="sourceLine" id="cb230-119" data-line-number="119"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-120" data-line-number="120"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
+<a class="sourceLine" id="cb230-121" data-line-number="121"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-122" data-line-number="122"><span class="co">#&gt;   Res.Df Df      F  Pr(&gt;F)  </span></a>
+<a class="sourceLine" id="cb230-123" data-line-number="123"><span class="co">#&gt; 1    214                    </span></a>
+<a class="sourceLine" id="cb230-124" data-line-number="124"><span class="co">#&gt; 2    212  2 3.2201 0.04191 *</span></a>
+<a class="sourceLine" id="cb230-125" data-line-number="125"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb230-126" data-line-number="126"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb230-127" data-line-number="127"></a>
+<a class="sourceLine" id="cb230-128" data-line-number="128"><span class="kw">linearHypothesis</span>(TestScore_MA_mod5, </a>
+<a class="sourceLine" id="cb230-129" data-line-number="129">                 <span class="kw">c</span>(<span class="st">&quot;HiEL=0&quot;</span>, <span class="st">&quot;STR:HiEL=0&quot;</span>), </a>
+<a class="sourceLine" id="cb230-130" data-line-number="130">                 <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
+<a class="sourceLine" id="cb230-131" data-line-number="131"><span class="co">#&gt; Linear hypothesis test</span></a>
+<a class="sourceLine" id="cb230-132" data-line-number="132"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-133" data-line-number="133"><span class="co">#&gt; Hypothesis:</span></a>
+<a class="sourceLine" id="cb230-134" data-line-number="134"><span class="co">#&gt; HiEL = 0</span></a>
+<a class="sourceLine" id="cb230-135" data-line-number="135"><span class="co">#&gt; STR:HiEL = 0</span></a>
+<a class="sourceLine" id="cb230-136" data-line-number="136"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-137" data-line-number="137"><span class="co">#&gt; Model 1: restricted model</span></a>
+<a class="sourceLine" id="cb230-138" data-line-number="138"><span class="co">#&gt; Model 2: score ~ STR + HiEL + HiEL:STR + lunch + income + I(income^2) + </span></a>
+<a class="sourceLine" id="cb230-139" data-line-number="139"><span class="co">#&gt;     I(income^3)</span></a>
+<a class="sourceLine" id="cb230-140" data-line-number="140"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-141" data-line-number="141"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
+<a class="sourceLine" id="cb230-142" data-line-number="142"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-143" data-line-number="143"><span class="co">#&gt;   Res.Df Df      F Pr(&gt;F)</span></a>
+<a class="sourceLine" id="cb230-144" data-line-number="144"><span class="co">#&gt; 1    214                 </span></a>
+<a class="sourceLine" id="cb230-145" data-line-number="145"><span class="co">#&gt; 2    212  2 1.4674 0.2328</span></a>
+<a class="sourceLine" id="cb230-146" data-line-number="146"></a>
+<a class="sourceLine" id="cb230-147" data-line-number="147"><span class="co"># F-test Model (6)</span></a>
+<a class="sourceLine" id="cb230-148" data-line-number="148"><span class="kw">linearHypothesis</span>(TestScore_MA_mod6, </a>
+<a class="sourceLine" id="cb230-149" data-line-number="149">                 <span class="kw">c</span>(<span class="st">&quot;I(income^2)=0&quot;</span>, <span class="st">&quot;I(income^3)=0&quot;</span>), </a>
+<a class="sourceLine" id="cb230-150" data-line-number="150">                 <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
+<a class="sourceLine" id="cb230-151" data-line-number="151"><span class="co">#&gt; Linear hypothesis test</span></a>
+<a class="sourceLine" id="cb230-152" data-line-number="152"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-153" data-line-number="153"><span class="co">#&gt; Hypothesis:</span></a>
+<a class="sourceLine" id="cb230-154" data-line-number="154"><span class="co">#&gt; I(income^2) = 0</span></a>
+<a class="sourceLine" id="cb230-155" data-line-number="155"><span class="co">#&gt; I(income^3) = 0</span></a>
+<a class="sourceLine" id="cb230-156" data-line-number="156"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-157" data-line-number="157"><span class="co">#&gt; Model 1: restricted model</span></a>
+<a class="sourceLine" id="cb230-158" data-line-number="158"><span class="co">#&gt; Model 2: score ~ STR + lunch + income + I(income^2) + I(income^3)</span></a>
+<a class="sourceLine" id="cb230-159" data-line-number="159"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-160" data-line-number="160"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
+<a class="sourceLine" id="cb230-161" data-line-number="161"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb230-162" data-line-number="162"><span class="co">#&gt;   Res.Df Df      F  Pr(&gt;F)  </span></a>
+<a class="sourceLine" id="cb230-163" data-line-number="163"><span class="co">#&gt; 1    216                    </span></a>
+<a class="sourceLine" id="cb230-164" data-line-number="164"><span class="co">#&gt; 2    214  2 4.2776 0.01508 *</span></a>
+<a class="sourceLine" id="cb230-165" data-line-number="165"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb230-166" data-line-number="166"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p>We see that, in terms of <span class="math inline">\(\bar{R}^2\)</span>, specification (3) which uses a cubic to model the relationship between district income and test scores indeed performs better than the linear-log specification (2). Using different <span class="math inline">\(F\)</span>-tests on models (4) and (5), we cannot reject the hypothesis that there is no nonlinear relationship between student teacher ratio and test score and also that the share of English learners has an influence on the relationship of interest. Furthermore, regression (6) shows that the percentage of English learners can be omitted as a regressor. Because of the model specifications made in (4) to (6) do not lead to substantially different results than those of regression (3), we choose model (3) as the most suitable specification.</p>
 <p>In comparison to the California data, we observe the following results:</p>
 <ol style="list-style-type: decimal">
@@ -756,14 +754,14 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>The biggest difference is that, in contrast to the California results, we do not find evidence of a nonlinear relationship between test scores and the student teacher ratio for the Massachusetts data since the corresponding <span class="math inline">\(F\)</span>-tests for model (4) do not reject.</p>
 <p>As pointed out in the book, the test scores for California and Massachusetts have different units because the underlying tests are different. Thus the estimated coefficients on the student-teacher ratio in both regressions cannot be compared before standardizing test scores to the same units as <span class="math display">\[\frac{Testscore - \overline{TestScore}}{\sigma_{TestScore}}\]</span> for all observations in both data sets and running the regressions of interest using the standardized data again. One can show that the coefficient on student-teacher ratio in the regression using standardized test scores is the coefficient of the original regression divided by the standard deviation of test scores.</p>
 <p>For model (3) of the Massachusetts data, the estimated coefficient on the student-teacher ratio is <span class="math inline">\(-0.64\)</span>. A reduction of the student-teacher ratio by two students is predicted to increase test scores by <span class="math inline">\(-2 \cdot (-0.64) = 1.28\)</span> points. Thus we can compute the effect of a reduction of student-teacher ratio by two students on the standardized test scores as follows:</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" data-line-number="1">TestScore_MA_mod3<span class="op">$</span>coefficients[<span class="dv">2</span>] <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(MASchools<span class="op">$</span>score) <span class="op">*</span><span class="st"> </span>(<span class="op">-</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb232-2" data-line-number="2"><span class="co">#&gt;        STR </span></a>
-<a class="sourceLine" id="cb232-3" data-line-number="3"><span class="co">#&gt; 0.08474001</span></a></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" data-line-number="1">TestScore_MA_mod3<span class="op">$</span>coefficients[<span class="dv">2</span>] <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(MASchools<span class="op">$</span>score) <span class="op">*</span><span class="st"> </span>(<span class="op">-</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb231-2" data-line-number="2"><span class="co">#&gt;        STR </span></a>
+<a class="sourceLine" id="cb231-3" data-line-number="3"><span class="co">#&gt; 0.08474001</span></a></code></pre></div>
 <p>For Massachusetts the predicted increase of test scores due to a reduction of the student-teacher ratio by two students is <span class="math inline">\(0.085\)</span> standard deviations of the distribution of the observed distribution of test scores.</p>
 <p>Using the linear specification (2) for California, the estimated coefficient on the student-teacher ratio is <span class="math inline">\(-0.73\)</span> so the predicted increase of test scores induced by a reduction of the student-teacher ratio by two students is <span class="math inline">\(-0.73 \cdot (-2) = 1.46\)</span>. We use <tt>R</tt> to compute the predicted change in standard deviation units:</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" data-line-number="1">TestScore_mod2<span class="op">$</span>coefficients[<span class="dv">2</span>] <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(CASchools<span class="op">$</span>score) <span class="op">*</span><span class="st"> </span>(<span class="op">-</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb233-2" data-line-number="2"><span class="co">#&gt;        STR </span></a>
-<a class="sourceLine" id="cb233-3" data-line-number="3"><span class="co">#&gt; 0.07708103</span></a></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" data-line-number="1">TestScore_mod2<span class="op">$</span>coefficients[<span class="dv">2</span>] <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(CASchools<span class="op">$</span>score) <span class="op">*</span><span class="st"> </span>(<span class="op">-</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb232-2" data-line-number="2"><span class="co">#&gt;        STR </span></a>
+<a class="sourceLine" id="cb232-3" data-line-number="3"><span class="co">#&gt; 0.07708103</span></a></code></pre></div>
 <p>This shows that the the predicted increase of test scores due to a reduction of the student-teacher ratio by two students is <span class="math inline">\(0.077\)</span> standard deviation of the observed distribution of test scores for the California data.</p>
 <p>In terms of standardized test scores, the predicted change is essentially the same for school districts in California and Massachusetts.</p>
 <p>Altogether, the results support external validity of the inferences made using data on Californian elementary school districts — at least for Massachusetts.</p>

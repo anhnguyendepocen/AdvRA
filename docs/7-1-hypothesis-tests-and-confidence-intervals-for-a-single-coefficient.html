@@ -135,13 +135,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><a href="https://www.example.com/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
+<li><center><a href="http://www.dliebl.com/AdvRA/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
 <li class="chapter" data-level="" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html#probability-distributions-of-discrete-random-variables"><i class="fa fa-check"></i>Probability Distributions of Discrete Random Variables</a></li>
@@ -382,24 +380,24 @@ where <span class="math inline">\(t^{act}\)</span> is the value of the <span cla
 <p>You can easily see this by inspecting the coefficient summary of the regression model</p>
 <p><span class="math display">\[ TestScore = \beta_0 + \beta_1 \times size  \beta_2 \times english + u \]</span></p>
 <p>already discussed in Chapter <a href="6-rmwmr.html#rmwmr">6</a>. Let us review this:</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb152-2" data-line-number="2">model &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>size <span class="op">+</span><span class="st"> </span>english, <span class="dt">data =</span> CASchools)</a>
-<a class="sourceLine" id="cb152-3" data-line-number="3"><span class="kw">coeftest</span>(model, <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
-<a class="sourceLine" id="cb152-4" data-line-number="4"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb152-5" data-line-number="5"><span class="co">#&gt; t test of coefficients:</span></a>
-<a class="sourceLine" id="cb152-6" data-line-number="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb152-7" data-line-number="7"><span class="co">#&gt;               Estimate Std. Error  t value Pr(&gt;|t|)    </span></a>
-<a class="sourceLine" id="cb152-8" data-line-number="8"><span class="co">#&gt; (Intercept) 686.032245   8.728225  78.5993  &lt; 2e-16 ***</span></a>
-<a class="sourceLine" id="cb152-9" data-line-number="9"><span class="co">#&gt; size         -1.101296   0.432847  -2.5443  0.01131 *  </span></a>
-<a class="sourceLine" id="cb152-10" data-line-number="10"><span class="co">#&gt; english      -0.649777   0.031032 -20.9391  &lt; 2e-16 ***</span></a>
-<a class="sourceLine" id="cb152-11" data-line-number="11"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb152-12" data-line-number="12"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb151-2" data-line-number="2">model &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>size <span class="op">+</span><span class="st"> </span>english, <span class="dt">data =</span> CASchools)</a>
+<a class="sourceLine" id="cb151-3" data-line-number="3"><span class="kw">coeftest</span>(model, <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
+<a class="sourceLine" id="cb151-4" data-line-number="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb151-5" data-line-number="5"><span class="co">#&gt; t test of coefficients:</span></a>
+<a class="sourceLine" id="cb151-6" data-line-number="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb151-7" data-line-number="7"><span class="co">#&gt;               Estimate Std. Error  t value Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb151-8" data-line-number="8"><span class="co">#&gt; (Intercept) 686.032245   8.728225  78.5993  &lt; 2e-16 ***</span></a>
+<a class="sourceLine" id="cb151-9" data-line-number="9"><span class="co">#&gt; size         -1.101296   0.432847  -2.5443  0.01131 *  </span></a>
+<a class="sourceLine" id="cb151-10" data-line-number="10"><span class="co">#&gt; english      -0.649777   0.031032 -20.9391  &lt; 2e-16 ***</span></a>
+<a class="sourceLine" id="cb151-11" data-line-number="11"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb151-12" data-line-number="12"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p>You may check that these quantities are computed as in the simple regression model by computing the <span class="math inline">\(t\)</span>-statistics or <span class="math inline">\(p\)</span>-values by hand using the output above and <tt>R</tt> as a calculator.</p>
 <p>For example, using the definition of the <span class="math inline">\(p\)</span>-value for a two-sided test as given in Key Concept 7.1, we can confirm the <span class="math inline">\(p\)</span>-value for a test of the hypothesis that the coefficient <span class="math inline">\(\beta_1\)</span>, the coefficient on <tt>size</tt>, to be approximately zero.</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1"><span class="co"># compute two-sided p-value</span></a>
-<a class="sourceLine" id="cb153-2" data-line-number="2"><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pt</span>(<span class="kw">abs</span>(<span class="kw">coeftest</span>(model, <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)[<span class="dv">2</span>, <span class="dv">3</span>]),</a>
-<a class="sourceLine" id="cb153-3" data-line-number="3">            <span class="dt">df =</span> model<span class="op">$</span>df.residual))</a>
-<a class="sourceLine" id="cb153-4" data-line-number="4"><span class="co">#&gt; [1] 0.01130921</span></a></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1"><span class="co"># compute two-sided p-value</span></a>
+<a class="sourceLine" id="cb152-2" data-line-number="2"><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pt</span>(<span class="kw">abs</span>(<span class="kw">coeftest</span>(model, <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)[<span class="dv">2</span>, <span class="dv">3</span>]),</a>
+<a class="sourceLine" id="cb152-3" data-line-number="3">            <span class="dt">df =</span> model<span class="op">$</span>df.residual))</a>
+<a class="sourceLine" id="cb152-4" data-line-number="4"><span class="co">#&gt; [1] 0.01130921</span></a></code></pre></div>
 <div id="KC7.2" class="keyconcept">
 <h3 class="right">
 Key Concept 7.2

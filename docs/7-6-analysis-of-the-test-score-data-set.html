@@ -135,13 +135,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><a href="https://www.example.com/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
+<li><center><a href="http://www.dliebl.com/AdvRA/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
 <li class="chapter" data-level="" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html#probability-distributions-of-discrete-random-variables"><i class="fa fa-check"></i>Probability Distributions of Discrete Random Variables</a></li>
@@ -365,48 +363,48 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><p><span class="math inline">\(lunch\)</span>, the share of students that qualify for a subsidized or even a free lunch at school</p></li>
 </ul>
 <p>Another new variable provided with <tt>CASchools</tt> is <tt>calworks</tt>, the percentage of students that qualify for the <em>CalWorks</em> income assistance program. Students eligible for <em>CalWorks</em> live in families with a total income below the threshold for the subsidized lunch program so both variables are indicators for the share of economically disadvantaged children. Both indicators are highly correlated:</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1"><span class="co"># estimate the correlation between &#39;calworks&#39; and &#39;lunch&#39;</span></a>
-<a class="sourceLine" id="cb168-2" data-line-number="2"><span class="kw">cor</span>(CASchools<span class="op">$</span>calworks, CASchools<span class="op">$</span>lunch)</a>
-<a class="sourceLine" id="cb168-3" data-line-number="3"><span class="co">#&gt; [1] 0.7394218</span></a></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1"><span class="co"># estimate the correlation between &#39;calworks&#39; and &#39;lunch&#39;</span></a>
+<a class="sourceLine" id="cb167-2" data-line-number="2"><span class="kw">cor</span>(CASchools<span class="op">$</span>calworks, CASchools<span class="op">$</span>lunch)</a>
+<a class="sourceLine" id="cb167-3" data-line-number="3"><span class="co">#&gt; [1] 0.7394218</span></a></code></pre></div>
 <p>There is no unambiguous way to proceed when deciding which variable to use. In any case it may not a good idea to use both variables as regressors in view of collinearity. Therefore, we also consider alternative model specifications.</p>
 <p>For a start, we plot student characteristics against test scores.</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1"><span class="co"># set up arrangement of plots</span></a>
-<a class="sourceLine" id="cb169-2" data-line-number="2">m &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb169-3" data-line-number="3">graphics<span class="op">::</span><span class="kw">layout</span>(<span class="dt">mat =</span> m)</a>
-<a class="sourceLine" id="cb169-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb169-5" data-line-number="5"><span class="co"># scatterplots</span></a>
-<a class="sourceLine" id="cb169-6" data-line-number="6"><span class="kw">plot</span>(score <span class="op">~</span><span class="st"> </span>english, </a>
-<a class="sourceLine" id="cb169-7" data-line-number="7">     <span class="dt">data =</span> CASchools, </a>
-<a class="sourceLine" id="cb169-8" data-line-number="8">     <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>, </a>
-<a class="sourceLine" id="cb169-9" data-line-number="9">     <span class="dt">pch =</span> <span class="dv">20</span>, </a>
-<a class="sourceLine" id="cb169-10" data-line-number="10">     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">100</span>),</a>
-<a class="sourceLine" id="cb169-11" data-line-number="11">     <span class="dt">cex.main =</span> <span class="fl">0.9</span>,</a>
-<a class="sourceLine" id="cb169-12" data-line-number="12">     <span class="dt">main =</span> <span class="st">&quot;Percentage of English language learners&quot;</span>)</a>
-<a class="sourceLine" id="cb169-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb169-14" data-line-number="14"><span class="kw">plot</span>(score <span class="op">~</span><span class="st"> </span>lunch, </a>
-<a class="sourceLine" id="cb169-15" data-line-number="15">     <span class="dt">data =</span> CASchools, </a>
-<a class="sourceLine" id="cb169-16" data-line-number="16">     <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>, </a>
-<a class="sourceLine" id="cb169-17" data-line-number="17">     <span class="dt">pch =</span> <span class="dv">20</span>,</a>
-<a class="sourceLine" id="cb169-18" data-line-number="18">     <span class="dt">cex.main =</span> <span class="fl">0.9</span>,</a>
-<a class="sourceLine" id="cb169-19" data-line-number="19">     <span class="dt">main =</span> <span class="st">&quot;Percentage qualifying for reduced price lunch&quot;</span>)</a>
-<a class="sourceLine" id="cb169-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb169-21" data-line-number="21"><span class="kw">plot</span>(score <span class="op">~</span><span class="st"> </span>calworks, </a>
-<a class="sourceLine" id="cb169-22" data-line-number="22">     <span class="dt">data =</span> CASchools, </a>
-<a class="sourceLine" id="cb169-23" data-line-number="23">     <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>, </a>
-<a class="sourceLine" id="cb169-24" data-line-number="24">     <span class="dt">pch =</span> <span class="dv">20</span>, </a>
-<a class="sourceLine" id="cb169-25" data-line-number="25">     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">100</span>),</a>
-<a class="sourceLine" id="cb169-26" data-line-number="26">     <span class="dt">cex.main =</span> <span class="fl">0.9</span>,</a>
-<a class="sourceLine" id="cb169-27" data-line-number="27">     <span class="dt">main =</span> <span class="st">&quot;Percentage qualifying for income assistance&quot;</span>)</a></code></pre></div>
-<p><img src="AdvRA_files/figure-html/unnamed-chunk-302-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1"><span class="co"># set up arrangement of plots</span></a>
+<a class="sourceLine" id="cb168-2" data-line-number="2">m &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb168-3" data-line-number="3">graphics<span class="op">::</span><span class="kw">layout</span>(<span class="dt">mat =</span> m)</a>
+<a class="sourceLine" id="cb168-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb168-5" data-line-number="5"><span class="co"># scatterplots</span></a>
+<a class="sourceLine" id="cb168-6" data-line-number="6"><span class="kw">plot</span>(score <span class="op">~</span><span class="st"> </span>english, </a>
+<a class="sourceLine" id="cb168-7" data-line-number="7">     <span class="dt">data =</span> CASchools, </a>
+<a class="sourceLine" id="cb168-8" data-line-number="8">     <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>, </a>
+<a class="sourceLine" id="cb168-9" data-line-number="9">     <span class="dt">pch =</span> <span class="dv">20</span>, </a>
+<a class="sourceLine" id="cb168-10" data-line-number="10">     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb168-11" data-line-number="11">     <span class="dt">cex.main =</span> <span class="fl">0.9</span>,</a>
+<a class="sourceLine" id="cb168-12" data-line-number="12">     <span class="dt">main =</span> <span class="st">&quot;Percentage of English language learners&quot;</span>)</a>
+<a class="sourceLine" id="cb168-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb168-14" data-line-number="14"><span class="kw">plot</span>(score <span class="op">~</span><span class="st"> </span>lunch, </a>
+<a class="sourceLine" id="cb168-15" data-line-number="15">     <span class="dt">data =</span> CASchools, </a>
+<a class="sourceLine" id="cb168-16" data-line-number="16">     <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>, </a>
+<a class="sourceLine" id="cb168-17" data-line-number="17">     <span class="dt">pch =</span> <span class="dv">20</span>,</a>
+<a class="sourceLine" id="cb168-18" data-line-number="18">     <span class="dt">cex.main =</span> <span class="fl">0.9</span>,</a>
+<a class="sourceLine" id="cb168-19" data-line-number="19">     <span class="dt">main =</span> <span class="st">&quot;Percentage qualifying for reduced price lunch&quot;</span>)</a>
+<a class="sourceLine" id="cb168-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb168-21" data-line-number="21"><span class="kw">plot</span>(score <span class="op">~</span><span class="st"> </span>calworks, </a>
+<a class="sourceLine" id="cb168-22" data-line-number="22">     <span class="dt">data =</span> CASchools, </a>
+<a class="sourceLine" id="cb168-23" data-line-number="23">     <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>, </a>
+<a class="sourceLine" id="cb168-24" data-line-number="24">     <span class="dt">pch =</span> <span class="dv">20</span>, </a>
+<a class="sourceLine" id="cb168-25" data-line-number="25">     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb168-26" data-line-number="26">     <span class="dt">cex.main =</span> <span class="fl">0.9</span>,</a>
+<a class="sourceLine" id="cb168-27" data-line-number="27">     <span class="dt">main =</span> <span class="st">&quot;Percentage qualifying for income assistance&quot;</span>)</a></code></pre></div>
+<p><img src="AdvRA_files/figure-html/unnamed-chunk-300-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>We divide the plotting area up using <tt>layout()</tt>. The matrix <tt>m</tt> specifies the location of the plots, see <code>?layout</code>.</p>
 <p>We see that all relationships are negative. Here are the correlation coefficients.</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" data-line-number="1"><span class="co"># estimate correlation between student characteristics and test scores</span></a>
-<a class="sourceLine" id="cb170-2" data-line-number="2"><span class="kw">cor</span>(CASchools<span class="op">$</span>score, CASchools<span class="op">$</span>english)</a>
-<a class="sourceLine" id="cb170-3" data-line-number="3"><span class="co">#&gt; [1] -0.6441238</span></a>
-<a class="sourceLine" id="cb170-4" data-line-number="4"><span class="kw">cor</span>(CASchools<span class="op">$</span>score, CASchools<span class="op">$</span>lunch)</a>
-<a class="sourceLine" id="cb170-5" data-line-number="5"><span class="co">#&gt; [1] -0.868772</span></a>
-<a class="sourceLine" id="cb170-6" data-line-number="6"><span class="kw">cor</span>(CASchools<span class="op">$</span>score, CASchools<span class="op">$</span>calworks)</a>
-<a class="sourceLine" id="cb170-7" data-line-number="7"><span class="co">#&gt; [1] -0.6268533</span></a></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1"><span class="co"># estimate correlation between student characteristics and test scores</span></a>
+<a class="sourceLine" id="cb169-2" data-line-number="2"><span class="kw">cor</span>(CASchools<span class="op">$</span>score, CASchools<span class="op">$</span>english)</a>
+<a class="sourceLine" id="cb169-3" data-line-number="3"><span class="co">#&gt; [1] -0.6441238</span></a>
+<a class="sourceLine" id="cb169-4" data-line-number="4"><span class="kw">cor</span>(CASchools<span class="op">$</span>score, CASchools<span class="op">$</span>lunch)</a>
+<a class="sourceLine" id="cb169-5" data-line-number="5"><span class="co">#&gt; [1] -0.868772</span></a>
+<a class="sourceLine" id="cb169-6" data-line-number="6"><span class="kw">cor</span>(CASchools<span class="op">$</span>score, CASchools<span class="op">$</span>calworks)</a>
+<a class="sourceLine" id="cb169-7" data-line-number="7"><span class="co">#&gt; [1] -0.6268533</span></a></code></pre></div>
 <p>We shall consider five different model equations:</p>
 <p><span class="math display">\[\begin{align*}
   (I) \quad TestScore=&amp; \, \beta_0 + \beta_1 \times size + u, \\
@@ -416,29 +414,29 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   (V) \quad TestScore=&amp; \, \beta_0 + \beta_1 \times size + \beta_2 \times english + \beta_3 \times lunch + \beta_4 \times calworks + u
 \end{align*}\]</span></p>
 <p>The best way to communicate regression results is in a table. The <tt>stargazer</tt> package is very convenient for this purpose. It provides a function that generates professionally looking HTML and LaTeX tables that satisfy scientific standards. One simply has to provide one or multiple object(s) of class <tt>lm</tt>. The rest is done by the function <tt>stargazer()</tt>.</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1"><span class="co"># load the stargazer library</span></a>
-<a class="sourceLine" id="cb171-2" data-line-number="2"><span class="kw">library</span>(stargazer)</a>
-<a class="sourceLine" id="cb171-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb171-4" data-line-number="4"><span class="co"># estimate different model specifications</span></a>
-<a class="sourceLine" id="cb171-5" data-line-number="5">spec1 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>size, <span class="dt">data =</span> CASchools)</a>
-<a class="sourceLine" id="cb171-6" data-line-number="6">spec2 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>size <span class="op">+</span><span class="st"> </span>english, <span class="dt">data =</span> CASchools)</a>
-<a class="sourceLine" id="cb171-7" data-line-number="7">spec3 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>size <span class="op">+</span><span class="st"> </span>english <span class="op">+</span><span class="st"> </span>lunch, <span class="dt">data =</span> CASchools)</a>
-<a class="sourceLine" id="cb171-8" data-line-number="8">spec4 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>size <span class="op">+</span><span class="st"> </span>english <span class="op">+</span><span class="st"> </span>calworks, <span class="dt">data =</span> CASchools)</a>
-<a class="sourceLine" id="cb171-9" data-line-number="9">spec5 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>size <span class="op">+</span><span class="st"> </span>english <span class="op">+</span><span class="st"> </span>lunch <span class="op">+</span><span class="st"> </span>calworks, <span class="dt">data =</span> CASchools)</a>
-<a class="sourceLine" id="cb171-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb171-11" data-line-number="11"><span class="co"># gather robust standard errors in a list</span></a>
-<a class="sourceLine" id="cb171-12" data-line-number="12">rob_se &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(spec1, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
-<a class="sourceLine" id="cb171-13" data-line-number="13">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(spec2, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
-<a class="sourceLine" id="cb171-14" data-line-number="14">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(spec3, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
-<a class="sourceLine" id="cb171-15" data-line-number="15">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(spec4, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
-<a class="sourceLine" id="cb171-16" data-line-number="16">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(spec5, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))))</a>
-<a class="sourceLine" id="cb171-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb171-18" data-line-number="18"><span class="co"># generate a LaTeX table using stargazer</span></a>
-<a class="sourceLine" id="cb171-19" data-line-number="19"><span class="kw">stargazer</span>(spec1, spec2, spec3, spec4, spec5,</a>
-<a class="sourceLine" id="cb171-20" data-line-number="20">          <span class="dt">se =</span> rob_se,</a>
-<a class="sourceLine" id="cb171-21" data-line-number="21">          <span class="dt">digits =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb171-22" data-line-number="22">          <span class="dt">header =</span> F,</a>
-<a class="sourceLine" id="cb171-23" data-line-number="23">          <span class="dt">column.labels =</span> <span class="kw">c</span>(<span class="st">&quot;(I)&quot;</span>, <span class="st">&quot;(II)&quot;</span>, <span class="st">&quot;(III)&quot;</span>, <span class="st">&quot;(IV)&quot;</span>, <span class="st">&quot;(V)&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" data-line-number="1"><span class="co"># load the stargazer library</span></a>
+<a class="sourceLine" id="cb170-2" data-line-number="2"><span class="kw">library</span>(stargazer)</a>
+<a class="sourceLine" id="cb170-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb170-4" data-line-number="4"><span class="co"># estimate different model specifications</span></a>
+<a class="sourceLine" id="cb170-5" data-line-number="5">spec1 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>size, <span class="dt">data =</span> CASchools)</a>
+<a class="sourceLine" id="cb170-6" data-line-number="6">spec2 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>size <span class="op">+</span><span class="st"> </span>english, <span class="dt">data =</span> CASchools)</a>
+<a class="sourceLine" id="cb170-7" data-line-number="7">spec3 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>size <span class="op">+</span><span class="st"> </span>english <span class="op">+</span><span class="st"> </span>lunch, <span class="dt">data =</span> CASchools)</a>
+<a class="sourceLine" id="cb170-8" data-line-number="8">spec4 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>size <span class="op">+</span><span class="st"> </span>english <span class="op">+</span><span class="st"> </span>calworks, <span class="dt">data =</span> CASchools)</a>
+<a class="sourceLine" id="cb170-9" data-line-number="9">spec5 &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>size <span class="op">+</span><span class="st"> </span>english <span class="op">+</span><span class="st"> </span>lunch <span class="op">+</span><span class="st"> </span>calworks, <span class="dt">data =</span> CASchools)</a>
+<a class="sourceLine" id="cb170-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb170-11" data-line-number="11"><span class="co"># gather robust standard errors in a list</span></a>
+<a class="sourceLine" id="cb170-12" data-line-number="12">rob_se &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(spec1, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
+<a class="sourceLine" id="cb170-13" data-line-number="13">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(spec2, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
+<a class="sourceLine" id="cb170-14" data-line-number="14">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(spec3, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
+<a class="sourceLine" id="cb170-15" data-line-number="15">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(spec4, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
+<a class="sourceLine" id="cb170-16" data-line-number="16">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(spec5, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))))</a>
+<a class="sourceLine" id="cb170-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb170-18" data-line-number="18"><span class="co"># generate a LaTeX table using stargazer</span></a>
+<a class="sourceLine" id="cb170-19" data-line-number="19"><span class="kw">stargazer</span>(spec1, spec2, spec3, spec4, spec5,</a>
+<a class="sourceLine" id="cb170-20" data-line-number="20">          <span class="dt">se =</span> rob_se,</a>
+<a class="sourceLine" id="cb170-21" data-line-number="21">          <span class="dt">digits =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb170-22" data-line-number="22">          <span class="dt">header =</span> F,</a>
+<a class="sourceLine" id="cb170-23" data-line-number="23">          <span class="dt">column.labels =</span> <span class="kw">c</span>(<span class="st">&quot;(I)&quot;</span>, <span class="st">&quot;(II)&quot;</span>, <span class="st">&quot;(III)&quot;</span>, <span class="st">&quot;(IV)&quot;</span>, <span class="st">&quot;(V)&quot;</span>))</a></code></pre></div>
 
 
 

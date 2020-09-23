@@ -135,13 +135,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><a href="https://www.example.com/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
+<li><center><a href="http://www.dliebl.com/AdvRA/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
 <li class="chapter" data-level="" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html#probability-distributions-of-discrete-random-variables"><i class="fa fa-check"></i>Probability Distributions of Discrete Random Variables</a></li>
@@ -382,45 +380,45 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="application-to-the-test-score-data" class="section level3 unnumbered">
 <h3>Application to the Test Score Data</h3>
 <p>Both measures of fit can be obtained by using the function <tt>summary()</tt> with an <tt>lm</tt> object provided as the only argument. While the function <tt>lm()</tt> only prints out the estimated coefficients to the console, <tt>summary()</tt> provides additional predefined information such as the regression’s <span class="math inline">\(R^2\)</span> and the <span class="math inline">\(SER\)</span>.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1">mod_summary &lt;-<span class="st"> </span><span class="kw">summary</span>(linear_model)</a>
-<a class="sourceLine" id="cb92-2" data-line-number="2">mod_summary</a>
-<a class="sourceLine" id="cb92-3" data-line-number="3"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb92-4" data-line-number="4"><span class="co">#&gt; Call:</span></a>
-<a class="sourceLine" id="cb92-5" data-line-number="5"><span class="co">#&gt; lm(formula = score ~ STR, data = CASchools)</span></a>
-<a class="sourceLine" id="cb92-6" data-line-number="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb92-7" data-line-number="7"><span class="co">#&gt; Residuals:</span></a>
-<a class="sourceLine" id="cb92-8" data-line-number="8"><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></a>
-<a class="sourceLine" id="cb92-9" data-line-number="9"><span class="co">#&gt; -47.727 -14.251   0.483  12.822  48.540 </span></a>
-<a class="sourceLine" id="cb92-10" data-line-number="10"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb92-11" data-line-number="11"><span class="co">#&gt; Coefficients:</span></a>
-<a class="sourceLine" id="cb92-12" data-line-number="12"><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
-<a class="sourceLine" id="cb92-13" data-line-number="13"><span class="co">#&gt; (Intercept) 698.9329     9.4675  73.825  &lt; 2e-16 ***</span></a>
-<a class="sourceLine" id="cb92-14" data-line-number="14"><span class="co">#&gt; STR          -2.2798     0.4798  -4.751 2.78e-06 ***</span></a>
-<a class="sourceLine" id="cb92-15" data-line-number="15"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb92-16" data-line-number="16"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb92-17" data-line-number="17"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb92-18" data-line-number="18"><span class="co">#&gt; Residual standard error: 18.58 on 418 degrees of freedom</span></a>
-<a class="sourceLine" id="cb92-19" data-line-number="19"><span class="co">#&gt; Multiple R-squared:  0.05124,	Adjusted R-squared:  0.04897 </span></a>
-<a class="sourceLine" id="cb92-20" data-line-number="20"><span class="co">#&gt; F-statistic: 22.58 on 1 and 418 DF,  p-value: 2.783e-06</span></a></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">mod_summary &lt;-<span class="st"> </span><span class="kw">summary</span>(linear_model)</a>
+<a class="sourceLine" id="cb91-2" data-line-number="2">mod_summary</a>
+<a class="sourceLine" id="cb91-3" data-line-number="3"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb91-4" data-line-number="4"><span class="co">#&gt; Call:</span></a>
+<a class="sourceLine" id="cb91-5" data-line-number="5"><span class="co">#&gt; lm(formula = score ~ STR, data = CASchools)</span></a>
+<a class="sourceLine" id="cb91-6" data-line-number="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb91-7" data-line-number="7"><span class="co">#&gt; Residuals:</span></a>
+<a class="sourceLine" id="cb91-8" data-line-number="8"><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></a>
+<a class="sourceLine" id="cb91-9" data-line-number="9"><span class="co">#&gt; -47.727 -14.251   0.483  12.822  48.540 </span></a>
+<a class="sourceLine" id="cb91-10" data-line-number="10"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb91-11" data-line-number="11"><span class="co">#&gt; Coefficients:</span></a>
+<a class="sourceLine" id="cb91-12" data-line-number="12"><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb91-13" data-line-number="13"><span class="co">#&gt; (Intercept) 698.9329     9.4675  73.825  &lt; 2e-16 ***</span></a>
+<a class="sourceLine" id="cb91-14" data-line-number="14"><span class="co">#&gt; STR          -2.2798     0.4798  -4.751 2.78e-06 ***</span></a>
+<a class="sourceLine" id="cb91-15" data-line-number="15"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb91-16" data-line-number="16"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb91-17" data-line-number="17"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb91-18" data-line-number="18"><span class="co">#&gt; Residual standard error: 18.58 on 418 degrees of freedom</span></a>
+<a class="sourceLine" id="cb91-19" data-line-number="19"><span class="co">#&gt; Multiple R-squared:  0.05124,	Adjusted R-squared:  0.04897 </span></a>
+<a class="sourceLine" id="cb91-20" data-line-number="20"><span class="co">#&gt; F-statistic: 22.58 on 1 and 418 DF,  p-value: 2.783e-06</span></a></code></pre></div>
 <p>The <span class="math inline">\(R^2\)</span> in the output is called <em>Multiple R-squared</em> and has a value of <span class="math inline">\(0.051\)</span>. Hence, <span class="math inline">\(5.1 \%\)</span> of the variance of the dependent variable <span class="math inline">\(score\)</span> is explained by the explanatory variable <span class="math inline">\(STR\)</span>. That is, the regression explains little of the variance in <span class="math inline">\(score\)</span>, and much of the variation in test scores remains unexplained (cf. Figure 4.3 of the book).</p>
 <p>The <span class="math inline">\(SER\)</span> is called <em>Residual standard error</em> and equals <span class="math inline">\(18.58\)</span>. The unit of the <span class="math inline">\(SER\)</span> is the same as the unit of the dependent variable. That is, on average the deviation of the actual achieved test score and the regression line is <span class="math inline">\(18.58\)</span> points.</p>
 <p>Now, let us check whether <tt>summary()</tt> uses the same definitions for <span class="math inline">\(R^2\)</span> and <span class="math inline">\(SER\)</span> as we do when computing them manually.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="co"># compute R^2 manually</span></a>
-<a class="sourceLine" id="cb93-2" data-line-number="2">SSR &lt;-<span class="st"> </span><span class="kw">sum</span>(mod_summary<span class="op">$</span>residuals<span class="op">^</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb93-3" data-line-number="3">TSS &lt;-<span class="st"> </span><span class="kw">sum</span>((score <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(score))<span class="op">^</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb93-4" data-line-number="4">R2 &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>SSR<span class="op">/</span>TSS</a>
-<a class="sourceLine" id="cb93-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb93-6" data-line-number="6"><span class="co"># print the value to the console</span></a>
-<a class="sourceLine" id="cb93-7" data-line-number="7">R2</a>
-<a class="sourceLine" id="cb93-8" data-line-number="8"><span class="co">#&gt; [1] 0.05124009</span></a>
-<a class="sourceLine" id="cb93-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb93-10" data-line-number="10"><span class="co"># compute SER manually</span></a>
-<a class="sourceLine" id="cb93-11" data-line-number="11">n &lt;-<span class="st"> </span><span class="kw">nrow</span>(CASchools)</a>
-<a class="sourceLine" id="cb93-12" data-line-number="12">SER &lt;-<span class="st"> </span><span class="kw">sqrt</span>(SSR <span class="op">/</span><span class="st"> </span>(n<span class="dv">-2</span>))</a>
-<a class="sourceLine" id="cb93-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb93-14" data-line-number="14"><span class="co"># print the value to the console</span></a>
-<a class="sourceLine" id="cb93-15" data-line-number="15">SER</a>
-<a class="sourceLine" id="cb93-16" data-line-number="16"><span class="co">#&gt; [1] 18.58097</span></a></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1"><span class="co"># compute R^2 manually</span></a>
+<a class="sourceLine" id="cb92-2" data-line-number="2">SSR &lt;-<span class="st"> </span><span class="kw">sum</span>(mod_summary<span class="op">$</span>residuals<span class="op">^</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb92-3" data-line-number="3">TSS &lt;-<span class="st"> </span><span class="kw">sum</span>((score <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(score))<span class="op">^</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb92-4" data-line-number="4">R2 &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>SSR<span class="op">/</span>TSS</a>
+<a class="sourceLine" id="cb92-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb92-6" data-line-number="6"><span class="co"># print the value to the console</span></a>
+<a class="sourceLine" id="cb92-7" data-line-number="7">R2</a>
+<a class="sourceLine" id="cb92-8" data-line-number="8"><span class="co">#&gt; [1] 0.05124009</span></a>
+<a class="sourceLine" id="cb92-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb92-10" data-line-number="10"><span class="co"># compute SER manually</span></a>
+<a class="sourceLine" id="cb92-11" data-line-number="11">n &lt;-<span class="st"> </span><span class="kw">nrow</span>(CASchools)</a>
+<a class="sourceLine" id="cb92-12" data-line-number="12">SER &lt;-<span class="st"> </span><span class="kw">sqrt</span>(SSR <span class="op">/</span><span class="st"> </span>(n<span class="dv">-2</span>))</a>
+<a class="sourceLine" id="cb92-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb92-14" data-line-number="14"><span class="co"># print the value to the console</span></a>
+<a class="sourceLine" id="cb92-15" data-line-number="15">SER</a>
+<a class="sourceLine" id="cb92-16" data-line-number="16"><span class="co">#&gt; [1] 18.58097</span></a></code></pre></div>
 <p>We find that the results coincide. Note that the values provided by <tt>summary()</tt> are rounded to two decimal places.</p>
 </div>
 </div>

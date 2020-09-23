@@ -135,13 +135,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><a href="https://www.example.com/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
+<li><center><a href="http://www.dliebl.com/AdvRA/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
 <li class="chapter" data-level="" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html#probability-distributions-of-discrete-random-variables"><i class="fa fa-check"></i>Probability Distributions of Discrete Random Variables</a></li>
@@ -369,82 +367,82 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><tt>punish</tt>: a dummy variable with levels <tt>yes</tt> and <tt>no</tt> that measures if drunk driving is severely punished by mandatory jail time or mandatory community service (first conviction).</li>
 </ul>
 <p>At first, we define the variables according to the regression results presented in Table 10.1 of the book.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1"><span class="co"># discretize the minimum legal drinking age</span></a>
-<a class="sourceLine" id="cb254-2" data-line-number="2">Fatalities<span class="op">$</span>drinkagec &lt;-<span class="st"> </span><span class="kw">cut</span>(Fatalities<span class="op">$</span>drinkage,</a>
-<a class="sourceLine" id="cb254-3" data-line-number="3">                            <span class="dt">breaks =</span> <span class="dv">18</span><span class="op">:</span><span class="dv">22</span>, </a>
-<a class="sourceLine" id="cb254-4" data-line-number="4">                            <span class="dt">include.lowest =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb254-5" data-line-number="5">                            <span class="dt">right =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb254-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb254-7" data-line-number="7"><span class="co"># set minimum drinking age [21, 22] to be the baseline level</span></a>
-<a class="sourceLine" id="cb254-8" data-line-number="8">Fatalities<span class="op">$</span>drinkagec &lt;-<span class="st"> </span><span class="kw">relevel</span>(Fatalities<span class="op">$</span>drinkagec, <span class="st">&quot;[21,22]&quot;</span>)</a>
-<a class="sourceLine" id="cb254-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb254-10" data-line-number="10"><span class="co"># mandadory jail or community service?</span></a>
-<a class="sourceLine" id="cb254-11" data-line-number="11">Fatalities<span class="op">$</span>punish &lt;-<span class="st"> </span><span class="kw">with</span>(Fatalities, <span class="kw">factor</span>(jail <span class="op">==</span><span class="st"> &quot;yes&quot;</span> <span class="op">|</span><span class="st"> </span>service <span class="op">==</span><span class="st"> &quot;yes&quot;</span>, </a>
-<a class="sourceLine" id="cb254-12" data-line-number="12">                                             <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;no&quot;</span>, <span class="st">&quot;yes&quot;</span>)))</a>
-<a class="sourceLine" id="cb254-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb254-14" data-line-number="14"><span class="co"># the set of observations on all variables for 1982 and 1988</span></a>
-<a class="sourceLine" id="cb254-15" data-line-number="15">Fatalities_<span class="dv">1982</span>_<span class="dv">1988</span> &lt;-<span class="st"> </span>Fatalities[<span class="kw">with</span>(Fatalities, year <span class="op">==</span><span class="st"> </span><span class="dv">1982</span> <span class="op">|</span><span class="st"> </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1988</span>), ]</a></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" data-line-number="1"><span class="co"># discretize the minimum legal drinking age</span></a>
+<a class="sourceLine" id="cb253-2" data-line-number="2">Fatalities<span class="op">$</span>drinkagec &lt;-<span class="st"> </span><span class="kw">cut</span>(Fatalities<span class="op">$</span>drinkage,</a>
+<a class="sourceLine" id="cb253-3" data-line-number="3">                            <span class="dt">breaks =</span> <span class="dv">18</span><span class="op">:</span><span class="dv">22</span>, </a>
+<a class="sourceLine" id="cb253-4" data-line-number="4">                            <span class="dt">include.lowest =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb253-5" data-line-number="5">                            <span class="dt">right =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb253-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb253-7" data-line-number="7"><span class="co"># set minimum drinking age [21, 22] to be the baseline level</span></a>
+<a class="sourceLine" id="cb253-8" data-line-number="8">Fatalities<span class="op">$</span>drinkagec &lt;-<span class="st"> </span><span class="kw">relevel</span>(Fatalities<span class="op">$</span>drinkagec, <span class="st">&quot;[21,22]&quot;</span>)</a>
+<a class="sourceLine" id="cb253-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb253-10" data-line-number="10"><span class="co"># mandadory jail or community service?</span></a>
+<a class="sourceLine" id="cb253-11" data-line-number="11">Fatalities<span class="op">$</span>punish &lt;-<span class="st"> </span><span class="kw">with</span>(Fatalities, <span class="kw">factor</span>(jail <span class="op">==</span><span class="st"> &quot;yes&quot;</span> <span class="op">|</span><span class="st"> </span>service <span class="op">==</span><span class="st"> &quot;yes&quot;</span>, </a>
+<a class="sourceLine" id="cb253-12" data-line-number="12">                                             <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;no&quot;</span>, <span class="st">&quot;yes&quot;</span>)))</a>
+<a class="sourceLine" id="cb253-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb253-14" data-line-number="14"><span class="co"># the set of observations on all variables for 1982 and 1988</span></a>
+<a class="sourceLine" id="cb253-15" data-line-number="15">Fatalities_<span class="dv">1982</span>_<span class="dv">1988</span> &lt;-<span class="st"> </span>Fatalities[<span class="kw">with</span>(Fatalities, year <span class="op">==</span><span class="st"> </span><span class="dv">1982</span> <span class="op">|</span><span class="st"> </span>year <span class="op">==</span><span class="st"> </span><span class="dv">1988</span>), ]</a></code></pre></div>
 <p>Next, we estimate all seven models using <tt>plm()</tt>.</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" data-line-number="1"><span class="co"># estimate all seven models</span></a>
-<a class="sourceLine" id="cb255-2" data-line-number="2">fatalities_mod1 &lt;-<span class="st"> </span><span class="kw">lm</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax, <span class="dt">data =</span> Fatalities)</a>
-<a class="sourceLine" id="cb255-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb255-4" data-line-number="4">fatalities_mod2 &lt;-<span class="st"> </span><span class="kw">plm</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax <span class="op">+</span><span class="st"> </span>state, <span class="dt">data =</span> Fatalities)</a>
-<a class="sourceLine" id="cb255-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb255-6" data-line-number="6">fatalities_mod3 &lt;-<span class="st"> </span><span class="kw">plm</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax <span class="op">+</span><span class="st"> </span>state <span class="op">+</span><span class="st"> </span>year,</a>
-<a class="sourceLine" id="cb255-7" data-line-number="7">                       <span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;state&quot;</span>,<span class="st">&quot;year&quot;</span>),</a>
-<a class="sourceLine" id="cb255-8" data-line-number="8">                       <span class="dt">model =</span> <span class="st">&quot;within&quot;</span>,</a>
-<a class="sourceLine" id="cb255-9" data-line-number="9">                       <span class="dt">effect =</span> <span class="st">&quot;twoways&quot;</span>, </a>
-<a class="sourceLine" id="cb255-10" data-line-number="10">                       <span class="dt">data =</span> Fatalities)</a>
-<a class="sourceLine" id="cb255-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb255-12" data-line-number="12">fatalities_mod4 &lt;-<span class="st"> </span><span class="kw">plm</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax <span class="op">+</span><span class="st"> </span>state <span class="op">+</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>drinkagec </a>
-<a class="sourceLine" id="cb255-13" data-line-number="13">                       <span class="op">+</span><span class="st"> </span>punish <span class="op">+</span><span class="st"> </span>miles <span class="op">+</span><span class="st"> </span>unemp <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(income), </a>
-<a class="sourceLine" id="cb255-14" data-line-number="14">                       <span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;year&quot;</span>),</a>
-<a class="sourceLine" id="cb255-15" data-line-number="15">                       <span class="dt">model =</span> <span class="st">&quot;within&quot;</span>,</a>
-<a class="sourceLine" id="cb255-16" data-line-number="16">                       <span class="dt">effect =</span> <span class="st">&quot;twoways&quot;</span>,</a>
-<a class="sourceLine" id="cb255-17" data-line-number="17">                       <span class="dt">data =</span> Fatalities)</a>
-<a class="sourceLine" id="cb255-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb255-19" data-line-number="19">fatalities_mod5 &lt;-<span class="st"> </span><span class="kw">plm</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax <span class="op">+</span><span class="st"> </span>state <span class="op">+</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>drinkagec </a>
-<a class="sourceLine" id="cb255-20" data-line-number="20">                       <span class="op">+</span><span class="st"> </span>punish <span class="op">+</span><span class="st"> </span>miles,</a>
-<a class="sourceLine" id="cb255-21" data-line-number="21">                       <span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;year&quot;</span>),</a>
-<a class="sourceLine" id="cb255-22" data-line-number="22">                       <span class="dt">model =</span> <span class="st">&quot;within&quot;</span>,</a>
-<a class="sourceLine" id="cb255-23" data-line-number="23">                       <span class="dt">effect =</span> <span class="st">&quot;twoways&quot;</span>,</a>
-<a class="sourceLine" id="cb255-24" data-line-number="24">                       <span class="dt">data =</span> Fatalities)</a>
-<a class="sourceLine" id="cb255-25" data-line-number="25"></a>
-<a class="sourceLine" id="cb255-26" data-line-number="26">fatalities_mod6 &lt;-<span class="st"> </span><span class="kw">plm</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax <span class="op">+</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>drinkage </a>
-<a class="sourceLine" id="cb255-27" data-line-number="27">                       <span class="op">+</span><span class="st"> </span>punish <span class="op">+</span><span class="st"> </span>miles <span class="op">+</span><span class="st"> </span>unemp <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(income), </a>
-<a class="sourceLine" id="cb255-28" data-line-number="28">                       <span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;year&quot;</span>),</a>
-<a class="sourceLine" id="cb255-29" data-line-number="29">                       <span class="dt">model =</span> <span class="st">&quot;within&quot;</span>,</a>
-<a class="sourceLine" id="cb255-30" data-line-number="30">                       <span class="dt">effect =</span> <span class="st">&quot;twoways&quot;</span>,</a>
-<a class="sourceLine" id="cb255-31" data-line-number="31">                       <span class="dt">data =</span> Fatalities)</a>
-<a class="sourceLine" id="cb255-32" data-line-number="32"></a>
-<a class="sourceLine" id="cb255-33" data-line-number="33">fatalities_mod7 &lt;-<span class="st"> </span><span class="kw">plm</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax <span class="op">+</span><span class="st"> </span>state <span class="op">+</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>drinkagec </a>
-<a class="sourceLine" id="cb255-34" data-line-number="34">                       <span class="op">+</span><span class="st"> </span>punish <span class="op">+</span><span class="st"> </span>miles <span class="op">+</span><span class="st"> </span>unemp <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(income), </a>
-<a class="sourceLine" id="cb255-35" data-line-number="35">                       <span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;year&quot;</span>),</a>
-<a class="sourceLine" id="cb255-36" data-line-number="36">                       <span class="dt">model =</span> <span class="st">&quot;within&quot;</span>,</a>
-<a class="sourceLine" id="cb255-37" data-line-number="37">                       <span class="dt">effect =</span> <span class="st">&quot;twoways&quot;</span>,</a>
-<a class="sourceLine" id="cb255-38" data-line-number="38">                       <span class="dt">data =</span> Fatalities_<span class="dv">1982</span>_<span class="dv">1988</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1"><span class="co"># estimate all seven models</span></a>
+<a class="sourceLine" id="cb254-2" data-line-number="2">fatalities_mod1 &lt;-<span class="st"> </span><span class="kw">lm</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax, <span class="dt">data =</span> Fatalities)</a>
+<a class="sourceLine" id="cb254-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb254-4" data-line-number="4">fatalities_mod2 &lt;-<span class="st"> </span><span class="kw">plm</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax <span class="op">+</span><span class="st"> </span>state, <span class="dt">data =</span> Fatalities)</a>
+<a class="sourceLine" id="cb254-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb254-6" data-line-number="6">fatalities_mod3 &lt;-<span class="st"> </span><span class="kw">plm</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax <span class="op">+</span><span class="st"> </span>state <span class="op">+</span><span class="st"> </span>year,</a>
+<a class="sourceLine" id="cb254-7" data-line-number="7">                       <span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;state&quot;</span>,<span class="st">&quot;year&quot;</span>),</a>
+<a class="sourceLine" id="cb254-8" data-line-number="8">                       <span class="dt">model =</span> <span class="st">&quot;within&quot;</span>,</a>
+<a class="sourceLine" id="cb254-9" data-line-number="9">                       <span class="dt">effect =</span> <span class="st">&quot;twoways&quot;</span>, </a>
+<a class="sourceLine" id="cb254-10" data-line-number="10">                       <span class="dt">data =</span> Fatalities)</a>
+<a class="sourceLine" id="cb254-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb254-12" data-line-number="12">fatalities_mod4 &lt;-<span class="st"> </span><span class="kw">plm</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax <span class="op">+</span><span class="st"> </span>state <span class="op">+</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>drinkagec </a>
+<a class="sourceLine" id="cb254-13" data-line-number="13">                       <span class="op">+</span><span class="st"> </span>punish <span class="op">+</span><span class="st"> </span>miles <span class="op">+</span><span class="st"> </span>unemp <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(income), </a>
+<a class="sourceLine" id="cb254-14" data-line-number="14">                       <span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;year&quot;</span>),</a>
+<a class="sourceLine" id="cb254-15" data-line-number="15">                       <span class="dt">model =</span> <span class="st">&quot;within&quot;</span>,</a>
+<a class="sourceLine" id="cb254-16" data-line-number="16">                       <span class="dt">effect =</span> <span class="st">&quot;twoways&quot;</span>,</a>
+<a class="sourceLine" id="cb254-17" data-line-number="17">                       <span class="dt">data =</span> Fatalities)</a>
+<a class="sourceLine" id="cb254-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb254-19" data-line-number="19">fatalities_mod5 &lt;-<span class="st"> </span><span class="kw">plm</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax <span class="op">+</span><span class="st"> </span>state <span class="op">+</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>drinkagec </a>
+<a class="sourceLine" id="cb254-20" data-line-number="20">                       <span class="op">+</span><span class="st"> </span>punish <span class="op">+</span><span class="st"> </span>miles,</a>
+<a class="sourceLine" id="cb254-21" data-line-number="21">                       <span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;year&quot;</span>),</a>
+<a class="sourceLine" id="cb254-22" data-line-number="22">                       <span class="dt">model =</span> <span class="st">&quot;within&quot;</span>,</a>
+<a class="sourceLine" id="cb254-23" data-line-number="23">                       <span class="dt">effect =</span> <span class="st">&quot;twoways&quot;</span>,</a>
+<a class="sourceLine" id="cb254-24" data-line-number="24">                       <span class="dt">data =</span> Fatalities)</a>
+<a class="sourceLine" id="cb254-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb254-26" data-line-number="26">fatalities_mod6 &lt;-<span class="st"> </span><span class="kw">plm</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax <span class="op">+</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>drinkage </a>
+<a class="sourceLine" id="cb254-27" data-line-number="27">                       <span class="op">+</span><span class="st"> </span>punish <span class="op">+</span><span class="st"> </span>miles <span class="op">+</span><span class="st"> </span>unemp <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(income), </a>
+<a class="sourceLine" id="cb254-28" data-line-number="28">                       <span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;year&quot;</span>),</a>
+<a class="sourceLine" id="cb254-29" data-line-number="29">                       <span class="dt">model =</span> <span class="st">&quot;within&quot;</span>,</a>
+<a class="sourceLine" id="cb254-30" data-line-number="30">                       <span class="dt">effect =</span> <span class="st">&quot;twoways&quot;</span>,</a>
+<a class="sourceLine" id="cb254-31" data-line-number="31">                       <span class="dt">data =</span> Fatalities)</a>
+<a class="sourceLine" id="cb254-32" data-line-number="32"></a>
+<a class="sourceLine" id="cb254-33" data-line-number="33">fatalities_mod7 &lt;-<span class="st"> </span><span class="kw">plm</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax <span class="op">+</span><span class="st"> </span>state <span class="op">+</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>drinkagec </a>
+<a class="sourceLine" id="cb254-34" data-line-number="34">                       <span class="op">+</span><span class="st"> </span>punish <span class="op">+</span><span class="st"> </span>miles <span class="op">+</span><span class="st"> </span>unemp <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(income), </a>
+<a class="sourceLine" id="cb254-35" data-line-number="35">                       <span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;year&quot;</span>),</a>
+<a class="sourceLine" id="cb254-36" data-line-number="36">                       <span class="dt">model =</span> <span class="st">&quot;within&quot;</span>,</a>
+<a class="sourceLine" id="cb254-37" data-line-number="37">                       <span class="dt">effect =</span> <span class="st">&quot;twoways&quot;</span>,</a>
+<a class="sourceLine" id="cb254-38" data-line-number="38">                       <span class="dt">data =</span> Fatalities_<span class="dv">1982</span>_<span class="dv">1988</span>)</a></code></pre></div>
 <p>We again use <tt>stargazer()</tt> <span class="citation">(Hlavac <a href="#ref-R-stargazer">2018</a>)</span> to generate a comprehensive tabular presentation of the results.</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1"><span class="kw">library</span>(stargazer)</a>
-<a class="sourceLine" id="cb256-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb256-3" data-line-number="3"><span class="co"># gather clustered standard errors in a list</span></a>
-<a class="sourceLine" id="cb256-4" data-line-number="4">rob_se &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(fatalities_mod1, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
-<a class="sourceLine" id="cb256-5" data-line-number="5">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(fatalities_mod2, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
-<a class="sourceLine" id="cb256-6" data-line-number="6">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(fatalities_mod3, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
-<a class="sourceLine" id="cb256-7" data-line-number="7">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(fatalities_mod4, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
-<a class="sourceLine" id="cb256-8" data-line-number="8">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(fatalities_mod5, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
-<a class="sourceLine" id="cb256-9" data-line-number="9">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(fatalities_mod6, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
-<a class="sourceLine" id="cb256-10" data-line-number="10">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(fatalities_mod7, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))))</a>
-<a class="sourceLine" id="cb256-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb256-12" data-line-number="12"><span class="co"># generate the table</span></a>
-<a class="sourceLine" id="cb256-13" data-line-number="13"><span class="kw">stargazer</span>(fatalities_mod1, fatalities_mod2, fatalities_mod3, </a>
-<a class="sourceLine" id="cb256-14" data-line-number="14">          fatalities_mod4, fatalities_mod5, fatalities_mod6, fatalities_mod7, </a>
-<a class="sourceLine" id="cb256-15" data-line-number="15">          <span class="dt">digits =</span> <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb256-16" data-line-number="16">          <span class="dt">header =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb256-17" data-line-number="17">          <span class="dt">type =</span> <span class="st">&quot;latex&quot;</span>, </a>
-<a class="sourceLine" id="cb256-18" data-line-number="18">          <span class="dt">se =</span> rob_se,</a>
-<a class="sourceLine" id="cb256-19" data-line-number="19">          <span class="dt">title =</span> <span class="st">&quot;Linear Panel Regression Models of Traffic Fatalities due to Drunk Driving&quot;</span>,</a>
-<a class="sourceLine" id="cb256-20" data-line-number="20">          <span class="dt">model.numbers =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb256-21" data-line-number="21">          <span class="dt">column.labels =</span> <span class="kw">c</span>(<span class="st">&quot;(1)&quot;</span>, <span class="st">&quot;(2)&quot;</span>, <span class="st">&quot;(3)&quot;</span>, <span class="st">&quot;(4)&quot;</span>, <span class="st">&quot;(5)&quot;</span>, <span class="st">&quot;(6)&quot;</span>, <span class="st">&quot;(7)&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" data-line-number="1"><span class="kw">library</span>(stargazer)</a>
+<a class="sourceLine" id="cb255-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb255-3" data-line-number="3"><span class="co"># gather clustered standard errors in a list</span></a>
+<a class="sourceLine" id="cb255-4" data-line-number="4">rob_se &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(fatalities_mod1, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
+<a class="sourceLine" id="cb255-5" data-line-number="5">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(fatalities_mod2, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
+<a class="sourceLine" id="cb255-6" data-line-number="6">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(fatalities_mod3, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
+<a class="sourceLine" id="cb255-7" data-line-number="7">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(fatalities_mod4, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
+<a class="sourceLine" id="cb255-8" data-line-number="8">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(fatalities_mod5, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
+<a class="sourceLine" id="cb255-9" data-line-number="9">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(fatalities_mod6, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))),</a>
+<a class="sourceLine" id="cb255-10" data-line-number="10">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">vcovHC</span>(fatalities_mod7, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>))))</a>
+<a class="sourceLine" id="cb255-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb255-12" data-line-number="12"><span class="co"># generate the table</span></a>
+<a class="sourceLine" id="cb255-13" data-line-number="13"><span class="kw">stargazer</span>(fatalities_mod1, fatalities_mod2, fatalities_mod3, </a>
+<a class="sourceLine" id="cb255-14" data-line-number="14">          fatalities_mod4, fatalities_mod5, fatalities_mod6, fatalities_mod7, </a>
+<a class="sourceLine" id="cb255-15" data-line-number="15">          <span class="dt">digits =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb255-16" data-line-number="16">          <span class="dt">header =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb255-17" data-line-number="17">          <span class="dt">type =</span> <span class="st">&quot;latex&quot;</span>, </a>
+<a class="sourceLine" id="cb255-18" data-line-number="18">          <span class="dt">se =</span> rob_se,</a>
+<a class="sourceLine" id="cb255-19" data-line-number="19">          <span class="dt">title =</span> <span class="st">&quot;Linear Panel Regression Models of Traffic Fatalities due to Drunk Driving&quot;</span>,</a>
+<a class="sourceLine" id="cb255-20" data-line-number="20">          <span class="dt">model.numbers =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb255-21" data-line-number="21">          <span class="dt">column.labels =</span> <span class="kw">c</span>(<span class="st">&quot;(1)&quot;</span>, <span class="st">&quot;(2)&quot;</span>, <span class="st">&quot;(3)&quot;</span>, <span class="st">&quot;(4)&quot;</span>, <span class="st">&quot;(5)&quot;</span>, <span class="st">&quot;(6)&quot;</span>, <span class="st">&quot;(7)&quot;</span>))</a></code></pre></div>
 
 
 
@@ -500,53 +498,53 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Including the covariates does not lead to a major reduction of the estimated effect of the beer tax. The coefficient is not significantly different from zero at the level of <span class="math inline">\(5\%\)</span> as the estimate is rather imprecise.</p></li>
 <li><p>The minimum legal drinking age <em>does not</em> have an effect on traffic fatalities: none of the three dummy variables are significantly different from zero at any common level of significance. Moreover, an <span class="math inline">\(F\)</span>-Test of the joint hypothesis that all three coefficients are zero does not reject. The next code chunk shows how to test this hypothesis.</p></li>
 </ol>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1"><span class="co"># test if legal drinking age has no explanatory power</span></a>
-<a class="sourceLine" id="cb257-2" data-line-number="2"><span class="kw">linearHypothesis</span>(fatalities_mod4,</a>
-<a class="sourceLine" id="cb257-3" data-line-number="3">                 <span class="dt">test =</span> <span class="st">&quot;F&quot;</span>,</a>
-<a class="sourceLine" id="cb257-4" data-line-number="4">                 <span class="kw">c</span>(<span class="st">&quot;drinkagec[18,19)=0&quot;</span>, <span class="st">&quot;drinkagec[19,20)=0&quot;</span>, <span class="st">&quot;drinkagec[20,21)&quot;</span>), </a>
-<a class="sourceLine" id="cb257-5" data-line-number="5">                 <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
-<a class="sourceLine" id="cb257-6" data-line-number="6"><span class="co">#&gt; Linear hypothesis test</span></a>
-<a class="sourceLine" id="cb257-7" data-line-number="7"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb257-8" data-line-number="8"><span class="co">#&gt; Hypothesis:</span></a>
-<a class="sourceLine" id="cb257-9" data-line-number="9"><span class="co">#&gt; drinkagec[18,19) = 0</span></a>
-<a class="sourceLine" id="cb257-10" data-line-number="10"><span class="co">#&gt; drinkagec[19,20) = 0</span></a>
-<a class="sourceLine" id="cb257-11" data-line-number="11"><span class="co">#&gt; drinkagec[20,21) = 0</span></a>
-<a class="sourceLine" id="cb257-12" data-line-number="12"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb257-13" data-line-number="13"><span class="co">#&gt; Model 1: restricted model</span></a>
-<a class="sourceLine" id="cb257-14" data-line-number="14"><span class="co">#&gt; Model 2: fatal_rate ~ beertax + state + year + drinkagec + punish + miles + </span></a>
-<a class="sourceLine" id="cb257-15" data-line-number="15"><span class="co">#&gt;     unemp + log(income)</span></a>
-<a class="sourceLine" id="cb257-16" data-line-number="16"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb257-17" data-line-number="17"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
-<a class="sourceLine" id="cb257-18" data-line-number="18"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb257-19" data-line-number="19"><span class="co">#&gt;   Res.Df Df      F Pr(&gt;F)</span></a>
-<a class="sourceLine" id="cb257-20" data-line-number="20"><span class="co">#&gt; 1    276                 </span></a>
-<a class="sourceLine" id="cb257-21" data-line-number="21"><span class="co">#&gt; 2    273  3 0.3782 0.7688</span></a></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1"><span class="co"># test if legal drinking age has no explanatory power</span></a>
+<a class="sourceLine" id="cb256-2" data-line-number="2"><span class="kw">linearHypothesis</span>(fatalities_mod4,</a>
+<a class="sourceLine" id="cb256-3" data-line-number="3">                 <span class="dt">test =</span> <span class="st">&quot;F&quot;</span>,</a>
+<a class="sourceLine" id="cb256-4" data-line-number="4">                 <span class="kw">c</span>(<span class="st">&quot;drinkagec[18,19)=0&quot;</span>, <span class="st">&quot;drinkagec[19,20)=0&quot;</span>, <span class="st">&quot;drinkagec[20,21)&quot;</span>), </a>
+<a class="sourceLine" id="cb256-5" data-line-number="5">                 <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
+<a class="sourceLine" id="cb256-6" data-line-number="6"><span class="co">#&gt; Linear hypothesis test</span></a>
+<a class="sourceLine" id="cb256-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb256-8" data-line-number="8"><span class="co">#&gt; Hypothesis:</span></a>
+<a class="sourceLine" id="cb256-9" data-line-number="9"><span class="co">#&gt; drinkagec[18,19) = 0</span></a>
+<a class="sourceLine" id="cb256-10" data-line-number="10"><span class="co">#&gt; drinkagec[19,20) = 0</span></a>
+<a class="sourceLine" id="cb256-11" data-line-number="11"><span class="co">#&gt; drinkagec[20,21) = 0</span></a>
+<a class="sourceLine" id="cb256-12" data-line-number="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb256-13" data-line-number="13"><span class="co">#&gt; Model 1: restricted model</span></a>
+<a class="sourceLine" id="cb256-14" data-line-number="14"><span class="co">#&gt; Model 2: fatal_rate ~ beertax + state + year + drinkagec + punish + miles + </span></a>
+<a class="sourceLine" id="cb256-15" data-line-number="15"><span class="co">#&gt;     unemp + log(income)</span></a>
+<a class="sourceLine" id="cb256-16" data-line-number="16"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb256-17" data-line-number="17"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
+<a class="sourceLine" id="cb256-18" data-line-number="18"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb256-19" data-line-number="19"><span class="co">#&gt;   Res.Df Df      F Pr(&gt;F)</span></a>
+<a class="sourceLine" id="cb256-20" data-line-number="20"><span class="co">#&gt; 1    276                 </span></a>
+<a class="sourceLine" id="cb256-21" data-line-number="21"><span class="co">#&gt; 2    273  3 0.3782 0.7688</span></a></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li><p>There is no evidence that punishment for first offenders has a deterring effects on drunk driving: the corresponding coefficient is not significant at the <span class="math inline">\(10\%\)</span> level.</p></li>
 <li><p>The economic variables significantly explain traffic fatalities. We can check that the employment rate and per capita income are jointly significant at the level of <span class="math inline">\(0.1\%\)</span>.</p></li>
 </ol>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1"><span class="co"># test if economic indicators have no explanatory power</span></a>
-<a class="sourceLine" id="cb258-2" data-line-number="2"><span class="kw">linearHypothesis</span>(fatalities_mod4, </a>
-<a class="sourceLine" id="cb258-3" data-line-number="3">                 <span class="dt">test =</span> <span class="st">&quot;F&quot;</span>,</a>
-<a class="sourceLine" id="cb258-4" data-line-number="4">                 <span class="kw">c</span>(<span class="st">&quot;log(income)&quot;</span>, <span class="st">&quot;unemp&quot;</span>), </a>
-<a class="sourceLine" id="cb258-5" data-line-number="5">                 <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
-<a class="sourceLine" id="cb258-6" data-line-number="6"><span class="co">#&gt; Linear hypothesis test</span></a>
-<a class="sourceLine" id="cb258-7" data-line-number="7"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb258-8" data-line-number="8"><span class="co">#&gt; Hypothesis:</span></a>
-<a class="sourceLine" id="cb258-9" data-line-number="9"><span class="co">#&gt; log(income) = 0</span></a>
-<a class="sourceLine" id="cb258-10" data-line-number="10"><span class="co">#&gt; unemp = 0</span></a>
-<a class="sourceLine" id="cb258-11" data-line-number="11"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb258-12" data-line-number="12"><span class="co">#&gt; Model 1: restricted model</span></a>
-<a class="sourceLine" id="cb258-13" data-line-number="13"><span class="co">#&gt; Model 2: fatal_rate ~ beertax + state + year + drinkagec + punish + miles + </span></a>
-<a class="sourceLine" id="cb258-14" data-line-number="14"><span class="co">#&gt;     unemp + log(income)</span></a>
-<a class="sourceLine" id="cb258-15" data-line-number="15"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb258-16" data-line-number="16"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
-<a class="sourceLine" id="cb258-17" data-line-number="17"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb258-18" data-line-number="18"><span class="co">#&gt;   Res.Df Df      F    Pr(&gt;F)    </span></a>
-<a class="sourceLine" id="cb258-19" data-line-number="19"><span class="co">#&gt; 1    275                        </span></a>
-<a class="sourceLine" id="cb258-20" data-line-number="20"><span class="co">#&gt; 2    273  2 31.577 4.609e-13 ***</span></a>
-<a class="sourceLine" id="cb258-21" data-line-number="21"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb258-22" data-line-number="22"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1"><span class="co"># test if economic indicators have no explanatory power</span></a>
+<a class="sourceLine" id="cb257-2" data-line-number="2"><span class="kw">linearHypothesis</span>(fatalities_mod4, </a>
+<a class="sourceLine" id="cb257-3" data-line-number="3">                 <span class="dt">test =</span> <span class="st">&quot;F&quot;</span>,</a>
+<a class="sourceLine" id="cb257-4" data-line-number="4">                 <span class="kw">c</span>(<span class="st">&quot;log(income)&quot;</span>, <span class="st">&quot;unemp&quot;</span>), </a>
+<a class="sourceLine" id="cb257-5" data-line-number="5">                 <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
+<a class="sourceLine" id="cb257-6" data-line-number="6"><span class="co">#&gt; Linear hypothesis test</span></a>
+<a class="sourceLine" id="cb257-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb257-8" data-line-number="8"><span class="co">#&gt; Hypothesis:</span></a>
+<a class="sourceLine" id="cb257-9" data-line-number="9"><span class="co">#&gt; log(income) = 0</span></a>
+<a class="sourceLine" id="cb257-10" data-line-number="10"><span class="co">#&gt; unemp = 0</span></a>
+<a class="sourceLine" id="cb257-11" data-line-number="11"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb257-12" data-line-number="12"><span class="co">#&gt; Model 1: restricted model</span></a>
+<a class="sourceLine" id="cb257-13" data-line-number="13"><span class="co">#&gt; Model 2: fatal_rate ~ beertax + state + year + drinkagec + punish + miles + </span></a>
+<a class="sourceLine" id="cb257-14" data-line-number="14"><span class="co">#&gt;     unemp + log(income)</span></a>
+<a class="sourceLine" id="cb257-15" data-line-number="15"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb257-16" data-line-number="16"><span class="co">#&gt; Note: Coefficient covariance matrix supplied.</span></a>
+<a class="sourceLine" id="cb257-17" data-line-number="17"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb257-18" data-line-number="18"><span class="co">#&gt;   Res.Df Df      F    Pr(&gt;F)    </span></a>
+<a class="sourceLine" id="cb257-19" data-line-number="19"><span class="co">#&gt; 1    275                        </span></a>
+<a class="sourceLine" id="cb257-20" data-line-number="20"><span class="co">#&gt; 2    273  2 31.577 4.609e-13 ***</span></a>
+<a class="sourceLine" id="cb257-21" data-line-number="21"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb257-22" data-line-number="22"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p>Model (5) omits the economic factors. The result supports the notion that economic indicators should remain in the model as the coefficient on beer tax is sensitive to the inclusion of the latter.</p>
 <p>Results for model (6) demonstrate that the legal drinking age has little explanatory power and that the coefficient of interest is not sensitive to changes in the functional form of the relation between drinking age and traffic fatalities.</p>
 <p>Specification (7) reveals that reducing the amount of available information (we only use 95 observations for the period 1982 to 1988 here) inflates standard errors but does not lead to drastic changes in coefficient estimates.</p>

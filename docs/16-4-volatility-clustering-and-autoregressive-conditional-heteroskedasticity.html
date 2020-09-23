@@ -135,13 +135,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><a href="https://www.example.com/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
+<li><center><a href="http://www.dliebl.com/AdvRA/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
 <li class="chapter" data-level="" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html#probability-distributions-of-discrete-random-variables"><i class="fa fa-check"></i>Probability Distributions of Discrete Random Variables</a></li>
@@ -361,34 +359,34 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>Financial time series often exhibit a behavior that is known as <em>volatility clustering</em>: the volatility changes over time and its degree shows a tendency to persist, i.e., there are periods of low volatility and periods where volatility is high. Econometricians call this <em>autoregressive conditional heteroskedasticity</em>. Conditional heteroskedasticity is an interesting property because it can be exploited for forecasting the variance of future periods.</p>
 <p>As an example, we consider daily changes in the Whilshire 5000 stock index. The data is available for download at the <a href="https://fred.stlouisfed.org/series/WILL5000INDFC">Federal Reserve Economic Data Base</a>. For consistency with the book we download data from 1989-29-12 to 2013-12-31 (choosing this somewhat larger time span is necessary since later on we will be working with daily changes of the series).</p>
 <p>The following code chunk shows how to format the data and how to reproduce Figure 16.3 of the book.</p>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb461-1" data-line-number="1"><span class="co"># import data on the Wilshire 5000 index</span></a>
-<a class="sourceLine" id="cb461-2" data-line-number="2">W5000 &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;data/Wilshire5000.csv&quot;</span>, </a>
-<a class="sourceLine" id="cb461-3" data-line-number="3">                   <span class="dt">stringsAsFactors =</span> F, </a>
-<a class="sourceLine" id="cb461-4" data-line-number="4">                   <span class="dt">header =</span> T, </a>
-<a class="sourceLine" id="cb461-5" data-line-number="5">                   <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, </a>
-<a class="sourceLine" id="cb461-6" data-line-number="6">                   <span class="dt">na.strings =</span> <span class="st">&quot;.&quot;</span>)</a>
-<a class="sourceLine" id="cb461-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb461-8" data-line-number="8"><span class="co"># transform the columns</span></a>
-<a class="sourceLine" id="cb461-9" data-line-number="9">W5000<span class="op">$</span>DATE &lt;-<span class="st"> </span><span class="kw">as.Date</span>(W5000<span class="op">$</span>DATE)</a>
-<a class="sourceLine" id="cb461-10" data-line-number="10">W5000<span class="op">$</span>WILL5000INDFC &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(W5000<span class="op">$</span>WILL5000INDFC)</a>
-<a class="sourceLine" id="cb461-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb461-12" data-line-number="12"><span class="co"># remove NAs</span></a>
-<a class="sourceLine" id="cb461-13" data-line-number="13">W5000 &lt;-<span class="st"> </span><span class="kw">na.omit</span>(W5000)</a>
-<a class="sourceLine" id="cb461-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb461-15" data-line-number="15"><span class="co"># compute daily percentage changes</span></a>
-<a class="sourceLine" id="cb461-16" data-line-number="16">W5000_PC &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;Date&quot;</span> =<span class="st"> </span>W5000<span class="op">$</span>DATE, </a>
-<a class="sourceLine" id="cb461-17" data-line-number="17">                       <span class="st">&quot;Value&quot;</span> =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">Delt</span>(W5000<span class="op">$</span>WILL5000INDFC) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>))</a>
-<a class="sourceLine" id="cb461-18" data-line-number="18">W5000_PC &lt;-<span class="st"> </span><span class="kw">na.omit</span>(W5000_PC)</a></code></pre></div>
-<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb462-1" data-line-number="1"><span class="co"># plot percentage changes</span></a>
-<a class="sourceLine" id="cb462-2" data-line-number="2"><span class="kw">plot</span>(W5000_PC, </a>
-<a class="sourceLine" id="cb462-3" data-line-number="3">     <span class="dt">ylab =</span> <span class="st">&quot;Percent&quot;</span>, </a>
-<a class="sourceLine" id="cb462-4" data-line-number="4">     <span class="dt">main =</span> <span class="st">&quot;Daily Percentage Changes&quot;</span>,</a>
-<a class="sourceLine" id="cb462-5" data-line-number="5">     <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, </a>
-<a class="sourceLine" id="cb462-6" data-line-number="6">     <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>, </a>
-<a class="sourceLine" id="cb462-7" data-line-number="7">     <span class="dt">lwd =</span> <span class="fl">0.5</span>)</a>
-<a class="sourceLine" id="cb462-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb462-9" data-line-number="9"><span class="co"># add horizontal line at y = 0</span></a>
-<a class="sourceLine" id="cb462-10" data-line-number="10"><span class="kw">abline</span>(<span class="dv">0</span>, <span class="dv">0</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb460-1" data-line-number="1"><span class="co"># import data on the Wilshire 5000 index</span></a>
+<a class="sourceLine" id="cb460-2" data-line-number="2">W5000 &lt;-<span class="st"> </span><span class="kw">read.csv2</span>(<span class="st">&quot;data/Wilshire5000.csv&quot;</span>, </a>
+<a class="sourceLine" id="cb460-3" data-line-number="3">                   <span class="dt">stringsAsFactors =</span> F, </a>
+<a class="sourceLine" id="cb460-4" data-line-number="4">                   <span class="dt">header =</span> T, </a>
+<a class="sourceLine" id="cb460-5" data-line-number="5">                   <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, </a>
+<a class="sourceLine" id="cb460-6" data-line-number="6">                   <span class="dt">na.strings =</span> <span class="st">&quot;.&quot;</span>)</a>
+<a class="sourceLine" id="cb460-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb460-8" data-line-number="8"><span class="co"># transform the columns</span></a>
+<a class="sourceLine" id="cb460-9" data-line-number="9">W5000<span class="op">$</span>DATE &lt;-<span class="st"> </span><span class="kw">as.Date</span>(W5000<span class="op">$</span>DATE)</a>
+<a class="sourceLine" id="cb460-10" data-line-number="10">W5000<span class="op">$</span>WILL5000INDFC &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(W5000<span class="op">$</span>WILL5000INDFC)</a>
+<a class="sourceLine" id="cb460-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb460-12" data-line-number="12"><span class="co"># remove NAs</span></a>
+<a class="sourceLine" id="cb460-13" data-line-number="13">W5000 &lt;-<span class="st"> </span><span class="kw">na.omit</span>(W5000)</a>
+<a class="sourceLine" id="cb460-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb460-15" data-line-number="15"><span class="co"># compute daily percentage changes</span></a>
+<a class="sourceLine" id="cb460-16" data-line-number="16">W5000_PC &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;Date&quot;</span> =<span class="st"> </span>W5000<span class="op">$</span>DATE, </a>
+<a class="sourceLine" id="cb460-17" data-line-number="17">                       <span class="st">&quot;Value&quot;</span> =<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">Delt</span>(W5000<span class="op">$</span>WILL5000INDFC) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>))</a>
+<a class="sourceLine" id="cb460-18" data-line-number="18">W5000_PC &lt;-<span class="st"> </span><span class="kw">na.omit</span>(W5000_PC)</a></code></pre></div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb461-1" data-line-number="1"><span class="co"># plot percentage changes</span></a>
+<a class="sourceLine" id="cb461-2" data-line-number="2"><span class="kw">plot</span>(W5000_PC, </a>
+<a class="sourceLine" id="cb461-3" data-line-number="3">     <span class="dt">ylab =</span> <span class="st">&quot;Percent&quot;</span>, </a>
+<a class="sourceLine" id="cb461-4" data-line-number="4">     <span class="dt">main =</span> <span class="st">&quot;Daily Percentage Changes&quot;</span>,</a>
+<a class="sourceLine" id="cb461-5" data-line-number="5">     <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, </a>
+<a class="sourceLine" id="cb461-6" data-line-number="6">     <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>, </a>
+<a class="sourceLine" id="cb461-7" data-line-number="7">     <span class="dt">lwd =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb461-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb461-9" data-line-number="9"><span class="co"># add horizontal line at y = 0</span></a>
+<a class="sourceLine" id="cb461-10" data-line-number="10"><span class="kw">abline</span>(<span class="dv">0</span>, <span class="dv">0</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:pcw5000"></span>
 <img src="AdvRA_files/figure-html/pcw5000-1.png" alt="Daily Percentage Returns in the Wilshire 5000 Indrx" width="80%" />
 <p class="caption">
@@ -396,8 +394,8 @@ Figure 16.1: Daily Percentage Returns in the Wilshire 5000 Indrx
 </p>
 </div>
 <p>The series of daily percentage changes in the Wilshire index seems to randomly fluctuate around zero, meaning there is little autocorrelation. This is confirmed by a plot of the sample autocorrelation function.</p>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb463-1" data-line-number="1"><span class="co"># plot sample autocorrelation of daily percentage changes</span></a>
-<a class="sourceLine" id="cb463-2" data-line-number="2"><span class="kw">acf</span>(W5000_PC<span class="op">$</span>Value, <span class="dt">main =</span> <span class="st">&quot;Wilshire 5000 Series&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb462-1" data-line-number="1"><span class="co"># plot sample autocorrelation of daily percentage changes</span></a>
+<a class="sourceLine" id="cb462-2" data-line-number="2"><span class="kw">acf</span>(W5000_PC<span class="op">$</span>Value, <span class="dt">main =</span> <span class="st">&quot;Wilshire 5000 Series&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:acfw5000"></span>
 <img src="AdvRA_files/figure-html/acfw5000-1.png" alt="Autocorrelation in Daily Price Changes of W5000 Index" width="80%" />
 <p class="caption">
@@ -412,7 +410,7 @@ Figure 16.2: Autocorrelation in Daily Price Changes of W5000 Index
 <span class="math display" id="eq:archmodel">\[\begin{align}
  \sigma^2_t = \alpha_0 + \alpha_1 u_{t-1}^2 + \alpha_2 u_{t-2}^2 + \dots + \alpha_p u_{t-p}^2, \tag{16.1}
 \end{align}\]</span>
-called the <em>autoregressive conditional heteroskedasticity</em> (ARCH) model of order <span class="math inline">\(p\)</span>, or short ARCH(<span class="math inline">\(p\)</span>).<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> We assume <span class="math inline">\(\alpha_0&gt;0\)</span> and <span class="math inline">\(\alpha_1,\ldots,\alpha_p\geq0\)</span> to ensure a positive variance <span class="math inline">\(\sigma_t^2&gt;0\)</span>. The general idea is apparent from the model structure: positive coefficients <span class="math inline">\(\alpha_0,\alpha_1,\dots,\alpha_p\)</span> imply that recent large squared errors lead to a large variance, and thus large squared errors, in the current period.</p>
+called the <em>autoregressive conditional heteroskedasticity</em> (ARCH) model of order <span class="math inline">\(p\)</span>, or short ARCH(<span class="math inline">\(p\)</span>).<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a> We assume <span class="math inline">\(\alpha_0&gt;0\)</span> and <span class="math inline">\(\alpha_1,\ldots,\alpha_p\geq0\)</span> to ensure a positive variance <span class="math inline">\(\sigma_t^2&gt;0\)</span>. The general idea is apparent from the model structure: positive coefficients <span class="math inline">\(\alpha_0,\alpha_1,\dots,\alpha_p\)</span> imply that recent large squared errors lead to a large variance, and thus large squared errors, in the current period.</p>
 <p>The generalized ARCH (GARCH) model, developed by Tim <span class="citation">Bollerslev (<a href="#ref-bollerslev1986">1986</a>)</span>, is an extension of the ARCH model, where <span class="math inline">\(\sigma^2_t\)</span> is allowed to depend on its own lags and lags of the squared error term. The GARCH(<span class="math inline">\(p\)</span>,<span class="math inline">\(q\)</span>) model is given by
 <span class="math display" id="eq:garchmodel">\[\begin{align}
  \sigma^2_t = \alpha_0 + \alpha_1 u_{t-1}^2 + \alpha_2 u_{t-2}^2 + \dots + \alpha_p u_{t-p}^2 + \phi_1 \sigma^2_{t-1} + \dots + \phi_p \sigma^2_{t-q}. \tag{16.2}
@@ -429,8 +427,8 @@ The GARCH model is an ADL(<span class="math inline">\(p\)</span>,<span class="ma
 \end{align}\]</span>
 where <span class="math inline">\(R_t\)</span> is the percentage change in period <span class="math inline">\(t\)</span>. <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\alpha_0\)</span>, <span class="math inline">\(\alpha_1\)</span> and <span class="math inline">\(\phi_1\)</span> are unknown coefficients and <span class="math inline">\(u_t\)</span> is an error term with conditional mean zero. We do not include any lagged predictors in the equation of <span class="math inline">\(R_t\)</span> because the daily changes in the Wilshire 5000 index reflect daily stock returns which are essentially unpredictable. Note that <span class="math inline">\(u_t\)</span> is assumed to be normally distributed and the variance <span class="math inline">\(\sigma^2_t\)</span> depends on <span class="math inline">\(t\)</span> as it follows the GARCH(<span class="math inline">\(1\)</span>,<span class="math inline">\(1\)</span>) recursion <a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#eq:w5000g11">(16.3)</a>.</p>
 <p>It is straightforward to estimate this model using <tt>garchFit()</tt>.</p>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb464-1" data-line-number="1"><span class="co"># estimate GARCH(1,1) model of daily percentage changes</span></a>
-<a class="sourceLine" id="cb464-2" data-line-number="2">GARCH_Wilshire &lt;-<span class="st"> </span><span class="kw">garchFit</span>(<span class="dt">data =</span> W5000_PC<span class="op">$</span>Value, <span class="dt">trace =</span> F)</a></code></pre></div>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb463-1" data-line-number="1"><span class="co"># estimate GARCH(1,1) model of daily percentage changes</span></a>
+<a class="sourceLine" id="cb463-2" data-line-number="2">GARCH_Wilshire &lt;-<span class="st"> </span><span class="kw">garchFit</span>(<span class="dt">data =</span> W5000_PC<span class="op">$</span>Value, <span class="dt">trace =</span> F)</a></code></pre></div>
 <p>We obtain
 <span class="math display" id="eq:w5000g11est2" id="eq:w5000g11est1">\[\begin{align}
   \widehat{R}_t =&amp; \, \underset{(0.010)}{0.068}, \tag{16.4} \\
@@ -439,32 +437,32 @@ where <span class="math inline">\(R_t\)</span> is the percentage change in perio
 so the coefficients on <span class="math inline">\(u_{t-1}^2\)</span> and <span class="math inline">\(\sigma^2_{t-1}\)</span> are statistically significant at any common level of significance. One can show that the persistence of movements in <span class="math inline">\(\sigma^2_t\)</span> is determined by the sum of both coefficients, which is <span class="math inline">\(0.99\)</span> here. This indicates that movements in the conditional variance are highly persistent, implying long-lasting periods of high volatility which is consistent with the visual evidence for volatility clustering presented above.</p>
 <p>The estimated conditional variance <span class="math inline">\(\widehat{\sigma}^2_t\)</span> can be computed by plugging the residuals from <a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#eq:w5000g11est1">(16.4)</a> into equation <a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#eq:w5000g11est2">(16.5)</a>. This is performed automatically by <tt>garchFit()</tt>, so to obtain the estimated conditional standard deviations <span class="math inline">\(\widehat{\sigma}_t\)</span> we only have to read out the values from <tt>GARCH_Wilshire</tt> by appending <tt>@sigma.t</tt>.</p>
 <p>Using the <span class="math inline">\(\widehat{\sigma}_t\)</span> we plot bands of <span class="math inline">\(\pm\)</span> one conditional standard deviation along with deviations of the series of daily percentage changes in the Wilshire 5000 index from its mean. The following code chunk reproduces Figure 16.4 of the book.</p>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb465-1" data-line-number="1"><span class="co"># compute deviations of the percentage changes from their mean</span></a>
-<a class="sourceLine" id="cb465-2" data-line-number="2">dev_mean_W5000_PC &lt;-<span class="st"> </span>W5000_PC<span class="op">$</span>Value <span class="op">-</span><span class="st"> </span>GARCH_Wilshire<span class="op">@</span>fit<span class="op">$</span>coef[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb465-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb465-4" data-line-number="4"><span class="co"># plot deviation of percentage changes from mean</span></a>
-<a class="sourceLine" id="cb465-5" data-line-number="5"><span class="kw">plot</span>(W5000_PC<span class="op">$</span>Date, dev_mean_W5000_PC, </a>
-<a class="sourceLine" id="cb465-6" data-line-number="6">     <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, </a>
-<a class="sourceLine" id="cb465-7" data-line-number="7">     <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>,</a>
-<a class="sourceLine" id="cb465-8" data-line-number="8">     <span class="dt">ylab =</span> <span class="st">&quot;Percent&quot;</span>, </a>
-<a class="sourceLine" id="cb465-9" data-line-number="9">     <span class="dt">xlab =</span> <span class="st">&quot;Date&quot;</span>,</a>
-<a class="sourceLine" id="cb465-10" data-line-number="10">     <span class="dt">main =</span> <span class="st">&quot;Estimated Bands of +- One Conditional Standard Deviation&quot;</span>,</a>
-<a class="sourceLine" id="cb465-11" data-line-number="11">     <span class="dt">lwd =</span> <span class="fl">0.2</span>)</a>
-<a class="sourceLine" id="cb465-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb465-13" data-line-number="13"><span class="co"># add horizontal line at y = 0</span></a>
-<a class="sourceLine" id="cb465-14" data-line-number="14"><span class="kw">abline</span>(<span class="dv">0</span>, <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb465-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb465-16" data-line-number="16"><span class="co"># add GARCH(1,1) confidence bands (one standard deviation) to the plot</span></a>
-<a class="sourceLine" id="cb465-17" data-line-number="17"><span class="kw">lines</span>(W5000_PC<span class="op">$</span>Date, </a>
-<a class="sourceLine" id="cb465-18" data-line-number="18">      GARCH_Wilshire<span class="op">@</span>fit<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>GARCH_Wilshire<span class="op">@</span>sigma.t, </a>
-<a class="sourceLine" id="cb465-19" data-line-number="19">      <span class="dt">col =</span> <span class="st">&quot;darkred&quot;</span>, </a>
-<a class="sourceLine" id="cb465-20" data-line-number="20">      <span class="dt">lwd =</span> <span class="fl">0.5</span>)</a>
-<a class="sourceLine" id="cb465-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb465-22" data-line-number="22"><span class="kw">lines</span>(W5000_PC<span class="op">$</span>Date, </a>
-<a class="sourceLine" id="cb465-23" data-line-number="23">      GARCH_Wilshire<span class="op">@</span>fit<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>GARCH_Wilshire<span class="op">@</span>sigma.t, </a>
-<a class="sourceLine" id="cb465-24" data-line-number="24">      <span class="dt">col =</span> <span class="st">&quot;darkred&quot;</span>, </a>
-<a class="sourceLine" id="cb465-25" data-line-number="25">      <span class="dt">lwd =</span> <span class="fl">0.5</span>)</a></code></pre></div>
-<p><img src="AdvRA_files/figure-html/unnamed-chunk-737-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb464-1" data-line-number="1"><span class="co"># compute deviations of the percentage changes from their mean</span></a>
+<a class="sourceLine" id="cb464-2" data-line-number="2">dev_mean_W5000_PC &lt;-<span class="st"> </span>W5000_PC<span class="op">$</span>Value <span class="op">-</span><span class="st"> </span>GARCH_Wilshire<span class="op">@</span>fit<span class="op">$</span>coef[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb464-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb464-4" data-line-number="4"><span class="co"># plot deviation of percentage changes from mean</span></a>
+<a class="sourceLine" id="cb464-5" data-line-number="5"><span class="kw">plot</span>(W5000_PC<span class="op">$</span>Date, dev_mean_W5000_PC, </a>
+<a class="sourceLine" id="cb464-6" data-line-number="6">     <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, </a>
+<a class="sourceLine" id="cb464-7" data-line-number="7">     <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>,</a>
+<a class="sourceLine" id="cb464-8" data-line-number="8">     <span class="dt">ylab =</span> <span class="st">&quot;Percent&quot;</span>, </a>
+<a class="sourceLine" id="cb464-9" data-line-number="9">     <span class="dt">xlab =</span> <span class="st">&quot;Date&quot;</span>,</a>
+<a class="sourceLine" id="cb464-10" data-line-number="10">     <span class="dt">main =</span> <span class="st">&quot;Estimated Bands of +- One Conditional Standard Deviation&quot;</span>,</a>
+<a class="sourceLine" id="cb464-11" data-line-number="11">     <span class="dt">lwd =</span> <span class="fl">0.2</span>)</a>
+<a class="sourceLine" id="cb464-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb464-13" data-line-number="13"><span class="co"># add horizontal line at y = 0</span></a>
+<a class="sourceLine" id="cb464-14" data-line-number="14"><span class="kw">abline</span>(<span class="dv">0</span>, <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb464-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb464-16" data-line-number="16"><span class="co"># add GARCH(1,1) confidence bands (one standard deviation) to the plot</span></a>
+<a class="sourceLine" id="cb464-17" data-line-number="17"><span class="kw">lines</span>(W5000_PC<span class="op">$</span>Date, </a>
+<a class="sourceLine" id="cb464-18" data-line-number="18">      GARCH_Wilshire<span class="op">@</span>fit<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>GARCH_Wilshire<span class="op">@</span>sigma.t, </a>
+<a class="sourceLine" id="cb464-19" data-line-number="19">      <span class="dt">col =</span> <span class="st">&quot;darkred&quot;</span>, </a>
+<a class="sourceLine" id="cb464-20" data-line-number="20">      <span class="dt">lwd =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb464-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb464-22" data-line-number="22"><span class="kw">lines</span>(W5000_PC<span class="op">$</span>Date, </a>
+<a class="sourceLine" id="cb464-23" data-line-number="23">      GARCH_Wilshire<span class="op">@</span>fit<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>GARCH_Wilshire<span class="op">@</span>sigma.t, </a>
+<a class="sourceLine" id="cb464-24" data-line-number="24">      <span class="dt">col =</span> <span class="st">&quot;darkred&quot;</span>, </a>
+<a class="sourceLine" id="cb464-25" data-line-number="25">      <span class="dt">lwd =</span> <span class="fl">0.5</span>)</a></code></pre></div>
+<p><img src="AdvRA_files/figure-html/unnamed-chunk-735-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>The bands of the estimated conditional standard deviations track the observed heteroskedasticity in the series of daily changes of the Wilshire 5000 index quite well. This is useful for quantifying the time-varying volatility and the resulting risk for investors holding stocks summarized by the index. Furthermore, this GARCH model may also be used to produce forecast intervals whose widths depend on the volatility of the most recent periods.</p>
 </div>
 <div id="summary" class="section level3 unnumbered">
@@ -489,8 +487,8 @@ so the coefficients on <span class="math inline">\(u_{t-1}^2\)</span> and <span 
 </div>
 <div class="footnotes">
 <hr />
-<ol start="13">
-<li id="fn13"><p>Although we introduce the ARCH model as a component in an ADL(<span class="math inline">\(1\)</span>,<span class="math inline">\(1\)</span>) model, it can be used for modelling the conditional zero-mean error term of any time series model.<a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#fnref13" class="footnote-back">↩</a></p></li>
+<ol start="11">
+<li id="fn11"><p>Although we introduce the ARCH model as a component in an ADL(<span class="math inline">\(1\)</span>,<span class="math inline">\(1\)</span>) model, it can be used for modelling the conditional zero-mean error term of any time series model.<a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#fnref11" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

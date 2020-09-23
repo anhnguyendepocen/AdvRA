@@ -135,13 +135,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><a href="https://www.example.com/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
+<li><center><a href="http://www.dliebl.com/AdvRA/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
 <li class="chapter" data-level="" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html#probability-distributions-of-discrete-random-variables"><i class="fa fa-check"></i>Probability Distributions of Discrete Random Variables</a></li>
@@ -393,65 +391,65 @@ is a correction factor that adjusts for serially correlated errors and involves 
   m = \left \lceil{0.75 \cdot T^{1/3}}\right\rceil. \tag{15.6}
 \end{align}\]</span></p>
 <p>We simulate a time series that, as stated above, follows a distributed lag model with autocorrelated errors and then show how to compute the Newey-West HAC estimate of <span class="math inline">\(SE(\widehat{\beta}_1)\)</span> using <tt>R</tt>. This is done via two separate but, as we will see, identical approaches: at first we follow the derivation presented in the book step-by-step and compute the estimate “manually”. We then show that the result is exactly the estimate obtained when using the function <tt>NeweyWest()</tt>.</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb419-1" data-line-number="1"><span class="co"># function that computes rho tilde</span></a>
-<a class="sourceLine" id="cb419-2" data-line-number="2">acf_c &lt;-<span class="st"> </span><span class="cf">function</span>(x, j) {</a>
-<a class="sourceLine" id="cb419-3" data-line-number="3">  <span class="kw">return</span>(</a>
-<a class="sourceLine" id="cb419-4" data-line-number="4">    <span class="kw">t</span>(x[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span>j)]) <span class="op">%*%</span><span class="st"> </span><span class="kw">na.omit</span>(<span class="kw">Lag</span>(x, j)) <span class="op">/</span><span class="st"> </span><span class="kw">t</span>(x) <span class="op">%*%</span><span class="st"> </span>x</a>
-<a class="sourceLine" id="cb419-5" data-line-number="5">  )</a>
-<a class="sourceLine" id="cb419-6" data-line-number="6">}</a>
-<a class="sourceLine" id="cb419-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb419-8" data-line-number="8"><span class="co"># simulate time series with serially correlated errors</span></a>
-<a class="sourceLine" id="cb419-9" data-line-number="9"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb419-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb419-11" data-line-number="11">N &lt;-<span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb419-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb419-13" data-line-number="13">eps &lt;-<span class="st"> </span><span class="kw">arima.sim</span>(<span class="dt">n =</span> N, <span class="dt">model =</span> <span class="kw">list</span>(<span class="dt">ma =</span> <span class="fl">0.5</span>))</a>
-<a class="sourceLine" id="cb419-14" data-line-number="14">X &lt;-<span class="st"> </span><span class="kw">runif</span>(N, <span class="dv">1</span>, <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb419-15" data-line-number="15">Y &lt;-<span class="st"> </span><span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span>X <span class="op">+</span><span class="st"> </span>eps</a>
-<a class="sourceLine" id="cb419-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb419-17" data-line-number="17"><span class="co"># compute OLS residuals</span></a>
-<a class="sourceLine" id="cb419-18" data-line-number="18">res &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X)<span class="op">$</span>res</a>
-<a class="sourceLine" id="cb419-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb419-20" data-line-number="20"><span class="co"># compute v</span></a>
-<a class="sourceLine" id="cb419-21" data-line-number="21">v &lt;-<span class="st"> </span>(X <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(X)) <span class="op">*</span><span class="st"> </span>res</a>
-<a class="sourceLine" id="cb419-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb419-23" data-line-number="23"><span class="co"># compute robust estimate of beta_1 variance</span></a>
-<a class="sourceLine" id="cb419-24" data-line-number="24">var_beta_hat &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">/</span>N <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">/</span>(N<span class="dv">-2</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sum</span>((X <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(X))<span class="op">^</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>res<span class="op">^</span><span class="dv">2</span>) ) <span class="op">/</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb419-25" data-line-number="25"><span class="st">                        </span>(<span class="dv">1</span><span class="op">/</span>N <span class="op">*</span><span class="st"> </span><span class="kw">sum</span>((X <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(X))<span class="op">^</span><span class="dv">2</span>))<span class="op">^</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb419-26" data-line-number="26"></a>
-<a class="sourceLine" id="cb419-27" data-line-number="27"><span class="co"># rule of thumb truncation parameter</span></a>
-<a class="sourceLine" id="cb419-28" data-line-number="28">m &lt;-<span class="st"> </span><span class="kw">floor</span>(<span class="fl">0.75</span> <span class="op">*</span><span class="st"> </span>N<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb419-29" data-line-number="29"></a>
-<a class="sourceLine" id="cb419-30" data-line-number="30"><span class="co"># compute correction factor</span></a>
-<a class="sourceLine" id="cb419-31" data-line-number="31">f_hat_T &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">sum</span>(</a>
-<a class="sourceLine" id="cb419-32" data-line-number="32">  (m <span class="op">-</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span>(m<span class="dv">-1</span>))<span class="op">/</span>m <span class="op">*</span><span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span>(m <span class="op">-</span><span class="st"> </span><span class="dv">1</span>), <span class="cf">function</span>(i) <span class="kw">acf_c</span>(<span class="dt">x =</span> v, <span class="dt">j =</span> i))</a>
-<a class="sourceLine" id="cb419-33" data-line-number="33">  ) </a>
-<a class="sourceLine" id="cb419-34" data-line-number="34"></a>
-<a class="sourceLine" id="cb419-35" data-line-number="35"><span class="co"># compute Newey-West HAC estimate of the standard error </span></a>
-<a class="sourceLine" id="cb419-36" data-line-number="36"><span class="kw">sqrt</span>(var_beta_hat <span class="op">*</span><span class="st"> </span>f_hat_T)</a>
-<a class="sourceLine" id="cb419-37" data-line-number="37"><span class="co">#&gt; [1] 0.04036208</span></a></code></pre></div>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb418-1" data-line-number="1"><span class="co"># function that computes rho tilde</span></a>
+<a class="sourceLine" id="cb418-2" data-line-number="2">acf_c &lt;-<span class="st"> </span><span class="cf">function</span>(x, j) {</a>
+<a class="sourceLine" id="cb418-3" data-line-number="3">  <span class="kw">return</span>(</a>
+<a class="sourceLine" id="cb418-4" data-line-number="4">    <span class="kw">t</span>(x[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span>j)]) <span class="op">%*%</span><span class="st"> </span><span class="kw">na.omit</span>(<span class="kw">Lag</span>(x, j)) <span class="op">/</span><span class="st"> </span><span class="kw">t</span>(x) <span class="op">%*%</span><span class="st"> </span>x</a>
+<a class="sourceLine" id="cb418-5" data-line-number="5">  )</a>
+<a class="sourceLine" id="cb418-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb418-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb418-8" data-line-number="8"><span class="co"># simulate time series with serially correlated errors</span></a>
+<a class="sourceLine" id="cb418-9" data-line-number="9"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb418-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb418-11" data-line-number="11">N &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb418-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb418-13" data-line-number="13">eps &lt;-<span class="st"> </span><span class="kw">arima.sim</span>(<span class="dt">n =</span> N, <span class="dt">model =</span> <span class="kw">list</span>(<span class="dt">ma =</span> <span class="fl">0.5</span>))</a>
+<a class="sourceLine" id="cb418-14" data-line-number="14">X &lt;-<span class="st"> </span><span class="kw">runif</span>(N, <span class="dv">1</span>, <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb418-15" data-line-number="15">Y &lt;-<span class="st"> </span><span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span>X <span class="op">+</span><span class="st"> </span>eps</a>
+<a class="sourceLine" id="cb418-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb418-17" data-line-number="17"><span class="co"># compute OLS residuals</span></a>
+<a class="sourceLine" id="cb418-18" data-line-number="18">res &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X)<span class="op">$</span>res</a>
+<a class="sourceLine" id="cb418-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb418-20" data-line-number="20"><span class="co"># compute v</span></a>
+<a class="sourceLine" id="cb418-21" data-line-number="21">v &lt;-<span class="st"> </span>(X <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(X)) <span class="op">*</span><span class="st"> </span>res</a>
+<a class="sourceLine" id="cb418-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb418-23" data-line-number="23"><span class="co"># compute robust estimate of beta_1 variance</span></a>
+<a class="sourceLine" id="cb418-24" data-line-number="24">var_beta_hat &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">/</span>N <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">/</span>(N<span class="dv">-2</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sum</span>((X <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(X))<span class="op">^</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>res<span class="op">^</span><span class="dv">2</span>) ) <span class="op">/</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb418-25" data-line-number="25"><span class="st">                        </span>(<span class="dv">1</span><span class="op">/</span>N <span class="op">*</span><span class="st"> </span><span class="kw">sum</span>((X <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(X))<span class="op">^</span><span class="dv">2</span>))<span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb418-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb418-27" data-line-number="27"><span class="co"># rule of thumb truncation parameter</span></a>
+<a class="sourceLine" id="cb418-28" data-line-number="28">m &lt;-<span class="st"> </span><span class="kw">floor</span>(<span class="fl">0.75</span> <span class="op">*</span><span class="st"> </span>N<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb418-29" data-line-number="29"></a>
+<a class="sourceLine" id="cb418-30" data-line-number="30"><span class="co"># compute correction factor</span></a>
+<a class="sourceLine" id="cb418-31" data-line-number="31">f_hat_T &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">sum</span>(</a>
+<a class="sourceLine" id="cb418-32" data-line-number="32">  (m <span class="op">-</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span>(m<span class="dv">-1</span>))<span class="op">/</span>m <span class="op">*</span><span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span>(m <span class="op">-</span><span class="st"> </span><span class="dv">1</span>), <span class="cf">function</span>(i) <span class="kw">acf_c</span>(<span class="dt">x =</span> v, <span class="dt">j =</span> i))</a>
+<a class="sourceLine" id="cb418-33" data-line-number="33">  ) </a>
+<a class="sourceLine" id="cb418-34" data-line-number="34"></a>
+<a class="sourceLine" id="cb418-35" data-line-number="35"><span class="co"># compute Newey-West HAC estimate of the standard error </span></a>
+<a class="sourceLine" id="cb418-36" data-line-number="36"><span class="kw">sqrt</span>(var_beta_hat <span class="op">*</span><span class="st"> </span>f_hat_T)</a>
+<a class="sourceLine" id="cb418-37" data-line-number="37"><span class="co">#&gt; [1] 0.04036208</span></a></code></pre></div>
 <p>For the code to be reusable in other applications, we use <tt>sapply()</tt> to estimate the <span class="math inline">\(m-1\)</span> autocorrelations <span class="math inline">\(\overset{\sim}{\rho}_j\)</span>.</p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" data-line-number="1"><span class="co"># Using NeweyWest():</span></a>
-<a class="sourceLine" id="cb420-2" data-line-number="2">NW_VCOV &lt;-<span class="st"> </span><span class="kw">NeweyWest</span>(<span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X), </a>
-<a class="sourceLine" id="cb420-3" data-line-number="3">              <span class="dt">lag =</span> m <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">prewhite =</span> F, </a>
-<a class="sourceLine" id="cb420-4" data-line-number="4">              <span class="dt">adjust =</span> T)</a>
-<a class="sourceLine" id="cb420-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb420-6" data-line-number="6"><span class="co"># compute standard error</span></a>
-<a class="sourceLine" id="cb420-7" data-line-number="7"><span class="kw">sqrt</span>(<span class="kw">diag</span>(NW_VCOV))[<span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb420-8" data-line-number="8"><span class="co">#&gt;          X </span></a>
-<a class="sourceLine" id="cb420-9" data-line-number="9"><span class="co">#&gt; 0.04036208</span></a></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb419-1" data-line-number="1"><span class="co"># Using NeweyWest():</span></a>
+<a class="sourceLine" id="cb419-2" data-line-number="2">NW_VCOV &lt;-<span class="st"> </span><span class="kw">NeweyWest</span>(<span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X), </a>
+<a class="sourceLine" id="cb419-3" data-line-number="3">              <span class="dt">lag =</span> m <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">prewhite =</span> F, </a>
+<a class="sourceLine" id="cb419-4" data-line-number="4">              <span class="dt">adjust =</span> T)</a>
+<a class="sourceLine" id="cb419-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb419-6" data-line-number="6"><span class="co"># compute standard error</span></a>
+<a class="sourceLine" id="cb419-7" data-line-number="7"><span class="kw">sqrt</span>(<span class="kw">diag</span>(NW_VCOV))[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb419-8" data-line-number="8"><span class="co">#&gt;          X </span></a>
+<a class="sourceLine" id="cb419-9" data-line-number="9"><span class="co">#&gt; 0.04036208</span></a></code></pre></div>
 <p>By choosing <tt>lag = m-1</tt> we ensure that the maximum order of autocorrelations used is <span class="math inline">\(m-1\)</span> — just as in equation <a href="15-4-hac-standard-errors.html#eq:nwhacf">(15.5)</a>. Notice that we set the arguments <tt>prewhite = F</tt> and <tt>adjust = T</tt> to ensure that the formula <a href="15-4-hac-standard-errors.html#eq:nwhac">(15.4)</a> is used and finite sample adjustments are made.</p>
 <p>We find that the computed standard errors coincide. Of course, a variance-covariance matrix estimate as computed by <tt>NeweyWest()</tt> can be supplied as the argument <tt>vcov</tt> in <tt>coeftest()</tt> such that HAC <span class="math inline">\(t\)</span>-statistics and <span class="math inline">\(p\)</span>-values are provided by the latter.</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb421-1" data-line-number="1">example_mod &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X)</a>
-<a class="sourceLine" id="cb421-2" data-line-number="2"><span class="kw">coeftest</span>(example_mod, <span class="dt">vcov =</span> NW_VCOV)</a>
-<a class="sourceLine" id="cb421-3" data-line-number="3"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb421-4" data-line-number="4"><span class="co">#&gt; t test of coefficients:</span></a>
-<a class="sourceLine" id="cb421-5" data-line-number="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb421-6" data-line-number="6"><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
-<a class="sourceLine" id="cb421-7" data-line-number="7"><span class="co">#&gt; (Intercept) 0.542310   0.235423  2.3036  0.02336 *  </span></a>
-<a class="sourceLine" id="cb421-8" data-line-number="8"><span class="co">#&gt; X           0.423305   0.040362 10.4877  &lt; 2e-16 ***</span></a>
-<a class="sourceLine" id="cb421-9" data-line-number="9"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb421-10" data-line-number="10"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" data-line-number="1">example_mod &lt;-<span class="st"> </span><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X)</a>
+<a class="sourceLine" id="cb420-2" data-line-number="2"><span class="kw">coeftest</span>(example_mod, <span class="dt">vcov =</span> NW_VCOV)</a>
+<a class="sourceLine" id="cb420-3" data-line-number="3"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb420-4" data-line-number="4"><span class="co">#&gt; t test of coefficients:</span></a>
+<a class="sourceLine" id="cb420-5" data-line-number="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb420-6" data-line-number="6"><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb420-7" data-line-number="7"><span class="co">#&gt; (Intercept) 0.542310   0.235423  2.3036  0.02336 *  </span></a>
+<a class="sourceLine" id="cb420-8" data-line-number="8"><span class="co">#&gt; X           0.423305   0.040362 10.4877  &lt; 2e-16 ***</span></a>
+<a class="sourceLine" id="cb420-9" data-line-number="9"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb420-10" data-line-number="10"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">

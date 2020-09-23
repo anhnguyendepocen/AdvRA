@@ -135,13 +135,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><a href="https://www.example.com/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
+<li><center><a href="http://www.dliebl.com/AdvRA/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
 <li class="chapter" data-level="" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html#probability-distributions-of-discrete-random-variables"><i class="fa fa-check"></i>Probability Distributions of Discrete Random Variables</a></li>
@@ -368,47 +366,47 @@ where modify the denominator of the premultiplied factor in <span class="math in
 <p><span class="math display">\[ \bar{R}^2 = 1-\frac{n-1}{n-k-1} \, \frac{SSR}{TSS}. \]</span></p>
 <p>As you may have already suspected, <tt>summary()</tt> adjusts the formula for <span class="math inline">\(SER\)</span> and it computes <span class="math inline">\(\bar{R}^2\)</span> and of course <span class="math inline">\(R^2\)</span> by default, thereby leaving the decision which measure to rely on to the user.</p>
 <p>You can find both measures at the bottom of the output produced by calling <code>summary(mult.mod)</code>.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1"><span class="kw">summary</span>(mult.mod)</a>
-<a class="sourceLine" id="cb141-2" data-line-number="2"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb141-3" data-line-number="3"><span class="co">#&gt; Call:</span></a>
-<a class="sourceLine" id="cb141-4" data-line-number="4"><span class="co">#&gt; lm(formula = score ~ STR + english, data = CASchools)</span></a>
-<a class="sourceLine" id="cb141-5" data-line-number="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb141-6" data-line-number="6"><span class="co">#&gt; Residuals:</span></a>
-<a class="sourceLine" id="cb141-7" data-line-number="7"><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></a>
-<a class="sourceLine" id="cb141-8" data-line-number="8"><span class="co">#&gt; -48.845 -10.240  -0.308   9.815  43.461 </span></a>
-<a class="sourceLine" id="cb141-9" data-line-number="9"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb141-10" data-line-number="10"><span class="co">#&gt; Coefficients:</span></a>
-<a class="sourceLine" id="cb141-11" data-line-number="11"><span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
-<a class="sourceLine" id="cb141-12" data-line-number="12"><span class="co">#&gt; (Intercept) 686.03224    7.41131  92.566  &lt; 2e-16 ***</span></a>
-<a class="sourceLine" id="cb141-13" data-line-number="13"><span class="co">#&gt; STR          -1.10130    0.38028  -2.896  0.00398 ** </span></a>
-<a class="sourceLine" id="cb141-14" data-line-number="14"><span class="co">#&gt; english      -0.64978    0.03934 -16.516  &lt; 2e-16 ***</span></a>
-<a class="sourceLine" id="cb141-15" data-line-number="15"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb141-16" data-line-number="16"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb141-17" data-line-number="17"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb141-18" data-line-number="18"><span class="co">#&gt; Residual standard error: 14.46 on 417 degrees of freedom</span></a>
-<a class="sourceLine" id="cb141-19" data-line-number="19"><span class="co">#&gt; Multiple R-squared:  0.4264,	Adjusted R-squared:  0.4237 </span></a>
-<a class="sourceLine" id="cb141-20" data-line-number="20"><span class="co">#&gt; F-statistic:   155 on 2 and 417 DF,  p-value: &lt; 2.2e-16</span></a></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1"><span class="kw">summary</span>(mult.mod)</a>
+<a class="sourceLine" id="cb140-2" data-line-number="2"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb140-3" data-line-number="3"><span class="co">#&gt; Call:</span></a>
+<a class="sourceLine" id="cb140-4" data-line-number="4"><span class="co">#&gt; lm(formula = score ~ STR + english, data = CASchools)</span></a>
+<a class="sourceLine" id="cb140-5" data-line-number="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb140-6" data-line-number="6"><span class="co">#&gt; Residuals:</span></a>
+<a class="sourceLine" id="cb140-7" data-line-number="7"><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></a>
+<a class="sourceLine" id="cb140-8" data-line-number="8"><span class="co">#&gt; -48.845 -10.240  -0.308   9.815  43.461 </span></a>
+<a class="sourceLine" id="cb140-9" data-line-number="9"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb140-10" data-line-number="10"><span class="co">#&gt; Coefficients:</span></a>
+<a class="sourceLine" id="cb140-11" data-line-number="11"><span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb140-12" data-line-number="12"><span class="co">#&gt; (Intercept) 686.03224    7.41131  92.566  &lt; 2e-16 ***</span></a>
+<a class="sourceLine" id="cb140-13" data-line-number="13"><span class="co">#&gt; STR          -1.10130    0.38028  -2.896  0.00398 ** </span></a>
+<a class="sourceLine" id="cb140-14" data-line-number="14"><span class="co">#&gt; english      -0.64978    0.03934 -16.516  &lt; 2e-16 ***</span></a>
+<a class="sourceLine" id="cb140-15" data-line-number="15"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb140-16" data-line-number="16"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb140-17" data-line-number="17"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb140-18" data-line-number="18"><span class="co">#&gt; Residual standard error: 14.46 on 417 degrees of freedom</span></a>
+<a class="sourceLine" id="cb140-19" data-line-number="19"><span class="co">#&gt; Multiple R-squared:  0.4264,	Adjusted R-squared:  0.4237 </span></a>
+<a class="sourceLine" id="cb140-20" data-line-number="20"><span class="co">#&gt; F-statistic:   155 on 2 and 417 DF,  p-value: &lt; 2.2e-16</span></a></code></pre></div>
 <p>We can also compute the measures by hand using the formulas above. Let us check that the results coincide with the values provided by <tt>summary()</tt>.</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1"><span class="co"># define the components</span></a>
-<a class="sourceLine" id="cb142-2" data-line-number="2">n &lt;-<span class="st"> </span><span class="kw">nrow</span>(CASchools)                            <span class="co"># number of observations (rows)</span></a>
-<a class="sourceLine" id="cb142-3" data-line-number="3">k &lt;-<span class="st"> </span><span class="dv">2</span>                                          <span class="co"># number of regressors</span></a>
-<a class="sourceLine" id="cb142-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb142-5" data-line-number="5">y_mean &lt;-<span class="st"> </span><span class="kw">mean</span>(CASchools<span class="op">$</span>score)                 <span class="co"># mean of avg. test-scores</span></a>
-<a class="sourceLine" id="cb142-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb142-7" data-line-number="7">SSR &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">residuals</span>(mult.mod)<span class="op">^</span><span class="dv">2</span>)               <span class="co"># sum of squared residuals</span></a>
-<a class="sourceLine" id="cb142-8" data-line-number="8">TSS &lt;-<span class="st"> </span><span class="kw">sum</span>((CASchools<span class="op">$</span>score <span class="op">-</span><span class="st"> </span>y_mean )<span class="op">^</span><span class="dv">2</span>)       <span class="co"># total sum of squares</span></a>
-<a class="sourceLine" id="cb142-9" data-line-number="9">ESS &lt;-<span class="st"> </span><span class="kw">sum</span>((<span class="kw">fitted</span>(mult.mod) <span class="op">-</span><span class="st"> </span>y_mean)<span class="op">^</span><span class="dv">2</span>)       <span class="co"># explained sum of squares</span></a>
-<a class="sourceLine" id="cb142-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb142-11" data-line-number="11"><span class="co"># compute the measures</span></a>
-<a class="sourceLine" id="cb142-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb142-13" data-line-number="13">SER &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">1</span><span class="op">/</span>(n<span class="op">-</span>k<span class="dv">-1</span>) <span class="op">*</span><span class="st"> </span>SSR)                    <span class="co"># standard error of the regression</span></a>
-<a class="sourceLine" id="cb142-14" data-line-number="14">Rsq &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>(SSR <span class="op">/</span><span class="st"> </span>TSS)                          <span class="co"># R^2</span></a>
-<a class="sourceLine" id="cb142-15" data-line-number="15">adj_Rsq &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>(n<span class="dv">-1</span>)<span class="op">/</span>(n<span class="op">-</span>k<span class="dv">-1</span>) <span class="op">*</span><span class="st"> </span>SSR<span class="op">/</span>TSS          <span class="co"># adj. R^2</span></a>
-<a class="sourceLine" id="cb142-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb142-17" data-line-number="17"><span class="co"># print the measures to the console</span></a>
-<a class="sourceLine" id="cb142-18" data-line-number="18"><span class="kw">c</span>(<span class="st">&quot;SER&quot;</span> =<span class="st"> </span>SER, <span class="st">&quot;R2&quot;</span> =<span class="st"> </span>Rsq, <span class="st">&quot;Adj.R2&quot;</span> =<span class="st"> </span>adj_Rsq)</a>
-<a class="sourceLine" id="cb142-19" data-line-number="19"><span class="co">#&gt;        SER         R2     Adj.R2 </span></a>
-<a class="sourceLine" id="cb142-20" data-line-number="20"><span class="co">#&gt; 14.4644831  0.4264315  0.4236805</span></a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1"><span class="co"># define the components</span></a>
+<a class="sourceLine" id="cb141-2" data-line-number="2">n &lt;-<span class="st"> </span><span class="kw">nrow</span>(CASchools)                            <span class="co"># number of observations (rows)</span></a>
+<a class="sourceLine" id="cb141-3" data-line-number="3">k &lt;-<span class="st"> </span><span class="dv">2</span>                                          <span class="co"># number of regressors</span></a>
+<a class="sourceLine" id="cb141-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb141-5" data-line-number="5">y_mean &lt;-<span class="st"> </span><span class="kw">mean</span>(CASchools<span class="op">$</span>score)                 <span class="co"># mean of avg. test-scores</span></a>
+<a class="sourceLine" id="cb141-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb141-7" data-line-number="7">SSR &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">residuals</span>(mult.mod)<span class="op">^</span><span class="dv">2</span>)               <span class="co"># sum of squared residuals</span></a>
+<a class="sourceLine" id="cb141-8" data-line-number="8">TSS &lt;-<span class="st"> </span><span class="kw">sum</span>((CASchools<span class="op">$</span>score <span class="op">-</span><span class="st"> </span>y_mean )<span class="op">^</span><span class="dv">2</span>)       <span class="co"># total sum of squares</span></a>
+<a class="sourceLine" id="cb141-9" data-line-number="9">ESS &lt;-<span class="st"> </span><span class="kw">sum</span>((<span class="kw">fitted</span>(mult.mod) <span class="op">-</span><span class="st"> </span>y_mean)<span class="op">^</span><span class="dv">2</span>)       <span class="co"># explained sum of squares</span></a>
+<a class="sourceLine" id="cb141-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb141-11" data-line-number="11"><span class="co"># compute the measures</span></a>
+<a class="sourceLine" id="cb141-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb141-13" data-line-number="13">SER &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">1</span><span class="op">/</span>(n<span class="op">-</span>k<span class="dv">-1</span>) <span class="op">*</span><span class="st"> </span>SSR)                    <span class="co"># standard error of the regression</span></a>
+<a class="sourceLine" id="cb141-14" data-line-number="14">Rsq &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>(SSR <span class="op">/</span><span class="st"> </span>TSS)                          <span class="co"># R^2</span></a>
+<a class="sourceLine" id="cb141-15" data-line-number="15">adj_Rsq &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>(n<span class="dv">-1</span>)<span class="op">/</span>(n<span class="op">-</span>k<span class="dv">-1</span>) <span class="op">*</span><span class="st"> </span>SSR<span class="op">/</span>TSS          <span class="co"># adj. R^2</span></a>
+<a class="sourceLine" id="cb141-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb141-17" data-line-number="17"><span class="co"># print the measures to the console</span></a>
+<a class="sourceLine" id="cb141-18" data-line-number="18"><span class="kw">c</span>(<span class="st">&quot;SER&quot;</span> =<span class="st"> </span>SER, <span class="st">&quot;R2&quot;</span> =<span class="st"> </span>Rsq, <span class="st">&quot;Adj.R2&quot;</span> =<span class="st"> </span>adj_Rsq)</a>
+<a class="sourceLine" id="cb141-19" data-line-number="19"><span class="co">#&gt;        SER         R2     Adj.R2 </span></a>
+<a class="sourceLine" id="cb141-20" data-line-number="20"><span class="co">#&gt; 14.4644831  0.4264315  0.4236805</span></a></code></pre></div>
 <p>Now, what can we say about the fit of our multiple regression model for test scores with the percentage of English learners as an additional regressor? Does it improve on the simple model including only an intercept and a measure of class size? The answer is yes: compare <span class="math inline">\(\bar{R}^2\)</span> with that obtained for the simple regression model <tt>mod</tt>.</p>
 <p>Including <span class="math inline">\(PctEL\)</span> as a regressor improves the <span class="math inline">\(\bar{R}^2\)</span>, which we deem to be more reliable in view of the above discussion. Notice that the difference between <span class="math inline">\(R^2\)</span> and <span class="math inline">\(\bar{R}^2\)</span> is small since <span class="math inline">\(k=2\)</span> and <span class="math inline">\(n\)</span> is large. In short, the fit of (<a href="#mjx-eqn-6.6">6.6</a>) improves vastly on the fit of the simple regression model with <span class="math inline">\(STR\)</span> as the only regressor.<br>
 Comparing regression errors we find that the precision of the multiple regression model (<a href="#mjx-eqn-6.6">6.6</a>) improves upon the simple model as adding <span class="math inline">\(PctEL\)</span> lowers the <span class="math inline">\(SER\)</span> from <span class="math inline">\(18.6\)</span> to <span class="math inline">\(14.5\)</span> units of test score.</p>

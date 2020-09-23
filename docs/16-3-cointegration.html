@@ -135,13 +135,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><a href="https://www.example.com/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
+<li><center><a href="http://www.dliebl.com/AdvRA/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
 <li class="chapter" data-level="" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html#probability-distributions-of-discrete-random-variables"><i class="fa fa-check"></i>Probability Distributions of Discrete Random Variables</a></li>
@@ -371,42 +369,42 @@ Cointegration
 </p>
 </div>
 <p>As an example, reconsider the the relation between short- and long-term interest rates by the example of U.S. 3-month treasury bills, U.S. 10-years treasury bonds and the spread in their interest rates which have been introduced in Chapter <a href="14-4-cybtmpi.html#cybtmpi">14.4</a>. The next code chunk shows how to reproduce Figure 16.2 of the book.</p>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb455-1" data-line-number="1"><span class="co"># reproduce Figure 16.2 of the book</span></a>
-<a class="sourceLine" id="cb455-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb455-3" data-line-number="3"><span class="co"># plot both interest series</span></a>
-<a class="sourceLine" id="cb455-4" data-line-number="4"><span class="kw">plot</span>(<span class="kw">merge</span>(<span class="kw">as.zoo</span>(TB3MS), <span class="kw">as.zoo</span>(TB10YS)), </a>
-<a class="sourceLine" id="cb455-5" data-line-number="5">     <span class="dt">plot.type =</span> <span class="st">&quot;single&quot;</span>, </a>
-<a class="sourceLine" id="cb455-6" data-line-number="6">     <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb455-7" data-line-number="7">     <span class="dt">lwd =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb455-8" data-line-number="8">     <span class="dt">xlab =</span> <span class="st">&quot;Date&quot;</span>,</a>
-<a class="sourceLine" id="cb455-9" data-line-number="9">     <span class="dt">ylab =</span> <span class="st">&quot;Percent per annum&quot;</span>,</a>
-<a class="sourceLine" id="cb455-10" data-line-number="10">     <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">17</span>),</a>
-<a class="sourceLine" id="cb455-11" data-line-number="11">     <span class="dt">main =</span> <span class="st">&quot;Interest Rates&quot;</span>)</a>
-<a class="sourceLine" id="cb455-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb455-13" data-line-number="13"><span class="co"># add the term spread series</span></a>
-<a class="sourceLine" id="cb455-14" data-line-number="14"><span class="kw">lines</span>(<span class="kw">as.zoo</span>(TSpread), </a>
-<a class="sourceLine" id="cb455-15" data-line-number="15">     <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>,</a>
-<a class="sourceLine" id="cb455-16" data-line-number="16">     <span class="dt">lwd =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb455-17" data-line-number="17">     <span class="dt">xlab =</span> <span class="st">&quot;Date&quot;</span>,</a>
-<a class="sourceLine" id="cb455-18" data-line-number="18">     <span class="dt">ylab =</span> <span class="st">&quot;Percent per annum&quot;</span>,</a>
-<a class="sourceLine" id="cb455-19" data-line-number="19">     <span class="dt">main =</span> <span class="st">&quot;Term Spread&quot;</span>)</a>
-<a class="sourceLine" id="cb455-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb455-21" data-line-number="21"><span class="co"># shade the term spread</span></a>
-<a class="sourceLine" id="cb455-22" data-line-number="22"><span class="kw">polygon</span>(<span class="kw">c</span>(<span class="kw">time</span>(TB3MS), <span class="kw">rev</span>(<span class="kw">time</span>(TB3MS))), </a>
-<a class="sourceLine" id="cb455-23" data-line-number="23">        <span class="kw">c</span>(TB10YS, <span class="kw">rev</span>(TB3MS)),</a>
-<a class="sourceLine" id="cb455-24" data-line-number="24">        <span class="dt">col =</span> <span class="kw">alpha</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.3</span>),</a>
-<a class="sourceLine" id="cb455-25" data-line-number="25">        <span class="dt">border =</span> <span class="ot">NA</span>)</a>
-<a class="sourceLine" id="cb455-26" data-line-number="26"></a>
-<a class="sourceLine" id="cb455-27" data-line-number="27"><span class="co"># add horizontal line add 0</span></a>
-<a class="sourceLine" id="cb455-28" data-line-number="28"><span class="kw">abline</span>(<span class="dv">0</span>, <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb455-29" data-line-number="29"></a>
-<a class="sourceLine" id="cb455-30" data-line-number="30"><span class="co"># add a legend</span></a>
-<a class="sourceLine" id="cb455-31" data-line-number="31"><span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, </a>
-<a class="sourceLine" id="cb455-32" data-line-number="32">       <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;TB3MS&quot;</span>, <span class="st">&quot;TB10YS&quot;</span>, <span class="st">&quot;Term Spread&quot;</span>),</a>
-<a class="sourceLine" id="cb455-33" data-line-number="33">       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;steelblue&quot;</span>),</a>
-<a class="sourceLine" id="cb455-34" data-line-number="34">       <span class="dt">lwd =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb455-35" data-line-number="35">       <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>))</a></code></pre></div>
-<p><img src="AdvRA_files/figure-html/unnamed-chunk-729-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb454-1" data-line-number="1"><span class="co"># reproduce Figure 16.2 of the book</span></a>
+<a class="sourceLine" id="cb454-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb454-3" data-line-number="3"><span class="co"># plot both interest series</span></a>
+<a class="sourceLine" id="cb454-4" data-line-number="4"><span class="kw">plot</span>(<span class="kw">merge</span>(<span class="kw">as.zoo</span>(TB3MS), <span class="kw">as.zoo</span>(TB10YS)), </a>
+<a class="sourceLine" id="cb454-5" data-line-number="5">     <span class="dt">plot.type =</span> <span class="st">&quot;single&quot;</span>, </a>
+<a class="sourceLine" id="cb454-6" data-line-number="6">     <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb454-7" data-line-number="7">     <span class="dt">lwd =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb454-8" data-line-number="8">     <span class="dt">xlab =</span> <span class="st">&quot;Date&quot;</span>,</a>
+<a class="sourceLine" id="cb454-9" data-line-number="9">     <span class="dt">ylab =</span> <span class="st">&quot;Percent per annum&quot;</span>,</a>
+<a class="sourceLine" id="cb454-10" data-line-number="10">     <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">17</span>),</a>
+<a class="sourceLine" id="cb454-11" data-line-number="11">     <span class="dt">main =</span> <span class="st">&quot;Interest Rates&quot;</span>)</a>
+<a class="sourceLine" id="cb454-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb454-13" data-line-number="13"><span class="co"># add the term spread series</span></a>
+<a class="sourceLine" id="cb454-14" data-line-number="14"><span class="kw">lines</span>(<span class="kw">as.zoo</span>(TSpread), </a>
+<a class="sourceLine" id="cb454-15" data-line-number="15">     <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>,</a>
+<a class="sourceLine" id="cb454-16" data-line-number="16">     <span class="dt">lwd =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb454-17" data-line-number="17">     <span class="dt">xlab =</span> <span class="st">&quot;Date&quot;</span>,</a>
+<a class="sourceLine" id="cb454-18" data-line-number="18">     <span class="dt">ylab =</span> <span class="st">&quot;Percent per annum&quot;</span>,</a>
+<a class="sourceLine" id="cb454-19" data-line-number="19">     <span class="dt">main =</span> <span class="st">&quot;Term Spread&quot;</span>)</a>
+<a class="sourceLine" id="cb454-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb454-21" data-line-number="21"><span class="co"># shade the term spread</span></a>
+<a class="sourceLine" id="cb454-22" data-line-number="22"><span class="kw">polygon</span>(<span class="kw">c</span>(<span class="kw">time</span>(TB3MS), <span class="kw">rev</span>(<span class="kw">time</span>(TB3MS))), </a>
+<a class="sourceLine" id="cb454-23" data-line-number="23">        <span class="kw">c</span>(TB10YS, <span class="kw">rev</span>(TB3MS)),</a>
+<a class="sourceLine" id="cb454-24" data-line-number="24">        <span class="dt">col =</span> <span class="kw">alpha</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.3</span>),</a>
+<a class="sourceLine" id="cb454-25" data-line-number="25">        <span class="dt">border =</span> <span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb454-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb454-27" data-line-number="27"><span class="co"># add horizontal line add 0</span></a>
+<a class="sourceLine" id="cb454-28" data-line-number="28"><span class="kw">abline</span>(<span class="dv">0</span>, <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb454-29" data-line-number="29"></a>
+<a class="sourceLine" id="cb454-30" data-line-number="30"><span class="co"># add a legend</span></a>
+<a class="sourceLine" id="cb454-31" data-line-number="31"><span class="kw">legend</span>(<span class="st">&quot;topright&quot;</span>, </a>
+<a class="sourceLine" id="cb454-32" data-line-number="32">       <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;TB3MS&quot;</span>, <span class="st">&quot;TB10YS&quot;</span>, <span class="st">&quot;Term Spread&quot;</span>),</a>
+<a class="sourceLine" id="cb454-33" data-line-number="33">       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;steelblue&quot;</span>),</a>
+<a class="sourceLine" id="cb454-34" data-line-number="34">       <span class="dt">lwd =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb454-35" data-line-number="35">       <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>))</a></code></pre></div>
+<p><img src="AdvRA_files/figure-html/unnamed-chunk-727-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>The plot suggests that long-term and short-term interest rates are cointegrated: both interest series seem to have the same long-run behavior. They share a common stochastic trend. The term spread, which is obtained by taking the difference between long-term and short-term interest rates, seems to be stationary. In fact, the expectations theory of the term structure suggests the cointegrating coefficient <span class="math inline">\(\theta\)</span> to be 1. This is consistent with the visual result.</p>
 <div id="testing-for-cointegration" class="section level4 unnumbered">
 <h4>Testing for Cointegration</h4>
@@ -422,8 +420,55 @@ Cointegration
 <h4>Application to Interest Rates</h4>
 <p>As has been mentioned above, the theory of the term structure suggests that long-term and short-term interest rates are cointegrated with a cointegration coefficient of <span class="math inline">\(\theta = 1\)</span>. In the previous section we have seen that there is visual evidence for this conjecture since the spread of 10-year and 3-month interest rates looks stationary.</p>
 <p>We continue by using formal tests (the ADF and the DF-GLS test) to see whether the individual interest rate series are integrated and if their difference is stationary (for now, we assume that <span class="math inline">\(\theta = 1\)</span> is known). Both is conveniently done by using the functions <tt>ur.df()</tt> for computation of the ADF test and <tt>ur.ers</tt> for conducting the DF-GLS test. Following the book we use data from 1962:Q1 to 2012:Q4 and employ models that include a drift term. We set the maximum lag order to <span class="math inline">\(6\)</span> and use the <span class="math inline">\(AIC\)</span> for selection of the optimal lag length.</p>
-<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb456-1" data-line-number="1"><span class="co"># test for nonstationarity of 3-month treasury bills using ADF test</span></a>
-<a class="sourceLine" id="cb456-2" data-line-number="2"><span class="kw">ur.df</span>(<span class="kw">window</span>(TB3MS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">4</span>)), </a>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb455-1" data-line-number="1"><span class="co"># test for nonstationarity of 3-month treasury bills using ADF test</span></a>
+<a class="sourceLine" id="cb455-2" data-line-number="2"><span class="kw">ur.df</span>(<span class="kw">window</span>(TB3MS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">4</span>)), </a>
+<a class="sourceLine" id="cb455-3" data-line-number="3">      <span class="dt">lags =</span> <span class="dv">6</span>, </a>
+<a class="sourceLine" id="cb455-4" data-line-number="4">      <span class="dt">selectlags =</span> <span class="st">&quot;AIC&quot;</span>, </a>
+<a class="sourceLine" id="cb455-5" data-line-number="5">      <span class="dt">type =</span> <span class="st">&quot;drift&quot;</span>)</a>
+<a class="sourceLine" id="cb455-6" data-line-number="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb455-7" data-line-number="7"><span class="co">#&gt; ############################################################### </span></a>
+<a class="sourceLine" id="cb455-8" data-line-number="8"><span class="co">#&gt; # Augmented Dickey-Fuller Test Unit Root / Cointegration Test # </span></a>
+<a class="sourceLine" id="cb455-9" data-line-number="9"><span class="co">#&gt; ############################################################### </span></a>
+<a class="sourceLine" id="cb455-10" data-line-number="10"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb455-11" data-line-number="11"><span class="co">#&gt; The value of the test statistic is: -2.1004 2.2385</span></a>
+<a class="sourceLine" id="cb455-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb455-13" data-line-number="13"><span class="co"># test for nonstationarity of 10-years treasury bonds using ADF test</span></a>
+<a class="sourceLine" id="cb455-14" data-line-number="14"><span class="kw">ur.df</span>(<span class="kw">window</span>(TB10YS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">4</span>)), </a>
+<a class="sourceLine" id="cb455-15" data-line-number="15">      <span class="dt">lags =</span> <span class="dv">6</span>, </a>
+<a class="sourceLine" id="cb455-16" data-line-number="16">      <span class="dt">selectlags =</span> <span class="st">&quot;AIC&quot;</span>, </a>
+<a class="sourceLine" id="cb455-17" data-line-number="17">      <span class="dt">type =</span> <span class="st">&quot;drift&quot;</span>)</a>
+<a class="sourceLine" id="cb455-18" data-line-number="18"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb455-19" data-line-number="19"><span class="co">#&gt; ############################################################### </span></a>
+<a class="sourceLine" id="cb455-20" data-line-number="20"><span class="co">#&gt; # Augmented Dickey-Fuller Test Unit Root / Cointegration Test # </span></a>
+<a class="sourceLine" id="cb455-21" data-line-number="21"><span class="co">#&gt; ############################################################### </span></a>
+<a class="sourceLine" id="cb455-22" data-line-number="22"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb455-23" data-line-number="23"><span class="co">#&gt; The value of the test statistic is: -1.0079 0.5501</span></a>
+<a class="sourceLine" id="cb455-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb455-25" data-line-number="25"><span class="co"># test for nonstationarity of 3-month treasury bills using DF-GLS test</span></a>
+<a class="sourceLine" id="cb455-26" data-line-number="26"><span class="kw">ur.ers</span>(<span class="kw">window</span>(TB3MS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">4</span>)),</a>
+<a class="sourceLine" id="cb455-27" data-line-number="27">       <span class="dt">model =</span> <span class="st">&quot;constant&quot;</span>, </a>
+<a class="sourceLine" id="cb455-28" data-line-number="28">       <span class="dt">lag.max =</span> <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb455-29" data-line-number="29"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb455-30" data-line-number="30"><span class="co">#&gt; ############################################################### </span></a>
+<a class="sourceLine" id="cb455-31" data-line-number="31"><span class="co">#&gt; # Elliot, Rothenberg and Stock Unit Root / Cointegration Test # </span></a>
+<a class="sourceLine" id="cb455-32" data-line-number="32"><span class="co">#&gt; ############################################################### </span></a>
+<a class="sourceLine" id="cb455-33" data-line-number="33"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb455-34" data-line-number="34"><span class="co">#&gt; The value of the test statistic is: -1.8042</span></a>
+<a class="sourceLine" id="cb455-35" data-line-number="35"></a>
+<a class="sourceLine" id="cb455-36" data-line-number="36"><span class="co"># test for nonstationarity of 10-years treasury bonds using DF-GLS test</span></a>
+<a class="sourceLine" id="cb455-37" data-line-number="37"><span class="kw">ur.ers</span>(<span class="kw">window</span>(TB10YS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">4</span>)),</a>
+<a class="sourceLine" id="cb455-38" data-line-number="38">       <span class="dt">model =</span> <span class="st">&quot;constant&quot;</span>, </a>
+<a class="sourceLine" id="cb455-39" data-line-number="39">       <span class="dt">lag.max =</span> <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb455-40" data-line-number="40"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb455-41" data-line-number="41"><span class="co">#&gt; ############################################################### </span></a>
+<a class="sourceLine" id="cb455-42" data-line-number="42"><span class="co">#&gt; # Elliot, Rothenberg and Stock Unit Root / Cointegration Test # </span></a>
+<a class="sourceLine" id="cb455-43" data-line-number="43"><span class="co">#&gt; ############################################################### </span></a>
+<a class="sourceLine" id="cb455-44" data-line-number="44"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb455-45" data-line-number="45"><span class="co">#&gt; The value of the test statistic is: -0.942</span></a></code></pre></div>
+<p>The corresponding <span class="math inline">\(10\%\)</span> critical value for both tests is <span class="math inline">\(-2.57\)</span> so we cannot reject the null hypotheses of nonstationary for either series, even at the <span class="math inline">\(10\%\)</span> level of significance.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> We conclude that it is plausible to model both interest rate series as <span class="math inline">\(I(1)\)</span>.</p>
+<p>Next, we apply the ADF and the DF-GLS test to test for nonstationarity of the term spread series, which means we test for non-cointegration of long- and short-term interest rates.</p>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb456-1" data-line-number="1"><span class="co"># test if term spread is stationairy (cointegration of interest rates) using ADF</span></a>
+<a class="sourceLine" id="cb456-2" data-line-number="2"><span class="kw">ur.df</span>(<span class="kw">window</span>(TB10YS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">4</span>)) <span class="op">-</span><span class="st"> </span><span class="kw">window</span>(TB3MS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span> ,<span class="dv">4</span>)), </a>
 <a class="sourceLine" id="cb456-3" data-line-number="3">      <span class="dt">lags =</span> <span class="dv">6</span>, </a>
 <a class="sourceLine" id="cb456-4" data-line-number="4">      <span class="dt">selectlags =</span> <span class="st">&quot;AIC&quot;</span>, </a>
 <a class="sourceLine" id="cb456-5" data-line-number="5">      <span class="dt">type =</span> <span class="st">&quot;drift&quot;</span>)</a>
@@ -432,65 +477,18 @@ Cointegration
 <a class="sourceLine" id="cb456-8" data-line-number="8"><span class="co">#&gt; # Augmented Dickey-Fuller Test Unit Root / Cointegration Test # </span></a>
 <a class="sourceLine" id="cb456-9" data-line-number="9"><span class="co">#&gt; ############################################################### </span></a>
 <a class="sourceLine" id="cb456-10" data-line-number="10"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb456-11" data-line-number="11"><span class="co">#&gt; The value of the test statistic is: -2.1004 2.2385</span></a>
+<a class="sourceLine" id="cb456-11" data-line-number="11"><span class="co">#&gt; The value of the test statistic is: -3.9308 7.7362</span></a>
 <a class="sourceLine" id="cb456-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb456-13" data-line-number="13"><span class="co"># test for nonstationarity of 10-years treasury bonds using ADF test</span></a>
-<a class="sourceLine" id="cb456-14" data-line-number="14"><span class="kw">ur.df</span>(<span class="kw">window</span>(TB10YS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">4</span>)), </a>
-<a class="sourceLine" id="cb456-15" data-line-number="15">      <span class="dt">lags =</span> <span class="dv">6</span>, </a>
-<a class="sourceLine" id="cb456-16" data-line-number="16">      <span class="dt">selectlags =</span> <span class="st">&quot;AIC&quot;</span>, </a>
-<a class="sourceLine" id="cb456-17" data-line-number="17">      <span class="dt">type =</span> <span class="st">&quot;drift&quot;</span>)</a>
-<a class="sourceLine" id="cb456-18" data-line-number="18"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb456-19" data-line-number="19"><span class="co">#&gt; ############################################################### </span></a>
-<a class="sourceLine" id="cb456-20" data-line-number="20"><span class="co">#&gt; # Augmented Dickey-Fuller Test Unit Root / Cointegration Test # </span></a>
-<a class="sourceLine" id="cb456-21" data-line-number="21"><span class="co">#&gt; ############################################################### </span></a>
-<a class="sourceLine" id="cb456-22" data-line-number="22"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb456-23" data-line-number="23"><span class="co">#&gt; The value of the test statistic is: -1.0079 0.5501</span></a>
-<a class="sourceLine" id="cb456-24" data-line-number="24"></a>
-<a class="sourceLine" id="cb456-25" data-line-number="25"><span class="co"># test for nonstationarity of 3-month treasury bills using DF-GLS test</span></a>
-<a class="sourceLine" id="cb456-26" data-line-number="26"><span class="kw">ur.ers</span>(<span class="kw">window</span>(TB3MS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">4</span>)),</a>
-<a class="sourceLine" id="cb456-27" data-line-number="27">       <span class="dt">model =</span> <span class="st">&quot;constant&quot;</span>, </a>
-<a class="sourceLine" id="cb456-28" data-line-number="28">       <span class="dt">lag.max =</span> <span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb456-29" data-line-number="29"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb456-30" data-line-number="30"><span class="co">#&gt; ############################################################### </span></a>
-<a class="sourceLine" id="cb456-31" data-line-number="31"><span class="co">#&gt; # Elliot, Rothenberg and Stock Unit Root / Cointegration Test # </span></a>
-<a class="sourceLine" id="cb456-32" data-line-number="32"><span class="co">#&gt; ############################################################### </span></a>
-<a class="sourceLine" id="cb456-33" data-line-number="33"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb456-34" data-line-number="34"><span class="co">#&gt; The value of the test statistic is: -1.8042</span></a>
-<a class="sourceLine" id="cb456-35" data-line-number="35"></a>
-<a class="sourceLine" id="cb456-36" data-line-number="36"><span class="co"># test for nonstationarity of 10-years treasury bonds using DF-GLS test</span></a>
-<a class="sourceLine" id="cb456-37" data-line-number="37"><span class="kw">ur.ers</span>(<span class="kw">window</span>(TB10YS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">4</span>)),</a>
-<a class="sourceLine" id="cb456-38" data-line-number="38">       <span class="dt">model =</span> <span class="st">&quot;constant&quot;</span>, </a>
-<a class="sourceLine" id="cb456-39" data-line-number="39">       <span class="dt">lag.max =</span> <span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb456-40" data-line-number="40"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb456-41" data-line-number="41"><span class="co">#&gt; ############################################################### </span></a>
-<a class="sourceLine" id="cb456-42" data-line-number="42"><span class="co">#&gt; # Elliot, Rothenberg and Stock Unit Root / Cointegration Test # </span></a>
-<a class="sourceLine" id="cb456-43" data-line-number="43"><span class="co">#&gt; ############################################################### </span></a>
-<a class="sourceLine" id="cb456-44" data-line-number="44"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb456-45" data-line-number="45"><span class="co">#&gt; The value of the test statistic is: -0.942</span></a></code></pre></div>
-<p>The corresponding <span class="math inline">\(10\%\)</span> critical value for both tests is <span class="math inline">\(-2.57\)</span> so we cannot reject the null hypotheses of nonstationary for either series, even at the <span class="math inline">\(10\%\)</span> level of significance.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> We conclude that it is plausible to model both interest rate series as <span class="math inline">\(I(1)\)</span>.</p>
-<p>Next, we apply the ADF and the DF-GLS test to test for nonstationarity of the term spread series, which means we test for non-cointegration of long- and short-term interest rates.</p>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb457-1" data-line-number="1"><span class="co"># test if term spread is stationairy (cointegration of interest rates) using ADF</span></a>
-<a class="sourceLine" id="cb457-2" data-line-number="2"><span class="kw">ur.df</span>(<span class="kw">window</span>(TB10YS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">4</span>)) <span class="op">-</span><span class="st"> </span><span class="kw">window</span>(TB3MS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span> ,<span class="dv">4</span>)), </a>
-<a class="sourceLine" id="cb457-3" data-line-number="3">      <span class="dt">lags =</span> <span class="dv">6</span>, </a>
-<a class="sourceLine" id="cb457-4" data-line-number="4">      <span class="dt">selectlags =</span> <span class="st">&quot;AIC&quot;</span>, </a>
-<a class="sourceLine" id="cb457-5" data-line-number="5">      <span class="dt">type =</span> <span class="st">&quot;drift&quot;</span>)</a>
-<a class="sourceLine" id="cb457-6" data-line-number="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb457-7" data-line-number="7"><span class="co">#&gt; ############################################################### </span></a>
-<a class="sourceLine" id="cb457-8" data-line-number="8"><span class="co">#&gt; # Augmented Dickey-Fuller Test Unit Root / Cointegration Test # </span></a>
-<a class="sourceLine" id="cb457-9" data-line-number="9"><span class="co">#&gt; ############################################################### </span></a>
-<a class="sourceLine" id="cb457-10" data-line-number="10"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb457-11" data-line-number="11"><span class="co">#&gt; The value of the test statistic is: -3.9308 7.7362</span></a>
-<a class="sourceLine" id="cb457-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb457-13" data-line-number="13"><span class="co"># test if term spread is stationairy (cointegration of interest rates) using DF-GLS test</span></a>
-<a class="sourceLine" id="cb457-14" data-line-number="14"><span class="kw">ur.ers</span>(<span class="kw">window</span>(TB10YS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">4</span>)) <span class="op">-</span><span class="st"> </span><span class="kw">window</span>(TB3MS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">4</span>)),</a>
-<a class="sourceLine" id="cb457-15" data-line-number="15">       <span class="dt">model =</span> <span class="st">&quot;constant&quot;</span>, </a>
-<a class="sourceLine" id="cb457-16" data-line-number="16">       <span class="dt">lag.max =</span> <span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb457-17" data-line-number="17"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb457-18" data-line-number="18"><span class="co">#&gt; ############################################################### </span></a>
-<a class="sourceLine" id="cb457-19" data-line-number="19"><span class="co">#&gt; # Elliot, Rothenberg and Stock Unit Root / Cointegration Test # </span></a>
-<a class="sourceLine" id="cb457-20" data-line-number="20"><span class="co">#&gt; ############################################################### </span></a>
-<a class="sourceLine" id="cb457-21" data-line-number="21"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb457-22" data-line-number="22"><span class="co">#&gt; The value of the test statistic is: -3.8576</span></a></code></pre></div>
+<a class="sourceLine" id="cb456-13" data-line-number="13"><span class="co"># test if term spread is stationairy (cointegration of interest rates) using DF-GLS test</span></a>
+<a class="sourceLine" id="cb456-14" data-line-number="14"><span class="kw">ur.ers</span>(<span class="kw">window</span>(TB10YS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">4</span>)) <span class="op">-</span><span class="st"> </span><span class="kw">window</span>(TB3MS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">4</span>)),</a>
+<a class="sourceLine" id="cb456-15" data-line-number="15">       <span class="dt">model =</span> <span class="st">&quot;constant&quot;</span>, </a>
+<a class="sourceLine" id="cb456-16" data-line-number="16">       <span class="dt">lag.max =</span> <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb456-17" data-line-number="17"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb456-18" data-line-number="18"><span class="co">#&gt; ############################################################### </span></a>
+<a class="sourceLine" id="cb456-19" data-line-number="19"><span class="co">#&gt; # Elliot, Rothenberg and Stock Unit Root / Cointegration Test # </span></a>
+<a class="sourceLine" id="cb456-20" data-line-number="20"><span class="co">#&gt; ############################################################### </span></a>
+<a class="sourceLine" id="cb456-21" data-line-number="21"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb456-22" data-line-number="22"><span class="co">#&gt; The value of the test statistic is: -3.8576</span></a></code></pre></div>
 <p>Table <a href="16-3-cointegration.html#tab:spreadcoint">16.1</a> summarizes the results.</p>
 <table>
 <caption><span id="tab:spreadcoint">Table 16.1: </span> ADF and DF-GLS Test Statistics for Interest Rate Series</caption>
@@ -521,85 +519,85 @@ Cointegration
 </table>
 <p>Both tests reject the hypothesis of nonstationarity of the term spread series at the <span class="math inline">\(1\%\)</span> level of significance, which is strong evidence in favor of the hypothesis that the term spread is stationary, implying cointegration of long- and short-term interest rates.</p>
 <p>Since theory suggests that <span class="math inline">\(\theta=1\)</span>, there is no need to estimate <span class="math inline">\(\theta\)</span> so it is not necessary to use the EG-ADF test which allows <span class="math inline">\(\theta\)</span> to be unknown. However, since it is instructive to do so, we follow the book and compute this test statistic. The first-stage OLS regression is <span class="math display">\[TB10YS_t = \beta_0 + \beta_1 TB3MS_t + z_t.\]</span></p>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb458-1" data-line-number="1"><span class="co"># estimate first-stage regression of EG-ADF test</span></a>
-<a class="sourceLine" id="cb458-2" data-line-number="2">FS_EGADF &lt;-<span class="st"> </span><span class="kw">dynlm</span>(<span class="kw">window</span>(TB10YS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">4</span>)) <span class="op">~</span><span class="st"> </span><span class="kw">window</span>(TB3MS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">4</span>)))</a>
-<a class="sourceLine" id="cb458-3" data-line-number="3">FS_EGADF</a>
-<a class="sourceLine" id="cb458-4" data-line-number="4"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb458-5" data-line-number="5"><span class="co">#&gt; Time series regression with &quot;ts&quot; data:</span></a>
-<a class="sourceLine" id="cb458-6" data-line-number="6"><span class="co">#&gt; Start = 1962(1), End = 2012(4)</span></a>
-<a class="sourceLine" id="cb458-7" data-line-number="7"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb458-8" data-line-number="8"><span class="co">#&gt; Call:</span></a>
-<a class="sourceLine" id="cb458-9" data-line-number="9"><span class="co">#&gt; dynlm(formula = window(TB10YS, c(1962, 1), c(2012, 4)) ~ window(TB3MS, </span></a>
-<a class="sourceLine" id="cb458-10" data-line-number="10"><span class="co">#&gt;     c(1962, 1), c(2012, 4)))</span></a>
-<a class="sourceLine" id="cb458-11" data-line-number="11"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb458-12" data-line-number="12"><span class="co">#&gt; Coefficients:</span></a>
-<a class="sourceLine" id="cb458-13" data-line-number="13"><span class="co">#&gt;                           (Intercept)  </span></a>
-<a class="sourceLine" id="cb458-14" data-line-number="14"><span class="co">#&gt;                                2.4642  </span></a>
-<a class="sourceLine" id="cb458-15" data-line-number="15"><span class="co">#&gt; window(TB3MS, c(1962, 1), c(2012, 4))  </span></a>
-<a class="sourceLine" id="cb458-16" data-line-number="16"><span class="co">#&gt;                                0.8147</span></a></code></pre></div>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb457-1" data-line-number="1"><span class="co"># estimate first-stage regression of EG-ADF test</span></a>
+<a class="sourceLine" id="cb457-2" data-line-number="2">FS_EGADF &lt;-<span class="st"> </span><span class="kw">dynlm</span>(<span class="kw">window</span>(TB10YS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">4</span>)) <span class="op">~</span><span class="st"> </span><span class="kw">window</span>(TB3MS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">4</span>)))</a>
+<a class="sourceLine" id="cb457-3" data-line-number="3">FS_EGADF</a>
+<a class="sourceLine" id="cb457-4" data-line-number="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb457-5" data-line-number="5"><span class="co">#&gt; Time series regression with &quot;ts&quot; data:</span></a>
+<a class="sourceLine" id="cb457-6" data-line-number="6"><span class="co">#&gt; Start = 1962(1), End = 2012(4)</span></a>
+<a class="sourceLine" id="cb457-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb457-8" data-line-number="8"><span class="co">#&gt; Call:</span></a>
+<a class="sourceLine" id="cb457-9" data-line-number="9"><span class="co">#&gt; dynlm(formula = window(TB10YS, c(1962, 1), c(2012, 4)) ~ window(TB3MS, </span></a>
+<a class="sourceLine" id="cb457-10" data-line-number="10"><span class="co">#&gt;     c(1962, 1), c(2012, 4)))</span></a>
+<a class="sourceLine" id="cb457-11" data-line-number="11"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb457-12" data-line-number="12"><span class="co">#&gt; Coefficients:</span></a>
+<a class="sourceLine" id="cb457-13" data-line-number="13"><span class="co">#&gt;                           (Intercept)  </span></a>
+<a class="sourceLine" id="cb457-14" data-line-number="14"><span class="co">#&gt;                                2.4642  </span></a>
+<a class="sourceLine" id="cb457-15" data-line-number="15"><span class="co">#&gt; window(TB3MS, c(1962, 1), c(2012, 4))  </span></a>
+<a class="sourceLine" id="cb457-16" data-line-number="16"><span class="co">#&gt;                                0.8147</span></a></code></pre></div>
 <p>Thus we have
 <span class="math display">\[\begin{align*}
   \widehat{TB10YS}_t = 2.46 + 0.81 \cdot TB3MS_t,
 \end{align*}\]</span>
 where <span class="math inline">\(\widehat{\theta} = 0.81\)</span>. Next, we take the residual series <span class="math inline">\(\{\widehat{z_t}\}\)</span> and compute the ADF test statistic.</p>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb459-1" data-line-number="1"><span class="co"># compute the residuals</span></a>
-<a class="sourceLine" id="cb459-2" data-line-number="2">z_hat &lt;-<span class="st"> </span><span class="kw">resid</span>(FS_EGADF)</a>
-<a class="sourceLine" id="cb459-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb459-4" data-line-number="4"><span class="co"># compute the ADF test statistic</span></a>
-<a class="sourceLine" id="cb459-5" data-line-number="5"><span class="kw">ur.df</span>(z_hat, <span class="dt">lags =</span> <span class="dv">6</span>, <span class="dt">type =</span> <span class="st">&quot;none&quot;</span>, <span class="dt">selectlags =</span> <span class="st">&quot;AIC&quot;</span>)</a>
-<a class="sourceLine" id="cb459-6" data-line-number="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb459-7" data-line-number="7"><span class="co">#&gt; ############################################################### </span></a>
-<a class="sourceLine" id="cb459-8" data-line-number="8"><span class="co">#&gt; # Augmented Dickey-Fuller Test Unit Root / Cointegration Test # </span></a>
-<a class="sourceLine" id="cb459-9" data-line-number="9"><span class="co">#&gt; ############################################################### </span></a>
-<a class="sourceLine" id="cb459-10" data-line-number="10"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb459-11" data-line-number="11"><span class="co">#&gt; The value of the test statistic is: -3.1935</span></a></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb458-1" data-line-number="1"><span class="co"># compute the residuals</span></a>
+<a class="sourceLine" id="cb458-2" data-line-number="2">z_hat &lt;-<span class="st"> </span><span class="kw">resid</span>(FS_EGADF)</a>
+<a class="sourceLine" id="cb458-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb458-4" data-line-number="4"><span class="co"># compute the ADF test statistic</span></a>
+<a class="sourceLine" id="cb458-5" data-line-number="5"><span class="kw">ur.df</span>(z_hat, <span class="dt">lags =</span> <span class="dv">6</span>, <span class="dt">type =</span> <span class="st">&quot;none&quot;</span>, <span class="dt">selectlags =</span> <span class="st">&quot;AIC&quot;</span>)</a>
+<a class="sourceLine" id="cb458-6" data-line-number="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb458-7" data-line-number="7"><span class="co">#&gt; ############################################################### </span></a>
+<a class="sourceLine" id="cb458-8" data-line-number="8"><span class="co">#&gt; # Augmented Dickey-Fuller Test Unit Root / Cointegration Test # </span></a>
+<a class="sourceLine" id="cb458-9" data-line-number="9"><span class="co">#&gt; ############################################################### </span></a>
+<a class="sourceLine" id="cb458-10" data-line-number="10"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb458-11" data-line-number="11"><span class="co">#&gt; The value of the test statistic is: -3.1935</span></a></code></pre></div>
 <p>The test statistic is <span class="math inline">\(-3.19\)</span> which is smaller than the <span class="math inline">\(10\%\)</span> critical value but larger than the <span class="math inline">\(5\%\)</span> critical value (see Table 16.2 of the book). Thus, the null hypothesis of no cointegration can be rejected at the <span class="math inline">\(10\%\)</span> level but not at the <span class="math inline">\(5\%\)</span> level. This indicates lower power of the EG-ADF test due to the estimation of <span class="math inline">\(\theta\)</span>: when <span class="math inline">\(\theta=1\)</span> is the correct value, we expect the power of the ADF test for a unit root in the residuals series <span class="math inline">\(\widehat{z} = TB10YS - TB3MS\)</span> to be higher than when some estimate <span class="math inline">\(\widehat{\theta}\)</span> is used.</p>
 <div id="a-vector-error-correction-model-for-tb10ys_t-and-tb3ms" class="section level5 unnumbered">
 <h5>A Vector Error Correction Model for <span class="math inline">\(TB10YS_t\)</span> and <span class="math inline">\(TB3MS\)</span></h5>
 <p>If two <span class="math inline">\(I(1)\)</span> time series <span class="math inline">\(X_t\)</span> and <span class="math inline">\(Y_t\)</span> are cointegrated, their differences are stationary and can be modeled in a VAR which is augmented by the regressor <span class="math inline">\(Y_{t-1} - \theta X_{t-1}\)</span>. This is called a <em>vector error correction model</em> (VECM) and <span class="math inline">\(Y_{t} - \theta X_{t}\)</span> is called the <em>error correction term</em>. Lagged values of the error correction term are useful for predicting <span class="math inline">\(\Delta X_t\)</span> and/or <span class="math inline">\(\Delta Y_t\)</span>.</p>
 <p>A VECM can be used to model the two interest rates considered in the previous sections. Following the book we specify the VECM to include two lags of both series as regressors and choose <span class="math inline">\(\theta = 1\)</span>, as theory suggests (see above).</p>
-<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb460-1" data-line-number="1">TB10YS &lt;-<span class="st"> </span><span class="kw">window</span>(TB10YS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span> ,<span class="dv">4</span>))</a>
-<a class="sourceLine" id="cb460-2" data-line-number="2">TB3MS &lt;-<span class="st"> </span><span class="kw">window</span>(TB3MS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">4</span>))</a>
-<a class="sourceLine" id="cb460-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb460-4" data-line-number="4"><span class="co"># set up error correction term</span></a>
-<a class="sourceLine" id="cb460-5" data-line-number="5">VECM_ECT &lt;-<span class="st"> </span>TB10YS <span class="op">-</span><span class="st"> </span>TB3MS</a>
-<a class="sourceLine" id="cb460-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb460-7" data-line-number="7"><span class="co"># estimate both equations of the VECM using &#39;dynlm()&#39;</span></a>
-<a class="sourceLine" id="cb460-8" data-line-number="8">VECM_EQ1 &lt;-<span class="st"> </span><span class="kw">dynlm</span>(<span class="kw">d</span>(TB10YS) <span class="op">~</span><span class="st"> </span><span class="kw">L</span>(<span class="kw">d</span>(TB3MS), <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">L</span>(<span class="kw">d</span>(TB10YS), <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">L</span>(VECM_ECT))</a>
-<a class="sourceLine" id="cb460-9" data-line-number="9">VECM_EQ2 &lt;-<span class="st"> </span><span class="kw">dynlm</span>(<span class="kw">d</span>(TB3MS) <span class="op">~</span><span class="st"> </span><span class="kw">L</span>(<span class="kw">d</span>(TB3MS), <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">L</span>(<span class="kw">d</span>(TB10YS), <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">L</span>(VECM_ECT))</a>
-<a class="sourceLine" id="cb460-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb460-11" data-line-number="11"><span class="co"># rename regressors for better readability</span></a>
-<a class="sourceLine" id="cb460-12" data-line-number="12"><span class="kw">names</span>(VECM_EQ1<span class="op">$</span>coefficients) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Intercept&quot;</span>, <span class="st">&quot;D_TB3MS_l1&quot;</span>, <span class="st">&quot;D_TB3MS_l2&quot;</span>,</a>
-<a class="sourceLine" id="cb460-13" data-line-number="13">                                  <span class="st">&quot;D_TB10YS_l1&quot;</span>, <span class="st">&quot;D_TB10YS_l2&quot;</span>, <span class="st">&quot;ect_l1&quot;</span>)</a>
-<a class="sourceLine" id="cb460-14" data-line-number="14"><span class="kw">names</span>(VECM_EQ2<span class="op">$</span>coefficients) &lt;-<span class="st"> </span><span class="kw">names</span>(VECM_EQ1<span class="op">$</span>coefficients)</a>
-<a class="sourceLine" id="cb460-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb460-16" data-line-number="16"><span class="co"># coefficient summaries using HAC standard errors</span></a>
-<a class="sourceLine" id="cb460-17" data-line-number="17"><span class="kw">coeftest</span>(VECM_EQ1, <span class="dt">vcov. =</span> <span class="kw">NeweyWest</span>(VECM_EQ1, <span class="dt">prewhite =</span> F, <span class="dt">adjust =</span> T))</a>
-<a class="sourceLine" id="cb460-18" data-line-number="18"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb460-19" data-line-number="19"><span class="co">#&gt; t test of coefficients:</span></a>
-<a class="sourceLine" id="cb460-20" data-line-number="20"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb460-21" data-line-number="21"><span class="co">#&gt;               Estimate Std. Error t value Pr(&gt;|t|)   </span></a>
-<a class="sourceLine" id="cb460-22" data-line-number="22"><span class="co">#&gt; Intercept    0.1227089  0.0551419  2.2253 0.027205 * </span></a>
-<a class="sourceLine" id="cb460-23" data-line-number="23"><span class="co">#&gt; D_TB3MS_l1  -0.0016601  0.0727060 -0.0228 0.981807   </span></a>
-<a class="sourceLine" id="cb460-24" data-line-number="24"><span class="co">#&gt; D_TB3MS_l2  -0.0680845  0.0435059 -1.5649 0.119216   </span></a>
-<a class="sourceLine" id="cb460-25" data-line-number="25"><span class="co">#&gt; D_TB10YS_l1  0.2264878  0.0957071  2.3665 0.018939 * </span></a>
-<a class="sourceLine" id="cb460-26" data-line-number="26"><span class="co">#&gt; D_TB10YS_l2 -0.0734486  0.0703476 -1.0441 0.297740   </span></a>
-<a class="sourceLine" id="cb460-27" data-line-number="27"><span class="co">#&gt; ect_l1      -0.0878871  0.0285644 -3.0768 0.002393 **</span></a>
-<a class="sourceLine" id="cb460-28" data-line-number="28"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb460-29" data-line-number="29"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb460-30" data-line-number="30"><span class="kw">coeftest</span>(VECM_EQ2, <span class="dt">vcov. =</span> <span class="kw">NeweyWest</span>(VECM_EQ2, <span class="dt">prewhite =</span> F, <span class="dt">adjust =</span> T))</a>
-<a class="sourceLine" id="cb460-31" data-line-number="31"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb460-32" data-line-number="32"><span class="co">#&gt; t test of coefficients:</span></a>
-<a class="sourceLine" id="cb460-33" data-line-number="33"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb460-34" data-line-number="34"><span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)  </span></a>
-<a class="sourceLine" id="cb460-35" data-line-number="35"><span class="co">#&gt; Intercept   -0.060746   0.107937 -0.5628  0.57422  </span></a>
-<a class="sourceLine" id="cb460-36" data-line-number="36"><span class="co">#&gt; D_TB3MS_l1   0.240003   0.111611  2.1504  0.03276 *</span></a>
-<a class="sourceLine" id="cb460-37" data-line-number="37"><span class="co">#&gt; D_TB3MS_l2  -0.155883   0.153845 -1.0132  0.31220  </span></a>
-<a class="sourceLine" id="cb460-38" data-line-number="38"><span class="co">#&gt; D_TB10YS_l1  0.113740   0.125571  0.9058  0.36617  </span></a>
-<a class="sourceLine" id="cb460-39" data-line-number="39"><span class="co">#&gt; D_TB10YS_l2 -0.147519   0.112630 -1.3098  0.19182  </span></a>
-<a class="sourceLine" id="cb460-40" data-line-number="40"><span class="co">#&gt; ect_l1       0.031506   0.050519  0.6236  0.53359  </span></a>
-<a class="sourceLine" id="cb460-41" data-line-number="41"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb460-42" data-line-number="42"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb459-1" data-line-number="1">TB10YS &lt;-<span class="st"> </span><span class="kw">window</span>(TB10YS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span> ,<span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb459-2" data-line-number="2">TB3MS &lt;-<span class="st"> </span><span class="kw">window</span>(TB3MS, <span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">2012</span>, <span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb459-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb459-4" data-line-number="4"><span class="co"># set up error correction term</span></a>
+<a class="sourceLine" id="cb459-5" data-line-number="5">VECM_ECT &lt;-<span class="st"> </span>TB10YS <span class="op">-</span><span class="st"> </span>TB3MS</a>
+<a class="sourceLine" id="cb459-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb459-7" data-line-number="7"><span class="co"># estimate both equations of the VECM using &#39;dynlm()&#39;</span></a>
+<a class="sourceLine" id="cb459-8" data-line-number="8">VECM_EQ1 &lt;-<span class="st"> </span><span class="kw">dynlm</span>(<span class="kw">d</span>(TB10YS) <span class="op">~</span><span class="st"> </span><span class="kw">L</span>(<span class="kw">d</span>(TB3MS), <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">L</span>(<span class="kw">d</span>(TB10YS), <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">L</span>(VECM_ECT))</a>
+<a class="sourceLine" id="cb459-9" data-line-number="9">VECM_EQ2 &lt;-<span class="st"> </span><span class="kw">dynlm</span>(<span class="kw">d</span>(TB3MS) <span class="op">~</span><span class="st"> </span><span class="kw">L</span>(<span class="kw">d</span>(TB3MS), <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">L</span>(<span class="kw">d</span>(TB10YS), <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">L</span>(VECM_ECT))</a>
+<a class="sourceLine" id="cb459-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb459-11" data-line-number="11"><span class="co"># rename regressors for better readability</span></a>
+<a class="sourceLine" id="cb459-12" data-line-number="12"><span class="kw">names</span>(VECM_EQ1<span class="op">$</span>coefficients) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Intercept&quot;</span>, <span class="st">&quot;D_TB3MS_l1&quot;</span>, <span class="st">&quot;D_TB3MS_l2&quot;</span>,</a>
+<a class="sourceLine" id="cb459-13" data-line-number="13">                                  <span class="st">&quot;D_TB10YS_l1&quot;</span>, <span class="st">&quot;D_TB10YS_l2&quot;</span>, <span class="st">&quot;ect_l1&quot;</span>)</a>
+<a class="sourceLine" id="cb459-14" data-line-number="14"><span class="kw">names</span>(VECM_EQ2<span class="op">$</span>coefficients) &lt;-<span class="st"> </span><span class="kw">names</span>(VECM_EQ1<span class="op">$</span>coefficients)</a>
+<a class="sourceLine" id="cb459-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb459-16" data-line-number="16"><span class="co"># coefficient summaries using HAC standard errors</span></a>
+<a class="sourceLine" id="cb459-17" data-line-number="17"><span class="kw">coeftest</span>(VECM_EQ1, <span class="dt">vcov. =</span> <span class="kw">NeweyWest</span>(VECM_EQ1, <span class="dt">prewhite =</span> F, <span class="dt">adjust =</span> T))</a>
+<a class="sourceLine" id="cb459-18" data-line-number="18"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb459-19" data-line-number="19"><span class="co">#&gt; t test of coefficients:</span></a>
+<a class="sourceLine" id="cb459-20" data-line-number="20"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb459-21" data-line-number="21"><span class="co">#&gt;               Estimate Std. Error t value Pr(&gt;|t|)   </span></a>
+<a class="sourceLine" id="cb459-22" data-line-number="22"><span class="co">#&gt; Intercept    0.1227089  0.0551419  2.2253 0.027205 * </span></a>
+<a class="sourceLine" id="cb459-23" data-line-number="23"><span class="co">#&gt; D_TB3MS_l1  -0.0016601  0.0727060 -0.0228 0.981807   </span></a>
+<a class="sourceLine" id="cb459-24" data-line-number="24"><span class="co">#&gt; D_TB3MS_l2  -0.0680845  0.0435059 -1.5649 0.119216   </span></a>
+<a class="sourceLine" id="cb459-25" data-line-number="25"><span class="co">#&gt; D_TB10YS_l1  0.2264878  0.0957071  2.3665 0.018939 * </span></a>
+<a class="sourceLine" id="cb459-26" data-line-number="26"><span class="co">#&gt; D_TB10YS_l2 -0.0734486  0.0703476 -1.0441 0.297740   </span></a>
+<a class="sourceLine" id="cb459-27" data-line-number="27"><span class="co">#&gt; ect_l1      -0.0878871  0.0285644 -3.0768 0.002393 **</span></a>
+<a class="sourceLine" id="cb459-28" data-line-number="28"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb459-29" data-line-number="29"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb459-30" data-line-number="30"><span class="kw">coeftest</span>(VECM_EQ2, <span class="dt">vcov. =</span> <span class="kw">NeweyWest</span>(VECM_EQ2, <span class="dt">prewhite =</span> F, <span class="dt">adjust =</span> T))</a>
+<a class="sourceLine" id="cb459-31" data-line-number="31"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb459-32" data-line-number="32"><span class="co">#&gt; t test of coefficients:</span></a>
+<a class="sourceLine" id="cb459-33" data-line-number="33"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb459-34" data-line-number="34"><span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)  </span></a>
+<a class="sourceLine" id="cb459-35" data-line-number="35"><span class="co">#&gt; Intercept   -0.060746   0.107937 -0.5628  0.57422  </span></a>
+<a class="sourceLine" id="cb459-36" data-line-number="36"><span class="co">#&gt; D_TB3MS_l1   0.240003   0.111611  2.1504  0.03276 *</span></a>
+<a class="sourceLine" id="cb459-37" data-line-number="37"><span class="co">#&gt; D_TB3MS_l2  -0.155883   0.153845 -1.0132  0.31220  </span></a>
+<a class="sourceLine" id="cb459-38" data-line-number="38"><span class="co">#&gt; D_TB10YS_l1  0.113740   0.125571  0.9058  0.36617  </span></a>
+<a class="sourceLine" id="cb459-39" data-line-number="39"><span class="co">#&gt; D_TB10YS_l2 -0.147519   0.112630 -1.3098  0.19182  </span></a>
+<a class="sourceLine" id="cb459-40" data-line-number="40"><span class="co">#&gt; ect_l1       0.031506   0.050519  0.6236  0.53359  </span></a>
+<a class="sourceLine" id="cb459-41" data-line-number="41"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb459-42" data-line-number="42"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p>Thus the two estimated equations of the VECM are
 <span class="math display">\[\begin{align*}
  \widehat{\Delta TB3MS}_t =&amp; \, -\underset{(0.11)}{0.06} + \underset{(0.11)}{0.24} \Delta TB3MS_{t-1} -\underset{(0.15)}{0.16} \Delta TB3MS_{t-2} \\ &amp;+ \underset{(0.13)}{0.11} \Delta TB10YS_{t-1} -\underset{(0.11)}{0.15} \Delta TB10YS_{t-2} + \underset{(0.05)}{0.03} ECT_{t-1} \\
@@ -617,8 +615,8 @@ where <span class="math inline">\(\widehat{\theta} = 0.81\)</span>. Next, we tak
 </div>
 <div class="footnotes">
 <hr />
-<ol start="12">
-<li id="fn12"><p>Note: <tt>ur.df()</tt> reports two test statistics when there is a drift in the ADF regression. The first of which (the one we are interested in here) is the <span class="math inline">\(t\)</span>-statistic for the test that the coefficient on the first lag of the series is 0. The second one is the <span class="math inline">\(t\)</span>-statistic for the hypothesis test that the drift term equals <span class="math inline">\(0\)</span>.<a href="16-3-cointegration.html#fnref12" class="footnote-back">↩</a></p></li>
+<ol start="10">
+<li id="fn10"><p>Note: <tt>ur.df()</tt> reports two test statistics when there is a drift in the ADF regression. The first of which (the one we are interested in here) is the <span class="math inline">\(t\)</span>-statistic for the test that the coefficient on the first lag of the series is 0. The second one is the <span class="math inline">\(t\)</span>-statistic for the hypothesis test that the drift term equals <span class="math inline">\(0\)</span>.<a href="16-3-cointegration.html#fnref10" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

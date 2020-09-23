@@ -135,13 +135,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><a href="https://www.example.com/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
+<li><center><a href="http://www.dliebl.com/AdvRA/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
 <li class="chapter" data-level="" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html#probability-distributions-of-discrete-random-variables"><i class="fa fa-check"></i>Probability Distributions of Discrete Random Variables</a></li>
@@ -361,31 +359,31 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>Based on the <span class="math inline">\(F\)</span>-statistic that we have previously encountered, we can specify confidence sets. Confidence sets are analogous to confidence intervals for single coefficients. As such, confidence sets consist of <em>combinations</em> of coefficients that contain the true combination of coefficients in, say, <span class="math inline">\(95\%\)</span> of all cases if we could repeatedly draw random samples, just like in the univariate case. Put differently, a confidence set is the set of all coefficient combinations for which we cannot reject the corresponding joint null hypothesis tested using an <span class="math inline">\(F\)</span>-test.</p>
 <p>The confidence set for two coefficients an ellipse which is centered around the point defined by both coefficient estimates. Again, there is a very convenient way to plot the confidence set for two coefficients of model objects, namely the function <tt>confidenceEllipse()</tt> from the <tt>car</tt> package.</p>
 <p>We now plot the <span class="math inline">\(95\%\)</span> confidence ellipse for the coefficients on <tt>size</tt> and <tt>expenditure</tt> from the regression conducted above. By specifying the additional argument <tt>fill</tt>, the confidence set is colored.</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1"><span class="co"># draw the 95% confidence set for coefficients on size and expenditure</span></a>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1"><span class="co"># draw the 95% confidence set for coefficients on size and expenditure</span></a>
+<a class="sourceLine" id="cb161-2" data-line-number="2"><span class="kw">confidenceEllipse</span>(model, </a>
+<a class="sourceLine" id="cb161-3" data-line-number="3">                  <span class="dt">fill =</span> T,</a>
+<a class="sourceLine" id="cb161-4" data-line-number="4">                  <span class="dt">lwd =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb161-5" data-line-number="5">                  <span class="dt">which.coef =</span> <span class="kw">c</span>(<span class="st">&quot;size&quot;</span>, <span class="st">&quot;expenditure&quot;</span>),</a>
+<a class="sourceLine" id="cb161-6" data-line-number="6">                  <span class="dt">main =</span> <span class="st">&quot;95% Confidence Set&quot;</span>)</a></code></pre></div>
+<p><img src="AdvRA_files/figure-html/unnamed-chunk-290-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>We see that the ellipse is centered around <span class="math inline">\((-0.29, 3.87)\)</span>, the pair of coefficients estimates on <span class="math inline">\(size\)</span> and <span class="math inline">\(expenditure\)</span>. What is more, <span class="math inline">\((0,0)\)</span> is not element of the <span class="math inline">\(95\%\)</span> confidence set so that we can reject <span class="math inline">\(H_0: \beta_1 = 0, \ \beta_3 = 0\)</span>.</p>
+<p>By default, <tt>confidenceEllipse()</tt> uses homoskedasticity-only standard errors. The following code chunk shows how compute a robust confidence ellipse and how to overlay it with the previous plot.</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1"><span class="co"># draw the robust 95% confidence set for coefficients on size and expenditure </span></a>
 <a class="sourceLine" id="cb162-2" data-line-number="2"><span class="kw">confidenceEllipse</span>(model, </a>
 <a class="sourceLine" id="cb162-3" data-line-number="3">                  <span class="dt">fill =</span> T,</a>
 <a class="sourceLine" id="cb162-4" data-line-number="4">                  <span class="dt">lwd =</span> <span class="dv">0</span>,</a>
 <a class="sourceLine" id="cb162-5" data-line-number="5">                  <span class="dt">which.coef =</span> <span class="kw">c</span>(<span class="st">&quot;size&quot;</span>, <span class="st">&quot;expenditure&quot;</span>),</a>
-<a class="sourceLine" id="cb162-6" data-line-number="6">                  <span class="dt">main =</span> <span class="st">&quot;95% Confidence Set&quot;</span>)</a></code></pre></div>
-<p><img src="AdvRA_files/figure-html/unnamed-chunk-292-1.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>We see that the ellipse is centered around <span class="math inline">\((-0.29, 3.87)\)</span>, the pair of coefficients estimates on <span class="math inline">\(size\)</span> and <span class="math inline">\(expenditure\)</span>. What is more, <span class="math inline">\((0,0)\)</span> is not element of the <span class="math inline">\(95\%\)</span> confidence set so that we can reject <span class="math inline">\(H_0: \beta_1 = 0, \ \beta_3 = 0\)</span>.</p>
-<p>By default, <tt>confidenceEllipse()</tt> uses homoskedasticity-only standard errors. The following code chunk shows how compute a robust confidence ellipse and how to overlay it with the previous plot.</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="co"># draw the robust 95% confidence set for coefficients on size and expenditure </span></a>
-<a class="sourceLine" id="cb163-2" data-line-number="2"><span class="kw">confidenceEllipse</span>(model, </a>
-<a class="sourceLine" id="cb163-3" data-line-number="3">                  <span class="dt">fill =</span> T,</a>
-<a class="sourceLine" id="cb163-4" data-line-number="4">                  <span class="dt">lwd =</span> <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb163-5" data-line-number="5">                  <span class="dt">which.coef =</span> <span class="kw">c</span>(<span class="st">&quot;size&quot;</span>, <span class="st">&quot;expenditure&quot;</span>),</a>
-<a class="sourceLine" id="cb163-6" data-line-number="6">                  <span class="dt">main =</span> <span class="st">&quot;95% Confidence Sets&quot;</span>,</a>
-<a class="sourceLine" id="cb163-7" data-line-number="7">                  <span class="dt">vcov. =</span> <span class="kw">vcovHC</span>(model, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>),</a>
-<a class="sourceLine" id="cb163-8" data-line-number="8">                  <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a>
-<a class="sourceLine" id="cb163-9" data-line-number="9">                  </a>
-<a class="sourceLine" id="cb163-10" data-line-number="10"><span class="co"># draw the 95% confidence set for coefficients on size and expenditure</span></a>
-<a class="sourceLine" id="cb163-11" data-line-number="11"><span class="kw">confidenceEllipse</span>(model, </a>
-<a class="sourceLine" id="cb163-12" data-line-number="12">                  <span class="dt">fill =</span> T,</a>
-<a class="sourceLine" id="cb163-13" data-line-number="13">                  <span class="dt">lwd =</span> <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb163-14" data-line-number="14">                  <span class="dt">which.coef =</span> <span class="kw">c</span>(<span class="st">&quot;size&quot;</span>, <span class="st">&quot;expenditure&quot;</span>),</a>
-<a class="sourceLine" id="cb163-15" data-line-number="15">                  <span class="dt">add =</span> T)</a></code></pre></div>
-<p><img src="AdvRA_files/figure-html/unnamed-chunk-293-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<a class="sourceLine" id="cb162-6" data-line-number="6">                  <span class="dt">main =</span> <span class="st">&quot;95% Confidence Sets&quot;</span>,</a>
+<a class="sourceLine" id="cb162-7" data-line-number="7">                  <span class="dt">vcov. =</span> <span class="kw">vcovHC</span>(model, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>),</a>
+<a class="sourceLine" id="cb162-8" data-line-number="8">                  <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb162-9" data-line-number="9">                  </a>
+<a class="sourceLine" id="cb162-10" data-line-number="10"><span class="co"># draw the 95% confidence set for coefficients on size and expenditure</span></a>
+<a class="sourceLine" id="cb162-11" data-line-number="11"><span class="kw">confidenceEllipse</span>(model, </a>
+<a class="sourceLine" id="cb162-12" data-line-number="12">                  <span class="dt">fill =</span> T,</a>
+<a class="sourceLine" id="cb162-13" data-line-number="13">                  <span class="dt">lwd =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb162-14" data-line-number="14">                  <span class="dt">which.coef =</span> <span class="kw">c</span>(<span class="st">&quot;size&quot;</span>, <span class="st">&quot;expenditure&quot;</span>),</a>
+<a class="sourceLine" id="cb162-15" data-line-number="15">                  <span class="dt">add =</span> T)</a></code></pre></div>
+<p><img src="AdvRA_files/figure-html/unnamed-chunk-291-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>As the robust standard errors are slightly larger than those valid under homoskedasticity only in this case, the robust confidence set is slightly larger. This is analogous to the confidence intervals for the individual coefficients.</p>
 </div>
             </section>

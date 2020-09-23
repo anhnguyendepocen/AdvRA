@@ -135,13 +135,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><a href="https://www.example.com/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
+<li><center><a href="http://www.dliebl.com/AdvRA/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
 <li class="chapter" data-level="" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html#probability-distributions-of-discrete-random-variables"><i class="fa fa-check"></i>Probability Distributions of Discrete Random Variables</a></li>
@@ -381,30 +379,30 @@ The Fixed Effects Regression Assumptions
 <p>Similar as for heteroskedasticity, autocorrelation invalidates the usual standard error formulas as well as heteroskedasticity-robust standard errors since these are derived under the assumption that there is no autocorrelation. When there is both heteroskedasticity <em>and</em> autocorrelation so-called <em>heteroskedasticity and autocorrelation-consistent (HAC) standard errors</em> need to be used. <em>Clustered standard errors</em> belong to these type of standard errors. They allow for heteroskedasticity and autocorrelated errors within an entity but <em>not</em> correlation across entities.</p>
 <p>As shown in the examples throughout this chapter, it is fairly easy to specify usage of clustered standard errors in regression summaries produced by function like <tt>coeftest()</tt> in conjunction with <tt>vcovHC()</tt> from the package <tt>sandwich</tt>. Conveniently, <tt>vcovHC()</tt> recognizes panel model objects (objects of class <tt>plm</tt>) and computes clustered standard errors by default.</p>
 <p>The regressions conducted in this chapter are a good examples for why usage of clustered standard errors is crucial in empirical applications of fixed effects models. For example, consider the entity and time fixed effects model for fatalities. Since <tt>fatal_tefe_lm_mod</tt> is an object of class <tt>lm</tt>, <tt>coeftest()</tt> does not compute clustered standard errors but uses robust standard errors that are only valid in the absence of autocorrelated errors.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" data-line-number="1"><span class="co"># check class of the model object</span></a>
-<a class="sourceLine" id="cb253-2" data-line-number="2"><span class="kw">class</span>(fatal_tefe_lm_mod)</a>
-<a class="sourceLine" id="cb253-3" data-line-number="3"><span class="co">#&gt; [1] &quot;lm&quot;</span></a>
-<a class="sourceLine" id="cb253-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb253-5" data-line-number="5"><span class="co"># obtain a summary based on heteroskedasticity-robust standard errors </span></a>
-<a class="sourceLine" id="cb253-6" data-line-number="6"><span class="co"># (no adjustment for heteroskedasticity only)</span></a>
-<a class="sourceLine" id="cb253-7" data-line-number="7"><span class="kw">coeftest</span>(fatal_tefe_lm_mod, <span class="dt">vcov =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)[<span class="dv">1</span>, ]</a>
-<a class="sourceLine" id="cb253-8" data-line-number="8"><span class="co">#&gt;   Estimate Std. Error    t value   Pr(&gt;|t|) </span></a>
-<a class="sourceLine" id="cb253-9" data-line-number="9"><span class="co">#&gt; -0.6399800  0.2547149 -2.5125346  0.0125470</span></a>
-<a class="sourceLine" id="cb253-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb253-11" data-line-number="11"><span class="co"># check class of the (plm) model object</span></a>
-<a class="sourceLine" id="cb253-12" data-line-number="12"><span class="kw">class</span>(fatal_tefe_mod)</a>
-<a class="sourceLine" id="cb253-13" data-line-number="13"><span class="co">#&gt; [1] &quot;plm&quot;        &quot;panelmodel&quot;</span></a>
-<a class="sourceLine" id="cb253-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb253-15" data-line-number="15"><span class="co"># obtain a summary based on clusterd standard errors </span></a>
-<a class="sourceLine" id="cb253-16" data-line-number="16"><span class="co"># (adjustment for autocorrelation + heteroskedasticity)</span></a>
-<a class="sourceLine" id="cb253-17" data-line-number="17"><span class="kw">coeftest</span>(fatal_tefe_mod, <span class="dt">vcov =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
-<a class="sourceLine" id="cb253-18" data-line-number="18"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb253-19" data-line-number="19"><span class="co">#&gt; t test of coefficients:</span></a>
-<a class="sourceLine" id="cb253-20" data-line-number="20"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb253-21" data-line-number="21"><span class="co">#&gt;         Estimate Std. Error t value Pr(&gt;|t|)  </span></a>
-<a class="sourceLine" id="cb253-22" data-line-number="22"><span class="co">#&gt; beertax -0.63998    0.35015 -1.8277  0.06865 .</span></a>
-<a class="sourceLine" id="cb253-23" data-line-number="23"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb253-24" data-line-number="24"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1"><span class="co"># check class of the model object</span></a>
+<a class="sourceLine" id="cb252-2" data-line-number="2"><span class="kw">class</span>(fatal_tefe_lm_mod)</a>
+<a class="sourceLine" id="cb252-3" data-line-number="3"><span class="co">#&gt; [1] &quot;lm&quot;</span></a>
+<a class="sourceLine" id="cb252-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb252-5" data-line-number="5"><span class="co"># obtain a summary based on heteroskedasticity-robust standard errors </span></a>
+<a class="sourceLine" id="cb252-6" data-line-number="6"><span class="co"># (no adjustment for heteroskedasticity only)</span></a>
+<a class="sourceLine" id="cb252-7" data-line-number="7"><span class="kw">coeftest</span>(fatal_tefe_lm_mod, <span class="dt">vcov =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)[<span class="dv">1</span>, ]</a>
+<a class="sourceLine" id="cb252-8" data-line-number="8"><span class="co">#&gt;   Estimate Std. Error    t value   Pr(&gt;|t|) </span></a>
+<a class="sourceLine" id="cb252-9" data-line-number="9"><span class="co">#&gt; -0.6399800  0.2547149 -2.5125346  0.0125470</span></a>
+<a class="sourceLine" id="cb252-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb252-11" data-line-number="11"><span class="co"># check class of the (plm) model object</span></a>
+<a class="sourceLine" id="cb252-12" data-line-number="12"><span class="kw">class</span>(fatal_tefe_mod)</a>
+<a class="sourceLine" id="cb252-13" data-line-number="13"><span class="co">#&gt; [1] &quot;plm&quot;        &quot;panelmodel&quot;</span></a>
+<a class="sourceLine" id="cb252-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb252-15" data-line-number="15"><span class="co"># obtain a summary based on clusterd standard errors </span></a>
+<a class="sourceLine" id="cb252-16" data-line-number="16"><span class="co"># (adjustment for autocorrelation + heteroskedasticity)</span></a>
+<a class="sourceLine" id="cb252-17" data-line-number="17"><span class="kw">coeftest</span>(fatal_tefe_mod, <span class="dt">vcov =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
+<a class="sourceLine" id="cb252-18" data-line-number="18"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb252-19" data-line-number="19"><span class="co">#&gt; t test of coefficients:</span></a>
+<a class="sourceLine" id="cb252-20" data-line-number="20"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb252-21" data-line-number="21"><span class="co">#&gt;         Estimate Std. Error t value Pr(&gt;|t|)  </span></a>
+<a class="sourceLine" id="cb252-22" data-line-number="22"><span class="co">#&gt; beertax -0.63998    0.35015 -1.8277  0.06865 .</span></a>
+<a class="sourceLine" id="cb252-23" data-line-number="23"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb252-24" data-line-number="24"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p>The outcomes differ rather strongly: imposing no autocorrelation we obtain a standard error of <span class="math inline">\(0.25\)</span> which implies significance of <span class="math inline">\(\hat\beta_1\)</span>, the coefficient on <span class="math inline">\(BeerTax\)</span> at the level of <span class="math inline">\(5\%\)</span>. On the contrary, using the clustered standard error <span class="math inline">\(0.35\)</span> leads to acceptance of the hypothesis <span class="math inline">\(H_0: \beta_1 = 0\)</span> at the same level, see equation <a href="10-4-regression-with-time-fixed-effects.html#eq:cbnfemod">(10.8)</a>. Consult Appendix 10.2 of the book for insights on the computation of clustered standard errors.</p>
 </div>
 </div>

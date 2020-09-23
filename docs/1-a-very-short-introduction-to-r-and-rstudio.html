@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6 Regression Models with Multiple Regressors | Advanced Regression Analysis</title>
-  <meta name="description" content="6 Regression Models with Multiple Regressors | Advanced Regression Analysis" />
+  <title>1 A Very Short Introduction to R and RStudio | Advanced Regression Analysis</title>
+  <meta name="description" content="1 A Very Short Introduction to R and RStudio | Advanced Regression Analysis" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6 Regression Models with Multiple Regressors | Advanced Regression Analysis" />
+  <meta property="og:title" content="1 A Very Short Introduction to R and RStudio | Advanced Regression Analysis" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/mylogo.png" />
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 Regression Models with Multiple Regressors | Advanced Regression Analysis" />
+  <meta name="twitter:title" content="1 A Very Short Introduction to R and RStudio | Advanced Regression Analysis" />
   
   
   <meta name="twitter:image" content="images/mylogo.png" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="5-7-exercises-5.html"/>
-<link rel="next" href="6-1-omitted-variable-bias.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="2-pt.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -354,21 +354,50 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rmwmr" class="section level1">
-<h1><span class="header-section-number">6</span> Regression Models with Multiple Regressors</h1>
-<p>In what follows we introduce linear regression models that use more than just one explanatory variable and discuss important key concepts in multiple regression. As we broaden our scope beyond the relationship of only two variables (the dependent variable and a single regressor) some potential new issues arise such as <em>multicollinearity</em> and <em>omitted variable bias</em> (OVB). In particular, this chapter deals with omitted variables and its implication for causal interpretation of OLS-estimated coefficients.</p>
-<p>Naturally, we will discuss estimation of multiple regression models using <tt>R</tt>. We will also illustrate the importance of thoughtful usage of multiple regression models via simulation studies that demonstrate the consequences of using highly correlated regressors or misspecified models.</p>
-<p>The packages <tt>AER</tt> <span class="citation">(Kleiber and Zeileis <a href="#ref-R-AER">2019</a>)</span> and <tt>MASS</tt> <span class="citation">(Ripley <a href="#ref-R-MASS">2019</a>)</span> are needed for reproducing the code presented in this chapter. Make sure that the following code chunk executes without any errors.</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1"><span class="kw">library</span>(AER)</a>
-<a class="sourceLine" id="cb136-2" data-line-number="2"><span class="kw">library</span>(MASS)</a></code></pre></div>
+<div id="a-very-short-introduction-to-r-and-rstudio" class="section level1">
+<h1><span class="header-section-number">1</span> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></h1>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
+<img src="images/rstudio.jpg" alt="RStudio: the four panes" width="80%" />
+<p class="caption">
+Figure 1.1: RStudio: the four panes
+</p>
 </div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-R-AER">
-<p>Kleiber, Christian, and Achim Zeileis. 2019. <em>AER: Applied Econometrics with R</em> (version 1.2-8). <a href="https://CRAN.R-project.org/package=AER">https://CRAN.R-project.org/package=AER</a>.</p>
+<div id="r-basics" class="section level4 unnumbered">
+<h4><tt>R</tt> Basics</h4>
+<p>As mentioned before, this book is not intended to be an introduction to <tt>R</tt> but a guide on how to use its capabilities for applications commonly encountered in undergraduate econometrics. Those having basic knowledge in <tt>R</tt> programming will feel comfortable starting with Chapter <a href="2-pt.html#pt">2</a>. This section, however, is meant for those who have not worked with <tt>R</tt> or <em>RStudio</em> before. If you at least know how to create objects and call functions, you can skip it. If you would like to refresh your skills or get a feeling for how to work with <em>RStudio</em>, keep reading.</p>
+<p>First of all, start <em>RStudio</em> and open a new <tt>R</tt> script by selecting <em>File</em>, <em>New File</em>, <em>R Script</em>. In the editor pane, type</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a></code></pre></div>
+<p>and click on the button labeled <em>Run</em> in the top right corner of the editor. By doing so, your line of code is sent to the console and the result of this operation should be displayed right underneath it. As you can see, <tt>R</tt> works just like a calculator. You can do all arithmetic calculations by using the corresponding operator (<tt>+</tt>, <tt>-</tt>, <tt>*</tt>, <tt>/</tt> or <tt>^</tt>). If you are not sure what the last operator does, try it out and check the results.</p>
 </div>
-<div id="ref-R-MASS">
-<p>Ripley, Brian. 2019. <em>MASS: Support Functions and Datasets for Venables and Ripley’s MASS</em> (version 7.3-51.4). <a href="https://CRAN.R-project.org/package=MASS">https://CRAN.R-project.org/package=MASS</a>.</p>
+<div id="vectors" class="section level4 unnumbered">
+<h4>Vectors</h4>
+<p><tt>R</tt> is of course more sophisticated than that. We can work with variables or, more generally, objects. Objects are defined by using the assignment operator <tt>&lt;-</tt>. To create a variable named <tt>x</tt> which contains the value <tt>10</tt> type <code>x &lt;- 10</code> and click the button <em>Run</em> yet again. The new variable should have appeared in the environment pane on the top right. The console however did not show any results, because our line of code did not contain any call that creates output. When you now type <code>x</code> in the console and hit return, you ask <tt>R</tt> to show you the value of <tt>x</tt> and the corresponding value should be printed in the console.</p>
+<p><tt>x</tt> is a scalar, a vector of length <span class="math inline">\(1\)</span>. You can easily create longer vectors by using the function <tt>c()</tt> (<em>c</em> is for “concatenate” or “combine”). To create a vector <tt>y</tt> containing the numbers <span class="math inline">\(1\)</span> to <span class="math inline">\(5\)</span> and print it, do the following.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">y</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; [1] 1 2 3 4 5</span></a></code></pre></div>
+<p>You can also create a vector of letters or words. For now just remember that characters have to be surrounded by quotes, else they will be parsed as object names.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">hello &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;World&quot;</span>)</a></code></pre></div>
+<p>Here we have created a vector of length 2 containing the words <tt>Hello</tt> and <tt>World</tt>.</p>
+<p>Do not forget to save your script! To do so, select <em>File</em>, <em>Save</em>.</p>
+</div>
+<div id="functions" class="section level4 unnumbered">
+<h4>Functions</h4>
+<p>You have seen the function <tt>c()</tt> that can be used to combine objects. In general, all function calls look the same: a function name is always followed by round parentheses. Sometimes, the parentheses include arguments.</p>
+<p>Here are two simple examples.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># generate the vector `z`</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">z &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">5</span>, <span class="dt">by =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co"># compute the mean of the enries in `z`</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">mean</span>(z)</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; [1] 3</span></a></code></pre></div>
+<p>In the first line we use a function called <tt>seq()</tt> to create the exact same vector as we did in the previous section, calling it <tt>z</tt>. The function takes on the arguments <tt>from</tt>, <tt>to</tt> and <tt>by</tt> which should be self-explanatory.
+The function <tt>mean()</tt> computes the arithmetic mean of its argument <tt>x</tt>. Since we pass the vector <tt>z</tt> as the argument <tt>x</tt>, the result is <tt>3</tt>!</p>
+<p>If you are not sure which arguments a function expects, you may consult the function’s documentation. Let’s say we are not sure how the arguments required for <tt>seq()</tt> work. We then type <code>?seq</code> in the console. By hitting return the documentation page for that function pops up in the lower right pane of <em>RStudio</em>. In there, the section <em>Arguments</em> holds the information we seek. On the bottom of almost every help page you find examples on how to use the corresponding functions. This is very helpful for beginners and we recommend to look out for those.</p>
+<p>Of course, all of the commands presented above also work in interactive widgets throughout the book. You may try them below.</p>
+<iframe src="DCL/playground.html" frameborder="0" scrolling="no" style="width:100%;height:340px">
+</iframe>
+
 </div>
 </div>
             </section>
@@ -376,8 +405,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="5-7-exercises-5.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="6-1-omitted-variable-bias.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-pt.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -408,7 +437,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/lidom/AdvRA/edit/master/06-ch6.Rmd",
+"link": "https://github.com/lidom/AdvRA/edit/master/index.Rmd",
 "text": "Edit"
 },
 "history": {

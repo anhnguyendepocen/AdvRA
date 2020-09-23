@@ -135,13 +135,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><a href="https://www.example.com/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
+<li><center><a href="http://www.dliebl.com/AdvRA/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
 <li class="chapter" data-level="" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html#probability-distributions-of-discrete-random-variables"><i class="fa fa-check"></i>Probability Distributions of Discrete Random Variables</a></li>
@@ -390,34 +388,34 @@ The instrument <span class="math inline">\(Z\)</span> <em>must not be</em> corre
 <p>It is plausible that cigarette consumption can be reduced by taxing cigarettes more heavily. The question is by <em>how much</em> taxes must be increased to reach a certain reduction in cigarette consumption. Economists use elasticities to answer this kind of question. Since the price elasticity for the demand of cigarettes is unknown, it must be estimated. As discussed in the box <em>Who Invented Instrumental Variables Regression</em> presented in Chapter 12.1 of the book, an OLS regression of log quantity on log price cannot be used to estimate the effect of interest since there is simultaneous causality between demand and supply. Instead, IV regression can be used.</p>
 <p>We use the data set <tt>CigarettesSW</tt> which comes with the package <tt>AER</tt>. It is a panel data set that contains observations on cigarette consumption and several economic indicators for all 48 continental federal states of the U.S. from 1985 to 1995. Following the book we consider data for the cross section of states in 1995 only.</p>
 <p>We start by loading the package, attaching the data set and getting an overview.</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1"><span class="co"># load the data set and get an overview</span></a>
-<a class="sourceLine" id="cb285-2" data-line-number="2"><span class="kw">library</span>(AER)</a>
-<a class="sourceLine" id="cb285-3" data-line-number="3"><span class="kw">data</span>(<span class="st">&quot;CigarettesSW&quot;</span>)</a>
-<a class="sourceLine" id="cb285-4" data-line-number="4"><span class="kw">summary</span>(CigarettesSW)</a>
-<a class="sourceLine" id="cb285-5" data-line-number="5"><span class="co">#&gt;      state      year         cpi          population      </span></a>
-<a class="sourceLine" id="cb285-6" data-line-number="6"><span class="co">#&gt;  AL     : 2   1985:48   Min.   :1.076   Min.   :  478447  </span></a>
-<a class="sourceLine" id="cb285-7" data-line-number="7"><span class="co">#&gt;  AR     : 2   1995:48   1st Qu.:1.076   1st Qu.: 1622606  </span></a>
-<a class="sourceLine" id="cb285-8" data-line-number="8"><span class="co">#&gt;  AZ     : 2             Median :1.300   Median : 3697472  </span></a>
-<a class="sourceLine" id="cb285-9" data-line-number="9"><span class="co">#&gt;  CA     : 2             Mean   :1.300   Mean   : 5168866  </span></a>
-<a class="sourceLine" id="cb285-10" data-line-number="10"><span class="co">#&gt;  CO     : 2             3rd Qu.:1.524   3rd Qu.: 5901500  </span></a>
-<a class="sourceLine" id="cb285-11" data-line-number="11"><span class="co">#&gt;  CT     : 2             Max.   :1.524   Max.   :31493524  </span></a>
-<a class="sourceLine" id="cb285-12" data-line-number="12"><span class="co">#&gt;  (Other):84                                               </span></a>
-<a class="sourceLine" id="cb285-13" data-line-number="13"><span class="co">#&gt;      packs            income               tax            price       </span></a>
-<a class="sourceLine" id="cb285-14" data-line-number="14"><span class="co">#&gt;  Min.   : 49.27   Min.   :  6887097   Min.   :18.00   Min.   : 84.97  </span></a>
-<a class="sourceLine" id="cb285-15" data-line-number="15"><span class="co">#&gt;  1st Qu.: 92.45   1st Qu.: 25520384   1st Qu.:31.00   1st Qu.:102.71  </span></a>
-<a class="sourceLine" id="cb285-16" data-line-number="16"><span class="co">#&gt;  Median :110.16   Median : 61661644   Median :37.00   Median :137.72  </span></a>
-<a class="sourceLine" id="cb285-17" data-line-number="17"><span class="co">#&gt;  Mean   :109.18   Mean   : 99878736   Mean   :42.68   Mean   :143.45  </span></a>
-<a class="sourceLine" id="cb285-18" data-line-number="18"><span class="co">#&gt;  3rd Qu.:123.52   3rd Qu.:127313964   3rd Qu.:50.88   3rd Qu.:176.15  </span></a>
-<a class="sourceLine" id="cb285-19" data-line-number="19"><span class="co">#&gt;  Max.   :197.99   Max.   :771470144   Max.   :99.00   Max.   :240.85  </span></a>
-<a class="sourceLine" id="cb285-20" data-line-number="20"><span class="co">#&gt;                                                                       </span></a>
-<a class="sourceLine" id="cb285-21" data-line-number="21"><span class="co">#&gt;       taxs       </span></a>
-<a class="sourceLine" id="cb285-22" data-line-number="22"><span class="co">#&gt;  Min.   : 21.27  </span></a>
-<a class="sourceLine" id="cb285-23" data-line-number="23"><span class="co">#&gt;  1st Qu.: 34.77  </span></a>
-<a class="sourceLine" id="cb285-24" data-line-number="24"><span class="co">#&gt;  Median : 41.05  </span></a>
-<a class="sourceLine" id="cb285-25" data-line-number="25"><span class="co">#&gt;  Mean   : 48.33  </span></a>
-<a class="sourceLine" id="cb285-26" data-line-number="26"><span class="co">#&gt;  3rd Qu.: 59.48  </span></a>
-<a class="sourceLine" id="cb285-27" data-line-number="27"><span class="co">#&gt;  Max.   :112.63  </span></a>
-<a class="sourceLine" id="cb285-28" data-line-number="28"><span class="co">#&gt; </span></a></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1"><span class="co"># load the data set and get an overview</span></a>
+<a class="sourceLine" id="cb284-2" data-line-number="2"><span class="kw">library</span>(AER)</a>
+<a class="sourceLine" id="cb284-3" data-line-number="3"><span class="kw">data</span>(<span class="st">&quot;CigarettesSW&quot;</span>)</a>
+<a class="sourceLine" id="cb284-4" data-line-number="4"><span class="kw">summary</span>(CigarettesSW)</a>
+<a class="sourceLine" id="cb284-5" data-line-number="5"><span class="co">#&gt;      state      year         cpi          population      </span></a>
+<a class="sourceLine" id="cb284-6" data-line-number="6"><span class="co">#&gt;  AL     : 2   1985:48   Min.   :1.076   Min.   :  478447  </span></a>
+<a class="sourceLine" id="cb284-7" data-line-number="7"><span class="co">#&gt;  AR     : 2   1995:48   1st Qu.:1.076   1st Qu.: 1622606  </span></a>
+<a class="sourceLine" id="cb284-8" data-line-number="8"><span class="co">#&gt;  AZ     : 2             Median :1.300   Median : 3697472  </span></a>
+<a class="sourceLine" id="cb284-9" data-line-number="9"><span class="co">#&gt;  CA     : 2             Mean   :1.300   Mean   : 5168866  </span></a>
+<a class="sourceLine" id="cb284-10" data-line-number="10"><span class="co">#&gt;  CO     : 2             3rd Qu.:1.524   3rd Qu.: 5901500  </span></a>
+<a class="sourceLine" id="cb284-11" data-line-number="11"><span class="co">#&gt;  CT     : 2             Max.   :1.524   Max.   :31493524  </span></a>
+<a class="sourceLine" id="cb284-12" data-line-number="12"><span class="co">#&gt;  (Other):84                                               </span></a>
+<a class="sourceLine" id="cb284-13" data-line-number="13"><span class="co">#&gt;      packs            income               tax            price       </span></a>
+<a class="sourceLine" id="cb284-14" data-line-number="14"><span class="co">#&gt;  Min.   : 49.27   Min.   :  6887097   Min.   :18.00   Min.   : 84.97  </span></a>
+<a class="sourceLine" id="cb284-15" data-line-number="15"><span class="co">#&gt;  1st Qu.: 92.45   1st Qu.: 25520384   1st Qu.:31.00   1st Qu.:102.71  </span></a>
+<a class="sourceLine" id="cb284-16" data-line-number="16"><span class="co">#&gt;  Median :110.16   Median : 61661644   Median :37.00   Median :137.72  </span></a>
+<a class="sourceLine" id="cb284-17" data-line-number="17"><span class="co">#&gt;  Mean   :109.18   Mean   : 99878736   Mean   :42.68   Mean   :143.45  </span></a>
+<a class="sourceLine" id="cb284-18" data-line-number="18"><span class="co">#&gt;  3rd Qu.:123.52   3rd Qu.:127313964   3rd Qu.:50.88   3rd Qu.:176.15  </span></a>
+<a class="sourceLine" id="cb284-19" data-line-number="19"><span class="co">#&gt;  Max.   :197.99   Max.   :771470144   Max.   :99.00   Max.   :240.85  </span></a>
+<a class="sourceLine" id="cb284-20" data-line-number="20"><span class="co">#&gt;                                                                       </span></a>
+<a class="sourceLine" id="cb284-21" data-line-number="21"><span class="co">#&gt;       taxs       </span></a>
+<a class="sourceLine" id="cb284-22" data-line-number="22"><span class="co">#&gt;  Min.   : 21.27  </span></a>
+<a class="sourceLine" id="cb284-23" data-line-number="23"><span class="co">#&gt;  1st Qu.: 34.77  </span></a>
+<a class="sourceLine" id="cb284-24" data-line-number="24"><span class="co">#&gt;  Median : 41.05  </span></a>
+<a class="sourceLine" id="cb284-25" data-line-number="25"><span class="co">#&gt;  Mean   : 48.33  </span></a>
+<a class="sourceLine" id="cb284-26" data-line-number="26"><span class="co">#&gt;  3rd Qu.: 59.48  </span></a>
+<a class="sourceLine" id="cb284-27" data-line-number="27"><span class="co">#&gt;  Max.   :112.63  </span></a>
+<a class="sourceLine" id="cb284-28" data-line-number="28"><span class="co">#&gt; </span></a></code></pre></div>
 <p>Use <code>?CigarettesSW</code> for a detailed description of the variables.</p>
 <p>We are interested in estimating <span class="math inline">\(\beta_1\)</span> in</p>
 <p><span class="math display" id="eq:cigstsls">\[\begin{align}
@@ -427,68 +425,68 @@ The instrument <span class="math inline">\(Z\)</span> <em>must not be</em> corre
 <p>The instrumental variable we are going to use for instrumenting the endogenous regressor <span class="math inline">\(\log(P_i^{cigarettes})\)</span> is <span class="math inline">\(SalesTax\)</span>, the portion of taxes on cigarettes arising from the general sales tax. <span class="math inline">\(SalesTax\)</span> is measured in dollars per pack. The idea is that <span class="math inline">\(SalesTax\)</span> is a relevant instrument as it is included in the after-tax average price per pack. Also, it is plausible that <span class="math inline">\(SalesTax\)</span> is exogenous since the sales tax does not influence quantity sold directly but indirectly through the price.</p>
 <p>We perform some transformations in order to obtain deflated cross section data for the year 1995.</p>
 <p>We also compute the sample correlation between the sales tax and price per pack. The sample correlation is a consistent estimator of the population correlation. The estimate of approximately <span class="math inline">\(0.614\)</span> indicates that <span class="math inline">\(SalesTax\)</span> and <span class="math inline">\(P_i^{cigarettes}\)</span> exhibit positive correlation which meets our expectations: higher sales taxes lead to higher prices. However, a correlation analysis like this is not sufficient for checking whether the instrument is relevant. We will later come back to the issue of checking whether an instrument is relevant and exogenous.</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" data-line-number="1"><span class="co"># compute real per capita prices</span></a>
-<a class="sourceLine" id="cb286-2" data-line-number="2">CigarettesSW<span class="op">$</span>rprice &lt;-<span class="st"> </span><span class="kw">with</span>(CigarettesSW, price <span class="op">/</span><span class="st"> </span>cpi)</a>
-<a class="sourceLine" id="cb286-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb286-4" data-line-number="4"><span class="co">#  compute the sales tax</span></a>
-<a class="sourceLine" id="cb286-5" data-line-number="5">CigarettesSW<span class="op">$</span>salestax &lt;-<span class="st"> </span><span class="kw">with</span>(CigarettesSW, (taxs <span class="op">-</span><span class="st"> </span>tax) <span class="op">/</span><span class="st"> </span>cpi)</a>
-<a class="sourceLine" id="cb286-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb286-7" data-line-number="7"><span class="co"># check the correlation between sales tax and price</span></a>
-<a class="sourceLine" id="cb286-8" data-line-number="8"><span class="kw">cor</span>(CigarettesSW<span class="op">$</span>salestax, CigarettesSW<span class="op">$</span>price)</a>
-<a class="sourceLine" id="cb286-9" data-line-number="9"><span class="co">#&gt; [1] 0.6141228</span></a>
-<a class="sourceLine" id="cb286-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb286-11" data-line-number="11"><span class="co"># generate a subset for the year 1995</span></a>
-<a class="sourceLine" id="cb286-12" data-line-number="12">c1995 &lt;-<span class="st"> </span><span class="kw">subset</span>(CigarettesSW, year <span class="op">==</span><span class="st"> &quot;1995&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1"><span class="co"># compute real per capita prices</span></a>
+<a class="sourceLine" id="cb285-2" data-line-number="2">CigarettesSW<span class="op">$</span>rprice &lt;-<span class="st"> </span><span class="kw">with</span>(CigarettesSW, price <span class="op">/</span><span class="st"> </span>cpi)</a>
+<a class="sourceLine" id="cb285-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb285-4" data-line-number="4"><span class="co">#  compute the sales tax</span></a>
+<a class="sourceLine" id="cb285-5" data-line-number="5">CigarettesSW<span class="op">$</span>salestax &lt;-<span class="st"> </span><span class="kw">with</span>(CigarettesSW, (taxs <span class="op">-</span><span class="st"> </span>tax) <span class="op">/</span><span class="st"> </span>cpi)</a>
+<a class="sourceLine" id="cb285-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb285-7" data-line-number="7"><span class="co"># check the correlation between sales tax and price</span></a>
+<a class="sourceLine" id="cb285-8" data-line-number="8"><span class="kw">cor</span>(CigarettesSW<span class="op">$</span>salestax, CigarettesSW<span class="op">$</span>price)</a>
+<a class="sourceLine" id="cb285-9" data-line-number="9"><span class="co">#&gt; [1] 0.6141228</span></a>
+<a class="sourceLine" id="cb285-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb285-11" data-line-number="11"><span class="co"># generate a subset for the year 1995</span></a>
+<a class="sourceLine" id="cb285-12" data-line-number="12">c1995 &lt;-<span class="st"> </span><span class="kw">subset</span>(CigarettesSW, year <span class="op">==</span><span class="st"> &quot;1995&quot;</span>)</a></code></pre></div>
 <p>The first stage regression is <span class="math display">\[\log(P_i^{cigarettes}) = \pi_0 + \pi_1 SalesTax_i + \nu_i.\]</span> We estimate this model in <tt>R</tt> using <tt>lm()</tt>. In the second stage we run a regression of <span class="math inline">\(\log(Q_i^{cigarettes})\)</span> on <span class="math inline">\(\widehat{\log(P_i^{cigarettes})}\)</span> to obtain <span class="math inline">\(\widehat{\beta}_0^{TSLS}\)</span> and <span class="math inline">\(\widehat{\beta}_1^{TSLS}\)</span>.</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1"><span class="co"># perform the first stage regression</span></a>
-<a class="sourceLine" id="cb287-2" data-line-number="2">cig_s1 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(rprice) <span class="op">~</span><span class="st"> </span>salestax, <span class="dt">data =</span> c1995)</a>
-<a class="sourceLine" id="cb287-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb287-4" data-line-number="4"><span class="kw">coeftest</span>(cig_s1, <span class="dt">vcov =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
-<a class="sourceLine" id="cb287-5" data-line-number="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb287-6" data-line-number="6"><span class="co">#&gt; t test of coefficients:</span></a>
-<a class="sourceLine" id="cb287-7" data-line-number="7"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb287-8" data-line-number="8"><span class="co">#&gt;              Estimate Std. Error  t value  Pr(&gt;|t|)    </span></a>
-<a class="sourceLine" id="cb287-9" data-line-number="9"><span class="co">#&gt; (Intercept) 4.6165463  0.0289177 159.6444 &lt; 2.2e-16 ***</span></a>
-<a class="sourceLine" id="cb287-10" data-line-number="10"><span class="co">#&gt; salestax    0.0307289  0.0048354   6.3549 8.489e-08 ***</span></a>
-<a class="sourceLine" id="cb287-11" data-line-number="11"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb287-12" data-line-number="12"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" data-line-number="1"><span class="co"># perform the first stage regression</span></a>
+<a class="sourceLine" id="cb286-2" data-line-number="2">cig_s1 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(rprice) <span class="op">~</span><span class="st"> </span>salestax, <span class="dt">data =</span> c1995)</a>
+<a class="sourceLine" id="cb286-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb286-4" data-line-number="4"><span class="kw">coeftest</span>(cig_s1, <span class="dt">vcov =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
+<a class="sourceLine" id="cb286-5" data-line-number="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb286-6" data-line-number="6"><span class="co">#&gt; t test of coefficients:</span></a>
+<a class="sourceLine" id="cb286-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb286-8" data-line-number="8"><span class="co">#&gt;              Estimate Std. Error  t value  Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb286-9" data-line-number="9"><span class="co">#&gt; (Intercept) 4.6165463  0.0289177 159.6444 &lt; 2.2e-16 ***</span></a>
+<a class="sourceLine" id="cb286-10" data-line-number="10"><span class="co">#&gt; salestax    0.0307289  0.0048354   6.3549 8.489e-08 ***</span></a>
+<a class="sourceLine" id="cb286-11" data-line-number="11"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb286-12" data-line-number="12"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p>The first stage regression is <span class="math display">\[\widehat{\log(P_i^{cigarettes})} = \underset{(0.03)}{4.62} + \underset{(0.005)}{0.031} SalesTax_i\]</span> which predicts the relation between sales tax price per cigarettes to be positive. How much of the observed variation in <span class="math inline">\(\log(P^{cigarettes})\)</span> is explained by the instrument <span class="math inline">\(SalesTax\)</span>? This can be answered by looking at the regression’s <span class="math inline">\(R^2\)</span> which states that about <span class="math inline">\(47\%\)</span> of the variation in after tax prices is explained by the variation of the sales tax across states.</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" data-line-number="1"><span class="co"># inspect the R^2 of the first stage regression</span></a>
-<a class="sourceLine" id="cb288-2" data-line-number="2"><span class="kw">summary</span>(cig_s1)<span class="op">$</span>r.squared</a>
-<a class="sourceLine" id="cb288-3" data-line-number="3"><span class="co">#&gt; [1] 0.4709961</span></a></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1"><span class="co"># inspect the R^2 of the first stage regression</span></a>
+<a class="sourceLine" id="cb287-2" data-line-number="2"><span class="kw">summary</span>(cig_s1)<span class="op">$</span>r.squared</a>
+<a class="sourceLine" id="cb287-3" data-line-number="3"><span class="co">#&gt; [1] 0.4709961</span></a></code></pre></div>
 <p>We next store <span class="math inline">\(\widehat{\log(P_i^{cigarettes})}\)</span>, the fitted values obtained by the first stage regression <tt>cig_s1</tt>, in the variable <tt>lcigp_pred</tt>.</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1"><span class="co"># store the predicted values</span></a>
-<a class="sourceLine" id="cb289-2" data-line-number="2">lcigp_pred &lt;-<span class="st"> </span>cig_s1<span class="op">$</span>fitted.values</a></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" data-line-number="1"><span class="co"># store the predicted values</span></a>
+<a class="sourceLine" id="cb288-2" data-line-number="2">lcigp_pred &lt;-<span class="st"> </span>cig_s1<span class="op">$</span>fitted.values</a></code></pre></div>
 <p>Next, we run the second stage regression which gives us the TSLS estimates we seek.</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" data-line-number="1"><span class="co"># run the stage 2 regression</span></a>
-<a class="sourceLine" id="cb290-2" data-line-number="2">cig_s2 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(c1995<span class="op">$</span>packs) <span class="op">~</span><span class="st"> </span>lcigp_pred)</a>
-<a class="sourceLine" id="cb290-3" data-line-number="3"><span class="kw">coeftest</span>(cig_s2, <span class="dt">vcov =</span> vcovHC)</a>
-<a class="sourceLine" id="cb290-4" data-line-number="4"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb290-5" data-line-number="5"><span class="co">#&gt; t test of coefficients:</span></a>
-<a class="sourceLine" id="cb290-6" data-line-number="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb290-7" data-line-number="7"><span class="co">#&gt;             Estimate Std. Error t value  Pr(&gt;|t|)    </span></a>
-<a class="sourceLine" id="cb290-8" data-line-number="8"><span class="co">#&gt; (Intercept)  9.71988    1.70304  5.7074 7.932e-07 ***</span></a>
-<a class="sourceLine" id="cb290-9" data-line-number="9"><span class="co">#&gt; lcigp_pred  -1.08359    0.35563 -3.0469  0.003822 ** </span></a>
-<a class="sourceLine" id="cb290-10" data-line-number="10"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb290-11" data-line-number="11"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1"><span class="co"># run the stage 2 regression</span></a>
+<a class="sourceLine" id="cb289-2" data-line-number="2">cig_s2 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(c1995<span class="op">$</span>packs) <span class="op">~</span><span class="st"> </span>lcigp_pred)</a>
+<a class="sourceLine" id="cb289-3" data-line-number="3"><span class="kw">coeftest</span>(cig_s2, <span class="dt">vcov =</span> vcovHC)</a>
+<a class="sourceLine" id="cb289-4" data-line-number="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb289-5" data-line-number="5"><span class="co">#&gt; t test of coefficients:</span></a>
+<a class="sourceLine" id="cb289-6" data-line-number="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb289-7" data-line-number="7"><span class="co">#&gt;             Estimate Std. Error t value  Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb289-8" data-line-number="8"><span class="co">#&gt; (Intercept)  9.71988    1.70304  5.7074 7.932e-07 ***</span></a>
+<a class="sourceLine" id="cb289-9" data-line-number="9"><span class="co">#&gt; lcigp_pred  -1.08359    0.35563 -3.0469  0.003822 ** </span></a>
+<a class="sourceLine" id="cb289-10" data-line-number="10"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb289-11" data-line-number="11"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p>Thus estimating the model <a href="12-1-TIVEWASRAASI.html#eq:cigstsls">(12.3)</a> using TSLS yields</p>
 <p><span class="math display" id="eq:ecigstsls">\[\begin{align}
   \widehat{\log(Q_i^{cigarettes})} = \underset{(1.70)}{9.72} + \underset{(0.36)}{1.08} \log(P_i^{cigarettes}), \tag{12.4}
 \end{align}\]</span></p>
 <p>where we write <span class="math inline">\(\log(P_i^{cigarettes})\)</span> instead of <span class="math inline">\(\widehat{\log(P_i^{cigarettes})}\)</span> for consistency with the book.</p>
 <p>The function <tt>ivreg()</tt> from the package <tt>AER</tt> carries out TSLS procedure automatically. It is used similarly as <tt>lm()</tt>. Instruments can be added to the usual specification of the regression formula using a vertical bar separating the model equation from the instruments. Thus, for the regression at hand the correct formula is <tt>log(packs) ~ log(rprice) | salestax</tt>.</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1"><span class="co"># perform TSLS using &#39;ivreg()&#39;</span></a>
-<a class="sourceLine" id="cb291-2" data-line-number="2">cig_ivreg &lt;-<span class="st"> </span><span class="kw">ivreg</span>(<span class="kw">log</span>(packs) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(rprice) <span class="op">|</span><span class="st"> </span>salestax, <span class="dt">data =</span> c1995)</a>
-<a class="sourceLine" id="cb291-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb291-4" data-line-number="4"><span class="kw">coeftest</span>(cig_ivreg, <span class="dt">vcov =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
-<a class="sourceLine" id="cb291-5" data-line-number="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb291-6" data-line-number="6"><span class="co">#&gt; t test of coefficients:</span></a>
-<a class="sourceLine" id="cb291-7" data-line-number="7"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb291-8" data-line-number="8"><span class="co">#&gt;             Estimate Std. Error t value  Pr(&gt;|t|)    </span></a>
-<a class="sourceLine" id="cb291-9" data-line-number="9"><span class="co">#&gt; (Intercept)  9.71988    1.52832  6.3598 8.346e-08 ***</span></a>
-<a class="sourceLine" id="cb291-10" data-line-number="10"><span class="co">#&gt; log(rprice) -1.08359    0.31892 -3.3977  0.001411 ** </span></a>
-<a class="sourceLine" id="cb291-11" data-line-number="11"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb291-12" data-line-number="12"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" data-line-number="1"><span class="co"># perform TSLS using &#39;ivreg()&#39;</span></a>
+<a class="sourceLine" id="cb290-2" data-line-number="2">cig_ivreg &lt;-<span class="st"> </span><span class="kw">ivreg</span>(<span class="kw">log</span>(packs) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(rprice) <span class="op">|</span><span class="st"> </span>salestax, <span class="dt">data =</span> c1995)</a>
+<a class="sourceLine" id="cb290-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb290-4" data-line-number="4"><span class="kw">coeftest</span>(cig_ivreg, <span class="dt">vcov =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
+<a class="sourceLine" id="cb290-5" data-line-number="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb290-6" data-line-number="6"><span class="co">#&gt; t test of coefficients:</span></a>
+<a class="sourceLine" id="cb290-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb290-8" data-line-number="8"><span class="co">#&gt;             Estimate Std. Error t value  Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb290-9" data-line-number="9"><span class="co">#&gt; (Intercept)  9.71988    1.52832  6.3598 8.346e-08 ***</span></a>
+<a class="sourceLine" id="cb290-10" data-line-number="10"><span class="co">#&gt; log(rprice) -1.08359    0.31892 -3.3977  0.001411 ** </span></a>
+<a class="sourceLine" id="cb290-11" data-line-number="11"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb290-12" data-line-number="12"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p>We find that the coefficient estimates coincide for both approaches.</p>
 <p><strong>Two Notes on the Computation of TSLS Standard Errors</strong></p>
 <ol style="list-style-type: decimal">

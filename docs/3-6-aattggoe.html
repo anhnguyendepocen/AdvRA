@@ -135,13 +135,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><a href="https://www.example.com/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
+<li><center><a href="http://www.dliebl.com/AdvRA/"><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></a></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
-</ul></li>
+<li class="chapter" data-level="1" data-path="1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
 <li class="chapter" data-level="" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html#probability-distributions-of-discrete-random-variables"><i class="fa fa-check"></i>Probability Distributions of Discrete Random Variables</a></li>
@@ -361,81 +359,81 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>This section discusses how to reproduce the results presented in the box <em>The Gender Gap of Earnings of College Graduates in the United States</em> of the book.</p>
 <p>In order to reproduce Table 3.1 of the book you need to download the replication data which are hosted by Pearson and can be downloaded <a href="https://wps.pearsoned.com/wps/media/objects/11422/11696965/datasets3e/datasets/cps_ch3.xlsx">here</a>. This file contains data that range from <span class="math inline">\(1992\)</span> to <span class="math inline">\(2008\)</span> and earnings are reported in prices of <span class="math inline">\(2008\)</span>.</p>
 <p>There are several ways to import the <tt>.xlsx</tt>-files into <tt>R</tt>. Our suggestion is the function <tt>read_excel()</tt> from the <tt>readxl</tt> package <span class="citation">(Wickham and Bryan <a href="#ref-R-readxl">2019</a>)</span>. The package is not part of <tt>R</tt>’s base version and has to be installed manually.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="co"># load the &#39;readxl&#39; package</span></a>
-<a class="sourceLine" id="cb71-2" data-line-number="2"><span class="kw">library</span>(readxl)</a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="co"># load the &#39;readxl&#39; package</span></a>
+<a class="sourceLine" id="cb70-2" data-line-number="2"><span class="kw">library</span>(readxl)</a></code></pre></div>
 <p>You are now ready to import the dataset. Make sure you use the correct path to import the downloaded file! In our example, the file is saved in a subfolder of the working directory named <tt>data</tt>. If you are not sure what your current working directory is, use <tt>getwd()</tt>, see also <tt>?getwd</tt>. This will give you the path that points to the place <tt>R</tt> is currently looking for files to work with.</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="co"># import the data into R</span></a>
-<a class="sourceLine" id="cb72-2" data-line-number="2">cps &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="dt">path =</span> <span class="st">&quot;data/cps_ch3.xlsx&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="co"># import the data into R</span></a>
+<a class="sourceLine" id="cb71-2" data-line-number="2">cps &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="dt">path =</span> <span class="st">&quot;data/cps_ch3.xlsx&quot;</span>)</a></code></pre></div>
 <p>Next, install and load the package <tt>dyplr</tt> <span class="citation">(Wickham et al. <a href="#ref-R-dplyr">2019</a>)</span>. This package provides some handy functions that simplify data wrangling a lot. It makes use of the <tt>%&gt;%</tt> operator.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="co"># load the &#39;dplyr&#39; package</span></a>
-<a class="sourceLine" id="cb73-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="co"># load the &#39;dplyr&#39; package</span></a>
+<a class="sourceLine" id="cb72-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a></code></pre></div>
 <p>First, get an overview over the dataset. Next, use <tt>%&gt;%</tt> and some functions from the <tt>dplyr</tt> package to group the observations by gender and year and compute descriptive statistics for both groups.</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="co"># get an overview of the data structure</span></a>
-<a class="sourceLine" id="cb74-2" data-line-number="2"><span class="kw">head</span>(cps)</a>
-<a class="sourceLine" id="cb74-3" data-line-number="3"><span class="co">#&gt; # A tibble: 6 x 3</span></a>
-<a class="sourceLine" id="cb74-4" data-line-number="4"><span class="co">#&gt;   a_sex  year ahe08</span></a>
-<a class="sourceLine" id="cb74-5" data-line-number="5"><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb74-6" data-line-number="6"><span class="co">#&gt; 1     1  1992  17.2</span></a>
-<a class="sourceLine" id="cb74-7" data-line-number="7"><span class="co">#&gt; 2     1  1992  15.3</span></a>
-<a class="sourceLine" id="cb74-8" data-line-number="8"><span class="co">#&gt; 3     1  1992  22.9</span></a>
-<a class="sourceLine" id="cb74-9" data-line-number="9"><span class="co">#&gt; 4     2  1992  13.3</span></a>
-<a class="sourceLine" id="cb74-10" data-line-number="10"><span class="co">#&gt; 5     1  1992  22.1</span></a>
-<a class="sourceLine" id="cb74-11" data-line-number="11"><span class="co">#&gt; 6     2  1992  12.2</span></a>
-<a class="sourceLine" id="cb74-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb74-13" data-line-number="13"><span class="co"># group data by gender and year and compute the mean, standard deviation</span></a>
-<a class="sourceLine" id="cb74-14" data-line-number="14"><span class="co"># and number of observations for each group</span></a>
-<a class="sourceLine" id="cb74-15" data-line-number="15">avgs &lt;-<span class="st"> </span>cps <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb74-16" data-line-number="16"><span class="st">        </span><span class="kw">group_by</span>(a_sex, year) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb74-17" data-line-number="17"><span class="st">        </span><span class="kw">summarise</span>(<span class="kw">mean</span>(ahe08), </a>
-<a class="sourceLine" id="cb74-18" data-line-number="18">                  <span class="kw">sd</span>(ahe08), </a>
-<a class="sourceLine" id="cb74-19" data-line-number="19">                  <span class="kw">n</span>())</a>
-<a class="sourceLine" id="cb74-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb74-21" data-line-number="21"><span class="co"># print the results to the console</span></a>
-<a class="sourceLine" id="cb74-22" data-line-number="22"><span class="kw">print</span>(avgs)</a>
-<a class="sourceLine" id="cb74-23" data-line-number="23"><span class="co">#&gt; # A tibble: 10 x 5</span></a>
-<a class="sourceLine" id="cb74-24" data-line-number="24"><span class="co">#&gt; # Groups:   a_sex [2]</span></a>
-<a class="sourceLine" id="cb74-25" data-line-number="25"><span class="co">#&gt;    a_sex  year `mean(ahe08)` `sd(ahe08)` `n()`</span></a>
-<a class="sourceLine" id="cb74-26" data-line-number="26"><span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb74-27" data-line-number="27"><span class="co">#&gt;  1     1  1992          23.3       10.2   1594</span></a>
-<a class="sourceLine" id="cb74-28" data-line-number="28"><span class="co">#&gt;  2     1  1996          22.5       10.1   1379</span></a>
-<a class="sourceLine" id="cb74-29" data-line-number="29"><span class="co">#&gt;  3     1  2000          24.9       11.6   1303</span></a>
-<a class="sourceLine" id="cb74-30" data-line-number="30"><span class="co">#&gt;  4     1  2004          25.1       12.0   1894</span></a>
-<a class="sourceLine" id="cb74-31" data-line-number="31"><span class="co">#&gt;  5     1  2008          25.0       11.8   1838</span></a>
-<a class="sourceLine" id="cb74-32" data-line-number="32"><span class="co">#&gt;  6     2  1992          20.0        7.87  1368</span></a>
-<a class="sourceLine" id="cb74-33" data-line-number="33"><span class="co">#&gt;  7     2  1996          19.0        7.95  1230</span></a>
-<a class="sourceLine" id="cb74-34" data-line-number="34"><span class="co">#&gt;  8     2  2000          20.7        9.36  1181</span></a>
-<a class="sourceLine" id="cb74-35" data-line-number="35"><span class="co">#&gt;  9     2  2004          21.0        9.36  1735</span></a>
-<a class="sourceLine" id="cb74-36" data-line-number="36"><span class="co">#&gt; 10     2  2008          20.9        9.66  1871</span></a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="co"># get an overview of the data structure</span></a>
+<a class="sourceLine" id="cb73-2" data-line-number="2"><span class="kw">head</span>(cps)</a>
+<a class="sourceLine" id="cb73-3" data-line-number="3"><span class="co">#&gt; # A tibble: 6 x 3</span></a>
+<a class="sourceLine" id="cb73-4" data-line-number="4"><span class="co">#&gt;   a_sex  year ahe08</span></a>
+<a class="sourceLine" id="cb73-5" data-line-number="5"><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb73-6" data-line-number="6"><span class="co">#&gt; 1     1  1992  17.2</span></a>
+<a class="sourceLine" id="cb73-7" data-line-number="7"><span class="co">#&gt; 2     1  1992  15.3</span></a>
+<a class="sourceLine" id="cb73-8" data-line-number="8"><span class="co">#&gt; 3     1  1992  22.9</span></a>
+<a class="sourceLine" id="cb73-9" data-line-number="9"><span class="co">#&gt; 4     2  1992  13.3</span></a>
+<a class="sourceLine" id="cb73-10" data-line-number="10"><span class="co">#&gt; 5     1  1992  22.1</span></a>
+<a class="sourceLine" id="cb73-11" data-line-number="11"><span class="co">#&gt; 6     2  1992  12.2</span></a>
+<a class="sourceLine" id="cb73-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb73-13" data-line-number="13"><span class="co"># group data by gender and year and compute the mean, standard deviation</span></a>
+<a class="sourceLine" id="cb73-14" data-line-number="14"><span class="co"># and number of observations for each group</span></a>
+<a class="sourceLine" id="cb73-15" data-line-number="15">avgs &lt;-<span class="st"> </span>cps <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb73-16" data-line-number="16"><span class="st">        </span><span class="kw">group_by</span>(a_sex, year) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb73-17" data-line-number="17"><span class="st">        </span><span class="kw">summarise</span>(<span class="kw">mean</span>(ahe08), </a>
+<a class="sourceLine" id="cb73-18" data-line-number="18">                  <span class="kw">sd</span>(ahe08), </a>
+<a class="sourceLine" id="cb73-19" data-line-number="19">                  <span class="kw">n</span>())</a>
+<a class="sourceLine" id="cb73-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb73-21" data-line-number="21"><span class="co"># print the results to the console</span></a>
+<a class="sourceLine" id="cb73-22" data-line-number="22"><span class="kw">print</span>(avgs)</a>
+<a class="sourceLine" id="cb73-23" data-line-number="23"><span class="co">#&gt; # A tibble: 10 x 5</span></a>
+<a class="sourceLine" id="cb73-24" data-line-number="24"><span class="co">#&gt; # Groups:   a_sex [2]</span></a>
+<a class="sourceLine" id="cb73-25" data-line-number="25"><span class="co">#&gt;    a_sex  year `mean(ahe08)` `sd(ahe08)` `n()`</span></a>
+<a class="sourceLine" id="cb73-26" data-line-number="26"><span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb73-27" data-line-number="27"><span class="co">#&gt;  1     1  1992          23.3       10.2   1594</span></a>
+<a class="sourceLine" id="cb73-28" data-line-number="28"><span class="co">#&gt;  2     1  1996          22.5       10.1   1379</span></a>
+<a class="sourceLine" id="cb73-29" data-line-number="29"><span class="co">#&gt;  3     1  2000          24.9       11.6   1303</span></a>
+<a class="sourceLine" id="cb73-30" data-line-number="30"><span class="co">#&gt;  4     1  2004          25.1       12.0   1894</span></a>
+<a class="sourceLine" id="cb73-31" data-line-number="31"><span class="co">#&gt;  5     1  2008          25.0       11.8   1838</span></a>
+<a class="sourceLine" id="cb73-32" data-line-number="32"><span class="co">#&gt;  6     2  1992          20.0        7.87  1368</span></a>
+<a class="sourceLine" id="cb73-33" data-line-number="33"><span class="co">#&gt;  7     2  1996          19.0        7.95  1230</span></a>
+<a class="sourceLine" id="cb73-34" data-line-number="34"><span class="co">#&gt;  8     2  2000          20.7        9.36  1181</span></a>
+<a class="sourceLine" id="cb73-35" data-line-number="35"><span class="co">#&gt;  9     2  2004          21.0        9.36  1735</span></a>
+<a class="sourceLine" id="cb73-36" data-line-number="36"><span class="co">#&gt; 10     2  2008          20.9        9.66  1871</span></a></code></pre></div>
 <p>With the pipe operator <tt>%&gt;%</tt> we simply chain different <tt>R</tt> functions that produce compatible input and output. In the code above, we take the dataset <tt>cps</tt> and use it as an input for the function <tt>group_by()</tt>. The output of <tt>group_by</tt> is subsequently used as an input for <tt>summarise()</tt> and so forth.</p>
 <p>Now that we have computed the statistics of interest for both genders, we can investigate how the gap in earnings between both groups evolves over time.</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="co"># split the dataset by gender</span></a>
-<a class="sourceLine" id="cb75-2" data-line-number="2">male &lt;-<span class="st"> </span>avgs <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(a_sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) </a>
-<a class="sourceLine" id="cb75-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb75-4" data-line-number="4">female &lt;-<span class="st"> </span>avgs <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(a_sex <span class="op">==</span><span class="st"> </span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb75-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb75-6" data-line-number="6"><span class="co"># rename columns of both splits</span></a>
-<a class="sourceLine" id="cb75-7" data-line-number="7"><span class="kw">colnames</span>(male)   &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Sex&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Y_bar_m&quot;</span>, <span class="st">&quot;s_m&quot;</span>, <span class="st">&quot;n_m&quot;</span>)</a>
-<a class="sourceLine" id="cb75-8" data-line-number="8"><span class="kw">colnames</span>(female) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Sex&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Y_bar_f&quot;</span>, <span class="st">&quot;s_f&quot;</span>, <span class="st">&quot;n_f&quot;</span>)</a>
-<a class="sourceLine" id="cb75-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb75-10" data-line-number="10"><span class="co"># estimate gender gaps, compute standard errors and confidence intervals for all dates</span></a>
-<a class="sourceLine" id="cb75-11" data-line-number="11">gap &lt;-<span class="st"> </span>male<span class="op">$</span>Y_bar_m <span class="op">-</span><span class="st"> </span>female<span class="op">$</span>Y_bar_f</a>
-<a class="sourceLine" id="cb75-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb75-13" data-line-number="13">gap_se &lt;-<span class="st"> </span><span class="kw">sqrt</span>(male<span class="op">$</span>s_m<span class="op">^</span><span class="dv">2</span> <span class="op">/</span><span class="st"> </span>male<span class="op">$</span>n_m <span class="op">+</span><span class="st"> </span>female<span class="op">$</span>s_f<span class="op">^</span><span class="dv">2</span> <span class="op">/</span><span class="st"> </span>female<span class="op">$</span>n_f)</a>
-<a class="sourceLine" id="cb75-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb75-15" data-line-number="15">gap_ci_l &lt;-<span class="st"> </span>gap <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>gap_se</a>
-<a class="sourceLine" id="cb75-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb75-17" data-line-number="17">gap_ci_u &lt;-<span class="st"> </span>gap <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>gap_se</a>
-<a class="sourceLine" id="cb75-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb75-19" data-line-number="19">result &lt;-<span class="st"> </span><span class="kw">cbind</span>(male[,<span class="op">-</span><span class="dv">1</span>], female[,<span class="op">-</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)], gap, gap_se, gap_ci_l, gap_ci_u)</a>
-<a class="sourceLine" id="cb75-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb75-21" data-line-number="21"><span class="co"># print the results to the console</span></a>
-<a class="sourceLine" id="cb75-22" data-line-number="22"><span class="kw">print</span>(result, <span class="dt">digits =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb75-23" data-line-number="23"><span class="co">#&gt;   Year Y_bar_m  s_m  n_m Y_bar_f  s_f  n_f  gap gap_se gap_ci_l gap_ci_u</span></a>
-<a class="sourceLine" id="cb75-24" data-line-number="24"><span class="co">#&gt; 1 1992    23.3 10.2 1594    20.0 7.87 1368 3.23  0.332     2.58     3.88</span></a>
-<a class="sourceLine" id="cb75-25" data-line-number="25"><span class="co">#&gt; 2 1996    22.5 10.1 1379    19.0 7.95 1230 3.49  0.354     2.80     4.19</span></a>
-<a class="sourceLine" id="cb75-26" data-line-number="26"><span class="co">#&gt; 3 2000    24.9 11.6 1303    20.7 9.36 1181 4.14  0.421     3.32     4.97</span></a>
-<a class="sourceLine" id="cb75-27" data-line-number="27"><span class="co">#&gt; 4 2004    25.1 12.0 1894    21.0 9.36 1735 4.10  0.356     3.40     4.80</span></a>
-<a class="sourceLine" id="cb75-28" data-line-number="28"><span class="co">#&gt; 5 2008    25.0 11.8 1838    20.9 9.66 1871 4.10  0.354     3.41     4.80</span></a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="co"># split the dataset by gender</span></a>
+<a class="sourceLine" id="cb74-2" data-line-number="2">male &lt;-<span class="st"> </span>avgs <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(a_sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) </a>
+<a class="sourceLine" id="cb74-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb74-4" data-line-number="4">female &lt;-<span class="st"> </span>avgs <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(a_sex <span class="op">==</span><span class="st"> </span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb74-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb74-6" data-line-number="6"><span class="co"># rename columns of both splits</span></a>
+<a class="sourceLine" id="cb74-7" data-line-number="7"><span class="kw">colnames</span>(male)   &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Sex&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Y_bar_m&quot;</span>, <span class="st">&quot;s_m&quot;</span>, <span class="st">&quot;n_m&quot;</span>)</a>
+<a class="sourceLine" id="cb74-8" data-line-number="8"><span class="kw">colnames</span>(female) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Sex&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Y_bar_f&quot;</span>, <span class="st">&quot;s_f&quot;</span>, <span class="st">&quot;n_f&quot;</span>)</a>
+<a class="sourceLine" id="cb74-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb74-10" data-line-number="10"><span class="co"># estimate gender gaps, compute standard errors and confidence intervals for all dates</span></a>
+<a class="sourceLine" id="cb74-11" data-line-number="11">gap &lt;-<span class="st"> </span>male<span class="op">$</span>Y_bar_m <span class="op">-</span><span class="st"> </span>female<span class="op">$</span>Y_bar_f</a>
+<a class="sourceLine" id="cb74-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb74-13" data-line-number="13">gap_se &lt;-<span class="st"> </span><span class="kw">sqrt</span>(male<span class="op">$</span>s_m<span class="op">^</span><span class="dv">2</span> <span class="op">/</span><span class="st"> </span>male<span class="op">$</span>n_m <span class="op">+</span><span class="st"> </span>female<span class="op">$</span>s_f<span class="op">^</span><span class="dv">2</span> <span class="op">/</span><span class="st"> </span>female<span class="op">$</span>n_f)</a>
+<a class="sourceLine" id="cb74-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb74-15" data-line-number="15">gap_ci_l &lt;-<span class="st"> </span>gap <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>gap_se</a>
+<a class="sourceLine" id="cb74-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb74-17" data-line-number="17">gap_ci_u &lt;-<span class="st"> </span>gap <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>gap_se</a>
+<a class="sourceLine" id="cb74-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb74-19" data-line-number="19">result &lt;-<span class="st"> </span><span class="kw">cbind</span>(male[,<span class="op">-</span><span class="dv">1</span>], female[,<span class="op">-</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)], gap, gap_se, gap_ci_l, gap_ci_u)</a>
+<a class="sourceLine" id="cb74-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb74-21" data-line-number="21"><span class="co"># print the results to the console</span></a>
+<a class="sourceLine" id="cb74-22" data-line-number="22"><span class="kw">print</span>(result, <span class="dt">digits =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb74-23" data-line-number="23"><span class="co">#&gt;   Year Y_bar_m  s_m  n_m Y_bar_f  s_f  n_f  gap gap_se gap_ci_l gap_ci_u</span></a>
+<a class="sourceLine" id="cb74-24" data-line-number="24"><span class="co">#&gt; 1 1992    23.3 10.2 1594    20.0 7.87 1368 3.23  0.332     2.58     3.88</span></a>
+<a class="sourceLine" id="cb74-25" data-line-number="25"><span class="co">#&gt; 2 1996    22.5 10.1 1379    19.0 7.95 1230 3.49  0.354     2.80     4.19</span></a>
+<a class="sourceLine" id="cb74-26" data-line-number="26"><span class="co">#&gt; 3 2000    24.9 11.6 1303    20.7 9.36 1181 4.14  0.421     3.32     4.97</span></a>
+<a class="sourceLine" id="cb74-27" data-line-number="27"><span class="co">#&gt; 4 2004    25.1 12.0 1894    21.0 9.36 1735 4.10  0.356     3.40     4.80</span></a>
+<a class="sourceLine" id="cb74-28" data-line-number="28"><span class="co">#&gt; 5 2008    25.0 11.8 1838    20.9 9.66 1871 4.10  0.354     3.41     4.80</span></a></code></pre></div>
 <p>We observe virtually the same results as the ones presented in the book. The computed statistics suggest that there <em>is</em> a gender gap in earnings. Note that we can reject the null hypothesis that the gap is zero for all periods. Further, estimates of the gap and bounds of the <span class="math inline">\(95\%\)</span> confidence intervals indicate that the gap has been quite stable in the recent past.</p>
 </div>
 <h3>References</h3>
