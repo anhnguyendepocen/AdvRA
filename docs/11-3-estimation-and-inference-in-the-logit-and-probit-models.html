@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>11.3 Estimation and Inference in the Logit and Probit Models | Advanced Regression Analysis</title>
   <meta name="description" content="11.3 Estimation and Inference in the Logit and Probit Models | Advanced Regression Analysis" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="11.3 Estimation and Inference in the Logit and Probit Models | Advanced Regression Analysis" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/logo2.png" />
+  <meta property="og:image" content="images/mylogo.png" />
   
   
 
@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="11.3 Estimation and Inference in the Logit and Probit Models | Advanced Regression Analysis" />
   
   
-  <meta name="twitter:image" content="images/logo2.png" />
+  <meta name="twitter:image" content="images/mylogo.png" />
 
 <meta name="author" content="Dominik Liebl" />
 
@@ -40,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -132,13 +135,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><img src="images/logo2.png" alt="logo" width="50%" height="50%"style="margin: 15px 0 0 0"></center></li>
+<li><center><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-colophon.html"><a href="1-1-colophon.html"><i class="fa fa-check"></i><b>1.1</b> Colophon</a></li>
-<li class="chapter" data-level="1.2" data-path="1-2-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-2-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
+<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
@@ -330,7 +332,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.4" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><i class="fa fa-check"></i><b>16.4</b> Volatility Clustering and Autoregressive Conditional Heteroskedasticity</a><ul>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#arch-and-garch-models"><i class="fa fa-check"></i>ARCH and GARCH Models</a></li>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#application-to-stock-price-volatility"><i class="fa fa-check"></i>Application to Stock Price Volatility</a></li>
-<li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#summary-8"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html"><a href="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html#summary"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -374,7 +376,7 @@ However, NLS is inefficient, meaning that there are estimation techniques that h
 <p>As maximum likelihood estimates are normally distributed in large samples, statistical inference for coefficients in nonlinear models like Logit and Probit regression can be made using the same tools that are used for linear regression models: we can compute <span class="math inline">\(t\)</span>-statistics and confidence intervals.</p>
 <p>Many software packages use an MLE algorithm for estimation of nonlinear models. The function <tt>glm()</tt> uses an algorithm named <em>iteratively reweighted least squares</em>.</p>
 </div>
-<div id="measures-of-fit-1" class="section level4 unnumbered">
+<div id="measures-of-fit" class="section level4 unnumbered">
 <h4>Measures of Fit</h4>
 <p>It is important to be aware that the usual <span class="math inline">\(R^2\)</span> and <span class="math inline">\(\bar{R}^2\)</span> are <em>invalid</em> for nonlinear regression models. The reason for this is simple: both measures assume that the relation between the dependent and the explanatory variable(s) is linear. This obviously does not hold for Probit and Logit models. Thus <span class="math inline">\(R^2\)</span> need not lie between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> and there is no meaningful interpretation. However, statistical software sometimes reports these measures anyway.</p>
 <p>There are many measures of fit for nonlinear regression models and there is no consensus which one should be reported. The situation is even more complicated because there is no measure of fit that is generally meaningful. For models with a binary response variable like <span class="math inline">\(deny\)</span> one could use the following rule: If <span class="math inline">\(Y_i = 1\)</span> and <span class="math inline">\(\widehat{P(Y_i|X_{i1}, \dots, X_{ik})} &gt; 0.5\)</span> or if <span class="math inline">\(Y_i = 0\)</span> and <span class="math inline">\(\widehat{P(Y_i|X_{i1}, \dots, X_{ik})} &lt; 0.5\)</span>, consider the <span class="math inline">\(Y_i\)</span> as correctly predicted. Otherwise <span class="math inline">\(Y_i\)</span> is said to be incorrectly predicted. The measure of fit is the share of correctly predicted observations. The downside of such an approach is that it does not mirror the quality of the prediction: whether <span class="math inline">\(\widehat{P(Y_i = 1|X_{i1}, \dots, X_{ik}) = 0.51}\)</span> or <span class="math inline">\(\widehat{P(Y_i =1|X_{i1}, \dots, X_{ik}) = 0.99}\)</span> is not reflected, we just predict <span class="math inline">\(Y_i = 1\)</span>.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a></p>
@@ -387,19 +389,19 @@ and</p>
 <p><span class="math display">\[\text{null deviance} = -2 \times \left[\ln(f^{max}_{saturated}) - \ln(f^{max}_{null}) \right]\]</span>
 where <span class="math inline">\(f^{max}_{saturated}\)</span> is the maximized likelihood for a model which assumes that each observation has its own parameter (there are <span class="math inline">\(n+1\)</span> parameters to be estimated which leads to a perfect fit). For models with a binary dependent variable, it holds that <span class="math display">\[\text{pseudo-}R^2 = 1 - \frac{\text{deviance}}{\text{null deviance}} = 1- \frac{\ln(f^{max}_{full})}{\ln(f^{max}_{null})}.\]</span></p>
 <p>We now compute the <span class="math inline">\(\text{pseudo-}R^2\)</span> for the augmented Probit model of mortgage denial.</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" data-line-number="1"><span class="co"># compute pseudo-R2 for the probit model of mortgage denial</span></a>
-<a class="sourceLine" id="cb276-2" data-line-number="2">pseudoR2 &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>(denyprobit2<span class="op">$</span>deviance) <span class="op">/</span><span class="st"> </span>(denyprobit2<span class="op">$</span>null.deviance)</a>
-<a class="sourceLine" id="cb276-3" data-line-number="3">pseudoR2</a>
-<a class="sourceLine" id="cb276-4" data-line-number="4"><span class="co">#&gt; [1] 0.08594259</span></a></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1"><span class="co"># compute pseudo-R2 for the probit model of mortgage denial</span></a>
+<a class="sourceLine" id="cb275-2" data-line-number="2">pseudoR2 &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>(denyprobit2<span class="op">$</span>deviance) <span class="op">/</span><span class="st"> </span>(denyprobit2<span class="op">$</span>null.deviance)</a>
+<a class="sourceLine" id="cb275-3" data-line-number="3">pseudoR2</a>
+<a class="sourceLine" id="cb275-4" data-line-number="4"><span class="co">#&gt; [1] 0.08594259</span></a></code></pre></div>
 <p>Another way to obtain the <span class="math inline">\(\text{pseudo-}R^2\)</span> is to estimate the null model using <tt>glm()</tt> and extract the maximized log-likelihoods for both the null and the full model using the function <tt>logLik()</tt>.</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1"><span class="co"># compute the null model</span></a>
-<a class="sourceLine" id="cb277-2" data-line-number="2">denyprobit_null &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="dt">formula =</span> deny <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb277-3" data-line-number="3">                       <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;probit&quot;</span>), </a>
-<a class="sourceLine" id="cb277-4" data-line-number="4">                       <span class="dt">data =</span> HMDA)</a>
-<a class="sourceLine" id="cb277-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb277-6" data-line-number="6"><span class="co"># compute the pseudo-R2 using &#39;logLik&#39;</span></a>
-<a class="sourceLine" id="cb277-7" data-line-number="7"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">logLik</span>(denyprobit2)[<span class="dv">1</span>]<span class="op">/</span><span class="kw">logLik</span>(denyprobit_null)[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb277-8" data-line-number="8"><span class="co">#&gt; [1] 0.08594259</span></a></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" data-line-number="1"><span class="co"># compute the null model</span></a>
+<a class="sourceLine" id="cb276-2" data-line-number="2">denyprobit_null &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="dt">formula =</span> deny <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb276-3" data-line-number="3">                       <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;probit&quot;</span>), </a>
+<a class="sourceLine" id="cb276-4" data-line-number="4">                       <span class="dt">data =</span> HMDA)</a>
+<a class="sourceLine" id="cb276-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb276-6" data-line-number="6"><span class="co"># compute the pseudo-R2 using &#39;logLik&#39;</span></a>
+<a class="sourceLine" id="cb276-7" data-line-number="7"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">logLik</span>(denyprobit2)[<span class="dv">1</span>]<span class="op">/</span><span class="kw">logLik</span>(denyprobit_null)[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb276-8" data-line-number="8"><span class="co">#&gt; [1] 0.08594259</span></a></code></pre></div>
 </div>
 </div>
 <div class="footnotes">
@@ -419,24 +421,25 @@ where <span class="math inline">\(f^{max}_{saturated}\)</span> is the maximized 
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": true,
-"twitter": true,
-"google": false,
+"facebook": false,
+"twitter": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -444,14 +447,18 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mca91/EconometricsWithR/edit/master/11-ch11.Rmd",
+"link": "https://github.com/lidom/AdvRA/edit/master/11-ch11.Rmd",
 "text": "Edit"
 },
 "history": {
 "link": null,
 "text": null
 },
-"download": ["ITER.pdf"],
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "subsection",
 "scroll_highlight": true

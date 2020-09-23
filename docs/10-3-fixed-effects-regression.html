@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>10.3 Fixed Effects Regression | Advanced Regression Analysis</title>
   <meta name="description" content="10.3 Fixed Effects Regression | Advanced Regression Analysis" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="10.3 Fixed Effects Regression | Advanced Regression Analysis" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/logo2.png" />
+  <meta property="og:image" content="images/mylogo.png" />
   
   
 
@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="10.3 Fixed Effects Regression | Advanced Regression Analysis" />
   
   
-  <meta name="twitter:image" content="images/logo2.png" />
+  <meta name="twitter:image" content="images/mylogo.png" />
 
 <meta name="author" content="Dominik Liebl" />
 
@@ -40,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -132,13 +135,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><img src="images/logo2.png" alt="logo" width="50%" height="50%"style="margin: 15px 0 0 0"></center></li>
+<li><center><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-colophon.html"><a href="1-1-colophon.html"><i class="fa fa-check"></i><b>1.1</b> Colophon</a></li>
-<li class="chapter" data-level="1.2" data-path="1-2-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-2-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
+<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
@@ -330,7 +332,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.4" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><i class="fa fa-check"></i><b>16.4</b> Volatility Clustering and Autoregressive Conditional Heteroskedasticity</a><ul>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#arch-and-garch-models"><i class="fa fa-check"></i>ARCH and GARCH Models</a></li>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#application-to-stock-price-volatility"><i class="fa fa-check"></i>Application to Stock Price Volatility</a></li>
-<li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#summary-8"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html"><a href="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html#summary"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -417,57 +419,57 @@ FatalityRate_{it} = \beta_1 BeerTax_{it} + StateFixedEffects + u_{it}, \tag{10.6
 \end{align}\]</span>
 a regression of the traffic fatality rate on beer tax and 48 binary regressors — one for each federal state.</p>
 <p>We can simply use the function <tt>lm()</tt> to obtain an estimate of <span class="math inline">\(\beta_1\)</span>.</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1">fatal_fe_lm_mod &lt;-<span class="st"> </span><span class="kw">lm</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax <span class="op">+</span><span class="st"> </span>state <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> Fatalities)</a>
-<a class="sourceLine" id="cb248-2" data-line-number="2">fatal_fe_lm_mod</a>
-<a class="sourceLine" id="cb248-3" data-line-number="3"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb248-4" data-line-number="4"><span class="co">#&gt; Call:</span></a>
-<a class="sourceLine" id="cb248-5" data-line-number="5"><span class="co">#&gt; lm(formula = fatal_rate ~ beertax + state - 1, data = Fatalities)</span></a>
-<a class="sourceLine" id="cb248-6" data-line-number="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb248-7" data-line-number="7"><span class="co">#&gt; Coefficients:</span></a>
-<a class="sourceLine" id="cb248-8" data-line-number="8"><span class="co">#&gt; beertax  stateal  stateaz  statear  stateca  stateco  statect  statede  </span></a>
-<a class="sourceLine" id="cb248-9" data-line-number="9"><span class="co">#&gt; -0.6559   3.4776   2.9099   2.8227   1.9682   1.9933   1.6154   2.1700  </span></a>
-<a class="sourceLine" id="cb248-10" data-line-number="10"><span class="co">#&gt; statefl  statega  stateid  stateil  statein  stateia  stateks  stateky  </span></a>
-<a class="sourceLine" id="cb248-11" data-line-number="11"><span class="co">#&gt;  3.2095   4.0022   2.8086   1.5160   2.0161   1.9337   2.2544   2.2601  </span></a>
-<a class="sourceLine" id="cb248-12" data-line-number="12"><span class="co">#&gt; statela  stateme  statemd  statema  statemi  statemn  statems  statemo  </span></a>
-<a class="sourceLine" id="cb248-13" data-line-number="13"><span class="co">#&gt;  2.6305   2.3697   1.7712   1.3679   1.9931   1.5804   3.4486   2.1814  </span></a>
-<a class="sourceLine" id="cb248-14" data-line-number="14"><span class="co">#&gt; statemt  statene  statenv  statenh  statenj  statenm  stateny  statenc  </span></a>
-<a class="sourceLine" id="cb248-15" data-line-number="15"><span class="co">#&gt;  3.1172   1.9555   2.8769   2.2232   1.3719   3.9040   1.2910   3.1872  </span></a>
-<a class="sourceLine" id="cb248-16" data-line-number="16"><span class="co">#&gt; statend  stateoh  stateok  stateor  statepa  stateri  statesc  statesd  </span></a>
-<a class="sourceLine" id="cb248-17" data-line-number="17"><span class="co">#&gt;  1.8542   1.8032   2.9326   2.3096   1.7102   1.2126   4.0348   2.4739  </span></a>
-<a class="sourceLine" id="cb248-18" data-line-number="18"><span class="co">#&gt; statetn  statetx  stateut  statevt  stateva  statewa  statewv  statewi  </span></a>
-<a class="sourceLine" id="cb248-19" data-line-number="19"><span class="co">#&gt;  2.6020   2.5602   2.3137   2.5116   2.1874   1.8181   2.5809   1.7184  </span></a>
-<a class="sourceLine" id="cb248-20" data-line-number="20"><span class="co">#&gt; statewy  </span></a>
-<a class="sourceLine" id="cb248-21" data-line-number="21"><span class="co">#&gt;  3.2491</span></a></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1">fatal_fe_lm_mod &lt;-<span class="st"> </span><span class="kw">lm</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax <span class="op">+</span><span class="st"> </span>state <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> Fatalities)</a>
+<a class="sourceLine" id="cb247-2" data-line-number="2">fatal_fe_lm_mod</a>
+<a class="sourceLine" id="cb247-3" data-line-number="3"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb247-4" data-line-number="4"><span class="co">#&gt; Call:</span></a>
+<a class="sourceLine" id="cb247-5" data-line-number="5"><span class="co">#&gt; lm(formula = fatal_rate ~ beertax + state - 1, data = Fatalities)</span></a>
+<a class="sourceLine" id="cb247-6" data-line-number="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb247-7" data-line-number="7"><span class="co">#&gt; Coefficients:</span></a>
+<a class="sourceLine" id="cb247-8" data-line-number="8"><span class="co">#&gt; beertax  stateal  stateaz  statear  stateca  stateco  statect  statede  </span></a>
+<a class="sourceLine" id="cb247-9" data-line-number="9"><span class="co">#&gt; -0.6559   3.4776   2.9099   2.8227   1.9682   1.9933   1.6154   2.1700  </span></a>
+<a class="sourceLine" id="cb247-10" data-line-number="10"><span class="co">#&gt; statefl  statega  stateid  stateil  statein  stateia  stateks  stateky  </span></a>
+<a class="sourceLine" id="cb247-11" data-line-number="11"><span class="co">#&gt;  3.2095   4.0022   2.8086   1.5160   2.0161   1.9337   2.2544   2.2601  </span></a>
+<a class="sourceLine" id="cb247-12" data-line-number="12"><span class="co">#&gt; statela  stateme  statemd  statema  statemi  statemn  statems  statemo  </span></a>
+<a class="sourceLine" id="cb247-13" data-line-number="13"><span class="co">#&gt;  2.6305   2.3697   1.7712   1.3679   1.9931   1.5804   3.4486   2.1814  </span></a>
+<a class="sourceLine" id="cb247-14" data-line-number="14"><span class="co">#&gt; statemt  statene  statenv  statenh  statenj  statenm  stateny  statenc  </span></a>
+<a class="sourceLine" id="cb247-15" data-line-number="15"><span class="co">#&gt;  3.1172   1.9555   2.8769   2.2232   1.3719   3.9040   1.2910   3.1872  </span></a>
+<a class="sourceLine" id="cb247-16" data-line-number="16"><span class="co">#&gt; statend  stateoh  stateok  stateor  statepa  stateri  statesc  statesd  </span></a>
+<a class="sourceLine" id="cb247-17" data-line-number="17"><span class="co">#&gt;  1.8542   1.8032   2.9326   2.3096   1.7102   1.2126   4.0348   2.4739  </span></a>
+<a class="sourceLine" id="cb247-18" data-line-number="18"><span class="co">#&gt; statetn  statetx  stateut  statevt  stateva  statewa  statewv  statewi  </span></a>
+<a class="sourceLine" id="cb247-19" data-line-number="19"><span class="co">#&gt;  2.6020   2.5602   2.3137   2.5116   2.1874   1.8181   2.5809   1.7184  </span></a>
+<a class="sourceLine" id="cb247-20" data-line-number="20"><span class="co">#&gt; statewy  </span></a>
+<a class="sourceLine" id="cb247-21" data-line-number="21"><span class="co">#&gt;  3.2491</span></a></code></pre></div>
 <p>As discussed in the previous section, it is also possible to estimate <span class="math inline">\(\beta_1\)</span> by applying OLS to the demeaned data, that is, to run the regression</p>
 <p><span class="math display">\[\overset{\sim}{FatalityRate} = \beta_1 \overset{\sim}{BeerTax}_{it} + u_{it}. \]</span></p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1"><span class="co"># obtain demeaned data</span></a>
-<a class="sourceLine" id="cb249-2" data-line-number="2">Fatalities_demeaned &lt;-<span class="st"> </span><span class="kw">with</span>(Fatalities,</a>
-<a class="sourceLine" id="cb249-3" data-line-number="3">            <span class="kw">data.frame</span>(<span class="dt">fatal_rate =</span> fatal_rate <span class="op">-</span><span class="st"> </span><span class="kw">ave</span>(fatal_rate, state),</a>
-<a class="sourceLine" id="cb249-4" data-line-number="4">            <span class="dt">beertax =</span> beertax <span class="op">-</span><span class="st"> </span><span class="kw">ave</span>(beertax, state)))</a>
-<a class="sourceLine" id="cb249-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb249-6" data-line-number="6"><span class="co"># estimate the regression</span></a>
-<a class="sourceLine" id="cb249-7" data-line-number="7"><span class="kw">summary</span>(<span class="kw">lm</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> Fatalities_demeaned))</a></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1"><span class="co"># obtain demeaned data</span></a>
+<a class="sourceLine" id="cb248-2" data-line-number="2">Fatalities_demeaned &lt;-<span class="st"> </span><span class="kw">with</span>(Fatalities,</a>
+<a class="sourceLine" id="cb248-3" data-line-number="3">            <span class="kw">data.frame</span>(<span class="dt">fatal_rate =</span> fatal_rate <span class="op">-</span><span class="st"> </span><span class="kw">ave</span>(fatal_rate, state),</a>
+<a class="sourceLine" id="cb248-4" data-line-number="4">            <span class="dt">beertax =</span> beertax <span class="op">-</span><span class="st"> </span><span class="kw">ave</span>(beertax, state)))</a>
+<a class="sourceLine" id="cb248-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb248-6" data-line-number="6"><span class="co"># estimate the regression</span></a>
+<a class="sourceLine" id="cb248-7" data-line-number="7"><span class="kw">summary</span>(<span class="kw">lm</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> Fatalities_demeaned))</a></code></pre></div>
 <p>The function <tt>ave</tt> is convenient for computing group averages. We use it to obtain state specific averages of the fatality rate and the beer tax.</p>
 <p>Alternatively one may use <tt>plm()</tt> from the package with the same name.</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1"><span class="co"># install and load the &#39;plm&#39; package</span></a>
-<a class="sourceLine" id="cb250-2" data-line-number="2"><span class="co">## install.packages(&quot;plm&quot;)</span></a>
-<a class="sourceLine" id="cb250-3" data-line-number="3"><span class="kw">library</span>(plm)</a></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1"><span class="co"># install and load the &#39;plm&#39; package</span></a>
+<a class="sourceLine" id="cb249-2" data-line-number="2"><span class="co">## install.packages(&quot;plm&quot;)</span></a>
+<a class="sourceLine" id="cb249-3" data-line-number="3"><span class="kw">library</span>(plm)</a></code></pre></div>
 <p>As for <tt>lm()</tt> we have to specify the regression formula and the data to be used in our call of <tt>plm()</tt>. Additionally, it is required to pass a vector of names of entity and time ID variables to the argument <tt>index</tt>. For <tt>Fatalities</tt>, the ID variable for entities is named <tt>state</tt> and the time id variable is <tt>year</tt>. Since the fixed effects estimator is also called the <em>within estimator</em>, we set <tt>model = “within”</tt>. Finally, the function <tt>coeftest()</tt> allows to obtain inference based on robust standard errors.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1"><span class="co"># estimate the fixed effects regression with plm()</span></a>
-<a class="sourceLine" id="cb251-2" data-line-number="2">fatal_fe_mod &lt;-<span class="st"> </span><span class="kw">plm</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax, </a>
-<a class="sourceLine" id="cb251-3" data-line-number="3">                    <span class="dt">data =</span> Fatalities,</a>
-<a class="sourceLine" id="cb251-4" data-line-number="4">                    <span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;year&quot;</span>), </a>
-<a class="sourceLine" id="cb251-5" data-line-number="5">                    <span class="dt">model =</span> <span class="st">&quot;within&quot;</span>)</a>
-<a class="sourceLine" id="cb251-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb251-7" data-line-number="7"><span class="co"># print summary using robust standard errors</span></a>
-<a class="sourceLine" id="cb251-8" data-line-number="8"><span class="kw">coeftest</span>(fatal_fe_mod, <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
-<a class="sourceLine" id="cb251-9" data-line-number="9"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb251-10" data-line-number="10"><span class="co">#&gt; t test of coefficients:</span></a>
-<a class="sourceLine" id="cb251-11" data-line-number="11"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb251-12" data-line-number="12"><span class="co">#&gt;         Estimate Std. Error t value Pr(&gt;|t|)  </span></a>
-<a class="sourceLine" id="cb251-13" data-line-number="13"><span class="co">#&gt; beertax -0.65587    0.28880  -2.271  0.02388 *</span></a>
-<a class="sourceLine" id="cb251-14" data-line-number="14"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb251-15" data-line-number="15"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1"><span class="co"># estimate the fixed effects regression with plm()</span></a>
+<a class="sourceLine" id="cb250-2" data-line-number="2">fatal_fe_mod &lt;-<span class="st"> </span><span class="kw">plm</span>(fatal_rate <span class="op">~</span><span class="st"> </span>beertax, </a>
+<a class="sourceLine" id="cb250-3" data-line-number="3">                    <span class="dt">data =</span> Fatalities,</a>
+<a class="sourceLine" id="cb250-4" data-line-number="4">                    <span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;year&quot;</span>), </a>
+<a class="sourceLine" id="cb250-5" data-line-number="5">                    <span class="dt">model =</span> <span class="st">&quot;within&quot;</span>)</a>
+<a class="sourceLine" id="cb250-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb250-7" data-line-number="7"><span class="co"># print summary using robust standard errors</span></a>
+<a class="sourceLine" id="cb250-8" data-line-number="8"><span class="kw">coeftest</span>(fatal_fe_mod, <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
+<a class="sourceLine" id="cb250-9" data-line-number="9"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb250-10" data-line-number="10"><span class="co">#&gt; t test of coefficients:</span></a>
+<a class="sourceLine" id="cb250-11" data-line-number="11"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb250-12" data-line-number="12"><span class="co">#&gt;         Estimate Std. Error t value Pr(&gt;|t|)  </span></a>
+<a class="sourceLine" id="cb250-13" data-line-number="13"><span class="co">#&gt; beertax -0.65587    0.28880  -2.271  0.02388 *</span></a>
+<a class="sourceLine" id="cb250-14" data-line-number="14"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb250-15" data-line-number="15"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p>The estimated coefficient is again <span class="math inline">\(-0.6559\)</span>. Note that <tt>plm()</tt> uses the entity-demeaned OLS algorithm and thus does not report dummy coefficients. The estimated regression function is</p>
 <p><span class="math display" id="eq:efemod">\[\begin{align}
 \widehat{FatalityRate} = -\underset{(0.29)}{0.66} \times BeerTax + StateFixedEffects. \tag{10.7}
@@ -486,24 +488,25 @@ a regression of the traffic fatality rate on beer tax and 48 binary regressors �
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": true,
-"twitter": true,
-"google": false,
+"facebook": false,
+"twitter": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -511,14 +514,18 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mca91/EconometricsWithR/edit/master/10-ch10.Rmd",
+"link": "https://github.com/lidom/AdvRA/edit/master/10-ch10.Rmd",
 "text": "Edit"
 },
 "history": {
 "link": null,
 "text": null
 },
-"download": ["ITER.pdf"],
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "subsection",
 "scroll_highlight": true

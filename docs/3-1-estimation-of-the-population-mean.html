@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.1 Estimation of the Population Mean | Advanced Regression Analysis</title>
   <meta name="description" content="3.1 Estimation of the Population Mean | Advanced Regression Analysis" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.1 Estimation of the Population Mean | Advanced Regression Analysis" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/logo2.png" />
+  <meta property="og:image" content="images/mylogo.png" />
   
   
 
@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="3.1 Estimation of the Population Mean | Advanced Regression Analysis" />
   
   
-  <meta name="twitter:image" content="images/logo2.png" />
+  <meta name="twitter:image" content="images/mylogo.png" />
 
 <meta name="author" content="Dominik Liebl" />
 
@@ -40,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -132,13 +135,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><img src="images/logo2.png" alt="logo" width="50%" height="50%"style="margin: 15px 0 0 0"></center></li>
+<li><center><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-colophon.html"><a href="1-1-colophon.html"><i class="fa fa-check"></i><b>1.1</b> Colophon</a></li>
-<li class="chapter" data-level="1.2" data-path="1-2-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-2-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
+<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
@@ -330,7 +332,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.4" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><i class="fa fa-check"></i><b>16.4</b> Volatility Clustering and Autoregressive Conditional Heteroskedasticity</a><ul>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#arch-and-garch-models"><i class="fa fa-check"></i>ARCH and GARCH Models</a></li>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#application-to-stock-price-volatility"><i class="fa fa-check"></i>Application to Stock Price Volatility</a></li>
-<li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#summary-8"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html"><a href="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html#summary"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -370,21 +372,21 @@ Estimators and Estimates
 <p>the sample mean of <span class="math inline">\(Y\)</span>. Then again, we could use an even simpler estimator for <span class="math inline">\(\mu_Y\)</span>: the very first observation in the sample, <span class="math inline">\(Y_1\)</span>. Is <span class="math inline">\(Y_1\)</span> a good estimator? For now, assume that</p>
 <p><span class="math display">\[ Y \sim \chi_{12}^2 \]</span></p>
 <p>which is not too unreasonable as hourly income is non-negative and we expect many hourly earnings to be in a range of <span class="math inline">\(5€\,\)</span> to <span class="math inline">\(15€\)</span>. Moreover, it is common for income distributions to be skewed to the right — a property of the <span class="math inline">\(\chi^2_{12}\)</span> distribution.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="co"># plot the chi_12^2 distribution</span></a>
-<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="kw">curve</span>(<span class="kw">dchisq</span>(x, <span class="dt">df=</span><span class="dv">12</span>), </a>
-<a class="sourceLine" id="cb47-3" data-line-number="3">      <span class="dt">from =</span> <span class="dv">0</span>, </a>
-<a class="sourceLine" id="cb47-4" data-line-number="4">      <span class="dt">to =</span> <span class="dv">40</span>, </a>
-<a class="sourceLine" id="cb47-5" data-line-number="5">      <span class="dt">ylab =</span> <span class="st">&quot;density&quot;</span>, </a>
-<a class="sourceLine" id="cb47-6" data-line-number="6">      <span class="dt">xlab =</span> <span class="st">&quot;hourly earnings in Euro&quot;</span>)</a></code></pre></div>
-<p><img src="ITER_files/figure-html/unnamed-chunk-88-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="co"># plot the chi_12^2 distribution</span></a>
+<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="kw">curve</span>(<span class="kw">dchisq</span>(x, <span class="dt">df=</span><span class="dv">12</span>), </a>
+<a class="sourceLine" id="cb46-3" data-line-number="3">      <span class="dt">from =</span> <span class="dv">0</span>, </a>
+<a class="sourceLine" id="cb46-4" data-line-number="4">      <span class="dt">to =</span> <span class="dv">40</span>, </a>
+<a class="sourceLine" id="cb46-5" data-line-number="5">      <span class="dt">ylab =</span> <span class="st">&quot;density&quot;</span>, </a>
+<a class="sourceLine" id="cb46-6" data-line-number="6">      <span class="dt">xlab =</span> <span class="st">&quot;hourly earnings in Euro&quot;</span>)</a></code></pre></div>
+<p><img src="AdvRA_files/figure-html/unnamed-chunk-87-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>We now draw a sample of <span class="math inline">\(n=100\)</span> observations and take the first observation <span class="math inline">\(Y_1\)</span> as an estimate for <span class="math inline">\(\mu_Y\)</span></p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="co"># set seed for reproducibility</span></a>
-<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb48-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="co"># sample from the chi_12^2 distribution, use only the first observation</span></a>
-<a class="sourceLine" id="cb48-5" data-line-number="5">rsamp &lt;-<span class="st"> </span><span class="kw">rchisq</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">df =</span> <span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb48-6" data-line-number="6">rsamp[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb48-7" data-line-number="7"><span class="co">#&gt; [1] 8.257893</span></a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="co"># set seed for reproducibility</span></a>
+<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb47-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb47-4" data-line-number="4"><span class="co"># sample from the chi_12^2 distribution, use only the first observation</span></a>
+<a class="sourceLine" id="cb47-5" data-line-number="5">rsamp &lt;-<span class="st"> </span><span class="kw">rchisq</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">df =</span> <span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb47-6" data-line-number="6">rsamp[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb47-7" data-line-number="7"><span class="co">#&gt; [1] 8.257893</span></a></code></pre></div>
 <p>The estimate <span class="math inline">\(8.26\)</span> is not too far away from <span class="math inline">\(\mu_Y = 12\)</span> but it is somewhat intuitive that we could do better: the estimator <span class="math inline">\(Y_1\)</span> discards a lot of information and its variance is the population variance:</p>
 <p><span class="math display">\[ \text{Var}(Y_1) = \text{Var}(Y) = 2 \cdot 12 = 24 \]</span></p>
 <p>This brings us to the following question: What is a <em>good</em> estimator of an unknown parameter in the first place? This question is tackled in Key Concepts 3.2 and 3.3.</p>
@@ -423,24 +425,25 @@ but
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": true,
-"twitter": true,
-"google": false,
+"facebook": false,
+"twitter": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -448,14 +451,18 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mca91/EconometricsWithR/edit/master/03-ch3.Rmd",
+"link": "https://github.com/lidom/AdvRA/edit/master/03-ch3.Rmd",
 "text": "Edit"
 },
 "history": {
 "link": null,
 "text": null
 },
-"download": ["ITER.pdf"],
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "subsection",
 "scroll_highlight": true

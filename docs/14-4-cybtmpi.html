@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>14.4 Can You Beat the Market? (Part I) | Advanced Regression Analysis</title>
   <meta name="description" content="14.4 Can You Beat the Market? (Part I) | Advanced Regression Analysis" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="14.4 Can You Beat the Market? (Part I) | Advanced Regression Analysis" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/logo2.png" />
+  <meta property="og:image" content="images/mylogo.png" />
   
   
 
@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="14.4 Can You Beat the Market? (Part I) | Advanced Regression Analysis" />
   
   
-  <meta name="twitter:image" content="images/logo2.png" />
+  <meta name="twitter:image" content="images/mylogo.png" />
 
 <meta name="author" content="Dominik Liebl" />
 
@@ -40,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -132,13 +135,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><img src="images/logo2.png" alt="logo" width="50%" height="50%"style="margin: 15px 0 0 0"></center></li>
+<li><center><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-colophon.html"><a href="1-1-colophon.html"><i class="fa fa-check"></i><b>1.1</b> Colophon</a></li>
-<li class="chapter" data-level="1.2" data-path="1-2-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-2-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
+<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
@@ -330,7 +332,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.4" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><i class="fa fa-check"></i><b>16.4</b> Volatility Clustering and Autoregressive Conditional Heteroskedasticity</a><ul>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#arch-and-garch-models"><i class="fa fa-check"></i>ARCH and GARCH Models</a></li>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#application-to-stock-price-volatility"><i class="fa fa-check"></i>Application to Stock Price Volatility</a></li>
-<li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#summary-8"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html"><a href="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html#summary"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -359,50 +361,50 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>The theory of efficient capital markets states that stock prices embody all currently available information. If this hypothesis holds, it should not be possible to estimate a useful model for forecasting future stock returns using publicly available information on past returns (this is also referred to as the weak-form efficiency hypothesis): if it was possible to forecast the market, traders would be able to arbitrage, e.g., by relying on an AR(<span class="math inline">\(2\)</span>) model, they would use information that is not already priced-in which would push prices until the expected return is zero.</p>
 <p>This idea is presented in the box <em>Can You Beat the Market? (Part I)</em> on p. 582 of the book. This section reproduces the estimation results.</p>
 <p>We start by importing monthly data from 1931:1 to 2002:12 on excess returns of a broad-based index of stock prices, the CRSP value-weighted index. The data are provided by the authors of the book as an excel sheet which can be downloaded <a href="http://wps.aw.com/wps/media/objects/11422/11696965/data3eu/Stock_Returns_1931_2002.xlsx">here</a>.</p>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb362-1" data-line-number="1"><span class="co"># read in data on stock returns</span></a>
-<a class="sourceLine" id="cb362-2" data-line-number="2">SReturns &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="st">&quot;data/Stock_Returns_1931_2002.xlsx&quot;</span>,</a>
-<a class="sourceLine" id="cb362-3" data-line-number="3">                      <span class="dt">sheet =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb362-4" data-line-number="4">                      <span class="dt">col_types =</span> <span class="st">&quot;numeric&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" data-line-number="1"><span class="co"># read in data on stock returns</span></a>
+<a class="sourceLine" id="cb361-2" data-line-number="2">SReturns &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="st">&quot;data/Stock_Returns_1931_2002.xlsx&quot;</span>,</a>
+<a class="sourceLine" id="cb361-3" data-line-number="3">                      <span class="dt">sheet =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb361-4" data-line-number="4">                      <span class="dt">col_types =</span> <span class="st">&quot;numeric&quot;</span>)</a></code></pre></div>
 <p>We continue by converting the data to an object of class <tt>ts</tt>.</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" data-line-number="1"><span class="co"># convert to ts object</span></a>
-<a class="sourceLine" id="cb363-2" data-line-number="2">StockReturns &lt;-<span class="st"> </span><span class="kw">ts</span>(SReturns[, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>], </a>
-<a class="sourceLine" id="cb363-3" data-line-number="3">                   <span class="dt">start =</span> <span class="kw">c</span>(<span class="dv">1931</span>, <span class="dv">1</span>), </a>
-<a class="sourceLine" id="cb363-4" data-line-number="4">                   <span class="dt">end =</span> <span class="kw">c</span>(<span class="dv">2002</span>, <span class="dv">12</span>), </a>
-<a class="sourceLine" id="cb363-5" data-line-number="5">                   <span class="dt">frequency =</span> <span class="dv">12</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb362-1" data-line-number="1"><span class="co"># convert to ts object</span></a>
+<a class="sourceLine" id="cb362-2" data-line-number="2">StockReturns &lt;-<span class="st"> </span><span class="kw">ts</span>(SReturns[, <span class="dv">3</span><span class="op">:</span><span class="dv">4</span>], </a>
+<a class="sourceLine" id="cb362-3" data-line-number="3">                   <span class="dt">start =</span> <span class="kw">c</span>(<span class="dv">1931</span>, <span class="dv">1</span>), </a>
+<a class="sourceLine" id="cb362-4" data-line-number="4">                   <span class="dt">end =</span> <span class="kw">c</span>(<span class="dv">2002</span>, <span class="dv">12</span>), </a>
+<a class="sourceLine" id="cb362-5" data-line-number="5">                   <span class="dt">frequency =</span> <span class="dv">12</span>)</a></code></pre></div>
 <p>Next, we estimate AR(<span class="math inline">\(1\)</span>), AR(<span class="math inline">\(2\)</span>) and AR(<span class="math inline">\(4\)</span>) models of excess returns for the time period 1960:1 to 2002:12.</p>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" data-line-number="1"><span class="co"># estimate AR models:</span></a>
-<a class="sourceLine" id="cb364-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb364-3" data-line-number="3"><span class="co"># AR(1)</span></a>
-<a class="sourceLine" id="cb364-4" data-line-number="4">SR_AR1 &lt;-<span class="st"> </span><span class="kw">dynlm</span>(ExReturn <span class="op">~</span><span class="st"> </span><span class="kw">L</span>(ExReturn), </a>
-<a class="sourceLine" id="cb364-5" data-line-number="5">      <span class="dt">data =</span> StockReturns, <span class="dt">start =</span> <span class="kw">c</span>(<span class="dv">1960</span>, <span class="dv">1</span>), <span class="dt">end =</span> <span class="kw">c</span>(<span class="dv">2002</span>, <span class="dv">12</span>))</a>
-<a class="sourceLine" id="cb364-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb364-7" data-line-number="7"><span class="co"># AR(2)</span></a>
-<a class="sourceLine" id="cb364-8" data-line-number="8">SR_AR2 &lt;-<span class="st"> </span><span class="kw">dynlm</span>(ExReturn <span class="op">~</span><span class="st"> </span><span class="kw">L</span>(ExReturn) <span class="op">+</span><span class="st"> </span><span class="kw">L</span>(ExReturn, <span class="dv">2</span>), </a>
-<a class="sourceLine" id="cb364-9" data-line-number="9">      <span class="dt">data =</span> StockReturns, <span class="dt">start =</span> <span class="kw">c</span>(<span class="dv">1960</span>, <span class="dv">1</span>), <span class="dt">end =</span> <span class="kw">c</span>(<span class="dv">2002</span>, <span class="dv">12</span>))</a>
-<a class="sourceLine" id="cb364-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb364-11" data-line-number="11"><span class="co"># AR(4)</span></a>
-<a class="sourceLine" id="cb364-12" data-line-number="12">SR_AR4 &lt;-<span class="st"> </span><span class="kw">dynlm</span>(ExReturn <span class="op">~</span><span class="st"> </span><span class="kw">L</span>(ExReturn) <span class="op">+</span><span class="st"> </span><span class="kw">L</span>(ExReturn, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>), </a>
-<a class="sourceLine" id="cb364-13" data-line-number="13">      <span class="dt">data =</span> StockReturns, <span class="dt">start =</span> <span class="kw">c</span>(<span class="dv">1960</span>, <span class="dv">1</span>), <span class="dt">end =</span> <span class="kw">c</span>(<span class="dv">2002</span>, <span class="dv">12</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" data-line-number="1"><span class="co"># estimate AR models:</span></a>
+<a class="sourceLine" id="cb363-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb363-3" data-line-number="3"><span class="co"># AR(1)</span></a>
+<a class="sourceLine" id="cb363-4" data-line-number="4">SR_AR1 &lt;-<span class="st"> </span><span class="kw">dynlm</span>(ExReturn <span class="op">~</span><span class="st"> </span><span class="kw">L</span>(ExReturn), </a>
+<a class="sourceLine" id="cb363-5" data-line-number="5">      <span class="dt">data =</span> StockReturns, <span class="dt">start =</span> <span class="kw">c</span>(<span class="dv">1960</span>, <span class="dv">1</span>), <span class="dt">end =</span> <span class="kw">c</span>(<span class="dv">2002</span>, <span class="dv">12</span>))</a>
+<a class="sourceLine" id="cb363-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb363-7" data-line-number="7"><span class="co"># AR(2)</span></a>
+<a class="sourceLine" id="cb363-8" data-line-number="8">SR_AR2 &lt;-<span class="st"> </span><span class="kw">dynlm</span>(ExReturn <span class="op">~</span><span class="st"> </span><span class="kw">L</span>(ExReturn) <span class="op">+</span><span class="st"> </span><span class="kw">L</span>(ExReturn, <span class="dv">2</span>), </a>
+<a class="sourceLine" id="cb363-9" data-line-number="9">      <span class="dt">data =</span> StockReturns, <span class="dt">start =</span> <span class="kw">c</span>(<span class="dv">1960</span>, <span class="dv">1</span>), <span class="dt">end =</span> <span class="kw">c</span>(<span class="dv">2002</span>, <span class="dv">12</span>))</a>
+<a class="sourceLine" id="cb363-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb363-11" data-line-number="11"><span class="co"># AR(4)</span></a>
+<a class="sourceLine" id="cb363-12" data-line-number="12">SR_AR4 &lt;-<span class="st"> </span><span class="kw">dynlm</span>(ExReturn <span class="op">~</span><span class="st"> </span><span class="kw">L</span>(ExReturn) <span class="op">+</span><span class="st"> </span><span class="kw">L</span>(ExReturn, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>), </a>
+<a class="sourceLine" id="cb363-13" data-line-number="13">      <span class="dt">data =</span> StockReturns, <span class="dt">start =</span> <span class="kw">c</span>(<span class="dv">1960</span>, <span class="dv">1</span>), <span class="dt">end =</span> <span class="kw">c</span>(<span class="dv">2002</span>, <span class="dv">12</span>))</a></code></pre></div>
 <p>After computing robust standard errors, we gather the results in a table generated by <tt>stargazer()</tt>.</p>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" data-line-number="1"><span class="co"># compute robust standard errors</span></a>
-<a class="sourceLine" id="cb365-2" data-line-number="2">rob_se &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">sandwich</span>(SR_AR1))),</a>
-<a class="sourceLine" id="cb365-3" data-line-number="3">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">sandwich</span>(SR_AR2))),</a>
-<a class="sourceLine" id="cb365-4" data-line-number="4">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">sandwich</span>(SR_AR4))))</a></code></pre></div>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb366-1" data-line-number="1"><span class="co"># generate table using &#39;stargazer()&#39;</span></a>
-<a class="sourceLine" id="cb366-2" data-line-number="2"><span class="kw">stargazer</span>(SR_AR1, SR_AR2, SR_AR4,</a>
-<a class="sourceLine" id="cb366-3" data-line-number="3">  <span class="dt">title =</span> <span class="st">&quot;Autoregressive Models of Monthly Excess Stock Returns&quot;</span>,</a>
-<a class="sourceLine" id="cb366-4" data-line-number="4">  <span class="dt">header =</span> <span class="ot">FALSE</span>, </a>
-<a class="sourceLine" id="cb366-5" data-line-number="5">  <span class="dt">model.numbers =</span> F,</a>
-<a class="sourceLine" id="cb366-6" data-line-number="6">  <span class="dt">omit.table.layout =</span> <span class="st">&quot;n&quot;</span>,</a>
-<a class="sourceLine" id="cb366-7" data-line-number="7">  <span class="dt">digits =</span> <span class="dv">3</span>, </a>
-<a class="sourceLine" id="cb366-8" data-line-number="8">  <span class="dt">column.labels =</span> <span class="kw">c</span>(<span class="st">&quot;AR(1)&quot;</span>, <span class="st">&quot;AR(2)&quot;</span>, <span class="st">&quot;AR(4)&quot;</span>),</a>
-<a class="sourceLine" id="cb366-9" data-line-number="9">  <span class="dt">dep.var.caption  =</span> <span class="st">&quot;Dependent Variable: Excess Returns on the CSRP Value-Weighted Index&quot;</span>,</a>
-<a class="sourceLine" id="cb366-10" data-line-number="10">  <span class="dt">dep.var.labels.include =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb366-11" data-line-number="11">  <span class="dt">covariate.labels =</span> <span class="kw">c</span>(<span class="st">&quot;$excess return_{t-1}$&quot;</span>, <span class="st">&quot;$excess return_{t-2}$&quot;</span>, </a>
-<a class="sourceLine" id="cb366-12" data-line-number="12">                       <span class="st">&quot;$excess return_{t-3}$&quot;</span>, <span class="st">&quot;$excess return_{t-4}$&quot;</span>, </a>
-<a class="sourceLine" id="cb366-13" data-line-number="13">                       <span class="st">&quot;Intercept&quot;</span>),</a>
-<a class="sourceLine" id="cb366-14" data-line-number="14">  <span class="dt">se =</span> rob_se,</a>
-<a class="sourceLine" id="cb366-15" data-line-number="15">  <span class="dt">omit.stat =</span> <span class="st">&quot;rsq&quot;</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" data-line-number="1"><span class="co"># compute robust standard errors</span></a>
+<a class="sourceLine" id="cb364-2" data-line-number="2">rob_se &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">sandwich</span>(SR_AR1))),</a>
+<a class="sourceLine" id="cb364-3" data-line-number="3">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">sandwich</span>(SR_AR2))),</a>
+<a class="sourceLine" id="cb364-4" data-line-number="4">               <span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">sandwich</span>(SR_AR4))))</a></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" data-line-number="1"><span class="co"># generate table using &#39;stargazer()&#39;</span></a>
+<a class="sourceLine" id="cb365-2" data-line-number="2"><span class="kw">stargazer</span>(SR_AR1, SR_AR2, SR_AR4,</a>
+<a class="sourceLine" id="cb365-3" data-line-number="3">  <span class="dt">title =</span> <span class="st">&quot;Autoregressive Models of Monthly Excess Stock Returns&quot;</span>,</a>
+<a class="sourceLine" id="cb365-4" data-line-number="4">  <span class="dt">header =</span> <span class="ot">FALSE</span>, </a>
+<a class="sourceLine" id="cb365-5" data-line-number="5">  <span class="dt">model.numbers =</span> F,</a>
+<a class="sourceLine" id="cb365-6" data-line-number="6">  <span class="dt">omit.table.layout =</span> <span class="st">&quot;n&quot;</span>,</a>
+<a class="sourceLine" id="cb365-7" data-line-number="7">  <span class="dt">digits =</span> <span class="dv">3</span>, </a>
+<a class="sourceLine" id="cb365-8" data-line-number="8">  <span class="dt">column.labels =</span> <span class="kw">c</span>(<span class="st">&quot;AR(1)&quot;</span>, <span class="st">&quot;AR(2)&quot;</span>, <span class="st">&quot;AR(4)&quot;</span>),</a>
+<a class="sourceLine" id="cb365-9" data-line-number="9">  <span class="dt">dep.var.caption  =</span> <span class="st">&quot;Dependent Variable: Excess Returns on the CSRP Value-Weighted Index&quot;</span>,</a>
+<a class="sourceLine" id="cb365-10" data-line-number="10">  <span class="dt">dep.var.labels.include =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb365-11" data-line-number="11">  <span class="dt">covariate.labels =</span> <span class="kw">c</span>(<span class="st">&quot;$excess return_{t-1}$&quot;</span>, <span class="st">&quot;$excess return_{t-2}$&quot;</span>, </a>
+<a class="sourceLine" id="cb365-12" data-line-number="12">                       <span class="st">&quot;$excess return_{t-3}$&quot;</span>, <span class="st">&quot;$excess return_{t-4}$&quot;</span>, </a>
+<a class="sourceLine" id="cb365-13" data-line-number="13">                       <span class="st">&quot;Intercept&quot;</span>),</a>
+<a class="sourceLine" id="cb365-14" data-line-number="14">  <span class="dt">se =</span> rob_se,</a>
+<a class="sourceLine" id="cb365-15" data-line-number="15">  <span class="dt">omit.stat =</span> <span class="st">&quot;rsq&quot;</span>) </a></code></pre></div>
 
 
 
@@ -451,24 +453,25 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": true,
-"twitter": true,
-"google": false,
+"facebook": false,
+"twitter": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -476,14 +479,18 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mca91/EconometricsWithR/edit/master/14-ch14.Rmd",
+"link": "https://github.com/lidom/AdvRA/edit/master/14-ch14.Rmd",
 "text": "Edit"
 },
 "history": {
 "link": null,
 "text": null
 },
-"download": ["ITER.pdf"],
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "subsection",
 "scroll_highlight": true

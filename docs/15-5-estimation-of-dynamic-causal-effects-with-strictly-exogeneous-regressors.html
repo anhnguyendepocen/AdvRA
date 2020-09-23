@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>15.5 Estimation of Dynamic Causal Effects with Strictly Exogeneous Regressors | Advanced Regression Analysis</title>
   <meta name="description" content="15.5 Estimation of Dynamic Causal Effects with Strictly Exogeneous Regressors | Advanced Regression Analysis" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="15.5 Estimation of Dynamic Causal Effects with Strictly Exogeneous Regressors | Advanced Regression Analysis" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/logo2.png" />
+  <meta property="og:image" content="images/mylogo.png" />
   
   
 
@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="15.5 Estimation of Dynamic Causal Effects with Strictly Exogeneous Regressors | Advanced Regression Analysis" />
   
   
-  <meta name="twitter:image" content="images/logo2.png" />
+  <meta name="twitter:image" content="images/mylogo.png" />
 
 <meta name="author" content="Dominik Liebl" />
 
@@ -40,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -132,13 +135,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><img src="images/logo2.png" alt="logo" width="50%" height="50%"style="margin: 15px 0 0 0"></center></li>
+<li><center><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-colophon.html"><a href="1-1-colophon.html"><i class="fa fa-check"></i><b>1.1</b> Colophon</a></li>
-<li class="chapter" data-level="1.2" data-path="1-2-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-2-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
+<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
@@ -330,7 +332,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.4" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><i class="fa fa-check"></i><b>16.4</b> Volatility Clustering and Autoregressive Conditional Heteroskedasticity</a><ul>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#arch-and-garch-models"><i class="fa fa-check"></i>ARCH and GARCH Models</a></li>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#application-to-stock-price-volatility"><i class="fa fa-check"></i>Application to Stock Price Volatility</a></li>
-<li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#summary-8"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html"><a href="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html#summary"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -404,143 +406,143 @@ see p. 657 of the book.</p>
 \end{align}\]</span>
 where <span class="math inline">\(\overset{\sim}{Y}_t = Y_t - \phi_1 Y_{t-1}\)</span> and <span class="math inline">\(\overset{\sim}{X}_t = X_t - \phi_1 X_{t-1}\)</span>. Notice that the error term <span class="math inline">\(\overset{\sim}{u}_t\)</span> is uncorrelated in both models and, as shown in Chapter 15.5 of the book, <span class="math display">\[E(u_t\vert X_{t+1}, X_t, X_{t-1}, \dots) = 0,\]</span> which is implied by the assumption of strict exogeneity.</p>
 <p>We continue by simulating a time series of <span class="math inline">\(500\)</span> observations using the model <a href="15-5-estimation-of-dynamic-causal-effects-with-strictly-exogeneous-regressors.html#eq:dldynamic">(15.9)</a> with <span class="math inline">\(\beta_1 = 0.1\)</span>, <span class="math inline">\(\beta_2 = 0.25\)</span>, <span class="math inline">\(\phi = 0.5\)</span> and <span class="math inline">\(\overset{\sim}{u}_t \sim \mathcal{N}(0,1)\)</span> and estimate the different representations, starting with the distributed lag model <a href="15-5-estimation-of-dynamic-causal-effects-with-strictly-exogeneous-regressors.html#eq:dldynamic">(15.9)</a>.</p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb423-1" data-line-number="1"><span class="co"># set seed for reproducibility</span></a>
-<a class="sourceLine" id="cb423-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb423-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb423-4" data-line-number="4"><span class="co"># simulate a time series with serially correlated errors</span></a>
-<a class="sourceLine" id="cb423-5" data-line-number="5">obs &lt;-<span class="st"> </span><span class="dv">501</span></a>
-<a class="sourceLine" id="cb423-6" data-line-number="6">eps &lt;-<span class="st"> </span><span class="kw">arima.sim</span>(<span class="dt">n =</span> obs<span class="dv">-1</span> , <span class="dt">model =</span> <span class="kw">list</span>(<span class="dt">ar =</span> <span class="fl">0.5</span>))</a>
-<a class="sourceLine" id="cb423-7" data-line-number="7">X &lt;-<span class="st"> </span><span class="kw">arima.sim</span>(<span class="dt">n =</span> obs, <span class="dt">model =</span> <span class="kw">list</span>(<span class="dt">ar =</span> <span class="fl">0.25</span>))</a>
-<a class="sourceLine" id="cb423-8" data-line-number="8">Y &lt;-<span class="st"> </span><span class="fl">0.1</span> <span class="op">*</span><span class="st"> </span>X[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="fl">0.25</span> <span class="op">*</span><span class="st"> </span>X[<span class="op">-</span>obs] <span class="op">+</span><span class="st"> </span>eps</a>
-<a class="sourceLine" id="cb423-9" data-line-number="9">X &lt;-<span class="st"> </span><span class="kw">ts</span>(X[<span class="op">-</span><span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb423-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb423-11" data-line-number="11"><span class="co"># estimate the distributed lag model</span></a>
-<a class="sourceLine" id="cb423-12" data-line-number="12">dlm &lt;-<span class="st"> </span><span class="kw">dynlm</span>(Y <span class="op">~</span><span class="st"> </span>X <span class="op">+</span><span class="st"> </span><span class="kw">L</span>(X))</a></code></pre></div>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" data-line-number="1"><span class="co"># set seed for reproducibility</span></a>
+<a class="sourceLine" id="cb422-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb422-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb422-4" data-line-number="4"><span class="co"># simulate a time series with serially correlated errors</span></a>
+<a class="sourceLine" id="cb422-5" data-line-number="5">obs &lt;-<span class="st"> </span><span class="dv">501</span></a>
+<a class="sourceLine" id="cb422-6" data-line-number="6">eps &lt;-<span class="st"> </span><span class="kw">arima.sim</span>(<span class="dt">n =</span> obs<span class="dv">-1</span> , <span class="dt">model =</span> <span class="kw">list</span>(<span class="dt">ar =</span> <span class="fl">0.5</span>))</a>
+<a class="sourceLine" id="cb422-7" data-line-number="7">X &lt;-<span class="st"> </span><span class="kw">arima.sim</span>(<span class="dt">n =</span> obs, <span class="dt">model =</span> <span class="kw">list</span>(<span class="dt">ar =</span> <span class="fl">0.25</span>))</a>
+<a class="sourceLine" id="cb422-8" data-line-number="8">Y &lt;-<span class="st"> </span><span class="fl">0.1</span> <span class="op">*</span><span class="st"> </span>X[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="fl">0.25</span> <span class="op">*</span><span class="st"> </span>X[<span class="op">-</span>obs] <span class="op">+</span><span class="st"> </span>eps</a>
+<a class="sourceLine" id="cb422-9" data-line-number="9">X &lt;-<span class="st"> </span><span class="kw">ts</span>(X[<span class="op">-</span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb422-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb422-11" data-line-number="11"><span class="co"># estimate the distributed lag model</span></a>
+<a class="sourceLine" id="cb422-12" data-line-number="12">dlm &lt;-<span class="st"> </span><span class="kw">dynlm</span>(Y <span class="op">~</span><span class="st"> </span>X <span class="op">+</span><span class="st"> </span><span class="kw">L</span>(X))</a></code></pre></div>
 <p>Let us check that the residuals of this model exhibit autocorrelation using <tt>acf()</tt>.</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" data-line-number="1"><span class="co"># check that the residuals are serially correlated</span></a>
-<a class="sourceLine" id="cb424-2" data-line-number="2"><span class="kw">acf</span>(<span class="kw">residuals</span>(dlm))</a></code></pre></div>
-<p><img src="ITER_files/figure-html/unnamed-chunk-687-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb423-1" data-line-number="1"><span class="co"># check that the residuals are serially correlated</span></a>
+<a class="sourceLine" id="cb423-2" data-line-number="2"><span class="kw">acf</span>(<span class="kw">residuals</span>(dlm))</a></code></pre></div>
+<p><img src="AdvRA_files/figure-html/unnamed-chunk-686-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>In particular, the pattern reveals that the residuals follow an autoregressive process, as the sample autocorrelation function decays quickly for the first few lags and is probably zero for higher lag orders. In any case, HAC standard errors should be used.</p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb425-1" data-line-number="1"><span class="co"># coefficient summary using the Newey-West SE estimates</span></a>
-<a class="sourceLine" id="cb425-2" data-line-number="2"><span class="kw">coeftest</span>(dlm, <span class="dt">vcov =</span> NeweyWest, <span class="dt">prewhite =</span> F, <span class="dt">adjust =</span> T)</a>
-<a class="sourceLine" id="cb425-3" data-line-number="3"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb425-4" data-line-number="4"><span class="co">#&gt; t test of coefficients:</span></a>
-<a class="sourceLine" id="cb425-5" data-line-number="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb425-6" data-line-number="6"><span class="co">#&gt;             Estimate Std. Error t value  Pr(&gt;|t|)    </span></a>
-<a class="sourceLine" id="cb425-7" data-line-number="7"><span class="co">#&gt; (Intercept) 0.038340   0.073411  0.5223  0.601717    </span></a>
-<a class="sourceLine" id="cb425-8" data-line-number="8"><span class="co">#&gt; X           0.123661   0.046710  2.6474  0.008368 ** </span></a>
-<a class="sourceLine" id="cb425-9" data-line-number="9"><span class="co">#&gt; L(X)        0.247406   0.046377  5.3347 1.458e-07 ***</span></a>
-<a class="sourceLine" id="cb425-10" data-line-number="10"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb425-11" data-line-number="11"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" data-line-number="1"><span class="co"># coefficient summary using the Newey-West SE estimates</span></a>
+<a class="sourceLine" id="cb424-2" data-line-number="2"><span class="kw">coeftest</span>(dlm, <span class="dt">vcov =</span> NeweyWest, <span class="dt">prewhite =</span> F, <span class="dt">adjust =</span> T)</a>
+<a class="sourceLine" id="cb424-3" data-line-number="3"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb424-4" data-line-number="4"><span class="co">#&gt; t test of coefficients:</span></a>
+<a class="sourceLine" id="cb424-5" data-line-number="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb424-6" data-line-number="6"><span class="co">#&gt;             Estimate Std. Error t value  Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb424-7" data-line-number="7"><span class="co">#&gt; (Intercept) 0.038340   0.073411  0.5223  0.601717    </span></a>
+<a class="sourceLine" id="cb424-8" data-line-number="8"><span class="co">#&gt; X           0.123661   0.046710  2.6474  0.008368 ** </span></a>
+<a class="sourceLine" id="cb424-9" data-line-number="9"><span class="co">#&gt; L(X)        0.247406   0.046377  5.3347 1.458e-07 ***</span></a>
+<a class="sourceLine" id="cb424-10" data-line-number="10"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb424-11" data-line-number="11"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 </div>
 <div id="ols-estimation-of-the-adl-model" class="section level4 unnumbered">
 <h4>OLS Estimation of the ADL Model</h4>
 <p>Next, we estimate the ADL(<span class="math inline">\(1\)</span>,<span class="math inline">\(2\)</span>) model <a href="15-5-estimation-of-dynamic-causal-effects-with-strictly-exogeneous-regressors.html#eq:adl21dynamic">(15.10)</a> using OLS. The errors are uncorrelated in this representation of the model. This statement is supported by a plot of the sample autocorrelation function of the residual series.</p>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb426-1" data-line-number="1"><span class="co"># estimate the ADL(2,1) representation of the distributed lag model</span></a>
-<a class="sourceLine" id="cb426-2" data-line-number="2">adl21_dynamic &lt;-<span class="st"> </span><span class="kw">dynlm</span>(Y <span class="op">~</span><span class="st"> </span><span class="kw">L</span>(Y) <span class="op">+</span><span class="st"> </span>X <span class="op">+</span><span class="st"> </span><span class="kw">L</span>(X, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb426-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb426-4" data-line-number="4"><span class="co"># plot the sample autocorrelaltions of residuals</span></a>
-<a class="sourceLine" id="cb426-5" data-line-number="5"><span class="kw">acf</span>(adl21_dynamic<span class="op">$</span>residuals)</a></code></pre></div>
-<p><img src="ITER_files/figure-html/unnamed-chunk-689-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb425-1" data-line-number="1"><span class="co"># estimate the ADL(2,1) representation of the distributed lag model</span></a>
+<a class="sourceLine" id="cb425-2" data-line-number="2">adl21_dynamic &lt;-<span class="st"> </span><span class="kw">dynlm</span>(Y <span class="op">~</span><span class="st"> </span><span class="kw">L</span>(Y) <span class="op">+</span><span class="st"> </span>X <span class="op">+</span><span class="st"> </span><span class="kw">L</span>(X, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb425-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb425-4" data-line-number="4"><span class="co"># plot the sample autocorrelaltions of residuals</span></a>
+<a class="sourceLine" id="cb425-5" data-line-number="5"><span class="kw">acf</span>(adl21_dynamic<span class="op">$</span>residuals)</a></code></pre></div>
+<p><img src="AdvRA_files/figure-html/unnamed-chunk-688-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>The estimated coefficients of <code>adl21_dynamic$coefficients</code> are <em>not</em> the dynamic multipliers we are interested in, but instead can be computed according to the restrictions in <a href="15-5-estimation-of-dynamic-causal-effects-with-strictly-exogeneous-regressors.html#eq:adl21dynamic">(15.10)</a>, where the true coefficients are replaced by the OLS estimates.</p>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb427-1" data-line-number="1"><span class="co"># compute estimated dynamic effects using coefficient restrictions</span></a>
-<a class="sourceLine" id="cb427-2" data-line-number="2"><span class="co"># in the ADL(2,1) representation</span></a>
-<a class="sourceLine" id="cb427-3" data-line-number="3">t &lt;-<span class="st"> </span>adl21_dynamic<span class="op">$</span>coefficients</a>
-<a class="sourceLine" id="cb427-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb427-5" data-line-number="5"><span class="kw">c</span>(<span class="st">&quot;hat_beta_1&quot;</span> =<span class="st"> </span>t[<span class="dv">3</span>],</a>
-<a class="sourceLine" id="cb427-6" data-line-number="6">  <span class="st">&quot;hat_beta_2&quot;</span> =<span class="st"> </span>t[<span class="dv">4</span>] <span class="op">+</span><span class="st"> </span>t[<span class="dv">3</span>] <span class="op">*</span><span class="st"> </span>t[<span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb427-7" data-line-number="7"><span class="co">#&gt;          hat_beta_1.X hat_beta_2.L(X, 1:2)1 </span></a>
-<a class="sourceLine" id="cb427-8" data-line-number="8"><span class="co">#&gt;             0.1176425             0.2478484</span></a></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb426-1" data-line-number="1"><span class="co"># compute estimated dynamic effects using coefficient restrictions</span></a>
+<a class="sourceLine" id="cb426-2" data-line-number="2"><span class="co"># in the ADL(2,1) representation</span></a>
+<a class="sourceLine" id="cb426-3" data-line-number="3">t &lt;-<span class="st"> </span>adl21_dynamic<span class="op">$</span>coefficients</a>
+<a class="sourceLine" id="cb426-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb426-5" data-line-number="5"><span class="kw">c</span>(<span class="st">&quot;hat_beta_1&quot;</span> =<span class="st"> </span>t[<span class="dv">3</span>],</a>
+<a class="sourceLine" id="cb426-6" data-line-number="6">  <span class="st">&quot;hat_beta_2&quot;</span> =<span class="st"> </span>t[<span class="dv">4</span>] <span class="op">+</span><span class="st"> </span>t[<span class="dv">3</span>] <span class="op">*</span><span class="st"> </span>t[<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb426-7" data-line-number="7"><span class="co">#&gt;          hat_beta_1.X hat_beta_2.L(X, 1:2)1 </span></a>
+<a class="sourceLine" id="cb426-8" data-line-number="8"><span class="co">#&gt;             0.1176425             0.2478484</span></a></code></pre></div>
 </div>
 <div id="gls-estimation" class="section level4 unnumbered">
 <h4>GLS Estimation</h4>
 <p>Strict exogeneity allows for OLS estimation of the quasi-difference model <a href="15-5-estimation-of-dynamic-causal-effects-with-strictly-exogeneous-regressors.html#eq:qdm">(15.11)</a>. The idea of applying the OLS estimator to a model where the variables are linearly transformed, such that the model errors are uncorrelated and homoskedastic, is called <em>generalized least squares</em> (GLS).</p>
 <p>The OLS estimator in <a href="15-5-estimation-of-dynamic-causal-effects-with-strictly-exogeneous-regressors.html#eq:qdm">(15.11)</a> is called the <em>infeasible GLS</em> estimator because <span class="math inline">\(\overset{\sim}{Y}\)</span> and <span class="math inline">\(\overset{\sim}{X}\)</span> cannot be computed without knowing <span class="math inline">\(\phi_1\)</span>, the autoregressive coefficient in the error AR(<span class="math inline">\(1\)</span>) model, which is generally unknown in practice.</p>
 <p>Assume we knew that <span class="math inline">\(\phi = 0.5\)</span>. We then may obtain the infeasible GLS estimates of the dynamic multipliers in <a href="15-5-estimation-of-dynamic-causal-effects-with-strictly-exogeneous-regressors.html#eq:dldynamic">(15.9)</a> by applying OLS to the transformed data.</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb428-1" data-line-number="1"><span class="co"># GLS: estimate quasi-differenced specification by OLS</span></a>
-<a class="sourceLine" id="cb428-2" data-line-number="2">iGLS_dynamic &lt;-<span class="st"> </span><span class="kw">dynlm</span>(<span class="kw">I</span>(Y<span class="op">-</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span><span class="kw">L</span>(Y)) <span class="op">~</span><span class="st"> </span><span class="kw">I</span>(X <span class="op">-</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span><span class="kw">L</span>(X)) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(<span class="kw">L</span>(X) <span class="op">-</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span><span class="kw">L</span>(X, <span class="dv">2</span>)))</a>
-<a class="sourceLine" id="cb428-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb428-4" data-line-number="4"><span class="kw">summary</span>(iGLS_dynamic)</a>
-<a class="sourceLine" id="cb428-5" data-line-number="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb428-6" data-line-number="6"><span class="co">#&gt; Time series regression with &quot;ts&quot; data:</span></a>
-<a class="sourceLine" id="cb428-7" data-line-number="7"><span class="co">#&gt; Start = 3, End = 500</span></a>
-<a class="sourceLine" id="cb428-8" data-line-number="8"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb428-9" data-line-number="9"><span class="co">#&gt; Call:</span></a>
-<a class="sourceLine" id="cb428-10" data-line-number="10"><span class="co">#&gt; dynlm(formula = I(Y - 0.5 * L(Y)) ~ I(X - 0.5 * L(X)) + I(L(X) - </span></a>
-<a class="sourceLine" id="cb428-11" data-line-number="11"><span class="co">#&gt;     0.5 * L(X, 2)))</span></a>
-<a class="sourceLine" id="cb428-12" data-line-number="12"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb428-13" data-line-number="13"><span class="co">#&gt; Residuals:</span></a>
-<a class="sourceLine" id="cb428-14" data-line-number="14"><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></a>
-<a class="sourceLine" id="cb428-15" data-line-number="15"><span class="co">#&gt; -3.0325 -0.6375 -0.0499  0.6658  3.7724 </span></a>
-<a class="sourceLine" id="cb428-16" data-line-number="16"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb428-17" data-line-number="17"><span class="co">#&gt; Coefficients:</span></a>
-<a class="sourceLine" id="cb428-18" data-line-number="18"><span class="co">#&gt;                         Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
-<a class="sourceLine" id="cb428-19" data-line-number="19"><span class="co">#&gt; (Intercept)              0.01620    0.04564   0.355  0.72273    </span></a>
-<a class="sourceLine" id="cb428-20" data-line-number="20"><span class="co">#&gt; I(X - 0.5 * L(X))        0.12000    0.04237   2.832  0.00481 ** </span></a>
-<a class="sourceLine" id="cb428-21" data-line-number="21"><span class="co">#&gt; I(L(X) - 0.5 * L(X, 2))  0.25266    0.04237   5.963 4.72e-09 ***</span></a>
-<a class="sourceLine" id="cb428-22" data-line-number="22"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb428-23" data-line-number="23"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb428-24" data-line-number="24"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb428-25" data-line-number="25"><span class="co">#&gt; Residual standard error: 1.017 on 495 degrees of freedom</span></a>
-<a class="sourceLine" id="cb428-26" data-line-number="26"><span class="co">#&gt; Multiple R-squared:  0.07035,    Adjusted R-squared:  0.0666 </span></a>
-<a class="sourceLine" id="cb428-27" data-line-number="27"><span class="co">#&gt; F-statistic: 18.73 on 2 and 495 DF,  p-value: 1.442e-08</span></a></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb427-1" data-line-number="1"><span class="co"># GLS: estimate quasi-differenced specification by OLS</span></a>
+<a class="sourceLine" id="cb427-2" data-line-number="2">iGLS_dynamic &lt;-<span class="st"> </span><span class="kw">dynlm</span>(<span class="kw">I</span>(Y<span class="op">-</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span><span class="kw">L</span>(Y)) <span class="op">~</span><span class="st"> </span><span class="kw">I</span>(X <span class="op">-</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span><span class="kw">L</span>(X)) <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(<span class="kw">L</span>(X) <span class="op">-</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">*</span><span class="st"> </span><span class="kw">L</span>(X, <span class="dv">2</span>)))</a>
+<a class="sourceLine" id="cb427-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb427-4" data-line-number="4"><span class="kw">summary</span>(iGLS_dynamic)</a>
+<a class="sourceLine" id="cb427-5" data-line-number="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb427-6" data-line-number="6"><span class="co">#&gt; Time series regression with &quot;ts&quot; data:</span></a>
+<a class="sourceLine" id="cb427-7" data-line-number="7"><span class="co">#&gt; Start = 3, End = 500</span></a>
+<a class="sourceLine" id="cb427-8" data-line-number="8"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb427-9" data-line-number="9"><span class="co">#&gt; Call:</span></a>
+<a class="sourceLine" id="cb427-10" data-line-number="10"><span class="co">#&gt; dynlm(formula = I(Y - 0.5 * L(Y)) ~ I(X - 0.5 * L(X)) + I(L(X) - </span></a>
+<a class="sourceLine" id="cb427-11" data-line-number="11"><span class="co">#&gt;     0.5 * L(X, 2)))</span></a>
+<a class="sourceLine" id="cb427-12" data-line-number="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb427-13" data-line-number="13"><span class="co">#&gt; Residuals:</span></a>
+<a class="sourceLine" id="cb427-14" data-line-number="14"><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></a>
+<a class="sourceLine" id="cb427-15" data-line-number="15"><span class="co">#&gt; -3.0325 -0.6375 -0.0499  0.6658  3.7724 </span></a>
+<a class="sourceLine" id="cb427-16" data-line-number="16"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb427-17" data-line-number="17"><span class="co">#&gt; Coefficients:</span></a>
+<a class="sourceLine" id="cb427-18" data-line-number="18"><span class="co">#&gt;                         Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb427-19" data-line-number="19"><span class="co">#&gt; (Intercept)              0.01620    0.04564   0.355  0.72273    </span></a>
+<a class="sourceLine" id="cb427-20" data-line-number="20"><span class="co">#&gt; I(X - 0.5 * L(X))        0.12000    0.04237   2.832  0.00481 ** </span></a>
+<a class="sourceLine" id="cb427-21" data-line-number="21"><span class="co">#&gt; I(L(X) - 0.5 * L(X, 2))  0.25266    0.04237   5.963 4.72e-09 ***</span></a>
+<a class="sourceLine" id="cb427-22" data-line-number="22"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb427-23" data-line-number="23"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb427-24" data-line-number="24"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb427-25" data-line-number="25"><span class="co">#&gt; Residual standard error: 1.017 on 495 degrees of freedom</span></a>
+<a class="sourceLine" id="cb427-26" data-line-number="26"><span class="co">#&gt; Multiple R-squared:  0.07035,	Adjusted R-squared:  0.0666 </span></a>
+<a class="sourceLine" id="cb427-27" data-line-number="27"><span class="co">#&gt; F-statistic: 18.73 on 2 and 495 DF,  p-value: 1.442e-08</span></a></code></pre></div>
 <p>The <em>feasible GLS</em> estimator uses preliminary estimation of the coefficients in the presumed error term model, computes the quasi-differenced data and then estimates the model using OLS. This idea was introduced by <span class="citation">Cochrane and Orcutt (<a href="#ref-cochrane1949">1949</a>)</span> and can be extended by continuing this process iteratively. Such a procedure is implemented in the function <tt>cochrane.orcutt()</tt> from the package <tt>orcutt</tt>.</p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb429-1" data-line-number="1">X_t &lt;-<span class="st"> </span><span class="kw">c</span>(X[<span class="op">-</span><span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb429-2" data-line-number="2"><span class="co"># create first lag</span></a>
-<a class="sourceLine" id="cb429-3" data-line-number="3">X_l1 &lt;-<span class="st"> </span><span class="kw">c</span>(X[<span class="op">-</span><span class="dv">500</span>])</a>
-<a class="sourceLine" id="cb429-4" data-line-number="4">Y_t &lt;-<span class="st"> </span><span class="kw">c</span>(Y[<span class="op">-</span><span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb429-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb429-6" data-line-number="6"><span class="co"># iterated cochrane-orcutt procedure</span></a>
-<a class="sourceLine" id="cb429-7" data-line-number="7"><span class="kw">summary</span>(<span class="kw">cochrane.orcutt</span>(<span class="kw">lm</span>(Y_t <span class="op">~</span><span class="st"> </span>X_t <span class="op">+</span><span class="st"> </span>X_l1)))</a>
-<a class="sourceLine" id="cb429-8" data-line-number="8"><span class="co">#&gt; Call:</span></a>
-<a class="sourceLine" id="cb429-9" data-line-number="9"><span class="co">#&gt; lm(formula = Y_t ~ X_t + X_l1)</span></a>
-<a class="sourceLine" id="cb429-10" data-line-number="10"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb429-11" data-line-number="11"><span class="co">#&gt;             Estimate Std. Error t value  Pr(&gt;|t|)    </span></a>
-<a class="sourceLine" id="cb429-12" data-line-number="12"><span class="co">#&gt; (Intercept) 0.032885   0.085163   0.386   0.69956    </span></a>
-<a class="sourceLine" id="cb429-13" data-line-number="13"><span class="co">#&gt; X_t         0.120128   0.042534   2.824   0.00493 ** </span></a>
-<a class="sourceLine" id="cb429-14" data-line-number="14"><span class="co">#&gt; X_l1        0.252406   0.042538   5.934 5.572e-09 ***</span></a>
-<a class="sourceLine" id="cb429-15" data-line-number="15"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb429-16" data-line-number="16"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb429-17" data-line-number="17"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb429-18" data-line-number="18"><span class="co">#&gt; Residual standard error: 1.0165 on 495 degrees of freedom</span></a>
-<a class="sourceLine" id="cb429-19" data-line-number="19"><span class="co">#&gt; Multiple R-squared:  0.0704 ,  Adjusted R-squared:  0.0666</span></a>
-<a class="sourceLine" id="cb429-20" data-line-number="20"><span class="co">#&gt; F-statistic: 18.7 on 2 and 495 DF,  p-value: &lt; 1.429e-08</span></a>
-<a class="sourceLine" id="cb429-21" data-line-number="21"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb429-22" data-line-number="22"><span class="co">#&gt; Durbin-Watson statistic </span></a>
-<a class="sourceLine" id="cb429-23" data-line-number="23"><span class="co">#&gt; (original):    1.06907 , p-value: 1.05e-25</span></a>
-<a class="sourceLine" id="cb429-24" data-line-number="24"><span class="co">#&gt; (transformed): 1.98192 , p-value: 4.246e-01</span></a></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb428-1" data-line-number="1">X_t &lt;-<span class="st"> </span><span class="kw">c</span>(X[<span class="op">-</span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb428-2" data-line-number="2"><span class="co"># create first lag</span></a>
+<a class="sourceLine" id="cb428-3" data-line-number="3">X_l1 &lt;-<span class="st"> </span><span class="kw">c</span>(X[<span class="op">-</span><span class="dv">500</span>])</a>
+<a class="sourceLine" id="cb428-4" data-line-number="4">Y_t &lt;-<span class="st"> </span><span class="kw">c</span>(Y[<span class="op">-</span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb428-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb428-6" data-line-number="6"><span class="co"># iterated cochrane-orcutt procedure</span></a>
+<a class="sourceLine" id="cb428-7" data-line-number="7"><span class="kw">summary</span>(<span class="kw">cochrane.orcutt</span>(<span class="kw">lm</span>(Y_t <span class="op">~</span><span class="st"> </span>X_t <span class="op">+</span><span class="st"> </span>X_l1)))</a>
+<a class="sourceLine" id="cb428-8" data-line-number="8"><span class="co">#&gt; Call:</span></a>
+<a class="sourceLine" id="cb428-9" data-line-number="9"><span class="co">#&gt; lm(formula = Y_t ~ X_t + X_l1)</span></a>
+<a class="sourceLine" id="cb428-10" data-line-number="10"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb428-11" data-line-number="11"><span class="co">#&gt;             Estimate Std. Error t value  Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb428-12" data-line-number="12"><span class="co">#&gt; (Intercept) 0.032885   0.085163   0.386   0.69956    </span></a>
+<a class="sourceLine" id="cb428-13" data-line-number="13"><span class="co">#&gt; X_t         0.120128   0.042534   2.824   0.00493 ** </span></a>
+<a class="sourceLine" id="cb428-14" data-line-number="14"><span class="co">#&gt; X_l1        0.252406   0.042538   5.934 5.572e-09 ***</span></a>
+<a class="sourceLine" id="cb428-15" data-line-number="15"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb428-16" data-line-number="16"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb428-17" data-line-number="17"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb428-18" data-line-number="18"><span class="co">#&gt; Residual standard error: 1.0165 on 495 degrees of freedom</span></a>
+<a class="sourceLine" id="cb428-19" data-line-number="19"><span class="co">#&gt; Multiple R-squared:  0.0704 ,  Adjusted R-squared:  0.0666</span></a>
+<a class="sourceLine" id="cb428-20" data-line-number="20"><span class="co">#&gt; F-statistic: 18.7 on 2 and 495 DF,  p-value: &lt; 1.429e-08</span></a>
+<a class="sourceLine" id="cb428-21" data-line-number="21"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb428-22" data-line-number="22"><span class="co">#&gt; Durbin-Watson statistic </span></a>
+<a class="sourceLine" id="cb428-23" data-line-number="23"><span class="co">#&gt; (original):    1.06907 , p-value: 1.05e-25</span></a>
+<a class="sourceLine" id="cb428-24" data-line-number="24"><span class="co">#&gt; (transformed): 1.98192 , p-value: 4.246e-01</span></a></code></pre></div>
 <p>Some more sophisticated methods for GLS estimation are provided with the package <tt>nlme</tt>. The function <tt>gls()</tt> can be used to fit linear models by maximum likelihood estimation algorithms and allows to specify a correlation structure for the error term.</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" data-line-number="1"><span class="co"># feasible GLS maximum likelihood estimation procedure</span></a>
-<a class="sourceLine" id="cb430-2" data-line-number="2"><span class="kw">summary</span>(<span class="kw">gls</span>(Y_t <span class="op">~</span><span class="st"> </span>X_t <span class="op">+</span><span class="st"> </span>X_l1, <span class="dt">correlation =</span> <span class="kw">corAR1</span>()))</a>
-<a class="sourceLine" id="cb430-3" data-line-number="3"><span class="co">#&gt; Generalized least squares fit by REML</span></a>
-<a class="sourceLine" id="cb430-4" data-line-number="4"><span class="co">#&gt;   Model: Y_t ~ X_t + X_l1 </span></a>
-<a class="sourceLine" id="cb430-5" data-line-number="5"><span class="co">#&gt;   Data: NULL </span></a>
-<a class="sourceLine" id="cb430-6" data-line-number="6"><span class="co">#&gt;        AIC     BIC    logLik</span></a>
-<a class="sourceLine" id="cb430-7" data-line-number="7"><span class="co">#&gt;   1451.847 1472.88 -720.9235</span></a>
-<a class="sourceLine" id="cb430-8" data-line-number="8"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb430-9" data-line-number="9"><span class="co">#&gt; Correlation Structure: AR(1)</span></a>
-<a class="sourceLine" id="cb430-10" data-line-number="10"><span class="co">#&gt;  Formula: ~1 </span></a>
-<a class="sourceLine" id="cb430-11" data-line-number="11"><span class="co">#&gt;  Parameter estimate(s):</span></a>
-<a class="sourceLine" id="cb430-12" data-line-number="12"><span class="co">#&gt;       Phi </span></a>
-<a class="sourceLine" id="cb430-13" data-line-number="13"><span class="co">#&gt; 0.4668343 </span></a>
-<a class="sourceLine" id="cb430-14" data-line-number="14"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb430-15" data-line-number="15"><span class="co">#&gt; Coefficients:</span></a>
-<a class="sourceLine" id="cb430-16" data-line-number="16"><span class="co">#&gt;                  Value  Std.Error  t-value p-value</span></a>
-<a class="sourceLine" id="cb430-17" data-line-number="17"><span class="co">#&gt; (Intercept) 0.03929124 0.08530544 0.460595  0.6453</span></a>
-<a class="sourceLine" id="cb430-18" data-line-number="18"><span class="co">#&gt; X_t         0.11986994 0.04252270 2.818963  0.0050</span></a>
-<a class="sourceLine" id="cb430-19" data-line-number="19"><span class="co">#&gt; X_l1        0.25287471 0.04252497 5.946500  0.0000</span></a>
-<a class="sourceLine" id="cb430-20" data-line-number="20"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb430-21" data-line-number="21"><span class="co">#&gt;  Correlation: </span></a>
-<a class="sourceLine" id="cb430-22" data-line-number="22"><span class="co">#&gt;      (Intr) X_t  </span></a>
-<a class="sourceLine" id="cb430-23" data-line-number="23"><span class="co">#&gt; X_t  0.039       </span></a>
-<a class="sourceLine" id="cb430-24" data-line-number="24"><span class="co">#&gt; X_l1 0.037  0.230</span></a>
-<a class="sourceLine" id="cb430-25" data-line-number="25"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb430-26" data-line-number="26"><span class="co">#&gt; Standardized residuals:</span></a>
-<a class="sourceLine" id="cb430-27" data-line-number="27"><span class="co">#&gt;         Min          Q1         Med          Q3         Max </span></a>
-<a class="sourceLine" id="cb430-28" data-line-number="28"><span class="co">#&gt; -3.00075518 -0.64255522 -0.05400347  0.69101814  3.28555793 </span></a>
-<a class="sourceLine" id="cb430-29" data-line-number="29"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb430-30" data-line-number="30"><span class="co">#&gt; Residual standard error: 1.14952 </span></a>
-<a class="sourceLine" id="cb430-31" data-line-number="31"><span class="co">#&gt; Degrees of freedom: 499 total; 496 residual</span></a></code></pre></div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb429-1" data-line-number="1"><span class="co"># feasible GLS maximum likelihood estimation procedure</span></a>
+<a class="sourceLine" id="cb429-2" data-line-number="2"><span class="kw">summary</span>(<span class="kw">gls</span>(Y_t <span class="op">~</span><span class="st"> </span>X_t <span class="op">+</span><span class="st"> </span>X_l1, <span class="dt">correlation =</span> <span class="kw">corAR1</span>()))</a>
+<a class="sourceLine" id="cb429-3" data-line-number="3"><span class="co">#&gt; Generalized least squares fit by REML</span></a>
+<a class="sourceLine" id="cb429-4" data-line-number="4"><span class="co">#&gt;   Model: Y_t ~ X_t + X_l1 </span></a>
+<a class="sourceLine" id="cb429-5" data-line-number="5"><span class="co">#&gt;   Data: NULL </span></a>
+<a class="sourceLine" id="cb429-6" data-line-number="6"><span class="co">#&gt;        AIC     BIC    logLik</span></a>
+<a class="sourceLine" id="cb429-7" data-line-number="7"><span class="co">#&gt;   1451.847 1472.88 -720.9235</span></a>
+<a class="sourceLine" id="cb429-8" data-line-number="8"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb429-9" data-line-number="9"><span class="co">#&gt; Correlation Structure: AR(1)</span></a>
+<a class="sourceLine" id="cb429-10" data-line-number="10"><span class="co">#&gt;  Formula: ~1 </span></a>
+<a class="sourceLine" id="cb429-11" data-line-number="11"><span class="co">#&gt;  Parameter estimate(s):</span></a>
+<a class="sourceLine" id="cb429-12" data-line-number="12"><span class="co">#&gt;       Phi </span></a>
+<a class="sourceLine" id="cb429-13" data-line-number="13"><span class="co">#&gt; 0.4668343 </span></a>
+<a class="sourceLine" id="cb429-14" data-line-number="14"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb429-15" data-line-number="15"><span class="co">#&gt; Coefficients:</span></a>
+<a class="sourceLine" id="cb429-16" data-line-number="16"><span class="co">#&gt;                  Value  Std.Error  t-value p-value</span></a>
+<a class="sourceLine" id="cb429-17" data-line-number="17"><span class="co">#&gt; (Intercept) 0.03929124 0.08530544 0.460595  0.6453</span></a>
+<a class="sourceLine" id="cb429-18" data-line-number="18"><span class="co">#&gt; X_t         0.11986994 0.04252270 2.818963  0.0050</span></a>
+<a class="sourceLine" id="cb429-19" data-line-number="19"><span class="co">#&gt; X_l1        0.25287471 0.04252497 5.946500  0.0000</span></a>
+<a class="sourceLine" id="cb429-20" data-line-number="20"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb429-21" data-line-number="21"><span class="co">#&gt;  Correlation: </span></a>
+<a class="sourceLine" id="cb429-22" data-line-number="22"><span class="co">#&gt;      (Intr) X_t  </span></a>
+<a class="sourceLine" id="cb429-23" data-line-number="23"><span class="co">#&gt; X_t  0.039       </span></a>
+<a class="sourceLine" id="cb429-24" data-line-number="24"><span class="co">#&gt; X_l1 0.037  0.230</span></a>
+<a class="sourceLine" id="cb429-25" data-line-number="25"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb429-26" data-line-number="26"><span class="co">#&gt; Standardized residuals:</span></a>
+<a class="sourceLine" id="cb429-27" data-line-number="27"><span class="co">#&gt;         Min          Q1         Med          Q3         Max </span></a>
+<a class="sourceLine" id="cb429-28" data-line-number="28"><span class="co">#&gt; -3.00075518 -0.64255522 -0.05400347  0.69101814  3.28555793 </span></a>
+<a class="sourceLine" id="cb429-29" data-line-number="29"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb429-30" data-line-number="30"><span class="co">#&gt; Residual standard error: 1.14952 </span></a>
+<a class="sourceLine" id="cb429-31" data-line-number="31"><span class="co">#&gt; Degrees of freedom: 499 total; 496 residual</span></a></code></pre></div>
 <p>Notice that in this example, the coefficient estimates produced by GLS are somewhat closer to their true values and that the standard errors are the smallest for the GLS estimator.</p>
 </div>
 </div>
@@ -561,24 +563,25 @@ where <span class="math inline">\(\overset{\sim}{Y}_t = Y_t - \phi_1 Y_{t-1}\)</
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": true,
-"twitter": true,
-"google": false,
+"facebook": false,
+"twitter": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -586,14 +589,18 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mca91/EconometricsWithR/edit/master/15-ch15.Rmd",
+"link": "https://github.com/lidom/AdvRA/edit/master/15-ch15.Rmd",
 "text": "Edit"
 },
 "history": {
 "link": null,
 "text": null
 },
-"download": ["ITER.pdf"],
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "subsection",
 "scroll_highlight": true

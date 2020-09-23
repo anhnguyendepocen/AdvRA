@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.4 Confidence Sets for Multiple Coefficients | Advanced Regression Analysis</title>
   <meta name="description" content="7.4 Confidence Sets for Multiple Coefficients | Advanced Regression Analysis" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.4 Confidence Sets for Multiple Coefficients | Advanced Regression Analysis" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/logo2.png" />
+  <meta property="og:image" content="images/mylogo.png" />
   
   
 
@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="7.4 Confidence Sets for Multiple Coefficients | Advanced Regression Analysis" />
   
   
-  <meta name="twitter:image" content="images/logo2.png" />
+  <meta name="twitter:image" content="images/mylogo.png" />
 
 <meta name="author" content="Dominik Liebl" />
 
@@ -40,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -132,13 +135,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><img src="images/logo2.png" alt="logo" width="50%" height="50%"style="margin: 15px 0 0 0"></center></li>
+<li><center><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-colophon.html"><a href="1-1-colophon.html"><i class="fa fa-check"></i><b>1.1</b> Colophon</a></li>
-<li class="chapter" data-level="1.2" data-path="1-2-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-2-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
+<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
@@ -330,7 +332,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.4" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><i class="fa fa-check"></i><b>16.4</b> Volatility Clustering and Autoregressive Conditional Heteroskedasticity</a><ul>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#arch-and-garch-models"><i class="fa fa-check"></i>ARCH and GARCH Models</a></li>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#application-to-stock-price-volatility"><i class="fa fa-check"></i>Application to Stock Price Volatility</a></li>
-<li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#summary-8"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html"><a href="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html#summary"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -359,31 +361,31 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>Based on the <span class="math inline">\(F\)</span>-statistic that we have previously encountered, we can specify confidence sets. Confidence sets are analogous to confidence intervals for single coefficients. As such, confidence sets consist of <em>combinations</em> of coefficients that contain the true combination of coefficients in, say, <span class="math inline">\(95\%\)</span> of all cases if we could repeatedly draw random samples, just like in the univariate case. Put differently, a confidence set is the set of all coefficient combinations for which we cannot reject the corresponding joint null hypothesis tested using an <span class="math inline">\(F\)</span>-test.</p>
 <p>The confidence set for two coefficients an ellipse which is centered around the point defined by both coefficient estimates. Again, there is a very convenient way to plot the confidence set for two coefficients of model objects, namely the function <tt>confidenceEllipse()</tt> from the <tt>car</tt> package.</p>
 <p>We now plot the <span class="math inline">\(95\%\)</span> confidence ellipse for the coefficients on <tt>size</tt> and <tt>expenditure</tt> from the regression conducted above. By specifying the additional argument <tt>fill</tt>, the confidence set is colored.</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="co"># draw the 95% confidence set for coefficients on size and expenditure</span></a>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1"><span class="co"># draw the 95% confidence set for coefficients on size and expenditure</span></a>
+<a class="sourceLine" id="cb162-2" data-line-number="2"><span class="kw">confidenceEllipse</span>(model, </a>
+<a class="sourceLine" id="cb162-3" data-line-number="3">                  <span class="dt">fill =</span> T,</a>
+<a class="sourceLine" id="cb162-4" data-line-number="4">                  <span class="dt">lwd =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb162-5" data-line-number="5">                  <span class="dt">which.coef =</span> <span class="kw">c</span>(<span class="st">&quot;size&quot;</span>, <span class="st">&quot;expenditure&quot;</span>),</a>
+<a class="sourceLine" id="cb162-6" data-line-number="6">                  <span class="dt">main =</span> <span class="st">&quot;95% Confidence Set&quot;</span>)</a></code></pre></div>
+<p><img src="AdvRA_files/figure-html/unnamed-chunk-292-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>We see that the ellipse is centered around <span class="math inline">\((-0.29, 3.87)\)</span>, the pair of coefficients estimates on <span class="math inline">\(size\)</span> and <span class="math inline">\(expenditure\)</span>. What is more, <span class="math inline">\((0,0)\)</span> is not element of the <span class="math inline">\(95\%\)</span> confidence set so that we can reject <span class="math inline">\(H_0: \beta_1 = 0, \ \beta_3 = 0\)</span>.</p>
+<p>By default, <tt>confidenceEllipse()</tt> uses homoskedasticity-only standard errors. The following code chunk shows how compute a robust confidence ellipse and how to overlay it with the previous plot.</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="co"># draw the robust 95% confidence set for coefficients on size and expenditure </span></a>
 <a class="sourceLine" id="cb163-2" data-line-number="2"><span class="kw">confidenceEllipse</span>(model, </a>
 <a class="sourceLine" id="cb163-3" data-line-number="3">                  <span class="dt">fill =</span> T,</a>
 <a class="sourceLine" id="cb163-4" data-line-number="4">                  <span class="dt">lwd =</span> <span class="dv">0</span>,</a>
 <a class="sourceLine" id="cb163-5" data-line-number="5">                  <span class="dt">which.coef =</span> <span class="kw">c</span>(<span class="st">&quot;size&quot;</span>, <span class="st">&quot;expenditure&quot;</span>),</a>
-<a class="sourceLine" id="cb163-6" data-line-number="6">                  <span class="dt">main =</span> <span class="st">&quot;95% Confidence Set&quot;</span>)</a></code></pre></div>
-<p><img src="ITER_files/figure-html/unnamed-chunk-293-1.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>We see that the ellipse is centered around <span class="math inline">\((-0.29, 3.87)\)</span>, the pair of coefficients estimates on <span class="math inline">\(size\)</span> and <span class="math inline">\(expenditure\)</span>. What is more, <span class="math inline">\((0,0)\)</span> is not element of the <span class="math inline">\(95\%\)</span> confidence set so that we can reject <span class="math inline">\(H_0: \beta_1 = 0, \ \beta_3 = 0\)</span>.</p>
-<p>By default, <tt>confidenceEllipse()</tt> uses homoskedasticity-only standard errors. The following code chunk shows how compute a robust confidence ellipse and how to overlay it with the previous plot.</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" data-line-number="1"><span class="co"># draw the robust 95% confidence set for coefficients on size and expenditure </span></a>
-<a class="sourceLine" id="cb164-2" data-line-number="2"><span class="kw">confidenceEllipse</span>(model, </a>
-<a class="sourceLine" id="cb164-3" data-line-number="3">                  <span class="dt">fill =</span> T,</a>
-<a class="sourceLine" id="cb164-4" data-line-number="4">                  <span class="dt">lwd =</span> <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb164-5" data-line-number="5">                  <span class="dt">which.coef =</span> <span class="kw">c</span>(<span class="st">&quot;size&quot;</span>, <span class="st">&quot;expenditure&quot;</span>),</a>
-<a class="sourceLine" id="cb164-6" data-line-number="6">                  <span class="dt">main =</span> <span class="st">&quot;95% Confidence Sets&quot;</span>,</a>
-<a class="sourceLine" id="cb164-7" data-line-number="7">                  <span class="dt">vcov. =</span> <span class="kw">vcovHC</span>(model, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>),</a>
-<a class="sourceLine" id="cb164-8" data-line-number="8">                  <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a>
-<a class="sourceLine" id="cb164-9" data-line-number="9">                  </a>
-<a class="sourceLine" id="cb164-10" data-line-number="10"><span class="co"># draw the 95% confidence set for coefficients on size and expenditure</span></a>
-<a class="sourceLine" id="cb164-11" data-line-number="11"><span class="kw">confidenceEllipse</span>(model, </a>
-<a class="sourceLine" id="cb164-12" data-line-number="12">                  <span class="dt">fill =</span> T,</a>
-<a class="sourceLine" id="cb164-13" data-line-number="13">                  <span class="dt">lwd =</span> <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb164-14" data-line-number="14">                  <span class="dt">which.coef =</span> <span class="kw">c</span>(<span class="st">&quot;size&quot;</span>, <span class="st">&quot;expenditure&quot;</span>),</a>
-<a class="sourceLine" id="cb164-15" data-line-number="15">                  <span class="dt">add =</span> T)</a></code></pre></div>
-<p><img src="ITER_files/figure-html/unnamed-chunk-294-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<a class="sourceLine" id="cb163-6" data-line-number="6">                  <span class="dt">main =</span> <span class="st">&quot;95% Confidence Sets&quot;</span>,</a>
+<a class="sourceLine" id="cb163-7" data-line-number="7">                  <span class="dt">vcov. =</span> <span class="kw">vcovHC</span>(model, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>),</a>
+<a class="sourceLine" id="cb163-8" data-line-number="8">                  <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb163-9" data-line-number="9">                  </a>
+<a class="sourceLine" id="cb163-10" data-line-number="10"><span class="co"># draw the 95% confidence set for coefficients on size and expenditure</span></a>
+<a class="sourceLine" id="cb163-11" data-line-number="11"><span class="kw">confidenceEllipse</span>(model, </a>
+<a class="sourceLine" id="cb163-12" data-line-number="12">                  <span class="dt">fill =</span> T,</a>
+<a class="sourceLine" id="cb163-13" data-line-number="13">                  <span class="dt">lwd =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb163-14" data-line-number="14">                  <span class="dt">which.coef =</span> <span class="kw">c</span>(<span class="st">&quot;size&quot;</span>, <span class="st">&quot;expenditure&quot;</span>),</a>
+<a class="sourceLine" id="cb163-15" data-line-number="15">                  <span class="dt">add =</span> T)</a></code></pre></div>
+<p><img src="AdvRA_files/figure-html/unnamed-chunk-293-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>As the robust standard errors are slightly larger than those valid under homoskedasticity only in this case, the robust confidence set is slightly larger. This is analogous to the confidence intervals for the individual coefficients.</p>
 </div>
             </section>
@@ -397,24 +399,25 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": true,
-"twitter": true,
-"google": false,
+"facebook": false,
+"twitter": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -422,14 +425,18 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mca91/EconometricsWithR/edit/master/07-ch7.Rmd",
+"link": "https://github.com/lidom/AdvRA/edit/master/07-ch7.Rmd",
 "text": "Edit"
 },
 "history": {
 "link": null,
 "text": null
 },
-"download": ["ITER.pdf"],
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "subsection",
 "scroll_highlight": true

@@ -1,4 +1,4 @@
-<p align="center"><img align="center" src="https://github.com/lidom/AdvRA/blob/master/images/mylogo.png" width="70%" height="70%"></p>
+<p align="center"><img align="center" src="https://github.com/lidom/AdvRA/blob/master/images/mylogo.png" width="40%" height="40%"></p>
 
 
 # About

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.4 Confidence Intervals for the Population Mean | Advanced Regression Analysis</title>
   <meta name="description" content="3.4 Confidence Intervals for the Population Mean | Advanced Regression Analysis" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.4 Confidence Intervals for the Population Mean | Advanced Regression Analysis" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/logo2.png" />
+  <meta property="og:image" content="images/mylogo.png" />
   
   
 
@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="3.4 Confidence Intervals for the Population Mean | Advanced Regression Analysis" />
   
   
-  <meta name="twitter:image" content="images/logo2.png" />
+  <meta name="twitter:image" content="images/mylogo.png" />
 
 <meta name="author" content="Dominik Liebl" />
 
@@ -40,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -132,13 +135,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><img src="images/logo2.png" alt="logo" width="50%" height="50%"style="margin: 15px 0 0 0"></center></li>
+<li><center><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-colophon.html"><a href="1-1-colophon.html"><i class="fa fa-check"></i><b>1.1</b> Colophon</a></li>
-<li class="chapter" data-level="1.2" data-path="1-2-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-2-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
+<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
@@ -330,7 +332,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.4" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><i class="fa fa-check"></i><b>16.4</b> Volatility Clustering and Autoregressive Conditional Heteroskedasticity</a><ul>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#arch-and-garch-models"><i class="fa fa-check"></i>ARCH and GARCH Models</a></li>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#application-to-stock-price-volatility"><i class="fa fa-check"></i>Application to Stock Price Volatility</a></li>
-<li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#summary-8"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html"><a href="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html#summary"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -384,41 +386,41 @@ covers the true value of <span class="math inline">\(\mu_Y\)</span> with a proba
 The difference is that, while 1. is the definition of a random variable, 2. is one possible <em>outcome</em> of this random variable so there is no meaning in making any probabilistic statement about it. Either the computed interval does cover <span class="math inline">\(\mu_Y\)</span> <em>or</em> it does not!</p>
 </div>
 <p>In <tt>R</tt>, testing of hypotheses about the mean of a population on the basis of a random sample is very easy due to functions like <tt>t.test()</tt> from the <tt>stats</tt> package. It produces an object of type <tt>list</tt>. Luckily, one of the most simple ways to use <tt>t.test()</tt> is when you want to obtain a <span class="math inline">\(95\%\)</span> confidence interval for some population mean. We start by generating some random data and calling <tt>t.test()</tt> in conjunction with <tt>ls()</tt> to obtain a breakdown of the output components.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="co"># set seed</span></a>
-<a class="sourceLine" id="cb68-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb68-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb68-4" data-line-number="4"><span class="co"># generate some sample data</span></a>
-<a class="sourceLine" id="cb68-5" data-line-number="5">sampledata &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">10</span>, <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb68-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb68-7" data-line-number="7"><span class="co"># check the type of the outcome produced by t.test</span></a>
-<a class="sourceLine" id="cb68-8" data-line-number="8"><span class="kw">typeof</span>(<span class="kw">t.test</span>(sampledata))</a>
-<a class="sourceLine" id="cb68-9" data-line-number="9"><span class="co">#&gt; [1] &quot;list&quot;</span></a>
-<a class="sourceLine" id="cb68-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb68-11" data-line-number="11"><span class="co"># display the list elements produced by t.test</span></a>
-<a class="sourceLine" id="cb68-12" data-line-number="12"><span class="kw">ls</span>(<span class="kw">t.test</span>(sampledata))</a>
-<a class="sourceLine" id="cb68-13" data-line-number="13"><span class="co">#&gt;  [1] &quot;alternative&quot; &quot;conf.int&quot;    &quot;data.name&quot;   &quot;estimate&quot;    &quot;method&quot;     </span></a>
-<a class="sourceLine" id="cb68-14" data-line-number="14"><span class="co">#&gt;  [6] &quot;null.value&quot;  &quot;p.value&quot;     &quot;parameter&quot;   &quot;statistic&quot;   &quot;stderr&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1"><span class="co"># set seed</span></a>
+<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb67-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb67-4" data-line-number="4"><span class="co"># generate some sample data</span></a>
+<a class="sourceLine" id="cb67-5" data-line-number="5">sampledata &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">10</span>, <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb67-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb67-7" data-line-number="7"><span class="co"># check the type of the outcome produced by t.test</span></a>
+<a class="sourceLine" id="cb67-8" data-line-number="8"><span class="kw">typeof</span>(<span class="kw">t.test</span>(sampledata))</a>
+<a class="sourceLine" id="cb67-9" data-line-number="9"><span class="co">#&gt; [1] &quot;list&quot;</span></a>
+<a class="sourceLine" id="cb67-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb67-11" data-line-number="11"><span class="co"># display the list elements produced by t.test</span></a>
+<a class="sourceLine" id="cb67-12" data-line-number="12"><span class="kw">ls</span>(<span class="kw">t.test</span>(sampledata))</a>
+<a class="sourceLine" id="cb67-13" data-line-number="13"><span class="co">#&gt;  [1] &quot;alternative&quot; &quot;conf.int&quot;    &quot;data.name&quot;   &quot;estimate&quot;    &quot;method&quot;     </span></a>
+<a class="sourceLine" id="cb67-14" data-line-number="14"><span class="co">#&gt;  [6] &quot;null.value&quot;  &quot;p.value&quot;     &quot;parameter&quot;   &quot;statistic&quot;   &quot;stderr&quot;</span></a></code></pre></div>
 <p>Though we find that many items are reported, at the moment we are only interested in computing a <span class="math inline">\(95\%\)</span> confidence set for the mean.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="kw">t.test</span>(sampledata)<span class="op">$</span><span class="st">&quot;conf.int&quot;</span></a>
-<a class="sourceLine" id="cb69-2" data-line-number="2"><span class="co">#&gt; [1]  9.306651 12.871096</span></a>
-<a class="sourceLine" id="cb69-3" data-line-number="3"><span class="co">#&gt; attr(,&quot;conf.level&quot;)</span></a>
-<a class="sourceLine" id="cb69-4" data-line-number="4"><span class="co">#&gt; [1] 0.95</span></a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="kw">t.test</span>(sampledata)<span class="op">$</span><span class="st">&quot;conf.int&quot;</span></a>
+<a class="sourceLine" id="cb68-2" data-line-number="2"><span class="co">#&gt; [1]  9.306651 12.871096</span></a>
+<a class="sourceLine" id="cb68-3" data-line-number="3"><span class="co">#&gt; attr(,&quot;conf.level&quot;)</span></a>
+<a class="sourceLine" id="cb68-4" data-line-number="4"><span class="co">#&gt; [1] 0.95</span></a></code></pre></div>
 <p>This tells us that the <span class="math inline">\(95\%\)</span> confidence interval is</p>
 <p><span class="math display">\[ \left[9.31, 12.87\right]. \]</span></p>
 <p>In this example, the computed interval obviously does cover the true <span class="math inline">\(\mu_Y\)</span> which we know to be <span class="math inline">\(10\)</span>.</p>
 <p>Let us have a look at the whole standard output produced by <tt>t.test()</tt>.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="kw">t.test</span>(sampledata)</a>
-<a class="sourceLine" id="cb70-2" data-line-number="2"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb70-3" data-line-number="3"><span class="co">#&gt;  One Sample t-test</span></a>
-<a class="sourceLine" id="cb70-4" data-line-number="4"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb70-5" data-line-number="5"><span class="co">#&gt; data:  sampledata</span></a>
-<a class="sourceLine" id="cb70-6" data-line-number="6"><span class="co">#&gt; t = 12.346, df = 99, p-value &lt; 2.2e-16</span></a>
-<a class="sourceLine" id="cb70-7" data-line-number="7"><span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span></a>
-<a class="sourceLine" id="cb70-8" data-line-number="8"><span class="co">#&gt; 95 percent confidence interval:</span></a>
-<a class="sourceLine" id="cb70-9" data-line-number="9"><span class="co">#&gt;   9.306651 12.871096</span></a>
-<a class="sourceLine" id="cb70-10" data-line-number="10"><span class="co">#&gt; sample estimates:</span></a>
-<a class="sourceLine" id="cb70-11" data-line-number="11"><span class="co">#&gt; mean of x </span></a>
-<a class="sourceLine" id="cb70-12" data-line-number="12"><span class="co">#&gt;  11.08887</span></a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="kw">t.test</span>(sampledata)</a>
+<a class="sourceLine" id="cb69-2" data-line-number="2"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb69-3" data-line-number="3"><span class="co">#&gt; 	One Sample t-test</span></a>
+<a class="sourceLine" id="cb69-4" data-line-number="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb69-5" data-line-number="5"><span class="co">#&gt; data:  sampledata</span></a>
+<a class="sourceLine" id="cb69-6" data-line-number="6"><span class="co">#&gt; t = 12.346, df = 99, p-value &lt; 2.2e-16</span></a>
+<a class="sourceLine" id="cb69-7" data-line-number="7"><span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span></a>
+<a class="sourceLine" id="cb69-8" data-line-number="8"><span class="co">#&gt; 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb69-9" data-line-number="9"><span class="co">#&gt;   9.306651 12.871096</span></a>
+<a class="sourceLine" id="cb69-10" data-line-number="10"><span class="co">#&gt; sample estimates:</span></a>
+<a class="sourceLine" id="cb69-11" data-line-number="11"><span class="co">#&gt; mean of x </span></a>
+<a class="sourceLine" id="cb69-12" data-line-number="12"><span class="co">#&gt;  11.08887</span></a></code></pre></div>
 <p>We see that <tt>t.test()</tt> does not only compute a <span class="math inline">\(95\%\)</span> confidence interval but automatically conducts a two-sided significance test of the hypothesis <span class="math inline">\(H_0: \mu_Y = 0\)</span> at the level of <span class="math inline">\(5\%\)</span> and reports relevant parameters thereof: the alternative hypothesis, the estimated mean, the resulting <span class="math inline">\(t\)</span>-statistic, the degrees of freedom of the underlying <span class="math inline">\(t\)</span> distribution (<tt>t.test()</tt> does use perform the normal approximation) and the corresponding <span class="math inline">\(p\)</span>-value. This is very convenient!</p>
 <p>In this example, we come to the conclusion that the population mean <em>is</em> significantly different from <span class="math inline">\(0\)</span> (which is correct) at the level of <span class="math inline">\(5\%\)</span>, since <span class="math inline">\(\mu_Y = 0\)</span> is not an element of the <span class="math inline">\(95\%\)</span> confidence interval</p>
 <p><span class="math display">\[ 0 \not\in \left[9.31,12.87\right]. \]</span>
@@ -436,24 +438,25 @@ We come to an equivalent result when using the <span class="math inline">\(p\)</
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": true,
-"twitter": true,
-"google": false,
+"facebook": false,
+"twitter": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -461,14 +464,18 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mca91/EconometricsWithR/edit/master/03-ch3.Rmd",
+"link": "https://github.com/lidom/AdvRA/edit/master/03-ch3.Rmd",
 "text": "Edit"
 },
 "history": {
 "link": null,
 "text": null
 },
-"download": ["ITER.pdf"],
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "subsection",
 "scroll_highlight": true

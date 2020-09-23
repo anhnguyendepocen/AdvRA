@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>12.2 The General IV Regression Model | Advanced Regression Analysis</title>
   <meta name="description" content="12.2 The General IV Regression Model | Advanced Regression Analysis" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="12.2 The General IV Regression Model | Advanced Regression Analysis" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/logo2.png" />
+  <meta property="og:image" content="images/mylogo.png" />
   
   
 
@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="12.2 The General IV Regression Model | Advanced Regression Analysis" />
   
   
-  <meta name="twitter:image" content="images/logo2.png" />
+  <meta name="twitter:image" content="images/mylogo.png" />
 
 <meta name="author" content="Dominik Liebl" />
 
@@ -40,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -132,13 +135,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><img src="images/logo2.png" alt="logo" width="50%" height="50%"style="margin: 15px 0 0 0"></center></li>
+<li><center><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-colophon.html"><a href="1-1-colophon.html"><i class="fa fa-check"></i><b>1.1</b> Colophon</a></li>
-<li class="chapter" data-level="1.2" data-path="1-2-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-2-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
+<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
@@ -330,7 +332,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.4" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><i class="fa fa-check"></i><b>16.4</b> Volatility Clustering and Autoregressive Conditional Heteroskedasticity</a><ul>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#arch-and-garch-models"><i class="fa fa-check"></i>ARCH and GARCH Models</a></li>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#application-to-stock-price-volatility"><i class="fa fa-check"></i>Application to Stock Price Volatility</a></li>
-<li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#summary-8"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html"><a href="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html#summary"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -439,47 +441,47 @@ The IV Regression Assumptions
   \log(Q_i^{cigarettes}) = \beta_0 + \beta_1 \log(P_i^{cigarettes}) + \beta_2 \log(income_i) + u_i \tag{12.6}
 \end{align}\]</span></p>
 <p>Before estimating <a href="12-2-TGIVRM.html#eq:mcigstsls1">(12.6)</a> using <tt>ivreg()</tt> we define <span class="math inline">\(income\)</span> as real per capita income <tt>rincome</tt> and append it to the data set <tt>CigarettesSW</tt>.</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" data-line-number="1"><span class="co"># add rincome to the dataset</span></a>
-<a class="sourceLine" id="cb293-2" data-line-number="2">CigarettesSW<span class="op">$</span>rincome &lt;-<span class="st"> </span><span class="kw">with</span>(CigarettesSW, income <span class="op">/</span><span class="st"> </span>population <span class="op">/</span><span class="st"> </span>cpi)</a>
-<a class="sourceLine" id="cb293-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb293-4" data-line-number="4">c1995 &lt;-<span class="st"> </span><span class="kw">subset</span>(CigarettesSW, year <span class="op">==</span><span class="st"> &quot;1995&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" data-line-number="1"><span class="co"># estimate the model</span></a>
-<a class="sourceLine" id="cb294-2" data-line-number="2">cig_ivreg2 &lt;-<span class="st"> </span><span class="kw">ivreg</span>(<span class="kw">log</span>(packs) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(rprice) <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(rincome) <span class="op">|</span><span class="st"> </span><span class="kw">log</span>(rincome) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb294-3" data-line-number="3"><span class="st">                    </span>salestax, <span class="dt">data =</span> c1995)</a>
-<a class="sourceLine" id="cb294-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb294-5" data-line-number="5"><span class="kw">coeftest</span>(cig_ivreg2, <span class="dt">vcov =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
-<a class="sourceLine" id="cb294-6" data-line-number="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb294-7" data-line-number="7"><span class="co">#&gt; t test of coefficients:</span></a>
-<a class="sourceLine" id="cb294-8" data-line-number="8"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb294-9" data-line-number="9"><span class="co">#&gt;              Estimate Std. Error t value  Pr(&gt;|t|)    </span></a>
-<a class="sourceLine" id="cb294-10" data-line-number="10"><span class="co">#&gt; (Intercept)   9.43066    1.25939  7.4883 1.935e-09 ***</span></a>
-<a class="sourceLine" id="cb294-11" data-line-number="11"><span class="co">#&gt; log(rprice)  -1.14338    0.37230 -3.0711  0.003611 ** </span></a>
-<a class="sourceLine" id="cb294-12" data-line-number="12"><span class="co">#&gt; log(rincome)  0.21452    0.31175  0.6881  0.494917    </span></a>
-<a class="sourceLine" id="cb294-13" data-line-number="13"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb294-14" data-line-number="14"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" data-line-number="1"><span class="co"># add rincome to the dataset</span></a>
+<a class="sourceLine" id="cb292-2" data-line-number="2">CigarettesSW<span class="op">$</span>rincome &lt;-<span class="st"> </span><span class="kw">with</span>(CigarettesSW, income <span class="op">/</span><span class="st"> </span>population <span class="op">/</span><span class="st"> </span>cpi)</a>
+<a class="sourceLine" id="cb292-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb292-4" data-line-number="4">c1995 &lt;-<span class="st"> </span><span class="kw">subset</span>(CigarettesSW, year <span class="op">==</span><span class="st"> &quot;1995&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" data-line-number="1"><span class="co"># estimate the model</span></a>
+<a class="sourceLine" id="cb293-2" data-line-number="2">cig_ivreg2 &lt;-<span class="st"> </span><span class="kw">ivreg</span>(<span class="kw">log</span>(packs) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(rprice) <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(rincome) <span class="op">|</span><span class="st"> </span><span class="kw">log</span>(rincome) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb293-3" data-line-number="3"><span class="st">                    </span>salestax, <span class="dt">data =</span> c1995)</a>
+<a class="sourceLine" id="cb293-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb293-5" data-line-number="5"><span class="kw">coeftest</span>(cig_ivreg2, <span class="dt">vcov =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
+<a class="sourceLine" id="cb293-6" data-line-number="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb293-7" data-line-number="7"><span class="co">#&gt; t test of coefficients:</span></a>
+<a class="sourceLine" id="cb293-8" data-line-number="8"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb293-9" data-line-number="9"><span class="co">#&gt;              Estimate Std. Error t value  Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb293-10" data-line-number="10"><span class="co">#&gt; (Intercept)   9.43066    1.25939  7.4883 1.935e-09 ***</span></a>
+<a class="sourceLine" id="cb293-11" data-line-number="11"><span class="co">#&gt; log(rprice)  -1.14338    0.37230 -3.0711  0.003611 ** </span></a>
+<a class="sourceLine" id="cb293-12" data-line-number="12"><span class="co">#&gt; log(rincome)  0.21452    0.31175  0.6881  0.494917    </span></a>
+<a class="sourceLine" id="cb293-13" data-line-number="13"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb293-14" data-line-number="14"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p>We obtain</p>
 <p><span class="math display" id="eq:emcigstsls2">\[\begin{align}
   \widehat{\log(Q_i^{cigarettes})} = \underset{(1.26)}{9.42} - \underset{(0.37)}{1.14} \log(P_i^{cigarettes}) + \underset{(0.31)}{0.21} \log(income_i). \tag{12.7}
 \end{align}\]</span></p>
 <p>Following the book we add the cigarette-specific taxes (<span class="math inline">\(cigtax_i\)</span>) as a further instrumental variable and estimate again using TSLS.</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" data-line-number="1"><span class="co"># add cigtax to the data set</span></a>
-<a class="sourceLine" id="cb295-2" data-line-number="2">CigarettesSW<span class="op">$</span>cigtax &lt;-<span class="st"> </span><span class="kw">with</span>(CigarettesSW, tax<span class="op">/</span>cpi)</a>
-<a class="sourceLine" id="cb295-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb295-4" data-line-number="4">c1995 &lt;-<span class="st"> </span><span class="kw">subset</span>(CigarettesSW, year <span class="op">==</span><span class="st"> &quot;1995&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" data-line-number="1"><span class="co"># estimate the model</span></a>
-<a class="sourceLine" id="cb296-2" data-line-number="2">cig_ivreg3 &lt;-<span class="st"> </span><span class="kw">ivreg</span>(<span class="kw">log</span>(packs) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(rprice) <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(rincome) <span class="op">|</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb296-3" data-line-number="3"><span class="st">                    </span><span class="kw">log</span>(rincome) <span class="op">+</span><span class="st"> </span>salestax <span class="op">+</span><span class="st"> </span>cigtax, <span class="dt">data =</span> c1995)</a>
-<a class="sourceLine" id="cb296-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb296-5" data-line-number="5"><span class="kw">coeftest</span>(cig_ivreg3, <span class="dt">vcov =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
-<a class="sourceLine" id="cb296-6" data-line-number="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb296-7" data-line-number="7"><span class="co">#&gt; t test of coefficients:</span></a>
-<a class="sourceLine" id="cb296-8" data-line-number="8"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb296-9" data-line-number="9"><span class="co">#&gt;              Estimate Std. Error t value  Pr(&gt;|t|)    </span></a>
-<a class="sourceLine" id="cb296-10" data-line-number="10"><span class="co">#&gt; (Intercept)   9.89496    0.95922 10.3157 1.947e-13 ***</span></a>
-<a class="sourceLine" id="cb296-11" data-line-number="11"><span class="co">#&gt; log(rprice)  -1.27742    0.24961 -5.1177 6.211e-06 ***</span></a>
-<a class="sourceLine" id="cb296-12" data-line-number="12"><span class="co">#&gt; log(rincome)  0.28040    0.25389  1.1044    0.2753    </span></a>
-<a class="sourceLine" id="cb296-13" data-line-number="13"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb296-14" data-line-number="14"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" data-line-number="1"><span class="co"># add cigtax to the data set</span></a>
+<a class="sourceLine" id="cb294-2" data-line-number="2">CigarettesSW<span class="op">$</span>cigtax &lt;-<span class="st"> </span><span class="kw">with</span>(CigarettesSW, tax<span class="op">/</span>cpi)</a>
+<a class="sourceLine" id="cb294-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb294-4" data-line-number="4">c1995 &lt;-<span class="st"> </span><span class="kw">subset</span>(CigarettesSW, year <span class="op">==</span><span class="st"> &quot;1995&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" data-line-number="1"><span class="co"># estimate the model</span></a>
+<a class="sourceLine" id="cb295-2" data-line-number="2">cig_ivreg3 &lt;-<span class="st"> </span><span class="kw">ivreg</span>(<span class="kw">log</span>(packs) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(rprice) <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(rincome) <span class="op">|</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb295-3" data-line-number="3"><span class="st">                    </span><span class="kw">log</span>(rincome) <span class="op">+</span><span class="st"> </span>salestax <span class="op">+</span><span class="st"> </span>cigtax, <span class="dt">data =</span> c1995)</a>
+<a class="sourceLine" id="cb295-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb295-5" data-line-number="5"><span class="kw">coeftest</span>(cig_ivreg3, <span class="dt">vcov =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
+<a class="sourceLine" id="cb295-6" data-line-number="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb295-7" data-line-number="7"><span class="co">#&gt; t test of coefficients:</span></a>
+<a class="sourceLine" id="cb295-8" data-line-number="8"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb295-9" data-line-number="9"><span class="co">#&gt;              Estimate Std. Error t value  Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb295-10" data-line-number="10"><span class="co">#&gt; (Intercept)   9.89496    0.95922 10.3157 1.947e-13 ***</span></a>
+<a class="sourceLine" id="cb295-11" data-line-number="11"><span class="co">#&gt; log(rprice)  -1.27742    0.24961 -5.1177 6.211e-06 ***</span></a>
+<a class="sourceLine" id="cb295-12" data-line-number="12"><span class="co">#&gt; log(rincome)  0.28040    0.25389  1.1044    0.2753    </span></a>
+<a class="sourceLine" id="cb295-13" data-line-number="13"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb295-14" data-line-number="14"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p>Using the two instruments <span class="math inline">\(salestax_i\)</span> and <span class="math inline">\(cigtax_i\)</span> we have <span class="math inline">\(m=2\)</span> and <span class="math inline">\(k=1\)</span> so the coefficient on the endogenous regressor <span class="math inline">\(\log(P_i^{cigarettes})\)</span> is <em>overidentified</em>. The TSLS estimate of <a href="12-2-TGIVRM.html#eq:mcigstsls1">(12.6)</a> is</p>
 <p><span class="math display" id="eq:emcigstsls3">\[\begin{align}
   \widehat{\log(Q_i^{cigarettes})} = \underset{(0.96)}{9.89} - \underset{(0.25)}{1.28} \log(P_i^{cigarettes}) + \underset{(0.25)}{0.28} \log(income_i). \tag{12.8}
@@ -499,24 +501,25 @@ The IV Regression Assumptions
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": true,
-"twitter": true,
-"google": false,
+"facebook": false,
+"twitter": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -524,14 +527,18 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mca91/EconometricsWithR/edit/master/12-ch12.Rmd",
+"link": "https://github.com/lidom/AdvRA/edit/master/12-ch12.Rmd",
 "text": "Edit"
 },
 "history": {
 "link": null,
 "text": null
 },
-"download": ["ITER.pdf"],
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "subsection",
 "scroll_highlight": true

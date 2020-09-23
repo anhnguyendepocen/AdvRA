@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>14.3 Autoregressions | Advanced Regression Analysis</title>
   <meta name="description" content="14.3 Autoregressions | Advanced Regression Analysis" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="14.3 Autoregressions | Advanced Regression Analysis" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/logo2.png" />
+  <meta property="og:image" content="images/mylogo.png" />
   
   
 
@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="14.3 Autoregressions | Advanced Regression Analysis" />
   
   
-  <meta name="twitter:image" content="images/logo2.png" />
+  <meta name="twitter:image" content="images/mylogo.png" />
 
 <meta name="author" content="Dominik Liebl" />
 
@@ -40,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -132,13 +135,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><img src="images/logo2.png" alt="logo" width="50%" height="50%"style="margin: 15px 0 0 0"></center></li>
+<li><center><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-colophon.html"><a href="1-1-colophon.html"><i class="fa fa-check"></i><b>1.1</b> Colophon</a></li>
-<li class="chapter" data-level="1.2" data-path="1-2-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-2-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
+<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
@@ -330,7 +332,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.4" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><i class="fa fa-check"></i><b>16.4</b> Volatility Clustering and Autoregressive Conditional Heteroskedasticity</a><ul>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#arch-and-garch-models"><i class="fa fa-check"></i>ARCH and GARCH Models</a></li>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#application-to-stock-price-volatility"><i class="fa fa-check"></i>Application to Stock Price Volatility</a></li>
-<li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#summary-8"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html"><a href="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html#summary"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -369,53 +371,53 @@ is the AR(1) population model of a time series <span class="math inline">\(Y_t\)
   \widehat{GDPGR}_t = \hat\beta_0 + \hat\beta_1  GDPGR_{t-1}. \tag{14.1}
 \end{align}\]</span>
 Following the book we use data from 1962 to 2012 to estimate <a href="14-3-autoregressions.html#eq:GDPGRAR1">(14.1)</a>. This is easily done with the function <tt>ar.ols()</tt> from the package <tt>stats</tt>.</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" data-line-number="1"><span class="co"># subset data</span></a>
-<a class="sourceLine" id="cb353-2" data-line-number="2">GDPGRSub &lt;-<span class="st"> </span>GDPGrowth[<span class="st">&quot;1962::2012&quot;</span>]</a>
-<a class="sourceLine" id="cb353-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb353-4" data-line-number="4"><span class="co"># estimate the model</span></a>
-<a class="sourceLine" id="cb353-5" data-line-number="5"><span class="kw">ar.ols</span>(GDPGRSub, </a>
-<a class="sourceLine" id="cb353-6" data-line-number="6">       <span class="dt">order.max =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb353-7" data-line-number="7">       <span class="dt">demean =</span> F, </a>
-<a class="sourceLine" id="cb353-8" data-line-number="8">       <span class="dt">intercept =</span> T)</a>
-<a class="sourceLine" id="cb353-9" data-line-number="9"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb353-10" data-line-number="10"><span class="co">#&gt; Call:</span></a>
-<a class="sourceLine" id="cb353-11" data-line-number="11"><span class="co">#&gt; ar.ols(x = GDPGRSub, order.max = 1, demean = F, intercept = T)</span></a>
-<a class="sourceLine" id="cb353-12" data-line-number="12"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb353-13" data-line-number="13"><span class="co">#&gt; Coefficients:</span></a>
-<a class="sourceLine" id="cb353-14" data-line-number="14"><span class="co">#&gt;      1  </span></a>
-<a class="sourceLine" id="cb353-15" data-line-number="15"><span class="co">#&gt; 0.3384  </span></a>
-<a class="sourceLine" id="cb353-16" data-line-number="16"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb353-17" data-line-number="17"><span class="co">#&gt; Intercept: 1.995 (0.2993) </span></a>
-<a class="sourceLine" id="cb353-18" data-line-number="18"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb353-19" data-line-number="19"><span class="co">#&gt; Order selected 1  sigma^2 estimated as  9.886</span></a></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" data-line-number="1"><span class="co"># subset data</span></a>
+<a class="sourceLine" id="cb352-2" data-line-number="2">GDPGRSub &lt;-<span class="st"> </span>GDPGrowth[<span class="st">&quot;1962::2012&quot;</span>]</a>
+<a class="sourceLine" id="cb352-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb352-4" data-line-number="4"><span class="co"># estimate the model</span></a>
+<a class="sourceLine" id="cb352-5" data-line-number="5"><span class="kw">ar.ols</span>(GDPGRSub, </a>
+<a class="sourceLine" id="cb352-6" data-line-number="6">       <span class="dt">order.max =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb352-7" data-line-number="7">       <span class="dt">demean =</span> F, </a>
+<a class="sourceLine" id="cb352-8" data-line-number="8">       <span class="dt">intercept =</span> T)</a>
+<a class="sourceLine" id="cb352-9" data-line-number="9"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb352-10" data-line-number="10"><span class="co">#&gt; Call:</span></a>
+<a class="sourceLine" id="cb352-11" data-line-number="11"><span class="co">#&gt; ar.ols(x = GDPGRSub, order.max = 1, demean = F, intercept = T)</span></a>
+<a class="sourceLine" id="cb352-12" data-line-number="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb352-13" data-line-number="13"><span class="co">#&gt; Coefficients:</span></a>
+<a class="sourceLine" id="cb352-14" data-line-number="14"><span class="co">#&gt;      1  </span></a>
+<a class="sourceLine" id="cb352-15" data-line-number="15"><span class="co">#&gt; 0.3384  </span></a>
+<a class="sourceLine" id="cb352-16" data-line-number="16"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb352-17" data-line-number="17"><span class="co">#&gt; Intercept: 1.995 (0.2993) </span></a>
+<a class="sourceLine" id="cb352-18" data-line-number="18"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb352-19" data-line-number="19"><span class="co">#&gt; Order selected 1  sigma^2 estimated as  9.886</span></a></code></pre></div>
 <p>We can check that the computations done by <tt>ar.ols()</tt> are the same as done by <tt>lm()</tt>.</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb354-1" data-line-number="1"><span class="co"># length of data set</span></a>
-<a class="sourceLine" id="cb354-2" data-line-number="2">N &lt;-<span class="kw">length</span>(GDPGRSub)</a>
-<a class="sourceLine" id="cb354-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb354-4" data-line-number="4">GDPGR_level &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(GDPGRSub[<span class="op">-</span><span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb354-5" data-line-number="5">GDPGR_lags &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(GDPGRSub[<span class="op">-</span>N])</a>
-<a class="sourceLine" id="cb354-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb354-7" data-line-number="7"><span class="co"># estimate the model</span></a>
-<a class="sourceLine" id="cb354-8" data-line-number="8">armod &lt;-<span class="st"> </span><span class="kw">lm</span>(GDPGR_level <span class="op">~</span><span class="st"> </span>GDPGR_lags)</a>
-<a class="sourceLine" id="cb354-9" data-line-number="9">armod</a>
-<a class="sourceLine" id="cb354-10" data-line-number="10"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb354-11" data-line-number="11"><span class="co">#&gt; Call:</span></a>
-<a class="sourceLine" id="cb354-12" data-line-number="12"><span class="co">#&gt; lm(formula = GDPGR_level ~ GDPGR_lags)</span></a>
-<a class="sourceLine" id="cb354-13" data-line-number="13"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb354-14" data-line-number="14"><span class="co">#&gt; Coefficients:</span></a>
-<a class="sourceLine" id="cb354-15" data-line-number="15"><span class="co">#&gt; (Intercept)   GDPGR_lags  </span></a>
-<a class="sourceLine" id="cb354-16" data-line-number="16"><span class="co">#&gt;      1.9950       0.3384</span></a></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" data-line-number="1"><span class="co"># length of data set</span></a>
+<a class="sourceLine" id="cb353-2" data-line-number="2">N &lt;-<span class="kw">length</span>(GDPGRSub)</a>
+<a class="sourceLine" id="cb353-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb353-4" data-line-number="4">GDPGR_level &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(GDPGRSub[<span class="op">-</span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb353-5" data-line-number="5">GDPGR_lags &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(GDPGRSub[<span class="op">-</span>N])</a>
+<a class="sourceLine" id="cb353-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb353-7" data-line-number="7"><span class="co"># estimate the model</span></a>
+<a class="sourceLine" id="cb353-8" data-line-number="8">armod &lt;-<span class="st"> </span><span class="kw">lm</span>(GDPGR_level <span class="op">~</span><span class="st"> </span>GDPGR_lags)</a>
+<a class="sourceLine" id="cb353-9" data-line-number="9">armod</a>
+<a class="sourceLine" id="cb353-10" data-line-number="10"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb353-11" data-line-number="11"><span class="co">#&gt; Call:</span></a>
+<a class="sourceLine" id="cb353-12" data-line-number="12"><span class="co">#&gt; lm(formula = GDPGR_level ~ GDPGR_lags)</span></a>
+<a class="sourceLine" id="cb353-13" data-line-number="13"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb353-14" data-line-number="14"><span class="co">#&gt; Coefficients:</span></a>
+<a class="sourceLine" id="cb353-15" data-line-number="15"><span class="co">#&gt; (Intercept)   GDPGR_lags  </span></a>
+<a class="sourceLine" id="cb353-16" data-line-number="16"><span class="co">#&gt;      1.9950       0.3384</span></a></code></pre></div>
 <p>As usual, we may use <tt>coeftest()</tt> to obtain a robust summary on the estimated regression coefficients.</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb355-1" data-line-number="1"><span class="co"># robust summary</span></a>
-<a class="sourceLine" id="cb355-2" data-line-number="2"><span class="kw">coeftest</span>(armod, <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
-<a class="sourceLine" id="cb355-3" data-line-number="3"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb355-4" data-line-number="4"><span class="co">#&gt; t test of coefficients:</span></a>
-<a class="sourceLine" id="cb355-5" data-line-number="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb355-6" data-line-number="6"><span class="co">#&gt;             Estimate Std. Error t value  Pr(&gt;|t|)    </span></a>
-<a class="sourceLine" id="cb355-7" data-line-number="7"><span class="co">#&gt; (Intercept) 1.994986   0.351274  5.6793 4.691e-08 ***</span></a>
-<a class="sourceLine" id="cb355-8" data-line-number="8"><span class="co">#&gt; GDPGR_lags  0.338436   0.076188  4.4421 1.470e-05 ***</span></a>
-<a class="sourceLine" id="cb355-9" data-line-number="9"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb355-10" data-line-number="10"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb354-1" data-line-number="1"><span class="co"># robust summary</span></a>
+<a class="sourceLine" id="cb354-2" data-line-number="2"><span class="kw">coeftest</span>(armod, <span class="dt">vcov. =</span> vcovHC, <span class="dt">type =</span> <span class="st">&quot;HC1&quot;</span>)</a>
+<a class="sourceLine" id="cb354-3" data-line-number="3"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb354-4" data-line-number="4"><span class="co">#&gt; t test of coefficients:</span></a>
+<a class="sourceLine" id="cb354-5" data-line-number="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb354-6" data-line-number="6"><span class="co">#&gt;             Estimate Std. Error t value  Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb354-7" data-line-number="7"><span class="co">#&gt; (Intercept) 1.994986   0.351274  5.6793 4.691e-08 ***</span></a>
+<a class="sourceLine" id="cb354-8" data-line-number="8"><span class="co">#&gt; GDPGR_lags  0.338436   0.076188  4.4421 1.470e-05 ***</span></a>
+<a class="sourceLine" id="cb354-9" data-line-number="9"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb354-10" data-line-number="10"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p>Thus the estimated model is
 <span class="math display" id="eq:gdpgrar1">\[\begin{align}
   \widehat{GDPGR}_t = \underset{(0.351)}{1.995} + \underset{(0.076)}{0.338} GDPGR_{t-1} \tag{14.2}.
@@ -449,30 +451,30 @@ Following the book we use data from 1962 to 2012 to estimate <a href="14-3-autor
   \widehat{GDPGR}_{2013:Q1} = 1.995 + 0.348 \cdot 0.15 = 2.047.
 \end{align*}\]</span></p>
 <p>The function <tt>forecast()</tt> from the <tt>forecast</tt> package has some useful features for forecasting time series data.</p>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb356-1" data-line-number="1"><span class="kw">library</span>(forecast)</a>
-<a class="sourceLine" id="cb356-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb356-3" data-line-number="3"><span class="co"># assign GDP growth rate in 2012:Q4</span></a>
-<a class="sourceLine" id="cb356-4" data-line-number="4">new &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;GDPGR_lags&quot;</span> =<span class="st"> </span>GDPGR_level[N<span class="dv">-1</span>])</a>
-<a class="sourceLine" id="cb356-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb356-6" data-line-number="6"><span class="co"># forecast GDP growth rate in 2013:Q1</span></a>
-<a class="sourceLine" id="cb356-7" data-line-number="7"><span class="kw">forecast</span>(armod, <span class="dt">newdata =</span> new)</a>
-<a class="sourceLine" id="cb356-8" data-line-number="8"><span class="co">#&gt;   Point Forecast     Lo 80    Hi 80     Lo 95    Hi 95</span></a>
-<a class="sourceLine" id="cb356-9" data-line-number="9"><span class="co">#&gt; 1       2.044155 -2.036225 6.124534 -4.213414 8.301723</span></a></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb355-1" data-line-number="1"><span class="kw">library</span>(forecast)</a>
+<a class="sourceLine" id="cb355-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb355-3" data-line-number="3"><span class="co"># assign GDP growth rate in 2012:Q4</span></a>
+<a class="sourceLine" id="cb355-4" data-line-number="4">new &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;GDPGR_lags&quot;</span> =<span class="st"> </span>GDPGR_level[N<span class="dv">-1</span>])</a>
+<a class="sourceLine" id="cb355-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb355-6" data-line-number="6"><span class="co"># forecast GDP growth rate in 2013:Q1</span></a>
+<a class="sourceLine" id="cb355-7" data-line-number="7"><span class="kw">forecast</span>(armod, <span class="dt">newdata =</span> new)</a>
+<a class="sourceLine" id="cb355-8" data-line-number="8"><span class="co">#&gt;   Point Forecast     Lo 80    Hi 80     Lo 95    Hi 95</span></a>
+<a class="sourceLine" id="cb355-9" data-line-number="9"><span class="co">#&gt; 1       2.044155 -2.036225 6.124534 -4.213414 8.301723</span></a></code></pre></div>
 <p>Using <tt>forecast()</tt>produces the same point forecast of about 2.0, along with <span class="math inline">\(80\%\)</span> and <span class="math inline">\(95\%\)</span> forecast intervals, see section <a href="14-5-apatadlm.html#apatadlm">14.5</a>. We conclude that our AR(1) model forecasts GDP growth to be <span class="math inline">\(2\%\)</span> in 2013:Q1.</p>
 <p>How accurate is this forecast? The forecast error is quite large: <span class="math inline">\(GDPGR_{2013:Q1} \approx 1.1\%\)</span> while our forecast is <span class="math inline">\(2\%\)</span>.
 Second, by calling <code>summary(armod)</code> shows that the model explains only little of the variation in the growth rate of GDP and the <span class="math inline">\(SER\)</span> is about <span class="math inline">\(3.16\)</span>. Leaving aside forecast uncertainty due to estimation of the model coefficients <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, the <span class="math inline">\(RMSFE\)</span> must be at least <span class="math inline">\(3.16\%\)</span>, the estimate of the standard deviation of the errors. We conclude that this forecast is pretty inaccurate.</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb357-1" data-line-number="1"><span class="co"># compute the forecast error</span></a>
-<a class="sourceLine" id="cb357-2" data-line-number="2"><span class="kw">forecast</span>(armod, <span class="dt">newdata =</span> new)<span class="op">$</span>mean <span class="op">-</span><span class="st"> </span>GDPGrowth[<span class="st">&quot;2013&quot;</span>][<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb357-3" data-line-number="3"><span class="co">#&gt;                 x</span></a>
-<a class="sourceLine" id="cb357-4" data-line-number="4"><span class="co">#&gt; 2013 Q1 0.9049532</span></a>
-<a class="sourceLine" id="cb357-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb357-6" data-line-number="6"><span class="co"># R^2</span></a>
-<a class="sourceLine" id="cb357-7" data-line-number="7"><span class="kw">summary</span>(armod)<span class="op">$</span>r.squared</a>
-<a class="sourceLine" id="cb357-8" data-line-number="8"><span class="co">#&gt; [1] 0.1149576</span></a>
-<a class="sourceLine" id="cb357-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb357-10" data-line-number="10"><span class="co"># SER</span></a>
-<a class="sourceLine" id="cb357-11" data-line-number="11"><span class="kw">summary</span>(armod)<span class="op">$</span>sigma</a>
-<a class="sourceLine" id="cb357-12" data-line-number="12"><span class="co">#&gt; [1] 3.15979</span></a></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb356-1" data-line-number="1"><span class="co"># compute the forecast error</span></a>
+<a class="sourceLine" id="cb356-2" data-line-number="2"><span class="kw">forecast</span>(armod, <span class="dt">newdata =</span> new)<span class="op">$</span>mean <span class="op">-</span><span class="st"> </span>GDPGrowth[<span class="st">&quot;2013&quot;</span>][<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb356-3" data-line-number="3"><span class="co">#&gt;                 x</span></a>
+<a class="sourceLine" id="cb356-4" data-line-number="4"><span class="co">#&gt; 2013 Q1 0.9049532</span></a>
+<a class="sourceLine" id="cb356-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb356-6" data-line-number="6"><span class="co"># R^2</span></a>
+<a class="sourceLine" id="cb356-7" data-line-number="7"><span class="kw">summary</span>(armod)<span class="op">$</span>r.squared</a>
+<a class="sourceLine" id="cb356-8" data-line-number="8"><span class="co">#&gt; [1] 0.1149576</span></a>
+<a class="sourceLine" id="cb356-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb356-10" data-line-number="10"><span class="co"># SER</span></a>
+<a class="sourceLine" id="cb356-11" data-line-number="11"><span class="kw">summary</span>(armod)<span class="op">$</span>sigma</a>
+<a class="sourceLine" id="cb356-12" data-line-number="12"><span class="co">#&gt; [1] 3.15979</span></a></code></pre></div>
 </div>
 <div id="autoregressive-models-of-order-p" class="section level3 unnumbered">
 <h3>Autoregressive Models of Order <span class="math inline">\(p\)</span></h3>
@@ -493,39 +495,39 @@ is an autoregressive model of order <span class="math inline">\(p\)</span> where
 </p>
 </div>
 <p>Following the book, we estimate an AR(<span class="math inline">\(2\)</span>) model of the GDP growth series from 1962:Q1 to 2012:Q4.</p>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb358-1" data-line-number="1"><span class="co"># estimate the AR(2) model</span></a>
-<a class="sourceLine" id="cb358-2" data-line-number="2">GDPGR_AR2 &lt;-<span class="st"> </span><span class="kw">dynlm</span>(<span class="kw">ts</span>(GDPGR_level) <span class="op">~</span><span class="st"> </span><span class="kw">L</span>(<span class="kw">ts</span>(GDPGR_level)) <span class="op">+</span><span class="st"> </span><span class="kw">L</span>(<span class="kw">ts</span>(GDPGR_level), <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb358-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb358-4" data-line-number="4"><span class="kw">coeftest</span>(GDPGR_AR2, <span class="dt">vcov. =</span> sandwich)</a>
-<a class="sourceLine" id="cb358-5" data-line-number="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb358-6" data-line-number="6"><span class="co">#&gt; t test of coefficients:</span></a>
-<a class="sourceLine" id="cb358-7" data-line-number="7"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb358-8" data-line-number="8"><span class="co">#&gt;                       Estimate Std. Error t value  Pr(&gt;|t|)    </span></a>
-<a class="sourceLine" id="cb358-9" data-line-number="9"><span class="co">#&gt; (Intercept)           1.631747   0.402023  4.0588 7.096e-05 ***</span></a>
-<a class="sourceLine" id="cb358-10" data-line-number="10"><span class="co">#&gt; L(ts(GDPGR_level))    0.277787   0.079250  3.5052 0.0005643 ***</span></a>
-<a class="sourceLine" id="cb358-11" data-line-number="11"><span class="co">#&gt; L(ts(GDPGR_level), 2) 0.179269   0.079951  2.2422 0.0260560 *  </span></a>
-<a class="sourceLine" id="cb358-12" data-line-number="12"><span class="co">#&gt; ---</span></a>
-<a class="sourceLine" id="cb358-13" data-line-number="13"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb357-1" data-line-number="1"><span class="co"># estimate the AR(2) model</span></a>
+<a class="sourceLine" id="cb357-2" data-line-number="2">GDPGR_AR2 &lt;-<span class="st"> </span><span class="kw">dynlm</span>(<span class="kw">ts</span>(GDPGR_level) <span class="op">~</span><span class="st"> </span><span class="kw">L</span>(<span class="kw">ts</span>(GDPGR_level)) <span class="op">+</span><span class="st"> </span><span class="kw">L</span>(<span class="kw">ts</span>(GDPGR_level), <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb357-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb357-4" data-line-number="4"><span class="kw">coeftest</span>(GDPGR_AR2, <span class="dt">vcov. =</span> sandwich)</a>
+<a class="sourceLine" id="cb357-5" data-line-number="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb357-6" data-line-number="6"><span class="co">#&gt; t test of coefficients:</span></a>
+<a class="sourceLine" id="cb357-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb357-8" data-line-number="8"><span class="co">#&gt;                       Estimate Std. Error t value  Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb357-9" data-line-number="9"><span class="co">#&gt; (Intercept)           1.631747   0.402023  4.0588 7.096e-05 ***</span></a>
+<a class="sourceLine" id="cb357-10" data-line-number="10"><span class="co">#&gt; L(ts(GDPGR_level))    0.277787   0.079250  3.5052 0.0005643 ***</span></a>
+<a class="sourceLine" id="cb357-11" data-line-number="11"><span class="co">#&gt; L(ts(GDPGR_level), 2) 0.179269   0.079951  2.2422 0.0260560 *  </span></a>
+<a class="sourceLine" id="cb357-12" data-line-number="12"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb357-13" data-line-number="13"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p>The estimation yields
 <span class="math display" id="eq:GDPGRAR2">\[\begin{align}
   \widehat{GDPGR}_t = \underset{(0.40)}{1.63} + \underset{(0.08)}{0.28} GDPGR_{t-1} + \underset{(0.08)}{0.18} GDPGR_{t-1}. \tag{14.3}
 \end{align}\]</span>
 We see that the coefficient on the second lag is significantly different from zero. The fit improves slightly: <span class="math inline">\(\bar{R}^2\)</span> grows from <span class="math inline">\(0.11\)</span> for the AR(<span class="math inline">\(1\)</span>) model to about <span class="math inline">\(0.14\)</span> and the <span class="math inline">\(SER\)</span> reduces to <span class="math inline">\(3.13\)</span>.</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" data-line-number="1"><span class="co"># R^2</span></a>
-<a class="sourceLine" id="cb359-2" data-line-number="2"><span class="kw">summary</span>(GDPGR_AR2)<span class="op">$</span>r.squared</a>
-<a class="sourceLine" id="cb359-3" data-line-number="3"><span class="co">#&gt; [1] 0.1425484</span></a>
-<a class="sourceLine" id="cb359-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb359-5" data-line-number="5"><span class="co"># SER</span></a>
-<a class="sourceLine" id="cb359-6" data-line-number="6"><span class="kw">summary</span>(GDPGR_AR2)<span class="op">$</span>sigma</a>
-<a class="sourceLine" id="cb359-7" data-line-number="7"><span class="co">#&gt; [1] 3.132122</span></a></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb358-1" data-line-number="1"><span class="co"># R^2</span></a>
+<a class="sourceLine" id="cb358-2" data-line-number="2"><span class="kw">summary</span>(GDPGR_AR2)<span class="op">$</span>r.squared</a>
+<a class="sourceLine" id="cb358-3" data-line-number="3"><span class="co">#&gt; [1] 0.1425484</span></a>
+<a class="sourceLine" id="cb358-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb358-5" data-line-number="5"><span class="co"># SER</span></a>
+<a class="sourceLine" id="cb358-6" data-line-number="6"><span class="kw">summary</span>(GDPGR_AR2)<span class="op">$</span>sigma</a>
+<a class="sourceLine" id="cb358-7" data-line-number="7"><span class="co">#&gt; [1] 3.132122</span></a></code></pre></div>
 <p>We may use the AR(<span class="math inline">\(2\)</span>) model to obtain a forecast for GDP growth in 2013:Q1 in the same manner as for the AR(1) model.</p>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" data-line-number="1"><span class="co"># AR(2) forecast of GDP growth in 2013:Q1 </span></a>
-<a class="sourceLine" id="cb360-2" data-line-number="2">forecast &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2013:Q1&quot;</span> =<span class="st"> </span><span class="kw">coef</span>(GDPGR_AR2) <span class="op">%*%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, GDPGR_level[N<span class="dv">-1</span>], GDPGR_level[N<span class="dv">-2</span>]))</a></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" data-line-number="1"><span class="co"># AR(2) forecast of GDP growth in 2013:Q1 </span></a>
+<a class="sourceLine" id="cb359-2" data-line-number="2">forecast &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2013:Q1&quot;</span> =<span class="st"> </span><span class="kw">coef</span>(GDPGR_AR2) <span class="op">%*%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, GDPGR_level[N<span class="dv">-1</span>], GDPGR_level[N<span class="dv">-2</span>]))</a></code></pre></div>
 <p>This leads to a forecast error of roughly <span class="math inline">\(-1\%\)</span>.</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" data-line-number="1"><span class="co"># compute AR(2) forecast error </span></a>
-<a class="sourceLine" id="cb361-2" data-line-number="2">GDPGrowth[<span class="st">&quot;2013&quot;</span>][<span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>forecast</a>
-<a class="sourceLine" id="cb361-3" data-line-number="3"><span class="co">#&gt;                 x</span></a>
-<a class="sourceLine" id="cb361-4" data-line-number="4"><span class="co">#&gt; 2013 Q1 -1.025358</span></a></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" data-line-number="1"><span class="co"># compute AR(2) forecast error </span></a>
+<a class="sourceLine" id="cb360-2" data-line-number="2">GDPGrowth[<span class="st">&quot;2013&quot;</span>][<span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>forecast</a>
+<a class="sourceLine" id="cb360-3" data-line-number="3"><span class="co">#&gt;                 x</span></a>
+<a class="sourceLine" id="cb360-4" data-line-number="4"><span class="co">#&gt; 2013 Q1 -1.025358</span></a></code></pre></div>
 </div>
 </div>
             </section>
@@ -539,24 +541,25 @@ We see that the coefficient on the second lag is significantly different from ze
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": true,
-"twitter": true,
-"google": false,
+"facebook": false,
+"twitter": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -564,14 +567,18 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mca91/EconometricsWithR/edit/master/14-ch14.Rmd",
+"link": "https://github.com/lidom/AdvRA/edit/master/14-ch14.Rmd",
 "text": "Edit"
 },
 "history": {
 "link": null,
 "text": null
 },
-"download": ["ITER.pdf"],
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "subsection",
 "scroll_highlight": true

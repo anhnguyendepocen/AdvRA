@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.1 Omitted Variable Bias | Advanced Regression Analysis</title>
   <meta name="description" content="6.1 Omitted Variable Bias | Advanced Regression Analysis" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.1 Omitted Variable Bias | Advanced Regression Analysis" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/logo2.png" />
+  <meta property="og:image" content="images/mylogo.png" />
   
   
 
@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="6.1 Omitted Variable Bias | Advanced Regression Analysis" />
   
   
-  <meta name="twitter:image" content="images/logo2.png" />
+  <meta name="twitter:image" content="images/mylogo.png" />
 
 <meta name="author" content="Dominik Liebl" />
 
@@ -40,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -132,13 +135,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><img src="images/logo2.png" alt="logo" width="50%" height="50%"style="margin: 15px 0 0 0"></center></li>
+<li><center><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-colophon.html"><a href="1-1-colophon.html"><i class="fa fa-check"></i><b>1.1</b> Colophon</a></li>
-<li class="chapter" data-level="1.2" data-path="1-2-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-2-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
+<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
@@ -330,7 +332,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.4" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><i class="fa fa-check"></i><b>16.4</b> Volatility Clustering and Autoregressive Conditional Heteroskedasticity</a><ul>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#arch-and-garch-models"><i class="fa fa-check"></i>ARCH and GARCH Models</a></li>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#application-to-stock-price-volatility"><i class="fa fa-check"></i>Application to Stock Price Volatility</a></li>
-<li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#summary-8"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html"><a href="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html#summary"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -379,47 +381,47 @@ See Appendix 6.1 of the book for a detailed derivation. (<a href="#mjx-eqn-6.1">
 <p>where <span class="math inline">\(STR\)</span> and <span class="math inline">\(PctEL\)</span> are correlated, we have</p>
 <p><span class="math display">\[\rho_{STR,PctEL}\neq0.\]</span></p>
 <p>Let us investigate this using <tt>R</tt>. After defining our variables we may compute the correlation between <span class="math inline">\(STR\)</span> and <span class="math inline">\(PctEL\)</span> as well as the correlation between <span class="math inline">\(STR\)</span> and <span class="math inline">\(TestScore\)</span>.</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1"><span class="co"># load the AER package</span></a>
-<a class="sourceLine" id="cb139-2" data-line-number="2"><span class="kw">library</span>(AER)</a>
-<a class="sourceLine" id="cb139-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb139-4" data-line-number="4"><span class="co"># load the data set</span></a>
-<a class="sourceLine" id="cb139-5" data-line-number="5"><span class="kw">data</span>(CASchools)   </a>
-<a class="sourceLine" id="cb139-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb139-7" data-line-number="7"><span class="co"># define variables</span></a>
-<a class="sourceLine" id="cb139-8" data-line-number="8">CASchools<span class="op">$</span>STR &lt;-<span class="st"> </span>CASchools<span class="op">$</span>students<span class="op">/</span>CASchools<span class="op">$</span>teachers       </a>
-<a class="sourceLine" id="cb139-9" data-line-number="9">CASchools<span class="op">$</span>score &lt;-<span class="st"> </span>(CASchools<span class="op">$</span>read <span class="op">+</span><span class="st"> </span>CASchools<span class="op">$</span>math)<span class="op">/</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb139-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb139-11" data-line-number="11"><span class="co"># compute correlations</span></a>
-<a class="sourceLine" id="cb139-12" data-line-number="12"><span class="kw">cor</span>(CASchools<span class="op">$</span>STR, CASchools<span class="op">$</span>score)</a>
-<a class="sourceLine" id="cb139-13" data-line-number="13"><span class="co">#&gt; [1] -0.2263627</span></a>
-<a class="sourceLine" id="cb139-14" data-line-number="14"><span class="kw">cor</span>(CASchools<span class="op">$</span>STR, CASchools<span class="op">$</span>english)</a>
-<a class="sourceLine" id="cb139-15" data-line-number="15"><span class="co">#&gt; [1] 0.1876424</span></a></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1"><span class="co"># load the AER package</span></a>
+<a class="sourceLine" id="cb138-2" data-line-number="2"><span class="kw">library</span>(AER)</a>
+<a class="sourceLine" id="cb138-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb138-4" data-line-number="4"><span class="co"># load the data set</span></a>
+<a class="sourceLine" id="cb138-5" data-line-number="5"><span class="kw">data</span>(CASchools)   </a>
+<a class="sourceLine" id="cb138-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb138-7" data-line-number="7"><span class="co"># define variables</span></a>
+<a class="sourceLine" id="cb138-8" data-line-number="8">CASchools<span class="op">$</span>STR &lt;-<span class="st"> </span>CASchools<span class="op">$</span>students<span class="op">/</span>CASchools<span class="op">$</span>teachers       </a>
+<a class="sourceLine" id="cb138-9" data-line-number="9">CASchools<span class="op">$</span>score &lt;-<span class="st"> </span>(CASchools<span class="op">$</span>read <span class="op">+</span><span class="st"> </span>CASchools<span class="op">$</span>math)<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb138-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb138-11" data-line-number="11"><span class="co"># compute correlations</span></a>
+<a class="sourceLine" id="cb138-12" data-line-number="12"><span class="kw">cor</span>(CASchools<span class="op">$</span>STR, CASchools<span class="op">$</span>score)</a>
+<a class="sourceLine" id="cb138-13" data-line-number="13"><span class="co">#&gt; [1] -0.2263627</span></a>
+<a class="sourceLine" id="cb138-14" data-line-number="14"><span class="kw">cor</span>(CASchools<span class="op">$</span>STR, CASchools<span class="op">$</span>english)</a>
+<a class="sourceLine" id="cb138-15" data-line-number="15"><span class="co">#&gt; [1] 0.1876424</span></a></code></pre></div>
 <p>The fact that <span class="math inline">\(\widehat{\rho}_{STR, Testscore} = -0.2264\)</span> is cause for concern that omitting <span class="math inline">\(PctEL\)</span> leads to a negatively biased estimate <span class="math inline">\(\hat\beta_1\)</span> since this indicates that <span class="math inline">\(\rho_{Xu} &lt; 0\)</span>. As a consequence we expect <span class="math inline">\(\hat\beta_1\)</span>, the coefficient on <span class="math inline">\(STR\)</span>, to be too large in absolute value. Put differently, the OLS estimate of <span class="math inline">\(\hat\beta_1\)</span> suggests that small classes improve test scores, but that the effect of small classes is overestimated as it captures the effect of having fewer English learners, too.</p>
 <p>What happens to the magnitude of <span class="math inline">\(\hat\beta_1\)</span> if we add the variable <span class="math inline">\(PctEL\)</span> to the regression, that is, if we estimate the model
 <span class="math display">\[ TestScore = \beta_0 + \beta_1 \times STR + \beta_2 \times PctEL + u \]</span></p>
 <p>instead? And what do we expect about the sign of <span class="math inline">\(\hat\beta_2\)</span>, the estimated coefficient on <span class="math inline">\(PctEL\)</span>? Following the reasoning above we should still end up with a negative but larger coefficient estimate <span class="math inline">\(\hat\beta_1\)</span> than before and a negative estimate <span class="math inline">\(\hat\beta_2\)</span>.</p>
 <p>Let us estimate both regression models and compare. Performing a multiple regression in <tt>R</tt> is straightforward. One can simply add additional variables to the right hand side of the <code>formula</code> argument of the function <tt>lm()</tt> by using their names and the <tt>+</tt> operator.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1"><span class="co"># estimate both regression models</span></a>
-<a class="sourceLine" id="cb140-2" data-line-number="2">mod &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>STR, <span class="dt">data =</span> CASchools) </a>
-<a class="sourceLine" id="cb140-3" data-line-number="3">mult.mod &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>STR <span class="op">+</span><span class="st"> </span>english, <span class="dt">data =</span> CASchools)</a>
-<a class="sourceLine" id="cb140-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb140-5" data-line-number="5"><span class="co"># print the results to the console</span></a>
-<a class="sourceLine" id="cb140-6" data-line-number="6">mod</a>
-<a class="sourceLine" id="cb140-7" data-line-number="7"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb140-8" data-line-number="8"><span class="co">#&gt; Call:</span></a>
-<a class="sourceLine" id="cb140-9" data-line-number="9"><span class="co">#&gt; lm(formula = score ~ STR, data = CASchools)</span></a>
-<a class="sourceLine" id="cb140-10" data-line-number="10"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb140-11" data-line-number="11"><span class="co">#&gt; Coefficients:</span></a>
-<a class="sourceLine" id="cb140-12" data-line-number="12"><span class="co">#&gt; (Intercept)          STR  </span></a>
-<a class="sourceLine" id="cb140-13" data-line-number="13"><span class="co">#&gt;      698.93        -2.28</span></a>
-<a class="sourceLine" id="cb140-14" data-line-number="14">mult.mod</a>
-<a class="sourceLine" id="cb140-15" data-line-number="15"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb140-16" data-line-number="16"><span class="co">#&gt; Call:</span></a>
-<a class="sourceLine" id="cb140-17" data-line-number="17"><span class="co">#&gt; lm(formula = score ~ STR + english, data = CASchools)</span></a>
-<a class="sourceLine" id="cb140-18" data-line-number="18"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb140-19" data-line-number="19"><span class="co">#&gt; Coefficients:</span></a>
-<a class="sourceLine" id="cb140-20" data-line-number="20"><span class="co">#&gt; (Intercept)          STR      english  </span></a>
-<a class="sourceLine" id="cb140-21" data-line-number="21"><span class="co">#&gt;    686.0322      -1.1013      -0.6498</span></a></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1"><span class="co"># estimate both regression models</span></a>
+<a class="sourceLine" id="cb139-2" data-line-number="2">mod &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>STR, <span class="dt">data =</span> CASchools) </a>
+<a class="sourceLine" id="cb139-3" data-line-number="3">mult.mod &lt;-<span class="st"> </span><span class="kw">lm</span>(score <span class="op">~</span><span class="st"> </span>STR <span class="op">+</span><span class="st"> </span>english, <span class="dt">data =</span> CASchools)</a>
+<a class="sourceLine" id="cb139-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb139-5" data-line-number="5"><span class="co"># print the results to the console</span></a>
+<a class="sourceLine" id="cb139-6" data-line-number="6">mod</a>
+<a class="sourceLine" id="cb139-7" data-line-number="7"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb139-8" data-line-number="8"><span class="co">#&gt; Call:</span></a>
+<a class="sourceLine" id="cb139-9" data-line-number="9"><span class="co">#&gt; lm(formula = score ~ STR, data = CASchools)</span></a>
+<a class="sourceLine" id="cb139-10" data-line-number="10"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb139-11" data-line-number="11"><span class="co">#&gt; Coefficients:</span></a>
+<a class="sourceLine" id="cb139-12" data-line-number="12"><span class="co">#&gt; (Intercept)          STR  </span></a>
+<a class="sourceLine" id="cb139-13" data-line-number="13"><span class="co">#&gt;      698.93        -2.28</span></a>
+<a class="sourceLine" id="cb139-14" data-line-number="14">mult.mod</a>
+<a class="sourceLine" id="cb139-15" data-line-number="15"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb139-16" data-line-number="16"><span class="co">#&gt; Call:</span></a>
+<a class="sourceLine" id="cb139-17" data-line-number="17"><span class="co">#&gt; lm(formula = score ~ STR + english, data = CASchools)</span></a>
+<a class="sourceLine" id="cb139-18" data-line-number="18"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb139-19" data-line-number="19"><span class="co">#&gt; Coefficients:</span></a>
+<a class="sourceLine" id="cb139-20" data-line-number="20"><span class="co">#&gt; (Intercept)          STR      english  </span></a>
+<a class="sourceLine" id="cb139-21" data-line-number="21"><span class="co">#&gt;    686.0322      -1.1013      -0.6498</span></a></code></pre></div>
 <p>We find the outcomes to be consistent with our expectations.</p>
 <p>The following section discusses some theory on multiple regression models.</p>
 </div>
@@ -434,24 +436,25 @@ See Appendix 6.1 of the book for a detailed derivation. (<a href="#mjx-eqn-6.1">
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": true,
-"twitter": true,
-"google": false,
+"facebook": false,
+"twitter": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -459,14 +462,18 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mca91/EconometricsWithR/edit/master/06-ch6.Rmd",
+"link": "https://github.com/lidom/AdvRA/edit/master/06-ch6.Rmd",
 "text": "Edit"
 },
 "history": {
 "link": null,
 "text": null
 },
-"download": ["ITER.pdf"],
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "subsection",
 "scroll_highlight": true

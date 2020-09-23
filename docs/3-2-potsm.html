@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.2 Properties of the Sample Mean | Advanced Regression Analysis</title>
   <meta name="description" content="3.2 Properties of the Sample Mean | Advanced Regression Analysis" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.2 Properties of the Sample Mean | Advanced Regression Analysis" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/logo2.png" />
+  <meta property="og:image" content="images/mylogo.png" />
   
   
 
@@ -19,7 +19,7 @@
   <meta name="twitter:title" content="3.2 Properties of the Sample Mean | Advanced Regression Analysis" />
   
   
-  <meta name="twitter:image" content="images/logo2.png" />
+  <meta name="twitter:image" content="images/mylogo.png" />
 
 <meta name="author" content="Dominik Liebl" />
 
@@ -40,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -132,13 +135,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><center><img src="images/logo2.png" alt="logo" width="50%" height="50%"style="margin: 15px 0 0 0"></center></li>
+<li><center><img src="images/mylogo.png" alt="logo" width="100%" height="100%"style="margin: 15px 0 0 0"></center></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="1-introduction.html"><a href="1-introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-colophon.html"><a href="1-1-colophon.html"><i class="fa fa-check"></i><b>1.1</b> Colophon</a></li>
-<li class="chapter" data-level="1.2" data-path="1-2-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-2-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
+<li class="chapter" data-level="1.1" data-path="1-1-a-very-short-introduction-to-r-and-rstudio.html"><a href="1-1-a-very-short-introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1.1</b> A Very Short Introduction to <tt>R</tt> and <em>RStudio</em></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-pt.html"><a href="2-pt.html"><i class="fa fa-check"></i><b>2</b> Probability Theory</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-random-variables-and-probability-distributions.html"><a href="2-1-random-variables-and-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> Random Variables and Probability Distributions</a><ul>
@@ -330,7 +332,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.4" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><i class="fa fa-check"></i><b>16.4</b> Volatility Clustering and Autoregressive Conditional Heteroskedasticity</a><ul>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#arch-and-garch-models"><i class="fa fa-check"></i>ARCH and GARCH Models</a></li>
 <li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#application-to-stock-price-volatility"><i class="fa fa-check"></i>Application to Stock Price Volatility</a></li>
-<li class="chapter" data-level="" data-path="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html"><a href="16-4-volatility-clustering-and-autoregressive-conditional-heteroskedasticity.html#summary-8"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html"><a href="8-4-nonlinear-effects-on-test-scores-of-the-student-teacher-ratio.html#summary"><i class="fa fa-check"></i>Summary</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -367,67 +369,67 @@ This expression says that the probability of observing a deviation from the true
 <p>We generate a population <tt>pop</tt> consisting of observations <span class="math inline">\(Y_i\)</span>, <span class="math inline">\(i=1,\dots,10000\)</span> that origin from a normal distribution with mean <span class="math inline">\(\mu = 10\)</span> and variance <span class="math inline">\(\sigma^2 = 1\)</span>.</p>
 <p>To investigate the behavior of the estimator <span class="math inline">\(\hat{\mu} = \bar{Y}\)</span> we can draw random samples from this population and calculate <span class="math inline">\(\bar{Y}\)</span> for each of them. This is easily done by making use of the function <tt>replicate()</tt>. The argument <tt>expr</tt> is evaluated <tt>n</tt> times. In this case we draw samples of sizes <span class="math inline">\(n=5\)</span> and <span class="math inline">\(n=25\)</span>, compute the sample means and repeat this exactly <span class="math inline">\(N=25000\)</span> times.</p>
 <p>For comparison purposes we store results for the estimator <span class="math inline">\(Y_1\)</span>, the first observation in a sample for a sample of size <span class="math inline">\(5\)</span>, separately.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="co"># generate a fictious population</span></a>
-<a class="sourceLine" id="cb49-2" data-line-number="2">pop &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10000</span>, <span class="dv">10</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb49-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb49-4" data-line-number="4"><span class="co"># sample from the population and estimate the mean</span></a>
-<a class="sourceLine" id="cb49-5" data-line-number="5">est1 &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dt">expr =</span> <span class="kw">mean</span>(<span class="kw">sample</span>(<span class="dt">x =</span> pop, <span class="dt">size =</span> <span class="dv">5</span>)), <span class="dt">n =</span> <span class="dv">25000</span>)</a>
-<a class="sourceLine" id="cb49-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb49-7" data-line-number="7">est2 &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dt">expr =</span> <span class="kw">mean</span>(<span class="kw">sample</span>(<span class="dt">x =</span> pop, <span class="dt">size =</span> <span class="dv">25</span>)), <span class="dt">n =</span> <span class="dv">25000</span>)</a>
-<a class="sourceLine" id="cb49-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb49-9" data-line-number="9">fo &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dt">expr =</span> <span class="kw">sample</span>(<span class="dt">x =</span> pop, <span class="dt">size =</span> <span class="dv">5</span>)[<span class="dv">1</span>], <span class="dt">n =</span> <span class="dv">25000</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="co"># generate a fictious population</span></a>
+<a class="sourceLine" id="cb48-2" data-line-number="2">pop &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10000</span>, <span class="dv">10</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb48-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="co"># sample from the population and estimate the mean</span></a>
+<a class="sourceLine" id="cb48-5" data-line-number="5">est1 &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dt">expr =</span> <span class="kw">mean</span>(<span class="kw">sample</span>(<span class="dt">x =</span> pop, <span class="dt">size =</span> <span class="dv">5</span>)), <span class="dt">n =</span> <span class="dv">25000</span>)</a>
+<a class="sourceLine" id="cb48-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb48-7" data-line-number="7">est2 &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dt">expr =</span> <span class="kw">mean</span>(<span class="kw">sample</span>(<span class="dt">x =</span> pop, <span class="dt">size =</span> <span class="dv">25</span>)), <span class="dt">n =</span> <span class="dv">25000</span>)</a>
+<a class="sourceLine" id="cb48-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb48-9" data-line-number="9">fo &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dt">expr =</span> <span class="kw">sample</span>(<span class="dt">x =</span> pop, <span class="dt">size =</span> <span class="dv">5</span>)[<span class="dv">1</span>], <span class="dt">n =</span> <span class="dv">25000</span>)</a></code></pre></div>
 <p>Check that <tt>est1</tt> and <tt>est2</tt> are vectors of length <span class="math inline">\(25000\)</span>:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="co"># check if object type is vector</span></a>
-<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="kw">is.vector</span>(est1)</a>
-<a class="sourceLine" id="cb50-3" data-line-number="3"><span class="co">#&gt; [1] TRUE</span></a>
-<a class="sourceLine" id="cb50-4" data-line-number="4"><span class="kw">is.vector</span>(est2)</a>
-<a class="sourceLine" id="cb50-5" data-line-number="5"><span class="co">#&gt; [1] TRUE</span></a>
-<a class="sourceLine" id="cb50-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb50-7" data-line-number="7"><span class="co"># check length</span></a>
-<a class="sourceLine" id="cb50-8" data-line-number="8"><span class="kw">length</span>(est1)</a>
-<a class="sourceLine" id="cb50-9" data-line-number="9"><span class="co">#&gt; [1] 25000</span></a>
-<a class="sourceLine" id="cb50-10" data-line-number="10"><span class="kw">length</span>(est2)</a>
-<a class="sourceLine" id="cb50-11" data-line-number="11"><span class="co">#&gt; [1] 25000</span></a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="co"># check if object type is vector</span></a>
+<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="kw">is.vector</span>(est1)</a>
+<a class="sourceLine" id="cb49-3" data-line-number="3"><span class="co">#&gt; [1] TRUE</span></a>
+<a class="sourceLine" id="cb49-4" data-line-number="4"><span class="kw">is.vector</span>(est2)</a>
+<a class="sourceLine" id="cb49-5" data-line-number="5"><span class="co">#&gt; [1] TRUE</span></a>
+<a class="sourceLine" id="cb49-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb49-7" data-line-number="7"><span class="co"># check length</span></a>
+<a class="sourceLine" id="cb49-8" data-line-number="8"><span class="kw">length</span>(est1)</a>
+<a class="sourceLine" id="cb49-9" data-line-number="9"><span class="co">#&gt; [1] 25000</span></a>
+<a class="sourceLine" id="cb49-10" data-line-number="10"><span class="kw">length</span>(est2)</a>
+<a class="sourceLine" id="cb49-11" data-line-number="11"><span class="co">#&gt; [1] 25000</span></a></code></pre></div>
 <p>The code chunk below produces a plot of the sampling distributions of the estimators <span class="math inline">\(\bar{Y}\)</span> and <span class="math inline">\(Y_1\)</span> on the basis of the <span class="math inline">\(25000\)</span> samples in each case. We also plot the density function of the <span class="math inline">\(\mathcal{N}(10,1)\)</span> distribution.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="co"># plot density estimate Y_1</span></a>
-<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">density</span>(fo), </a>
-<a class="sourceLine" id="cb51-3" data-line-number="3">      <span class="dt">col =</span> <span class="st">&quot;green&quot;</span>, </a>
-<a class="sourceLine" id="cb51-4" data-line-number="4">      <span class="dt">lwd =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb51-5" data-line-number="5">      <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb51-6" data-line-number="6">      <span class="dt">xlab =</span> <span class="st">&quot;estimates&quot;</span>,</a>
-<a class="sourceLine" id="cb51-7" data-line-number="7">      <span class="dt">main =</span> <span class="st">&quot;Sampling Distributions of Unbiased Estimators&quot;</span>)</a>
-<a class="sourceLine" id="cb51-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb51-9" data-line-number="9"><span class="co"># add density estimate for the distribution of the sample mean with n=5 to the plot</span></a>
-<a class="sourceLine" id="cb51-10" data-line-number="10"><span class="kw">lines</span>(<span class="kw">density</span>(est1), </a>
-<a class="sourceLine" id="cb51-11" data-line-number="11">     <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>, </a>
-<a class="sourceLine" id="cb51-12" data-line-number="12">     <span class="dt">lwd =</span> <span class="dv">2</span>, </a>
-<a class="sourceLine" id="cb51-13" data-line-number="13">     <span class="dt">bty =</span> <span class="st">&quot;l&quot;</span>)</a>
-<a class="sourceLine" id="cb51-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb51-15" data-line-number="15"><span class="co"># add density estimate for the distribution of the sample mean with n=25 to the plot</span></a>
-<a class="sourceLine" id="cb51-16" data-line-number="16"><span class="kw">lines</span>(<span class="kw">density</span>(est2), </a>
-<a class="sourceLine" id="cb51-17" data-line-number="17">      <span class="dt">col =</span> <span class="st">&quot;red2&quot;</span>, </a>
-<a class="sourceLine" id="cb51-18" data-line-number="18">      <span class="dt">lwd =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb51-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb51-20" data-line-number="20"><span class="co"># add a vertical line at the true parameter</span></a>
-<a class="sourceLine" id="cb51-21" data-line-number="21"><span class="kw">abline</span>(<span class="dt">v =</span> <span class="dv">10</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb51-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb51-23" data-line-number="23"><span class="co"># add N(10,1) density to the plot</span></a>
-<a class="sourceLine" id="cb51-24" data-line-number="24"><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">10</span>), </a>
-<a class="sourceLine" id="cb51-25" data-line-number="25">     <span class="dt">lwd =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb51-26" data-line-number="26">     <span class="dt">lty =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb51-27" data-line-number="27">     <span class="dt">add =</span> T)</a>
-<a class="sourceLine" id="cb51-28" data-line-number="28"></a>
-<a class="sourceLine" id="cb51-29" data-line-number="29"><span class="co"># add a legend</span></a>
-<a class="sourceLine" id="cb51-30" data-line-number="30"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>,</a>
-<a class="sourceLine" id="cb51-31" data-line-number="31">       <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;N(10,1)&quot;</span>,</a>
-<a class="sourceLine" id="cb51-32" data-line-number="32">                  <span class="kw">expression</span>(Y[<span class="dv">1</span>]),</a>
-<a class="sourceLine" id="cb51-33" data-line-number="33">                  <span class="kw">expression</span>(<span class="kw">bar</span>(Y) <span class="op">~</span><span class="st"> </span>n <span class="op">==</span><span class="st"> </span><span class="dv">5</span>),</a>
-<a class="sourceLine" id="cb51-34" data-line-number="34">                  <span class="kw">expression</span>(<span class="kw">bar</span>(Y) <span class="op">~</span><span class="st"> </span>n <span class="op">==</span><span class="st"> </span><span class="dv">25</span>)</a>
-<a class="sourceLine" id="cb51-35" data-line-number="35">                  ), </a>
-<a class="sourceLine" id="cb51-36" data-line-number="36">       <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>), </a>
-<a class="sourceLine" id="cb51-37" data-line-number="37">       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>,<span class="st">&quot;green&quot;</span>, <span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;red2&quot;</span>),</a>
-<a class="sourceLine" id="cb51-38" data-line-number="38">       <span class="dt">lwd =</span> <span class="dv">2</span>)</a></code></pre></div>
-<p><img src="ITER_files/figure-html/unnamed-chunk-94-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="co"># plot density estimate Y_1</span></a>
+<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">density</span>(fo), </a>
+<a class="sourceLine" id="cb50-3" data-line-number="3">      <span class="dt">col =</span> <span class="st">&quot;green&quot;</span>, </a>
+<a class="sourceLine" id="cb50-4" data-line-number="4">      <span class="dt">lwd =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb50-5" data-line-number="5">      <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb50-6" data-line-number="6">      <span class="dt">xlab =</span> <span class="st">&quot;estimates&quot;</span>,</a>
+<a class="sourceLine" id="cb50-7" data-line-number="7">      <span class="dt">main =</span> <span class="st">&quot;Sampling Distributions of Unbiased Estimators&quot;</span>)</a>
+<a class="sourceLine" id="cb50-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb50-9" data-line-number="9"><span class="co"># add density estimate for the distribution of the sample mean with n=5 to the plot</span></a>
+<a class="sourceLine" id="cb50-10" data-line-number="10"><span class="kw">lines</span>(<span class="kw">density</span>(est1), </a>
+<a class="sourceLine" id="cb50-11" data-line-number="11">     <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>, </a>
+<a class="sourceLine" id="cb50-12" data-line-number="12">     <span class="dt">lwd =</span> <span class="dv">2</span>, </a>
+<a class="sourceLine" id="cb50-13" data-line-number="13">     <span class="dt">bty =</span> <span class="st">&quot;l&quot;</span>)</a>
+<a class="sourceLine" id="cb50-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb50-15" data-line-number="15"><span class="co"># add density estimate for the distribution of the sample mean with n=25 to the plot</span></a>
+<a class="sourceLine" id="cb50-16" data-line-number="16"><span class="kw">lines</span>(<span class="kw">density</span>(est2), </a>
+<a class="sourceLine" id="cb50-17" data-line-number="17">      <span class="dt">col =</span> <span class="st">&quot;red2&quot;</span>, </a>
+<a class="sourceLine" id="cb50-18" data-line-number="18">      <span class="dt">lwd =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb50-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb50-20" data-line-number="20"><span class="co"># add a vertical line at the true parameter</span></a>
+<a class="sourceLine" id="cb50-21" data-line-number="21"><span class="kw">abline</span>(<span class="dt">v =</span> <span class="dv">10</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb50-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb50-23" data-line-number="23"><span class="co"># add N(10,1) density to the plot</span></a>
+<a class="sourceLine" id="cb50-24" data-line-number="24"><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">10</span>), </a>
+<a class="sourceLine" id="cb50-25" data-line-number="25">     <span class="dt">lwd =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb50-26" data-line-number="26">     <span class="dt">lty =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb50-27" data-line-number="27">     <span class="dt">add =</span> T)</a>
+<a class="sourceLine" id="cb50-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb50-29" data-line-number="29"><span class="co"># add a legend</span></a>
+<a class="sourceLine" id="cb50-30" data-line-number="30"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>,</a>
+<a class="sourceLine" id="cb50-31" data-line-number="31">       <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&quot;N(10,1)&quot;</span>,</a>
+<a class="sourceLine" id="cb50-32" data-line-number="32">                  <span class="kw">expression</span>(Y[<span class="dv">1</span>]),</a>
+<a class="sourceLine" id="cb50-33" data-line-number="33">                  <span class="kw">expression</span>(<span class="kw">bar</span>(Y) <span class="op">~</span><span class="st"> </span>n <span class="op">==</span><span class="st"> </span><span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb50-34" data-line-number="34">                  <span class="kw">expression</span>(<span class="kw">bar</span>(Y) <span class="op">~</span><span class="st"> </span>n <span class="op">==</span><span class="st"> </span><span class="dv">25</span>)</a>
+<a class="sourceLine" id="cb50-35" data-line-number="35">                  ), </a>
+<a class="sourceLine" id="cb50-36" data-line-number="36">       <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>), </a>
+<a class="sourceLine" id="cb50-37" data-line-number="37">       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>,<span class="st">&quot;green&quot;</span>, <span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;red2&quot;</span>),</a>
+<a class="sourceLine" id="cb50-38" data-line-number="38">       <span class="dt">lwd =</span> <span class="dv">2</span>)</a></code></pre></div>
+<p><img src="AdvRA_files/figure-html/unnamed-chunk-93-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>First, <em>all</em> sampling distributions (represented by the solid lines) are centered around <span class="math inline">\(\mu = 10\)</span>. This is evidence for the <em>unbiasedness</em> of <span class="math inline">\(Y_1\)</span>, <span class="math inline">\(\overline{Y}_{5}\)</span> and <span class="math inline">\(\overline{Y}_{25}\)</span>. Of course, the theoretical density <span class="math inline">\(\mathcal{N}(10,1)\)</span> is centered at <span class="math inline">\(10\)</span>, too.</p>
 <p>Next, have a look at the spread of the sampling distributions. Several things are noteworthy:</p>
 <ul>
@@ -444,33 +446,33 @@ This expression says that the probability of observing a deviation from the true
 \end{equation}\]</span></p>
 <p>Think of <span class="math inline">\(Y_i - m\)</span> as the mistake made when predicting <span class="math inline">\(Y_i\)</span> by <span class="math inline">\(m\)</span>. We could also minimize the sum of absolute deviations from <span class="math inline">\(m\)</span> but minimizing the sum of squared deviations is mathematically more convenient (and will lead to a different result). That is why the estimator we are looking for is called the <em>least squares estimator</em>. <span class="math inline">\(m = \overline{Y}\)</span>, the sample mean, is this estimator.</p>
 <p>We can show this by generating a random sample and plotting <a href="3-2-potsm.html#eq:sqm">(3.1)</a> as a function of <span class="math inline">\(m\)</span>.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="co"># define the function and vectorize it</span></a>
-<a class="sourceLine" id="cb52-2" data-line-number="2">sqm &lt;-<span class="st"> </span><span class="cf">function</span>(m) {</a>
-<a class="sourceLine" id="cb52-3" data-line-number="3"> <span class="kw">sum</span>((y<span class="op">-</span>m)<span class="op">^</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb52-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb52-5" data-line-number="5">sqm &lt;-<span class="st"> </span><span class="kw">Vectorize</span>(sqm)</a>
-<a class="sourceLine" id="cb52-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb52-7" data-line-number="7"><span class="co"># draw random sample and compute the mean</span></a>
-<a class="sourceLine" id="cb52-8" data-line-number="8">y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">10</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb52-9" data-line-number="9"><span class="kw">mean</span>(y)</a>
-<a class="sourceLine" id="cb52-10" data-line-number="10"><span class="co">#&gt; [1] 10.1364</span></a></code></pre></div>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="co"># plot the objective function</span></a>
-<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="kw">curve</span>(<span class="kw">sqm</span>(x), </a>
-<a class="sourceLine" id="cb53-3" data-line-number="3">      <span class="dt">from =</span> <span class="dv">-50</span>, </a>
-<a class="sourceLine" id="cb53-4" data-line-number="4">      <span class="dt">to =</span> <span class="dv">70</span>,</a>
-<a class="sourceLine" id="cb53-5" data-line-number="5">      <span class="dt">xlab =</span> <span class="st">&quot;m&quot;</span>,</a>
-<a class="sourceLine" id="cb53-6" data-line-number="6">      <span class="dt">ylab =</span> <span class="st">&quot;sqm(m)&quot;</span>)</a>
-<a class="sourceLine" id="cb53-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb53-8" data-line-number="8"><span class="co"># add vertical line at mean(y)</span></a>
-<a class="sourceLine" id="cb53-9" data-line-number="9"><span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">mean</span>(y), </a>
-<a class="sourceLine" id="cb53-10" data-line-number="10">       <span class="dt">lty =</span> <span class="dv">2</span>, </a>
-<a class="sourceLine" id="cb53-11" data-line-number="11">       <span class="dt">col =</span> <span class="st">&quot;darkred&quot;</span>)</a>
-<a class="sourceLine" id="cb53-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb53-13" data-line-number="13"><span class="co"># add annotation at mean(y)</span></a>
-<a class="sourceLine" id="cb53-14" data-line-number="14"><span class="kw">text</span>(<span class="dt">x =</span> <span class="kw">mean</span>(y), </a>
-<a class="sourceLine" id="cb53-15" data-line-number="15">     <span class="dt">y =</span> <span class="dv">0</span>, </a>
-<a class="sourceLine" id="cb53-16" data-line-number="16">     <span class="dt">labels =</span> <span class="kw">paste</span>(<span class="kw">round</span>(<span class="kw">mean</span>(y), <span class="dv">2</span>)))</a></code></pre></div>
-<p><img src="ITER_files/figure-html/unnamed-chunk-96-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="co"># define the function and vectorize it</span></a>
+<a class="sourceLine" id="cb51-2" data-line-number="2">sqm &lt;-<span class="st"> </span><span class="cf">function</span>(m) {</a>
+<a class="sourceLine" id="cb51-3" data-line-number="3"> <span class="kw">sum</span>((y<span class="op">-</span>m)<span class="op">^</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb51-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb51-5" data-line-number="5">sqm &lt;-<span class="st"> </span><span class="kw">Vectorize</span>(sqm)</a>
+<a class="sourceLine" id="cb51-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb51-7" data-line-number="7"><span class="co"># draw random sample and compute the mean</span></a>
+<a class="sourceLine" id="cb51-8" data-line-number="8">y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">10</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb51-9" data-line-number="9"><span class="kw">mean</span>(y)</a>
+<a class="sourceLine" id="cb51-10" data-line-number="10"><span class="co">#&gt; [1] 10.1364</span></a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="co"># plot the objective function</span></a>
+<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="kw">curve</span>(<span class="kw">sqm</span>(x), </a>
+<a class="sourceLine" id="cb52-3" data-line-number="3">      <span class="dt">from =</span> <span class="dv">-50</span>, </a>
+<a class="sourceLine" id="cb52-4" data-line-number="4">      <span class="dt">to =</span> <span class="dv">70</span>,</a>
+<a class="sourceLine" id="cb52-5" data-line-number="5">      <span class="dt">xlab =</span> <span class="st">&quot;m&quot;</span>,</a>
+<a class="sourceLine" id="cb52-6" data-line-number="6">      <span class="dt">ylab =</span> <span class="st">&quot;sqm(m)&quot;</span>)</a>
+<a class="sourceLine" id="cb52-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb52-8" data-line-number="8"><span class="co"># add vertical line at mean(y)</span></a>
+<a class="sourceLine" id="cb52-9" data-line-number="9"><span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">mean</span>(y), </a>
+<a class="sourceLine" id="cb52-10" data-line-number="10">       <span class="dt">lty =</span> <span class="dv">2</span>, </a>
+<a class="sourceLine" id="cb52-11" data-line-number="11">       <span class="dt">col =</span> <span class="st">&quot;darkred&quot;</span>)</a>
+<a class="sourceLine" id="cb52-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb52-13" data-line-number="13"><span class="co"># add annotation at mean(y)</span></a>
+<a class="sourceLine" id="cb52-14" data-line-number="14"><span class="kw">text</span>(<span class="dt">x =</span> <span class="kw">mean</span>(y), </a>
+<a class="sourceLine" id="cb52-15" data-line-number="15">     <span class="dt">y =</span> <span class="dv">0</span>, </a>
+<a class="sourceLine" id="cb52-16" data-line-number="16">     <span class="dt">labels =</span> <span class="kw">paste</span>(<span class="kw">round</span>(<span class="kw">mean</span>(y), <span class="dv">2</span>)))</a></code></pre></div>
+<p><img src="AdvRA_files/figure-html/unnamed-chunk-95-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>Notice that <a href="3-2-potsm.html#eq:sqm">(3.1)</a> is a quadratic function so that there is only one minimum. The plot shows that this minimum lies exactly at the sample mean of the sample data.</p>
 
 <div class="rmdknit">
@@ -490,42 +492,42 @@ Here <tt>Vectorize()</tt> comes into play. It generates a vectorized version of 
 <h4>Why Random Sampling is Important</h4>
 <p>So far, we assumed (sometimes implicitly) that the observed data <span class="math inline">\(Y_1, \dots, Y_n\)</span> are the result of a sampling process that satisfies the assumption of simple random sampling. This assumption often is fulfilled when estimating a population mean using <span class="math inline">\(\overline{Y}\)</span>. If this is not the case, estimates may be biased.</p>
 <p>Let us fall back to <tt>pop</tt>, the fictive population of <span class="math inline">\(10000\)</span> observations and compute the population mean <span class="math inline">\(\mu_{\texttt{pop}}\)</span>:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="co"># compute the population mean of pop</span></a>
-<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="kw">mean</span>(pop)</a>
-<a class="sourceLine" id="cb54-3" data-line-number="3"><span class="co">#&gt; [1] 9.992604</span></a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="co"># compute the population mean of pop</span></a>
+<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="kw">mean</span>(pop)</a>
+<a class="sourceLine" id="cb53-3" data-line-number="3"><span class="co">#&gt; [1] 9.992604</span></a></code></pre></div>
 <p>Next we sample <span class="math inline">\(10\)</span> observations from <tt>pop</tt> with <tt>sample()</tt> and estimate <span class="math inline">\(\mu_{\texttt{pop}}\)</span> using <span class="math inline">\(\overline{Y}\)</span> repeatedly. However, now we use a sampling scheme that deviates from simple random sampling: instead of ensuring that each member of the population has the same chance to end up in a sample, we assign a higher probability of being sampled to the <span class="math inline">\(2500\)</span> smallest observations of the population by setting the argument <tt>prob</tt> to a suitable vector of probability weights:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="co"># simulate outcomes for the sample mean when the i.i.d. assumption fails</span></a>
-<a class="sourceLine" id="cb55-2" data-line-number="2">est3 &lt;-<span class="st">  </span><span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">25000</span>, </a>
-<a class="sourceLine" id="cb55-3" data-line-number="3">                   <span class="dt">expr =</span> <span class="kw">mean</span>(<span class="kw">sample</span>(<span class="dt">x =</span> <span class="kw">sort</span>(pop), </a>
-<a class="sourceLine" id="cb55-4" data-line-number="4">                                      <span class="dt">size =</span> <span class="dv">10</span>, </a>
-<a class="sourceLine" id="cb55-5" data-line-number="5">                                      <span class="dt">prob =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">4</span>, <span class="dv">2500</span>), <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">7500</span>)))))</a>
-<a class="sourceLine" id="cb55-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb55-7" data-line-number="7"><span class="co"># compute the sample mean of the outcomes</span></a>
-<a class="sourceLine" id="cb55-8" data-line-number="8"><span class="kw">mean</span>(est3)</a>
-<a class="sourceLine" id="cb55-9" data-line-number="9"><span class="co">#&gt; [1] 9.444113</span></a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="co"># simulate outcomes for the sample mean when the i.i.d. assumption fails</span></a>
+<a class="sourceLine" id="cb54-2" data-line-number="2">est3 &lt;-<span class="st">  </span><span class="kw">replicate</span>(<span class="dt">n =</span> <span class="dv">25000</span>, </a>
+<a class="sourceLine" id="cb54-3" data-line-number="3">                   <span class="dt">expr =</span> <span class="kw">mean</span>(<span class="kw">sample</span>(<span class="dt">x =</span> <span class="kw">sort</span>(pop), </a>
+<a class="sourceLine" id="cb54-4" data-line-number="4">                                      <span class="dt">size =</span> <span class="dv">10</span>, </a>
+<a class="sourceLine" id="cb54-5" data-line-number="5">                                      <span class="dt">prob =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">4</span>, <span class="dv">2500</span>), <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">7500</span>)))))</a>
+<a class="sourceLine" id="cb54-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb54-7" data-line-number="7"><span class="co"># compute the sample mean of the outcomes</span></a>
+<a class="sourceLine" id="cb54-8" data-line-number="8"><span class="kw">mean</span>(est3)</a>
+<a class="sourceLine" id="cb54-9" data-line-number="9"><span class="co">#&gt; [1] 9.444113</span></a></code></pre></div>
 <p>Next we plot the sampling distribution of <span class="math inline">\(\overline{Y}\)</span> for this non-i.i.d. case and compare it to the sampling distribution when the i.i.d. assumption holds.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="co"># sampling distribution of sample mean, i.i.d. holds, n=25</span></a>
-<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">density</span>(est2), </a>
-<a class="sourceLine" id="cb56-3" data-line-number="3">      <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>,</a>
-<a class="sourceLine" id="cb56-4" data-line-number="4">      <span class="dt">lwd =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb56-5" data-line-number="5">      <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">11</span>),</a>
-<a class="sourceLine" id="cb56-6" data-line-number="6">      <span class="dt">xlab =</span> <span class="st">&quot;Estimates&quot;</span>,</a>
-<a class="sourceLine" id="cb56-7" data-line-number="7">      <span class="dt">main =</span> <span class="st">&quot;When the i.i.d. Assumption Fails&quot;</span>)</a>
-<a class="sourceLine" id="cb56-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb56-9" data-line-number="9"><span class="co"># sampling distribution of sample mean, i.i.d. fails, n=25</span></a>
-<a class="sourceLine" id="cb56-10" data-line-number="10"><span class="kw">lines</span>(<span class="kw">density</span>(est3),</a>
-<a class="sourceLine" id="cb56-11" data-line-number="11">      <span class="dt">col =</span> <span class="st">&quot;red2&quot;</span>,</a>
-<a class="sourceLine" id="cb56-12" data-line-number="12">      <span class="dt">lwd =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb56-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb56-14" data-line-number="14"><span class="co"># add a legend</span></a>
-<a class="sourceLine" id="cb56-15" data-line-number="15"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>,</a>
-<a class="sourceLine" id="cb56-16" data-line-number="16">       <span class="dt">legend =</span> <span class="kw">c</span>(<span class="kw">expression</span>(<span class="kw">bar</span>(Y)[n <span class="op">==</span><span class="st"> </span><span class="dv">25</span>]<span class="op">~</span><span class="st">&quot;, i.i.d. fails&quot;</span>),</a>
-<a class="sourceLine" id="cb56-17" data-line-number="17">                  <span class="kw">expression</span>(<span class="kw">bar</span>(Y)[n <span class="op">==</span><span class="st"> </span><span class="dv">25</span>]<span class="op">~</span><span class="st">&quot;, i.i.d. holds&quot;</span>)</a>
-<a class="sourceLine" id="cb56-18" data-line-number="18">                  ), </a>
-<a class="sourceLine" id="cb56-19" data-line-number="19">       <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), </a>
-<a class="sourceLine" id="cb56-20" data-line-number="20">       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;red2&quot;</span>, <span class="st">&quot;steelblue&quot;</span>),</a>
-<a class="sourceLine" id="cb56-21" data-line-number="21">       <span class="dt">lwd =</span> <span class="dv">2</span>)</a></code></pre></div>
-<p><img src="ITER_files/figure-html/unnamed-chunk-99-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="co"># sampling distribution of sample mean, i.i.d. holds, n=25</span></a>
+<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">density</span>(est2), </a>
+<a class="sourceLine" id="cb55-3" data-line-number="3">      <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>,</a>
+<a class="sourceLine" id="cb55-4" data-line-number="4">      <span class="dt">lwd =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb55-5" data-line-number="5">      <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">11</span>),</a>
+<a class="sourceLine" id="cb55-6" data-line-number="6">      <span class="dt">xlab =</span> <span class="st">&quot;Estimates&quot;</span>,</a>
+<a class="sourceLine" id="cb55-7" data-line-number="7">      <span class="dt">main =</span> <span class="st">&quot;When the i.i.d. Assumption Fails&quot;</span>)</a>
+<a class="sourceLine" id="cb55-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb55-9" data-line-number="9"><span class="co"># sampling distribution of sample mean, i.i.d. fails, n=25</span></a>
+<a class="sourceLine" id="cb55-10" data-line-number="10"><span class="kw">lines</span>(<span class="kw">density</span>(est3),</a>
+<a class="sourceLine" id="cb55-11" data-line-number="11">      <span class="dt">col =</span> <span class="st">&quot;red2&quot;</span>,</a>
+<a class="sourceLine" id="cb55-12" data-line-number="12">      <span class="dt">lwd =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb55-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb55-14" data-line-number="14"><span class="co"># add a legend</span></a>
+<a class="sourceLine" id="cb55-15" data-line-number="15"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>,</a>
+<a class="sourceLine" id="cb55-16" data-line-number="16">       <span class="dt">legend =</span> <span class="kw">c</span>(<span class="kw">expression</span>(<span class="kw">bar</span>(Y)[n <span class="op">==</span><span class="st"> </span><span class="dv">25</span>]<span class="op">~</span><span class="st">&quot;, i.i.d. fails&quot;</span>),</a>
+<a class="sourceLine" id="cb55-17" data-line-number="17">                  <span class="kw">expression</span>(<span class="kw">bar</span>(Y)[n <span class="op">==</span><span class="st"> </span><span class="dv">25</span>]<span class="op">~</span><span class="st">&quot;, i.i.d. holds&quot;</span>)</a>
+<a class="sourceLine" id="cb55-18" data-line-number="18">                  ), </a>
+<a class="sourceLine" id="cb55-19" data-line-number="19">       <span class="dt">lty =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), </a>
+<a class="sourceLine" id="cb55-20" data-line-number="20">       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;red2&quot;</span>, <span class="st">&quot;steelblue&quot;</span>),</a>
+<a class="sourceLine" id="cb55-21" data-line-number="21">       <span class="dt">lwd =</span> <span class="dv">2</span>)</a></code></pre></div>
+<p><img src="AdvRA_files/figure-html/unnamed-chunk-98-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>Here, the failure of the i.i.d. assumption implies that, on average, we <em>underestimate</em> <span class="math inline">\(\mu_Y\)</span> using <span class="math inline">\(\overline{Y}\)</span>: the corresponding distribution of <span class="math inline">\(\overline{Y}\)</span> is shifted to the left. In other words, <span class="math inline">\(\overline{Y}\)</span> is a <em>biased</em> estimator for <span class="math inline">\(\mu_Y\)</span> if the i.i.d. assumption does not hold.</p>
 </div>
 </div>
@@ -540,24 +542,25 @@ Here <tt>Vectorize()</tt> comes into play. It generates a vectorized version of 
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": true,
-"twitter": true,
-"google": false,
+"facebook": false,
+"twitter": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -565,14 +568,18 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mca91/EconometricsWithR/edit/master/03-ch3.Rmd",
+"link": "https://github.com/lidom/AdvRA/edit/master/03-ch3.Rmd",
 "text": "Edit"
 },
 "history": {
 "link": null,
 "text": null
 },
-"download": ["ITER.pdf"],
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
 "toc": {
 "collapse": "subsection",
 "scroll_highlight": true
