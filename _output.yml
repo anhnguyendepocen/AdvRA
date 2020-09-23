@@ -3,7 +3,8 @@ bookdown::gitbook:
   css: [style.css, toc.css]
   config:
     toc:
-      before: <br> Table of Contents
+      before: |
+        <li><center><img src="images/mylogo.png" alt="logo" width="50%" height="50%"style="margin: 15px 0 0 0"></center></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
     edit: https://github.com/mca91/EconometricsWithR/edit/master/%s

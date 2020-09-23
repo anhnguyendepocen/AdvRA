@@ -1,6 +1,6 @@
 ---
 title: "Advanced Regression Analysis"
-cover-image: "images/logo2.png"
+cover-image: "images/mylogo.png"
 author: "Dominik Liebl"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
