@@ -40,6 +40,12 @@ tags: [Tutorial, Linear models, Econometrics, Causal Analysis, R Programming, Te
 
 # Preface {-}
 
+You can find relevant information and links for this course here:
+
+[ETHERPAD](https://etherpad.wikimedia.org/p/56XtuaoUw2BBfCW2he0U)
+
+
+
 ```{r, child="_setup.Rmd"}
 ```
 
